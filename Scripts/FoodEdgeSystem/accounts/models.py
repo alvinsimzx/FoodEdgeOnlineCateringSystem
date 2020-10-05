@@ -10,7 +10,7 @@ class Profile (models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-class Stock(models.Model):
+class InsertStock(models.Model):
     stockName = models.CharField(max_length=100)
     amountLeft = models.IntegerField()
     deficit = models.IntegerField()

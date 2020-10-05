@@ -41,7 +41,7 @@ def showStockPage(request):
 def Insertrecord(request):
     if request.method =='POST':
         if request.POST.get('stockName') and request.POST.get('amountLeft') and request.POST.get('deficit'):
-            saverecord = Stock()
+            saverecord = InsertStock()
             saverecord.stockName=request.POST.get('stockName')
             saverecord.amountLeft=request.POST.get('amountLeft')
             saverecord.deficit=request.POST.get('deficit')
