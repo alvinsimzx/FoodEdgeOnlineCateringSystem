@@ -122,7 +122,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/images/'
+MEDIA_URL = 'accounts/static/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'accounts/static/images/')
+
+LOGIN_REDIRECT_URL = 'accounts-home'
+
+LOGIN_URL = 'login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

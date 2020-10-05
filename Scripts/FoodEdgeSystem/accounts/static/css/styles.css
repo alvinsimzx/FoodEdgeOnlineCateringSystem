@@ -1,0 +1,260 @@
+/*Description: FoodEdge CSS*/
+/*Author:Chan Kwang Yung, Karyn Chong, Desmond Sim, Alvin Sim, Wong Jun Jie*/
+/*Date:04/10/2020*/
+/*Validated:*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif; 
+    font-weight: 400;
+}
+
+body{
+    
+    background-color: #314e4e;
+}
+
+header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 2%;
+    background: #FDFEFD;
+    box-shadow: 0 0 15px 1px black;
+    
+}
+
+nav{
+    margin-right: auto;
+}
+
+
+nav ul a li{
+    width: 6em;
+    text-align: center;
+    font-weight: 500;
+}
+
+nav ul a {
+    list-style: none;
+    display: inline-block;
+    padding: 0 5px;
+    font-weight: bold;
+    color: rgba(49, 78, 78, 0.5);
+    
+}
+nav ul a::after{
+    content: "";
+    display: block;
+    width: 0;
+    height:2px;/*This makes it look like a thin line, the higher the value, the thicker the underline it will be*/
+    background-color: #a92507;
+    transition: width 500ms;
+}
+
+nav ul a:hover::after{
+    width: 100%;
+    transition: width 500ms;
+}
+
+  
+nav ul a:hover{
+    color: #a92507;
+    transition: .5s;
+}
+
+
+.loginButton{
+    padding: 10px 25px;
+    margin: 0 10px;
+    background-color: rgba(169, 37, 7, 0.7);
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all .5s ease 0s;
+    color: #FDFEFD;
+    font-weight: bold;
+}
+
+.loginButton:hover{
+    background-color: #a92507;
+
+}
+
+/* -----------------------------------------------------feedback.html------------------------------------------------------------------ */
+form{
+    background: white;
+    width: 85%;
+    box-shadow: 0 0 15px 1px blakc;
+    padding: 5% 0;
+    margin: 2% auto;
+}
+
+#feedbackTitle{
+    text-align: center;
+}
+
+textarea{
+    width:100%;
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  
+}
+
+input{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 12px 20px;
+    width:100%;
+    margin: 10px 0;
+}
+
+.name input{
+    width: 49.5%;
+}
+.name{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+
+select{
+    width:100%;
+    padding: 12px 20px;
+    border-radius: 4px;
+
+}
+
+fieldset{
+    width:85%;
+    margin:25px auto;
+    border-radius: 10px;
+    padding: 25px;
+    border-color: #D4AF37;
+}
+
+legend{
+    font-size: 18px;
+    text-align: center;
+}
+.category input{
+    width: auto;
+}
+
+.category label{
+    padding: 10px;
+}
+
+.category{
+    margin: 0 100px;
+}
+
+.ratings{
+    display: flex;
+    width:250px;
+    margin: 0 auto;
+    flex-direction: row-reverse;
+}
+
+.ratings input{
+    display: none;
+}
+
+.ratings label{
+    display: block;
+    cursor: pointer;
+    width: 50px;
+}
+
+.ratings label::before{
+    content:'\f005';
+    font-family: fontAwesome;
+    position:relative;
+    display:block;
+    font-size:30px;
+    color:gray;
+}
+
+.ratings label::after{
+    content:'\f005';
+    font-family: fontAwesome;
+    position: relative;
+    display:block;
+    font-size:30px;
+    color:#ffad49;
+    top: -30px;
+    opacity: 0;
+    transition: all .3s ease 0s;
+    
+}
+
+.ratings label:hover::after,
+.ratings label:hover ~ label::after,
+.ratings input:checked ~ label::after{
+    opacity: 1;
+    
+}
+
+input[type=submit]{
+    background-color: white;
+    border: #ffad49 3px solid;
+    color: #ffad49;
+    padding: .5em 1em;
+    margin: 1em auto;
+    display: block;
+    font-size: 2em;
+    cursor:pointer;
+    transition: .5s;
+    width:280px;
+    border-radius: 10px;
+}
+
+input[type=submit]:hover{
+background-color: #a92507;
+border-color: #a92507;
+}
+
+/* --------------------------------------------------------------footer------------------------------------------------------------------ */
+footer{
+    height: 100%;
+    width: 100%;
+    text-align:center;
+    background-color: #34261b;
+    box-shadow: 0 0 15px 1px black;
+    color: grey;
+    position: relative;
+    z-index: 6;
+    padding: 3% 0;
+}
+
+.wrapper ul li{
+    list-style-type: none;
+    display: inline-block;
+    margin: 3px;
+}
+
+.wrapper ul li a{
+    text-decoration: none;
+    color: white;
+    opacity: .5;
+}
+
+.wrapper ul li a:hover{
+    opacity: 1;
+    transition:.5s;
+}
+
+.logo_footer img{
+width:20%;
+}
+
+footer p{
+    font-size: 15px;
+    margin: 5px 0;
+}
