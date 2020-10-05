@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
+from accounts.models import InsertStock
 
 # Create your views here.
 
@@ -33,3 +34,16 @@ def register(request):
 @login_required
 def profile(request):
     return render(request, 'accounts/profile.html')
+
+def Insertrecord(request):
+    if request.method =='POST':
+        if request.POST.get('stockName') and request.POST.get('amountLeft') and request.POST.get('deficit'):
+            saverecord = InsertStock()
+            saverecord.stockName=request.POST.get('stockName')
+            saverecord.amountLeft=request.POST.get('amountLeft')
+            saverecord.deficit=request.POST.get('deficit')
+            saverecord.save()
+            messages.success(request,'Record Saved')
+            return render(request, 'accounts/dashboard.html')
+    else:
+        return render(request, 'accounts/products.html')
