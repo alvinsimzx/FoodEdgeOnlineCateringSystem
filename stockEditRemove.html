@@ -5,13 +5,13 @@
 <!--Date: 5/10/20-->
 <!--Validate: -->
     <head>
-        <title>Stock Management</title>
+        <title>Stock Edit&Remove</title>
         <link rel="stylesheet" type="text/css" href="styles/styles.css">
         <link rel="shortcut icon" href="style/images/logo.png">
         <meta charset="utf-8">
         <meta name="author" content="Wong Jun Jie">
         <meta name="description" content="Food Edge Feedback">
-        <meta name="keywords" content="Food, Edge, Stock, Management"> 
+        <meta name="keywords" content="Food, Edge, Stock, Management, Edit, Remove"> 
     </head>
     <body>
         <header>
@@ -30,26 +30,42 @@
             
         </header>
         <main>
-            <form id="StockAdd" method="post">
-                <h1 id = "feedbackTitle">Stock Management</h1>
+            <form id="StockEditRemove" method="post">
+                <h1 id = "feedbackTitle">Edit and Remove Stock</h1>
                 <fieldset>
-                    <legend>Add New Stock Item</legend>
+                    <legend>Edit Existing Stock Item</legend>
                     <p>
-                        <label for="stockname">Enter Stock Name: </label>
-                        <input type="text" id="stockname" name="stockname" maxlength="25" placeholder="Stock Name" />
+                        <label for="editStock">Choose an Existing Stock: </label>
+                        <select name="editStock"id="editStock">
+                        </select>   
                     </p>
                     <p>
-                        <label for="currentAmount">Enter Current Amount of Stock: </label>
-                        <input type="number" id="currentAmount" name="currentAmount" min="0" max="9999" placeholder="Enter Quantity (from 0 to 9999)" />
+                        <label for="changename">Change Name of Stock: </label>
+                        <input type="text" id="changename" name="changename" maxlength="25" placeholder="Stock Name" />
                     </p>
                     <p>
-                        <label for="pricing">Enter Stock Pricing: </label>
-                        <input type="number" id="pricing" name="pricing" min="0" max="99999" placeholder="Enter Pricing (0 to 99999)" />
+                        <label for="changeamount">Change Amount of Stock Left: </label>
+                        <input type="number" id="changeamount" name="changeamount" min="0" max="9999" placeholder="Enter Quantity (from 0 to 9999)" />
+                    </p>
+                    <p>
+                        <label for="changepricing">Change Stock Pricing: </label>
+                        <input type="number" id="changepricing" name="changepricing" min="0" max="99999" placeholder="Enter Pricing (0 to 99999)" />
                     </p>
                     <p>
                         <input type="submit" value="Submit"/>
                     </p>
                 </fieldset>
+                <fieldset>
+                    <legend>Remove Existing Stock Item</legend>
+                    <p>
+                        <label for="deleteStock">Choose an Existing Stock to Remove: </label>
+                        <select name="deleteStock"id="deleteStock">
+                        </select>   
+                    </p>
+                    <p>
+                        <input type="submit" value="Submit"/>
+                    </p>
+                </fieldset>>
             </form>
         </main>
         <footer>
