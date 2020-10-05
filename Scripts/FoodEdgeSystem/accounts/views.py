@@ -47,6 +47,6 @@ def Insertrecord(request):
             saverecord.deficit=request.POST.get('deficit')
             saverecord.save()
             messages.success(request,'Record Saved')
-            return render(request, 'accounts/dashboard.html')
+            return render(request, 'accounts/stock.html')
     else:
         return render(request, 'accounts/products.html')

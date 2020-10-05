@@ -31,6 +31,7 @@
         </header>
         <main>
             <form id="StockAdd" method="post">
+            {% csrf_token %}
                 <h1 id = "feedbackTitle">Stock Management</h1>
                 <fieldset>
                     <legend>Add New Stock Item</legend>
@@ -50,6 +51,11 @@
                         <input type="submit" value="Submit"/>
                     </p>
                 </fieldset>
+                {% if  messages %}
+                    {% for message in messages%}
+                        <h2>{{ messages}}</h2>
+                    {% end for %}
+                {% end if %}
             </form>
         </main>
         <footer>
