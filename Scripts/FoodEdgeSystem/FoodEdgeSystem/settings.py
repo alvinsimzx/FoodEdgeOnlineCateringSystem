@@ -26,7 +26,7 @@ SECRET_KEY = 'o^59j%)5h4m#)gb)4@a=98xps$im6l-x5rq63(zt^st3_#(&_3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['foodedgecatering.pythonanywhere.com']
 
 
 # Application definition
@@ -76,10 +76,21 @@ WSGI_APPLICATION = 'FoodEdgeSystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}'''
+
+DATABASES = {
+        'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'FoodEdgeCatering$MainDB',
+        'USER': 'FoodEdgeCatering',
+        'PASSWORD': 'dp2sem22020',
+        'HOST': 'FoodEdgeCatering.mysql.pythonanywhere-services.com',
     }
 }
 
