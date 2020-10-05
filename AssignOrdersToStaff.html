@@ -41,36 +41,59 @@
   <fieldset>
   <legend>Orders Information</legend>
     
-  <select name="food"id="food">
-    <optgroup label = "Customer Name: Bob"></optgroup>
-    <optgroup label = "Catering Date: 6 / 9 / 2020"></optgroup>
-    
-    <optgroup label="Cater Leader">
+    <button type="button" class="collapsible">Open Collapsible</button>
+    <div class="content">
+      <p>Customer Name: Bob</p>
+      <p>Catering Date: 6 / 9 / 2020</p>
+      <p> </p>
+      <p>Cater Leader: </p>
+      
+      <select name="CLeader"id="CLeader">
   
       <option value="worker1">Worker 1</option>
       <option value="worker2">Worker 2</option>
       <option value="worker3">Worker 3</option>
+        
+      </select>
+      
+      <p>Cater Worker(s): </p>
     
-    </optgroup>
+      <select name="CWorker"id="CWorker">
     
-    
-    <optgroup label="Cater Worker ">
-  
       <option value="worker1">Worker 1</option>
       <option value="worker2">Worker 2</option>
       <option value="worker3">Worker 3</option>
+      
+      </select>
     
-    </optgroup>
-    
-    <optgroup label="Food Set">
+      <p>Food set: </p>
+      
+    <select name="foodSet"id="foodSet">
   
       <option value="foodset1">Set 1</option>
       <option value="foodset2">Set 2</option>
       <option value="foodset3">Set 3</option>
     
-    </optgroup>
+    </select> 
+      
+    </div>
     
-    </select>   
+    <script>
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+        });
+      }
+    </script>
     
   </fieldset>
       
