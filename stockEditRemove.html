@@ -34,11 +34,38 @@
                 <h1 id = "feedbackTitle">Edit and Remove Stock</h1>
                 <fieldset>
                     <legend>Edit Existing Stock Item</legend>
-                    <p>
+                        
                         <label for="editStock">Choose an Existing Stock: </label>
-                        <select name="editStock"id="editStock">
-                        </select>   
-                    </p>
+                        <button type ="button" class="firstcollapsible">Open Inventory (Hover me)</button>
+                        <div class="content"> 
+                            <button type ="button" class="firstcollapsible">Food</button>
+                            <div class="content"> 
+                                <button type ="button" class="firstcollapsible">Chicken Chop</button>
+                                <button type ="button" class="firstcollapsible">Pork Chop</button>
+                            </div>
+                            <button type ="button" class="firstcollapsible">Beverages</button>
+                            <button type ="button" class="firstcollapsible">Snack</button>
+                            <button type ="button" class="firstcollapsible">Dessert</button>
+                        </div>
+                       
+                        
+                    <script>
+                        var coll = document.getElementsByClassName("firstcollapsible");
+                        var i;
+                        
+                        for (i = 0; i < coll.length; i++) {
+                          coll[i].addEventListener("click", function() {
+                            this.classList.toggle("active");
+                            var content = this.nextElementSibling;
+                            if (content.style.display === "block") {
+                              content.style.display = "none";
+                            } else {
+                              content.style.display = "block";
+                            }
+                          });
+                        }
+                    </script>
+
                     <p>
                         <label for="changename">Change Name of Stock: </label>
                         <input type="text" id="changename" name="changename" maxlength="25" placeholder="Stock Name" />
@@ -57,11 +84,36 @@
                 </fieldset>
                 <fieldset>
                     <legend>Remove Existing Stock Item</legend>
-                    <p>
+                    
                         <label for="deleteStock">Choose an Existing Stock to Remove: </label>
-                        <select name="deleteStock"id="deleteStock">
-                        </select>   
-                    </p>
+                        <button type ="button" class="secondcollapsible">Open Inventory (Hover me)</button>
+                        <div class="content"> 
+                            <button type ="button" class="secondcollapsible">Food</button>
+                            <div class="content"> 
+                                <button type ="button" class="secondcollapsible">Chicken Chop</button>
+                                <button type ="button" class="secondcollapsible">Pork Chop</button>
+                            </div>
+                            <button type ="button" class="secondcollapsible">Beverages</button>
+                            <button type ="button" class="secondcollapsible">Snack</button>
+                            <button type ="button" class="secondcollapsible">Dessert</button>
+                        </div>
+                    <script>
+                        var coll = document.getElementsByClassName("secondcollapsible");
+                        var i;
+                        
+                        for (i = 0; i < coll.length; i++) {
+                          coll[i].addEventListener("click", function() {
+                            this.classList.toggle("active");
+                            var content = this.nextElementSibling;
+                            if (content.style.display === "block") {
+                              content.style.display = "none";
+                            } else {
+                              content.style.display = "block";
+                            }
+                          });
+                        }
+                    </script>
+                    
                     <p>
                         <input type="submit" value="Submit"/>
                     </p>
