@@ -35,6 +35,9 @@ def register(request):
 def profile(request):
     return render(request, 'accounts/profile.html')
 
+def showStockPage(request):
+    return render(request, 'accounts/stock.html')
+
 def Insertrecord(request):
     if request.method =='POST':
         if request.POST.get('stockName') and request.POST.get('amountLeft') and request.POST.get('deficit'):
