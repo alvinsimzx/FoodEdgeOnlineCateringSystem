@@ -13,6 +13,19 @@
     <meta name="author" content="Chang Kwang Yung">
     <meta name="description" content="Food Edge Feedback">
     <meta name="keywords" content="Food, Edge, Feedback, Form"> 
+    <style>
+    .feedback{
+        color: #a92507;
+    }  
+    
+    .feedback::after{
+        content: "";
+        display: block;
+        width: 100%;
+        height:2px;
+        background-color: #a92507;
+    }
+    </style>
   </head>
 
   <body>
@@ -20,11 +33,11 @@
         <a href = "#"><img class="logo" src="styles/images/logo.png" alt="Logo" width="150" height="75"></a>
         <nav>
             <ul>
-                <a href = "#"><li>Home</li></a>
-                <a href = "#"><li>Sets</li></a>
-                <a href = "feedback.html"><li>Feedback</li></a>
-                <a href = "#"><li>About Us</li></a>
-                <a href = "#"><li>Order Now</li></a>
+                <a href = "#" class="home"><li>Home</li></a>
+                <a href = "#" class="sets"><li>Sets</li></a>
+                <a href = "feedback.html" class="feedback"><li>Feedback</li></a>
+                <a href = "#" class="about"><li>About Us</li></a>
+                <a href = "#" class="order"><li>Order Now</li></a>
             </ul>
             
         </nav>
@@ -33,21 +46,21 @@
         
     </header>
   
-    
+ <main>
   <form id="Register" method="post" novalidate="novalidate">
   <h1 id = "feedbackTitle">Feedback</h1>
   <fieldset>
   <legend>Customer Information</legend>  
   
-      <p class="name"><input type="text" id="owner" name="name" maxlength="25" placeholder="First Name e.g. HOWARD" />
+      <p class="name"><input type="text" id="owner" name="name" maxlength="25" placeholder="First Name e.g. HOWARD" required="required"/>
           <input type="text" id="owner" name="name" maxlength="25" placeholder="Last Name e.g. POTTS"/>
       </p>
 
       <p><select name="gender">
           <optgroup label="Gender">
+              <option value="unspecified">Unspecified</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
-              <option value="other">Others</option>
           </optgroup>
           </select></p>
   
