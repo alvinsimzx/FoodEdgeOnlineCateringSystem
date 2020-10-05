@@ -317,8 +317,8 @@ background-color: #a92507;
 border-color: #a92507;
 }
 /* --------------------------------------------------------------stockEditRemove------------------------------------------------------------------ */
-.firstcollapsible {
-    background-color:mediumaquamarine;
+.collapsible {
+    background-color: #777;
     color: white;
     cursor: pointer;
     padding: 18px;
@@ -327,46 +327,25 @@ border-color: #a92507;
     text-align: left;
     outline: none;
     font-size: 15px;
-}
+  }
   
-.active, .firstcollapsible:hover {
-    background-color:lightslategrey;
-}
+  .active, .collapsible:hover {
+    background-color: #555;
+  }
   
-.content {
+  .content {
     padding: 0 18px;
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
-}
+  }
 
-.secondcollapsible {
-    background-color:mediumaquamarine;
-    color: white;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-}
-  
-.active, .secondcollapsible:hover {
-    background-color:lightslategrey;
-}
-  
-.content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #f1f1f1;
-}
+
 
 
 /* --------------------------------------------------------------karyn is dying---------------------------------------------------------- */
 
-/*.collapsible {
+.collapsible {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -378,18 +357,18 @@ border-color: #a92507;
   font-size: 15px;
 }
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) 
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
   background-color: #ccc;
-}*/
+}
 
-/* Style the collapsible content. Note: hidden by default
+/* Style the collapsible content. Note: hidden by default */
 .content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
   background-color: #f1f1f1;
-}*/
+}
 
 /* -------------------------------------------------- sets.html--------------------------------------------------- */
 .carousel{
