@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Description: Development project 2-->
+<!--Author: Karyn Chong Huei Xien-->
+<!--Date: 4/10/20-->
+<!--Validate: -->
+
+<head>
+    <title>Assign orders to staff</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="shortcut icon" href="styles/images/logo.png">
+    <meta charset="utf-8">
+    <meta name="author" content="Karyn Chong Huei Xien">
+    <meta name="description" content="Food Edge assign orders">
+    <meta name="keywords" content="Food, Edge, Assign, Orders"> 
+  </head>
+
+  <body>
+    <header>
+        <a href = "#"><img class="logo" src="styles/images/logo.png" alt="Logo" width="150" height="75"></a>
+        <nav>
+            <ul>
+                <a href = "#"><li>Home</li></a>
+                <a href = "#"><li>Sets</li></a>
+                <a href = "feedback.html"><li>Feedback</li></a>
+                <a href = "#"><li>About Us</li></a>
+                <a href = "#"><li>Order Now</li></a>
+            </ul>
+            
+        </nav>
+        <a class="login" href= "#"><button class="loginButton">Register</button></a>
+        <a class="login" href= "#"><button class="loginButton">Login</button></a>
+        
+    </header>
+  
+    
+  <form id="Register" method="post" novalidate="novalidate">
+  
+  <h1 id = "feedbackTitle">Orders</h1>    
+          
+  <fieldset>
+  <legend>Orders Information</legend>
+    
+    <button type="button" class="collapsible">Open Collapsible</button>
+    <div class="content">
+      <p>Customer Name: Bob</p>
+      <p>Catering Date: 6 / 9 / 2020</p>
+      <p> </p>
+      <p>Cater Leader: </p>
+      
+      <select name="CLeader"id="CLeader">
+  
+      <option value="worker1">Worker 1</option>
+      <option value="worker2">Worker 2</option>
+      <option value="worker3">Worker 3</option>
+        
+      </select>
+      
+      <p>Cater Worker(s): </p>
+    
+      <select name="CWorker"id="CWorker">
+    
+      <option value="worker1">Worker 1</option>
+      <option value="worker2">Worker 2</option>
+      <option value="worker3">Worker 3</option>
+      
+      </select>
+    
+      <p>Food set: </p>
+      
+    <select name="foodSet"id="foodSet">
+  
+      <option value="foodset1">Set 1</option>
+      <option value="foodset2">Set 2</option>
+      <option value="foodset3">Set 3</option>
+    
+    </select> 
+      
+    </div>
+    
+    <script>
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+        });
+      }
+    </script>
+    
+  </fieldset>
+      
+
+  </form>
+  </main>
+
+  <footer>
+          <div class="wrapper">
+              <div class="logo_footer">
+                  <a href="index.html"><img src="styles/images/logo.png" alt="Graceful Brides Logo" title="Back to Home"/></a>
+                </div>
+              <div class="products_footer">
+                <ul>
+                  <li><a class="hover_line" href="aline.html">Order Now</a> | </li>
+                  <li><a class="hover_line" href="mermaid.html">About Us</a> | </li>
+                  <li><a class="hover_line" href="ballgown.html">Make Feedback</a> | </li>
+                  <li><a class="hover_line" href="lace.html">Sets</a></li>
+                  
+          
+                </ul>
+            </div>
+    <p>&#xa9;2020 Power| Page developed by Chan Kwang Yung | Last updated: 01/04/2019 5:26pm</p>
+    
+  </footer>
+
+</html>

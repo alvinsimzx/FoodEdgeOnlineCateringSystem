@@ -4,6 +4,7 @@
 /*Validated:*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 *{
     box-sizing: border-box;
     padding: 0;
@@ -219,6 +220,155 @@ input[type=submit]:hover{
 background-color: #a92507;
 border-color: #a92507;
 }
+button[type=submit]{
+    background-color: white;
+    border: #ffad49 3px solid;
+    color: #ffad49;
+    padding: .5em 1em;
+    margin: 1em auto;
+    display: block;
+    font-size: 2em;
+    cursor:pointer;
+    transition: .5s;
+    width:280px;
+    border-radius: 10px;
+}
+/* --------------------------------------------------------------Customer Order------------------------------------------------------------------ */
+#ordertitle{
+    text-align: center;
+}
+.ordername{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+label {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 200px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+  
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 4;
+  }
+  
+.name input{
+	width: 100%;
+
+}
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+.questionmark{
+  width: 30px;
+  margin-left: 90%;
+}
+
+.payment{
+    text-align: center;
+}
+
+.icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 50px;
+    text-align: center;
+}
+
+button[type=submit]{
+    background-color:  #ffad49;
+    border: #ffad49 3px solid;
+    color: black;
+    padding: .5em 1em;
+    margin: 1em auto;
+    display: block;
+    font-size: 2em;
+    cursor:pointer;
+    transition: .5s;
+    width:280px;
+    border-radius: 10px;
+}
+button[type=reset]{
+    background-color: white;
+    border: #ffad49 3px solid;
+    color: black;
+    padding: .5em 1em;
+    margin: 1em auto;
+    display: block;
+    font-size: 2em;
+    cursor:pointer;
+    transition: .5s;
+    width:280px;
+    border-radius: 10px;
+}
+
+input[type=submit]:hover{
+background-color: #a92507;
+border-color: #a92507;
+}
+/* --------------------------------------------------------------stockEditRemove------------------------------------------------------------------ */
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  .active, .collapsible:hover {
+    background-color: #555;
+  }
+  
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+
+
+
+
+/* --------------------------------------------------------------karyn is dying---------------------------------------------------------- */
+
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
 
 /* -------------------------------------------------- sets.html--------------------------------------------------- */
 .carousel{
@@ -355,9 +505,4 @@ width:20%;
 footer p{
     font-size: 15px;
     margin: 5px 0;
-}
-
-/* -----------------------------------------------------stock.html------------------------------------------------------------------ */
-#stockTitle{
-    text-align: center;
 }
