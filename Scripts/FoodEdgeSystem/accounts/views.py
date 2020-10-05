@@ -49,4 +49,4 @@ def Insertrecord(request):
             messages.success(request,'Record Saved')
             return render(request, 'accounts/stock.html')
     else:
-        return render(request, 'accounts/products.html')
+        return render(request, 'accounts/stock.html')
