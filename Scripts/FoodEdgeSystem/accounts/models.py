@@ -9,4 +9,11 @@ class Profile (models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
-    
+
+class InsertStock(models.Model):
+    stockID = models.IntegerField(primary_key=True)
+    stockName = models.CharField(max_length=100)
+    amountLeft = models.IntegerField()
+    deficit = models.IntegerField()
+    class Meta:
+        db_table = "Stock"

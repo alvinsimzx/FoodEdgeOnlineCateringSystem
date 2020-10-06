@@ -422,6 +422,10 @@ border-color: #a92507;
   background-color: #f1f1f1;
 }
 
+#extra_info{
+  font-size: 15px;
+}
+
 /* -------------------------------------------------- sets.html--------------------------------------------------- */
 .carousel{
     background: #314e4e;

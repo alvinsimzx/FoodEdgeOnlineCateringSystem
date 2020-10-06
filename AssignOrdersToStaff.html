@@ -34,18 +34,22 @@
     </header>
   
     
-  <form id="Register" method="post" novalidate="novalidate">
+  <form id="Orders" method="post" novalidate="novalidate">
   
   <h1 id = "feedbackTitle">Orders</h1>    
-          
-  <fieldset>
-  <legend>Orders Information</legend>
     
-    <button type="button" class="collapsible">Open Collapsible</button>
+    <fieldset>
+      
+      <legend>Edit Orders Information</legend>
+    
+    <button type="button" class="collapsible">Order 1</button>
     <div class="content">
       <p>Customer Name: Bob</p>
-      <p>Catering Date: 6 / 9 / 2020</p>
-      <p> </p>
+      <p>Catering Date: 6 / 9 / 2020</p>     
+      <p>Pax: 50</p> 
+      <p>Address: Some random address here.</p> 
+      
+      
       <p>Cater Leader: </p>
       
       <select name="CLeader"id="CLeader">
@@ -58,7 +62,7 @@
       
       <p>Cater Worker(s): </p>
     
-      <select name="CWorker"id="CWorker">
+      <select name="CWorker"id="CWorker" multiple>
     
       <option value="worker1">Worker 1</option>
       <option value="worker2">Worker 2</option>
@@ -75,6 +79,76 @@
       <option value="foodset3">Set 3</option>
     
     </select> 
+      
+      <p>Extra information: </p>
+      <p id="extra_info"><i>It's a birthday party.</i></p>
+      
+    </div>
+    
+    <script>
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+        });
+      }
+    </script>
+    
+  </fieldset>
+  
+    
+    <fieldset>
+      
+      <legend>Edit Orders Information</legend>
+    
+    <button type="button" class="collapsible">Order 2</button>
+    <div class="content">
+      <p>Customer Name: Jane</p>
+      <p>Catering Date: 7 / 10 / 2020</p>     
+      <p>Pax: 80</p> 
+      <p>Address: Some random address here.</p> 
+      
+      
+      <p>Cater Leader: </p>
+      
+      <select name="CLeader"id="CLeader">
+  
+      <option value="worker1">Worker 1</option>
+      <option value="worker2">Worker 2</option>
+      <option value="worker3">Worker 3</option>
+        
+      </select>
+      
+      <p>Cater Worker(s): </p>
+    
+      <select name="CWorker"id="CWorker" multiple>
+    
+      <option value="worker1">Worker 1</option>
+      <option value="worker2">Worker 2</option>
+      <option value="worker3">Worker 3</option>
+      
+      </select>
+    
+      <p>Food set: </p>
+      
+    <select name="foodSet"id="foodSet">
+  
+      <option value="foodset1">Set 1</option>
+      <option value="foodset2">Set 2</option>
+      <option value="foodset3">Set 3</option>
+    
+    </select> 
+      
+      <p>Extra information: </p>
+      <p id="extra_info"><i>It's a birthday party.</i></p>
       
     </div>
     
