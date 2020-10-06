@@ -8,5 +8,7 @@ urlpatterns = [
     path('customer/', views.customer),
     path('register/',views.register,name='register'),
     path('feedback/', views.feedback,name='feedback'),
-    path('stock/',views.Insertrecord)
+    path('stock/',views.Insertrecord),
+    path('sets/',views.ShowSets,name='sets'),
+    path('order/',views.Order,name='order'),
 ]

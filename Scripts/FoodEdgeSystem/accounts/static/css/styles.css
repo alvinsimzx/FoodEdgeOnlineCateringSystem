@@ -4,6 +4,7 @@
 /*Validated:*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 *{
     box-sizing: border-box;
     padding: 0;
@@ -44,7 +45,7 @@ nav ul a {
     display: inline-block;
     padding: 0 5px;
     font-weight: bold;
-    color: rgba(49, 78, 78, 0.5);
+    color: rgba(49, 78, 78, 0.8);
     
 }
 nav ul a::after{
@@ -82,14 +83,14 @@ nav ul a:hover{
 
 .loginButton:hover{
     background-color: #a92507;
-
+    color: #ffad49;
 }
 
 /* -----------------------------------------------------feedback.html------------------------------------------------------------------ */
 form{
     background: white;
     width: 85%;
-    box-shadow: 0 0 15px 1px blakc;
+    box-shadow: 0 0 15px 1px black;
     padding: 5% 0;
     margin: 2% auto;
 }
@@ -136,7 +137,7 @@ fieldset{
     margin:25px auto;
     border-radius: 10px;
     padding: 25px;
-    border-color: #D4AF37;
+    border-color: #a92507;
 }
 
 legend{
@@ -219,6 +220,253 @@ input[type=submit]:hover{
 background-color: #a92507;
 border-color: #a92507;
 }
+button[type=submit]{
+    background-color: white;
+    border: #ffad49 3px solid;
+    color: #ffad49;
+    padding: .5em 1em;
+    margin: 1em auto;
+    display: block;
+    font-size: 2em;
+    cursor:pointer;
+    transition: .5s;
+    width:280px;
+    border-radius: 10px;
+}
+/* --------------------------------------------------------------Customer Order------------------------------------------------------------------ */
+#ordertitle{
+    text-align: center;
+}
+.ordername{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+label {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 200px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+  
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 4;
+  }
+  
+.name input{
+	width: 100%;
+
+}
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+.questionmark{
+  width: 30px;
+  margin-left: 90%;
+}
+
+.payment{
+    text-align: center;
+}
+
+.icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 50px;
+    text-align: center;
+}
+
+button[type=submit]{
+    background-color:  #ffad49;
+    border: #ffad49 3px solid;
+    color: black;
+    padding: .5em 1em;
+    margin: 1em auto;
+    display: block;
+    font-size: 2em;
+    cursor:pointer;
+    transition: .5s;
+    width:280px;
+    border-radius: 10px;
+}
+button[type=reset]{
+    background-color: white;
+    border: #ffad49 3px solid;
+    color: black;
+    padding: .5em 1em;
+    margin: 1em auto;
+    display: block;
+    font-size: 2em;
+    cursor:pointer;
+    transition: .5s;
+    width:280px;
+    border-radius: 10px;
+}
+
+input[type=submit]:hover{
+background-color: #a92507;
+border-color: #a92507;
+}
+/* --------------------------------------------------------------stockEditRemove------------------------------------------------------------------ */
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  .active, .collapsible:hover {
+    background-color: #555;
+  }
+  
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+
+
+
+
+/* --------------------------------------------------------------karyn is dying---------------------------------------------------------- */
+
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+/* -------------------------------------------------- sets.html--------------------------------------------------- */
+.carousel{
+    background: #314e4e;
+    margin: 5vh auto;
+
+}
+
+.carousel-slide{
+    width:90%;
+    min-height:80vh;
+    margin-right:10px;
+    background: url(../images/set1Background.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius:5px;
+}
+
+  /* white circles */
+.flickity-page-dots .dot {
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+    background: transparent;
+    border: 2px solid white;
+}
+  /* fill-in selected dot */
+.flickity-page-dots .dot.is-selected {
+    background: white;
+}
+
+.static-banner{
+    position: absolute;
+    top:80%;
+    left:70%;
+    height: 15%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: #ffad49;
+      color:#314e4e;
+    z-index:10;
+    font-size: 3em;
+    transition: .5s;
+    overflow: hidden;
+}
+
+bu.static-bannertton:focus {
+    outline: none;
+   }
+   
+   .static-banner:before {
+       content: '';
+       display: block;
+       position: absolute;
+       background: rgba(255,255,255,.5);
+       width: 60px;
+       height: 100%;
+       left: 0;
+       top: 0;
+       opacity: .5;
+       filter: blur(30px);
+       transform: translateX(-130px) skewX(-15deg);
+   }
+   
+   .static-banner:after {
+       content: '';
+       display: block;
+       position: absolute;
+       background: rgba(255,255,255,.2);
+       width: 30px;
+       height: 100%;
+       left: 30px;
+       top: 0;
+       opacity: 0;
+       filter: blur(30px);
+       transform: translateX(-100px) scaleX(-15deg);
+   }
+   
+   .static-banner:hover {
+    background: #a92507;
+    color: white;
+   }
+   
+   .static-banner:hover:before {
+    transform: translateX(300px) skewX(-15deg);
+    opacity: .6;
+    transition: .7s;
+   }
+   
+   .static-banner:hover:after {
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 1;
+    transition: .7s;
+   }
 
 /* --------------------------------------------------------------footer------------------------------------------------------------------ */
 footer{

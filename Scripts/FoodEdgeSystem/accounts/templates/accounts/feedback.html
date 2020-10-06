@@ -1,3 +1,4 @@
+{% extends 'accounts/main.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,7 @@
 
 <head>
     <title>Feedback Form</title>
-    <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css'%}"">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css'%}">
     <link rel="shortcut icon" href="{% static '/images/logo.png'%}">
     <meta charset="utf-8">
     <meta name="author" content="Chang Kwang Yung">
@@ -17,108 +18,69 @@
   </head>
 
   <body>
-    <header>
-        <a href = "#"><img class="logo" src="style/images/logo.png" alt="Logo" width="150" height="75"></a>
-        <nav>
-            <ul>
-                <a href = "#"><li>Sets</li></a>
-                <a href = "feedback.html"><li>Feedback</li></a>
-                <a href = "#"><li>About Us</li></a>
-                <a href = "#"><li>Order Now</li></a>
-            </ul>
-            
-        </nav>
-        <a class="login" href= "#"><button class="loginButton">Register</button></a>
-        <a class="login" href= "#"><button class="loginButton">Login</button></a>
-        
-    </header>
-  
+  <main>
+  {%block content%}  
+    <form id="Register" method="post" novalidate="novalidate">
+    <h1 id = "feedbackTitle">Feedback</h1>
+    <fieldset>
+    <legend>Customer Information</legend>  
     
-  <form id="Register" method="post" novalidate="novalidate">
-  <h1 id = "feedbackTitle">Feedback</h1>
-  <fieldset>
-  <legend>Customer Information</legend>  
-  
-      <p class="name"><input type="text" id="owner" name="name" maxlength="25" placeholder="First Name e.g. HOWARD" />
-          <input type="text" id="owner" name="name" maxlength="25" placeholder="Last Name e.g. POTTS"/>
-      </p>
-
-      <p><select name="gender">
-          <optgroup label="Gender">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Others</option>
-          </optgroup>
-          </select></p>
-  
-      <p><input type="email" name="email"id="email" placeholder="Email Address e.g. howard123@hotmail.com" /></p>
-
-  
-  </fieldset>
-      
-  
-  
-          
-  <fieldset>
-  <legend>Menu Item</legend>
-  <select name="food"id="food">
-  </select>   
-  </fieldset>
-      
-
-  
-  <fieldset>
-      <legend>Your Feedback</legend>
-        <p>Please specify your feedback category
-          <span class="category">
-            <input type="radio" name="type" value="Suggestion" id="Suggestion"><label for="Suggestion">Suggestion</label>
-            <input type="radio" name="type" value="Complaint" id="Complaint"><label for="Complaint">Complaint</label>
-            <input type="radio" name="type" value="Compliment" id="Compliment"><label for="Compliment">Compliment</label>
-          </span>
+        <p class="name"><input type="text" id="owner" name="name" maxlength="25" placeholder="First Name e.g. HOWARD" />
+            <input type="text" id="owner" name="name" maxlength="25" placeholder="Last Name e.g. POTTS"/>
         </p>
 
-      	<p><textarea name="comments" rows="10" cols="50" placeholder="Please specify the aspect you are interested in (if any)"></textarea></p>
-      <p>How much would you rate the item?</p>
-      <p>  
-      <div class="ratings">
-        <input type = "radio" name = "rating" value="5" id = "5star"><label for="5star"></label>
-          <input type = "radio" name = "rating" value="4" id = "4star"><label for="4star"></label>
-          <input type = "radio" name = "rating" value="3" id = "3star"><label for="3star"></label>
-          <input type = "radio" name = "rating" value="2" id = "2star"><label for="2star"></label>
-          <input type = "radio" name = "rating" value="1" id = "1star"><label for="1star"></label>
-        </div>
-          
-      </p>
-      
-      
-  </table>
-  </fieldset>
-  
-  
-  <p>
-      <input type="submit" value="Submit"/>
-  </p>
-  
-  </form>
+        <p><select name="gender">
+            <optgroup label="Gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Others</option>
+            </optgroup>
+            </select></p>
+    
+        <p><input type="email" name="email"id="email" placeholder="Email Address e.g. howard123@hotmail.com" /></p>
+
+    </fieldset>
+            
+    <fieldset>
+      <legend>Menu Item</legend>
+      <select name="food"id="food">
+      </select>   
+    </fieldset>
+        
+
+    
+    <fieldset>
+        <legend>Your Feedback</legend>
+          <p>Please specify your feedback category
+            <span class="category">
+              <input type="radio" name="type" value="Suggestion" id="Suggestion"><label for="Suggestion">Suggestion</label>
+              <input type="radio" name="type" value="Complaint" id="Complaint"><label for="Complaint">Complaint</label>
+              <input type="radio" name="type" value="Compliment" id="Compliment"><label for="Compliment">Compliment</label>
+            </span>
+          </p>
+
+          <p><textarea name="comments" rows="10" cols="50" placeholder="Please specify the aspect you are interested in (if any)"></textarea></p>
+        <p>How much would you rate the item?</p>
+        <p>  
+        <div class="ratings">
+          <input type = "radio" name = "rating" value="5" id = "5star"><label for="5star"></label>
+            <input type = "radio" name = "rating" value="4" id = "4star"><label for="4star"></label>
+            <input type = "radio" name = "rating" value="3" id = "3star"><label for="3star"></label>
+            <input type = "radio" name = "rating" value="2" id = "2star"><label for="2star"></label>
+            <input type = "radio" name = "rating" value="1" id = "1star"><label for="1star"></label>
+          </div>
+        </p>
+    </table>
+    </fieldset>
+    
+    
+    <p>
+        <input type="submit" value="Submit"/>
+    </p>
+    
+    </form>
+    {%endblock content%}
   </main>
 
-  <footer>
-          <div class="wrapper">
-              <div class="logo_footer">
-                  <a href="index.html"><img src="style/images/logo.png" alt="Graceful Brides Logo" title="Back to Home"/></a>
-                </div>
-              <div class="products_footer">
-                <ul>
-                  <li><a class="hover_line" href="aline.html">Order Now</a> | </li>
-                  <li><a class="hover_line" href="mermaid.html">About Us</a> | </li>
-                  <li><a class="hover_line" href="ballgown.html">Make Feedback</a> | </li>
-                  <li><a class="hover_line" href="lace.html">Sets</a></li>
-                  
-          
-                </ul>
-            </div>
-    <p>&#xa9;2020 Power| Page developed by Chan Kwang Yung | Last updated: 01/04/2019 5:26pm</p>
-    
-  </footer>
 
 </html>

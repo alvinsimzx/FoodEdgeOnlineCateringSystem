@@ -38,6 +38,12 @@ def profile(request):
 def showStockPage(request):
     return render(request, 'accounts/stock.html')
 
+def Order(request):
+    return render(request, 'accounts/order.html')
+
+def OrderMade(request):
+    return render(request, 'accounts/ordermade.html')
+
 def Insertrecord(request):
     if request.method =='POST':
         if request.POST.get('stockName') and request.POST.get('amountLeft') and request.POST.get('deficit'):
@@ -50,3 +56,6 @@ def Insertrecord(request):
             return render(request, 'accounts/stock.html')
     else:
         return render(request, 'accounts/stock.html')
+
+def ShowSets(request):
+    return render(request, 'accounts/sets.html')

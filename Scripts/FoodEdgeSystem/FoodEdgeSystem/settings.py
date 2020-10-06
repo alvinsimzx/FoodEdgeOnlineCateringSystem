@@ -26,7 +26,7 @@ SECRET_KEY = 'o^59j%)5h4m#)gb)4@a=98xps$im6l-x5rq63(zt^st3_#(&_3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['foodedgecatering.pythonanywhere.com']
+ALLOWED_HOSTS = ['foodedgecatering.pythonanywhere.com','localhost']
 
 
 # Application definition
@@ -84,6 +84,18 @@ DATABASES = {
     }
 }'''
 
+# local host testing
+DATABASES = {
+        'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'foodedge',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+    }
+}
+
+'''
 DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -92,7 +104,7 @@ DATABASES = {
         'PASSWORD': 'dp2sem22020',
         'HOST': 'FoodEdgeCatering.mysql.pythonanywhere-services.com',
     }
-}
+}'''
 
 
 # Password validation
