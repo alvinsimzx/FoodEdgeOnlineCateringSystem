@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2020 at 12:00 PM
+-- Generation Time: Oct 06, 2020 at 04:49 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.33
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -203,7 +203,6 @@ CREATE TABLE `cateringorder` (
 CREATE TABLE `customer` (
   `customerID` int(6) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `membership` tinyint(1) NOT NULL,
   `phoneNo` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -377,7 +376,9 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`stockID`, `stockName`, `amountLeft`, `deficit`) VALUES
-(10, 'Hans', 25, 25);
+(1, 'stockedit', 1000, 1000),
+(2, 'stock2', 100, 100),
+(3, 'stock3', 100, 100);
 
 -- --------------------------------------------------------
 
@@ -656,7 +657,7 @@ ALTER TABLE `staffteam`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stockID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `stockID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
