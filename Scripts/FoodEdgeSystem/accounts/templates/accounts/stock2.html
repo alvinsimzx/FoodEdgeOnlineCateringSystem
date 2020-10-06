@@ -1,0 +1,48 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!--Description: Development project 2-->
+<!--Author: Wong Jun Jie-->
+<!--Date: 5/10/20-->
+<!--Validate: -->
+    <head>
+        <title>Stock Edit&Remove</title>
+        <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css'%}">
+        <link rel="shortcut icon" href="style/images/logo.png">
+        <meta charset="utf-8">
+        <meta name="author" content="Wong Jun Jie">
+        <meta name="description" content="Food Edge Feedback">
+        <meta name="keywords" content="Food, Edge, Stock, Management, Edit, Remove"> 
+    </head>
+    <body>
+        <main>
+            {%block content%}
+            <form id="StockEditRemove" method="post">
+                {% csrf_token %}
+                <h1 id = "feedbackTitle">Edit and Remove Stock</h1>
+                <table>
+                    <tr>
+                        <th>Stock ID</th>
+                        <th>Name</th>
+                        <th>Amount Left</th>
+                        <th>Price($)</th>
+                        <th>Actions</th>
+                    </tr>
+                    {%for res in re%}
+                    <tr>
+                        <td>{{res.stockID}}</td>
+                        <td>{{res.stockName}}</td>
+                        <td>{{res.amountLeft}}</td>
+                        <td>{{res.deficit}}</td>
+                        <td><a href="/delete/{{res.stockID}}">Delete</a> | <a href="/edit/{{res.stockID}}">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </form>
+        </main>
+        {%endblock content%}
+    </body>
+
+
+</html>
