@@ -345,7 +345,7 @@ border-color: #a92507;
 
 /* --------------------------------------------------------------karyn is dying---------------------------------------------------------- */
 
-.collapsible {
+.collapsible1, .collapsible2 {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -358,7 +358,7 @@ border-color: #a92507;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .collapsible:hover {
+.active, .collapsible1:hover, .collapsible2:hover {
   background-color: #ccc;
 }
 
@@ -372,6 +372,10 @@ border-color: #a92507;
 
 #extra_info{
   font-size: 15px;
+}
+
+#assign_date{
+  text-align: right
 }
 
 /* -------------------------------------------------- sets.html--------------------------------------------------- */
