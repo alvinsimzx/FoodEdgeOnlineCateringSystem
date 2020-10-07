@@ -104,7 +104,7 @@ nav ul a:hover{
 
 .title{
     font-family: 'Permanent Marker', sans-serif;
-    font-size: 4rem;
+    font-size: 2rem;
     color:white;
 }
 
@@ -116,7 +116,7 @@ nav ul a:hover{
 }
 
 .bigBanner{
-    position:absolute;
+    position: absolute;
     top:0;
     left:0;
     width: 100%;
@@ -125,9 +125,46 @@ nav ul a:hover{
     z-index: -1;
 }
 
-.overflow{
-    height:100vh;
+.introHome{
+    width: 100%;
+    background-color: #151515;
+    position: relative;
+    z-index: 10;
 }
+
+.introHome .containerHome{
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 100vh;
+}
+
+.introHome img{
+    width: 100%;
+}
+
+.introHome .containerHome > *{
+    margin: 2rem;
+}
+
+.descriptionHome{
+    color: #fff;
+    width:50%;
+}
+
+.imgContainerHome{
+    width:50%;
+}
+
+.titleHome{
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    position: relative;
+}
+
 
 .shadow{
     position: absolute;
@@ -138,6 +175,63 @@ nav ul a:hover{
     z-index: 20;
     background: linear-gradient(to top, #151515, transparent);
 }
+
+@media (max-width: 850px){
+    section .containerHome{
+        grid-template-columns: 1fr;
+    }
+}
+
+.joinMember, .orderHome{
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-image: url(images/joinMember.jpg);
+    overflow: hidden;
+  }
+
+  .orderHome{background-image: url(images/orderHome.jpg)}
+  
+
+  .ptext .index_products{
+    position: relative;
+    width: 25%;
+    text-align: center;
+    display: block;
+    margin:40vh auto 0 auto;
+    background: #32241a99;
+    border-radius: 2%;
+    padding: 20px;
+    color:white;
+    z-index:10;
+    font-size: 1.3rem;
+    font-weight: 500;
+    overflow: hidden;
+    transition: .5s all ease;
+  }
+ 
+  
+  .ptext p{
+    color:white;
+    position: absolute;
+    top: 70%;
+    width: 100%;
+    margin: 0;
+    padding:0 5% 0 5%;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  .view_button p{
+    position: absolute;
+    top: 55%;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+  }
 /* -----------------------------------------------------feedback.html------------------------------------------------------------------ */
 form{
     background: white;
@@ -476,7 +570,7 @@ border-color: #a92507;
 }
 
    
-.static-banner:before {
+.static-banner:before, .ptext h2::before{
     content: '';
     position: absolute;
     background: #ffad49;
@@ -488,8 +582,12 @@ border-color: #a92507;
     width: 100%;
     transform: translate(-50%, -50%) rotate(45deg);
 }
-    
-.static-banner:hover:before {
+
+.ptext h2::before{
+    background: #a92507;
+}
+
+.static-banner:hover:before, .ptext h2:hover::before{
     height: 450%;
 }
 .static-banner:hover {
