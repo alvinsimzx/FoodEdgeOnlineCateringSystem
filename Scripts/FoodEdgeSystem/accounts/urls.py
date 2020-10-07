@@ -10,6 +10,7 @@ urlpatterns = [
     path('feedback/', views.feedback,name='feedback'),
     path('stock/',views.Insertrecord),
     path('stock2/', views.showStockPage2),
+    path('menu/', views.InsertMenu), 
     path('sets/',views.ShowSets,name='sets'),
     path('order/',views.Order,name='order'),
     path('delete/<int:stockID>', views.DeleteRecord), 

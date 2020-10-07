@@ -6,7 +6,7 @@
 <!--Validate: -->
 
 <head>
-    <title>Assign orders to staff</title>
+    <title>About Us</title>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
     <link rel="shortcut icon" href="styles/images/logo.png">
     <meta charset="utf-8">
@@ -36,55 +36,29 @@
     
   <form id="Orders" method="post" novalidate="novalidate">
   
-  <h1 id = "feedbackTitle">Orders</h1>    
+  <h1 id = "feedbackTitle">About Us</h1>    
+    
+    <img src="styles/images/ky.jpg" alt="Ky's Beautiful Face" width="303" height="360">
     
     <fieldset>
       
-      <legend>Edit Orders Information</legend>
+      <legend id="assign_date">6 / 9 / 2020</legend>
     
-    <button type="button" class="collapsible1">Order 1</button>
-  
+      <p>Role: Cater Leader</p>
+      <p>Team: Worker 2, Worker 3</p>     
+      <p>Food Set 1</p> 
+      
+    <button type="button" class="collapsible1">More Info +</button>
+      
       <div class="content">
-      <p>Customer Name: Bob</p>
-      <p>Catering Date: 6 / 9 / 2020</p>     
-      <p>Pax: 50</p> 
-      <p>Address: Some random address here.</p> 
-      
-      
-      <p>Cater Leader: </p>
-      
-      <select name="CLeader"id="CLeader">
-  
-      <option value="worker1">Worker 1</option>
-      <option value="worker2">Worker 2</option>
-      <option value="worker3">Worker 3</option>
-        
-      </select>
-      
-      <p>Cater Worker(s): </p>
     
-      <select name="CWorker"id="CWorker" multiple>
-    
-      <option value="worker1">Worker 1</option>
-      <option value="worker2">Worker 2</option>
-      <option value="worker3">Worker 3</option>
+        <p>Customer Name: Bob</p>
+        <p>Pax: 50</p>
+        <p>Address: Some random address</p>
+        <p>Extra information</p>
+        <p id="extra_info"><i>It's a birthday party. </i></p>
       
-      </select>
-    
-      <p>Food set: </p>
-      
-    <select name="foodSet"id="foodSet">
-  
-      <option value="foodset1">Set 1</option>
-      <option value="foodset2">Set 2</option>
-      <option value="foodset3">Set 3</option>
-    
-    </select> 
-      
-      <p>Extra information: </p>
-      <p id="extra_info"><i>It's a birthday party.</i></p>
-      
-    </div>
+      </div>
     
     <script>
       var coll = document.getElementsByClassName("collapsible1");
@@ -108,50 +82,23 @@
     
     <fieldset>
       
-      <legend>Edit Orders Information</legend>
+      <legend id="assign_date">7 / 10 / 2020</legend>
     
-    <button type="button" class="collapsible2">Order 2</button>
-    <div class="content">
-      <p>Customer Name: Jane</p>
-      <p>Catering Date: 7 / 10 / 2020</p>     
-      <p>Pax: 80</p> 
-      <p>Address: Some random address here.</p> 
+      <p>Role: Cater Helper</p>
+      <p>Team: Worker 1, Worker 3</p>     
+      <p>Food Set 2</p> 
       
+    <button type="button" class="collapsible2">More Info +</button>
       
-      <p>Cater Leader: </p>
-      
-      <select name="CLeader"id="CLeader">
-  
-      <option value="worker1">Worker 1</option>
-      <option value="worker2">Worker 2</option>
-      <option value="worker3">Worker 3</option>
-        
-      </select>
-      
-      <p>Cater Worker(s): </p>
+      <div class="content">
     
-      <select name="CWorker"id="CWorker" multiple>
-    
-      <option value="worker1">Worker 1</option>
-      <option value="worker2">Worker 2</option>
-      <option value="worker3">Worker 3</option>
+        <p>Customer Name: Jane</p>
+        <p>Pax: 80</p>
+        <p>Address: Some random address</p>
+        <p>Extra information</p>
+        <p id="extra_info"><i>It's a birthday party. </i></p>
       
-      </select>
-    
-      <p>Food set: </p>
-      
-    <select name="foodSet"id="foodSet">
-  
-      <option value="foodset1">Set 1</option>
-      <option value="foodset2">Set 2</option>
-      <option value="foodset3">Set 3</option>
-    
-    </select> 
-      
-      <p>Extra information: </p>
-      <p id="extra_info"><i>It's a birthday party.</i></p>
-      
-    </div>
+      </div>
     
     <script>
       var coll = document.getElementsByClassName("collapsible2");

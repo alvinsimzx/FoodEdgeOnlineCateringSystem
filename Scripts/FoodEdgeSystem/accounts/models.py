@@ -17,3 +17,11 @@ class InsertStock(models.Model):
     deficit = models.IntegerField()
     class Meta:
         db_table = "Stock"
+
+class MenuItem(models.Model):
+    menuItemID = models.IntegerField(primary_key=True)
+    stockID = models.ForeignKey(InsertStock, on_delete=models.CASCADE) #Issue is here, something about the column does not exist
+    itemName = models.CharField(max_length=100)
+    itemPrice = models.IntegerField()
+    class Meta:
+        db_table = "menuitem"
