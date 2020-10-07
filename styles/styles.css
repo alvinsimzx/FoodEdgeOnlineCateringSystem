@@ -524,6 +524,25 @@ border-color: #a92507;
   text-align: right
 }
 
+
+#owner_pic{
+  margin-left: 50px;
+  max-width: 30%;
+  width: 40%;
+  min-width: 100px;
+  height: auto;
+}
+
+
+#fig{
+  align-content: flex-end;
+  max-width: 60%;
+  width: 60%;
+  min-width: 100px;
+  height: auto;
+  float: right;
+}
+
 /* -------------------------------------------------- sets.html--------------------------------------------------- */
 .carousel{
     background: #314e4e;

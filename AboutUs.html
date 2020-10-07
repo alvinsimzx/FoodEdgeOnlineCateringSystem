@@ -36,92 +36,50 @@
     
   <form id="Orders" method="post" novalidate="novalidate">
   
-  <h1 id = "feedbackTitle">About Us</h1>    
+  <h1 id = "feedbackTitle">About Us</h1> 
     
-    <img src="styles/images/ky.jpg" alt="Ky's Beautiful Face" width="303" height="360">
+    <figure id="about_us">
+    <img src="styles/images/ky.jpg" alt="Ky's Beautiful Face" width="303" height="360" id="owner_pic">
     
-    <fieldset>
+    <figcaption id="fig">
       
-      <legend id="assign_date">6 / 9 / 2020</legend>
+      <fieldset>
+      <legend>About the Owner</legend>
     
       <p>Role: Cater Leader</p>
-      <p>Team: Worker 2, Worker 3</p>     
-      <p>Food Set 1</p> 
-      
-    <button type="button" class="collapsible1">More Info +</button>
-      
-      <div class="content">
-    
-        <p>Customer Name: Bob</p>
-        <p>Pax: 50</p>
-        <p>Address: Some random address</p>
-        <p>Extra information</p>
-        <p id="extra_info"><i>It's a birthday party. </i></p>
-      
-      </div>
-    
-    <script>
-      var coll = document.getElementsByClassName("collapsible1");
-      var i;
 
-      for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-        });
-      }
-    </script>
-    
-  </fieldset>
+      </fieldset>
+      </figcaption>
+      </figure>
   
-    
-    <fieldset>
-      
-      <legend id="assign_date">7 / 10 / 2020</legend>
-    
-      <p>Role: Cater Helper</p>
-      <p>Team: Worker 1, Worker 3</p>     
-      <p>Food Set 2</p> 
-      
-    <button type="button" class="collapsible2">More Info +</button>
-      
-      <div class="content">
-    
-        <p>Customer Name: Jane</p>
-        <p>Pax: 80</p>
-        <p>Address: Some random address</p>
-        <p>Extra information</p>
-        <p id="extra_info"><i>It's a birthday party. </i></p>
-      
-      </div>
-    
     <script>
-      var coll = document.getElementsByClassName("collapsible2");
-      var i;
-
-      for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-        });
-      }
-    </script>
-    
-  </fieldset>
       
+     function changeImage(){
+       var img = document.getElementById("owner_pic");
+       img.src = images[x];
+       x++;
+       
+       if(x >= images.length){
+        x = 0;
+    } 
+
+    setTimeout("changeImage()", 3000);
+     }
+    
+      
+      var images = [],
+          x = 0;
+
+      images[0] = "styles/images/ky.jpg";
+      images[1] = "styles/images/ky1.jpg";
+      images[2] = "styles/images/ky2.jpg";
+      images[3] = "styles/images/ky3.jpg";
+    
+    </script>
+      
+    <body onload ="changeImage()"></body>
 
   </form>
-  </main>
 
   <footer>
           <div class="wrapper">
