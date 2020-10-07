@@ -574,7 +574,7 @@ border-color: #a92507;
 }
 
    
-.static-banner:before, .ptext h2::before{
+.static-banner:before, .ptext h2::before, .staffButtons tr td a::before{
     content: '';
     position: absolute;
     background: #ffad49;
@@ -587,11 +587,11 @@ border-color: #a92507;
     transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.ptext h2::before{
+.ptext h2::before, .staffButtons tr td a::before{
     background: #a92507;
 }
 
-.static-banner:hover:before, .ptext h2:hover::before{
+.static-banner:hover:before, .ptext h2:hover::before, .staffButtons tr td a:hover::before{
     height: 450%;
 }
 .static-banner:hover {
@@ -714,6 +714,42 @@ border-color: #a92507;
       color:white;
       padding: 3%;
       margin: 3%;
+  }
+
+  /* ---------------------------------------------------------indexStaff.html---------------------------------------------------------- */
+  .loginStaff img{
+      margin: 0 10px;
+      height: 30px;
+      width: 30px;
+      
+  }
+
+  .staffButtons{
+      width: 80%;
+      margin: 0 auto;
+  }
+
+  .staffButtons tr td{
+      padding: 1%;
+      text-align: center;
+  }
+
+  .staffButtons tr td a{
+    border-radius: 320px;
+    position: relative;
+    color: #fff;
+    padding: 5%;
+    display: block;
+    width: 80%;
+    border: white solid 3px;
+    font-weight: 500;
+    transition: .8s;
+    overflow: hidden;
+  }
+
+  .staffButtons tr td a:hover{
+      border-color: #a92507;
+      background-color: #a92507;
   }
 
   
