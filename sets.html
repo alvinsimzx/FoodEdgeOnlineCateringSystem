@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Description: Development project 2-->
+<!--Author: Chan Kwang Yung-->
+<!--Date: 4/10/20-->
+<!--Validate: -->
+
+<head>
+    <title>Sets</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="shortcut icon" href="styles/images/logo.png">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="author" content="Chang Kwang Yung">
+    <meta name="description" content="Food Edge Feedback">
+    <meta name="keywords" content="Food, Edge, Feedback, Form">
+
+    <style>
+    .sets{
+        color: #a92507;
+    }  
+    
+    .sets::after{
+        content: "";
+        display: block;
+        width: 100%;
+        height:2px;
+        background-color: #a92507;
+    }
+    </style>
+  </head>
+
+  <body>
+    <header>
+        <a href = "#"><img class="logo" src="styles/images/logo.png" alt="Logo" width="150" height="75"></a>
+        <nav>
+            <ul>
+                <a href = "index.html" class="home"><li>Home</li></a>
+                <a href = "sets.html" class="sets"><li>Sets</li></a>
+                <a href = "feedback.html" class="feedback"><li>Feedback</li></a>
+                <a href = "#" class="about"><li>About Us</li></a>
+                <a href = "#" class="order"><li>Order Now</li></a>
+            </ul>
+            
+        </nav>
+        <a class="login" href= "#"><button class="loginButton">Register</button></a>
+        <a class="login" href= "#"><button class="loginButton">Login</button></a>
+        
+    </header>
+  
+    
+  <main>
+
+    <div class = "carousel" data-flickity='{ "cellSelector": ".carousel-slide", "wrapAround": true, "pageDots":"white" }'>
+        <a href="#"><div class="static-banner">Order Now!</div></a>
+      <div class="carousel-slide">
+          <h2 class="setTitle">Set 1</h2>
+          <img class="region" src = "styles/images/western.png">
+          <div class="menuInfo">
+          <div class="signatureDish">
+              <h3>Signature Dish</h3>
+              <section class="gallery">
+                  <figure class="gallery_item">
+                    <img class="gallery_image" src="styles/images/western1.jpg" alt="Steak" />
+                    <figcaption>
+                      <div class="all_details">
+                          <div class="description">
+                                  <h2>Beef Steak</h2>
+                                  <p>Comments</p>
+                          </div>
+                      </div>
+                    </figcaption>
+                  </figure> 
+                  
+                  
+                  <figure class="gallery_item">
+                   <img class="gallery_image" src="styles/images/western2.jpg" alt="Creamy Fish"/>
+                     <figcaption>
+                        <div class="all_details">
+                            <div class="description">
+                                    <h2>Creamy Fish Stew</h2>
+                                    <p>Comments</p>
+                            </div>
+                        </div>
+                    </figcaption>
+                  </figure>
+                  
+                  <figure class="gallery_item">
+                   <img class="gallery_image" src="styles/images/western3.jpg" alt="Spaghetti" />
+                     <figcaption class="gallery_image-caption">
+                        <div class="all_details">
+                            <div class="description">
+                                    <h2>Spaghetti</h2>
+                                    <p>Comments</p>
+                            </div>
+                        </div>
+                    </figcaption>
+                  </figure>
+          </div>
+         
+          <div class="allItems">
+              <h3>Items include: </h3>
+              <ol>
+                  <li>Clam Chowder Soup</li>
+                  <li>Chimicanga</li>
+                  <li>Herb Butter Rice</li>
+                  <li>Creamy Fish Stew</li>
+                  <li>Beef Steak</li>
+                  <li>Prawn Cocktail Salad</li>
+                  <li>Roasted Lam Leg</li>
+                  <li>Spaghetti</li>
+                  <li>Bread & Butter Pudding with Strawberries</li>
+                  <li>Tiramisu</li>
+                  <li>Fruit Punch</li>
+              </ol>
+          </div>
+          
+        </div>
+      </div>
+      <div class="carousel-slide">
+          <h2 class="setTitle">Set 2</h2>
+          <img class="region" src = "styles/images/local.png">
+          <div class="menuInfo">
+          <div class="signatureDish">
+              <h3>Signature Dish</h3>
+              <section class="gallery">
+                  <figure class="gallery_item">
+                    <img class="gallery_image" src="styles/images/local1.jpg" alt="BBQ Chicken Wings" />
+                    <figcaption>
+                      <div class="all_details">
+                          <div class="description">
+                                  <h2>BBQ Chicken Wings</h2>
+                                  <p>Comments</p>
+                          </div>
+                      </div>
+                    </figcaption>
+                  </figure> 
+                  
+                  
+                  <figure class="gallery_item">
+                   <img class="gallery_image" src="styles/images/local2.jpg" alt="Satay"/>
+                     <figcaption>
+                        <div class="all_details">
+                            <div class="description">
+                                    <h2>Satay</h2>
+                                    <p>Comments</p>
+                            </div>
+                        </div>
+                    </figcaption>
+                  </figure>
+                  
+                  <figure class="gallery_item">
+                   <img class="gallery_image" src="styles/images/local3.jpg" alt="Nyonya Fried Rice" />
+                     <figcaption class="gallery_image-caption">
+                        <div class="all_details">
+                            <div class="description">
+                                    <h2>Nyonya Fried Rice</h2>
+                                    <p>Comments</p>
+                            </div>
+                        </div>
+                    </figcaption>
+                  </figure>
+          </div>
+         
+          <div class="allItems">
+              <h3>Items include: </h3>
+              <ol>
+                  <li>Fried Shrimp Ball</li>
+                  <li>Nyonya Fried Rice</li>
+                  <li>Bihun Siame</li>
+                  <li>Rendang Chicken</li>
+                  <li>Broccoli, Cauliflower, Mushroom</li>
+                  <li>Satay</li>
+                  <li>Assam Deep Fried Talapia</li>
+                  <li>BBQ Chicken Wings</li>
+                  <li>Black Pepper Beef</li>
+                  <li>Nyonya Kuih</li>
+                  <li>Fruit Punch</li>
+              </ol>
+          </div>
+          
+        </div>
+      </div>
+      <div class="carousel-slide">
+          <h2 class="setTitle">Set 3</h2>
+          <img class="region" src = "styles/images/chinese.png">
+          <div class="menuInfo">
+          <div class="signatureDish">
+              <h3>Signature Dish</h3>
+              <section class="gallery">
+                  <figure class="gallery_item">
+                    <img class="gallery_image" src="styles/images/chinese1.jpg" alt="Braised Pork Leg" />
+                    <figcaption>
+                      <div class="all_details">
+                          <div class="description">
+                                  <h2>Braised Pork Leg</h2>
+                                  <p>Comments</p>
+                          </div>
+                      </div>
+                    </figcaption>
+                  </figure> 
+                  
+                  
+                  <figure class="gallery_item">
+                   <img class="gallery_image" src="styles/images/chinese2.jpg" alt="Steam Fish"/>
+                     <figcaption>
+                        <div class="all_details">
+                            <div class="description">
+                                    <h2>Steam Fish</h2>
+                                    <p>Comments</p>
+                            </div>
+                        </div>
+                    </figcaption>
+                  </figure>
+                  
+                  <figure class="gallery_item">
+                   <img class="gallery_image" src="styles/images/chinese3.jpg" alt="Roasted Chicken" />
+                     <figcaption class="gallery_image-caption">
+                        <div class="all_details">
+                            <div class="description">
+                                    <h2>Roasted Chicken</h2>
+                                    <p>Comments</p>
+                            </div>
+                        </div>
+                    </figcaption>
+                  </figure>
+          </div>
+         
+          <div class="allItems">
+              <h3>Items include: </h3>
+              <ol>
+                  <li>Cold Dish</li>
+                  <li>Fried Longevity Noodles</li>
+                  <li>Shark Fin Soup</li>
+                  <li>Braised Pork Leg</li>
+                  <li>Peking Duck</li>
+                  <li>Steam Fish</li>
+                  <li>Scallops</li>
+                  <li>Roasted Chicken</li>
+                  <li>Abalone and sea cucumber</li>
+                  <li>Red bean soup with lotus seeds</li>
+                  <li>Fruit Punch</li>
+              </ol>
+          </div>
+          
+        </div>
+      </div>
+        
+    </div>
+      
+  </main>
+
+  <footer>
+          <div class="wrapper">
+              <div class="logo_footer">
+                  <a href="index.html"><img src="styles/images/logo.png" alt="Food Edge Logo" title="Back to Home"/></a>
+                </div>
+              <div class="products_footer">
+                <ul>
+                  <li><a class="hover_line" href="#">Order Now</a> | </li>
+                  <li><a class="hover_line" href="#">About Us</a> | </li>
+                  <li><a class="hover_line" href="feedback.html">Make Feedback</a> | </li>
+                  <li><a class="hover_line" href="sets.html">Sets</a></li>
+                  
+          
+                </ul>
+            </div>
+    <p>&#xa9;Page developed by Chan Kwang Yung | Last updated: 01/04/2019 5:26pm</p>
+    
+  </footer>
+</body>
+</html>

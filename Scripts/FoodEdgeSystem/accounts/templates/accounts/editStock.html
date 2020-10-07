@@ -1,0 +1,49 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!--Description: Development project 2-->
+<!--Author: Wong Jun Jie-->
+<!--Date: 5/10/20-->
+<!--Validate: -->
+    <head>
+        <title>Stock Edit</title>
+        <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css'%}">
+        <link rel="shortcut icon" href="style/images/logo.png">
+        <meta charset="utf-8">
+        <meta name="author" content="Wong Jun Jie">
+        <meta name="description" content="Food Edge Feedback">
+        <meta name="keywords" content="Food, Edge, Stock, Management, Edit, Remove"> 
+    </head>
+    <body>
+        <main>
+            {%block content%}
+            <form id="StockEdit" method="post">
+                {% csrf_token %}
+                <h1 id = "feedbackTitle">Edit Stock</h1>
+                <fieldset>
+                    <legend>Edit Existing Stock Item</legend>
+                    <input type="hidden" name="stockID" id="stockID" value="{{record.stockID}}">
+                    <p>
+                        <label for="changename">Change Name of Stock: </label>
+                        <input type="text" id="changename" name="stockName" maxlength="25" placeholder="Stock Name"/>
+                    </p>
+                    <p>
+                        <label for="changeamount">Change Amount of Stock Left: </label>
+                        <input type="number" id="changeamount" name="amountLeft" min="0" max="9999" placeholder="Enter Quantity (from 0 to 9999)"/>
+                    </p>
+                    <p>
+                        <label for="changepricing">Change Stock Pricing: </label>
+                        <input type="number" id="changepricing" name="deficit" min="0" max="99999" placeholder="Enter Pricing (0 to 99999)"/>
+                    </p>
+                    <p>
+                        <input type="submit" value="Edit Stock"/>
+                    </p>
+                </fieldset>
+            </form>
+        </main>
+        {%endblock content%}
+    </body>
+
+
+</html>

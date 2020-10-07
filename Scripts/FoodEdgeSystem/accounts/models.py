@@ -11,8 +11,17 @@ class Profile (models.Model):
         return f'{self.user.username} Profile'
 
 class InsertStock(models.Model):
+    stockID = models.IntegerField(primary_key=True)
     stockName = models.CharField(max_length=100)
     amountLeft = models.IntegerField()
     deficit = models.IntegerField()
     class Meta:
         db_table = "Stock"
+
+class MenuItem(models.Model):
+    menuItemID = models.IntegerField(primary_key=True)
+    stockID = models.ForeignKey(InsertStock, on_delete=models.CASCADE) #Issue is here, something about the column does not exist
+    itemName = models.CharField(max_length=100)
+    itemPrice = models.IntegerField()
+    class Meta:
+        db_table = "menuitem"

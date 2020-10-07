@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
 from accounts.models import InsertStock
+from accounts.models import MenuItem
 
 # Create your views here.
 
@@ -11,7 +12,6 @@ def home(request):
 
 def products(request):
     return render(request, 'accounts/products.html')
-
 
 def customer(request):
     return render(request, 'accounts/customer.html')
@@ -38,6 +38,10 @@ def profile(request):
 def showStockPage(request):
     return render(request, 'accounts/stock.html')
 
+def showStockPage2(request):
+    re = InsertStock.objects.all()
+    return render(request, 'accounts/stock2.html', {'re': re})
+    
 def Order(request):
     return render(request, 'accounts/order.html')
 
@@ -56,6 +60,40 @@ def Insertrecord(request):
             return render(request, 'accounts/stock.html')
     else:
         return render(request, 'accounts/stock.html')
+
+def InsertMenu(request):
+    re = InsertStock.objects.all()
+    if request.method == 'POST':
+        if request.POST.get('stockID') and request.POST.get('itemName') and request.POST.get('itemPrice'):
+            saverecord = MenuItem()
+            saverecord.stockID = InsertStock.objects.get(stockID = request.POST.get('stockID'))
+            saverecord.itemName = request.POST.get('itemName')
+            saverecord.itemPrice = request.POST.get('itemPrice')
+            saverecord.save()
+            messages.success(request,'Menu Item Saved')
+            return render(request, 'accounts/menu.html', {'re': re})
+    else:
+         return render(request, 'accounts/menu.html', {'re': re})
+
+def DeleteRecord(request, stockID):
+    record = InsertStock.objects.get(stockID=stockID)
+    record.delete()
+    re = InsertStock.objects.all()
+    return render(request, 'accounts/stock2.html', {'re': re})
+
+def EditRecords(request, stockID):
+     record = InsertStock.objects.get(stockID=stockID)
+     if request.method =='POST':
+        if request.POST.get('stockName') and request.POST.get('amountLeft') and request.POST.get('deficit'):
+            record.stockName = request.POST.get('stockName')
+            record.amountLeft = request.POST.get('amountLeft')
+            record.deficit = request.POST.get('deficit')
+            record.save()
+            messages.success(request,'Record Edited')
+            re = InsertStock.objects.all()
+            return render(request, 'accounts/stock2.html', {'re': re}) 
+     else:
+        return render(request, 'accounts/editStock.html')
 
 def ShowSets(request):
     return render(request, 'accounts/sets.html')

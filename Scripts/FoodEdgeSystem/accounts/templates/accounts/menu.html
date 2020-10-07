@@ -1,0 +1,53 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!--Description: Development project 2-->
+<!--Author: Wong Jun Jie-->
+<!--Date: 7/10/20-->
+<!--Validate: -->
+    <head>
+        <title>Menu Management</title>
+        <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css'%}">
+        <link rel="shortcut icon" href="style/images/logo.png">
+        <meta charset="utf-8">
+        <meta name="author" content="Wong Jun Jie">
+        <meta name="description" content="Food Edge Feedback">
+        <meta name="keywords" content="Food, Edge, Menu, Management"> 
+    </head>
+    <body>
+        <main>
+        {%block content%}
+            <form id="MenuAdd" method="post">
+            {% csrf_token %}
+                <h1 id = "feedbackTitle">Menu Management</h1>
+                <fieldset>
+                    <legend>Add New Menu Item</legend>
+                    <p>
+                        <label for="stockID">Select Stock ID for Menu Item: </label>
+                        <select id="stockID" name="stockID">
+                            {%for res in re%}
+                            <option value="{{res.stockID}}">{{res.stockName}}</option>
+                            {% endfor %}
+                        </select>
+                    </p>
+                    <p>
+                        <label for="itemname">Enter Menu Item Name: </label>
+                        <input type="text" id="itemname" name="itemName" maxlength="25" placeholder="Menu Item Name" />
+                    </p>
+                    <p>
+                        <label for="pricing">Enter Item Pricing: </label>
+                        <input type="number" id="pricing" name="itemPrice" min="0" max="999" placeholder="Enter Pricing (0 to 999)" />
+                    </p>
+                    <p>
+                        <input type="submit" value="Insert Item"/>
+                    </p>
+                </fieldset>
+            </form>
+            
+        </main>
+    {%endblock content%}
+    </body>
+
+
+</html>

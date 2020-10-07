@@ -5,6 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Satisfy&display=swap');
 *{
     box-sizing: border-box;
     padding: 0;
@@ -85,7 +87,57 @@ nav ul a:hover{
     background-color: #a92507;
     color: #ffad49;
 }
+/* ------------------------------------------------index.html----------------------------------------------------- */
 
+.banner{
+    width:100%;
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.textWrap{
+    text-align: center;
+}
+
+.title{
+    font-family: 'Permanent Marker', sans-serif;
+    font-size: 4rem;
+    color:white;
+}
+
+.titleSpecial{
+    font-family: 'Satisfy', sans-serif;
+    font-size: 6rem;
+    font-weight: bold;
+    color:white;
+}
+
+.bigBanner{
+    position:absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.overflow{
+    height:100vh;
+}
+
+.shadow{
+    position: absolute;
+    bottom: 100%;
+    height: 300px;
+    width: 100%;
+    left: 0;
+    z-index: 20;
+    background: linear-gradient(to top, #151515, transparent);
+}
 /* -----------------------------------------------------feedback.html------------------------------------------------------------------ */
 form{
     background: white;
@@ -418,64 +470,155 @@ border-color: #a92507;
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    background: #ffad49;
-      color:#314e4e;
+    background: #a92507;
+    color:white;
     z-index:10;
-    font-size: 3em;
-    transition: .5s;
+    font-size: 2em;
+    font-weight: 500;
     overflow: hidden;
+    transition: .5s all ease;
 }
 
-bu.static-bannertton:focus {
-    outline: none;
-   }
    
-   .static-banner:before {
-       content: '';
-       display: block;
-       position: absolute;
-       background: rgba(255,255,255,.5);
-       width: 60px;
-       height: 100%;
-       left: 0;
-       top: 0;
-       opacity: .5;
-       filter: blur(30px);
-       transform: translateX(-130px) skewX(-15deg);
-   }
-   
-   .static-banner:after {
-       content: '';
-       display: block;
-       position: absolute;
-       background: rgba(255,255,255,.2);
-       width: 30px;
-       height: 100%;
-       left: 30px;
-       top: 0;
-       opacity: 0;
-       filter: blur(30px);
-       transform: translateX(-100px) scaleX(-15deg);
-   }
-   
-   .static-banner:hover {
-    background: #a92507;
-    color: white;
-   }
-   
-   .static-banner:hover:before {
-    transform: translateX(300px) skewX(-15deg);
-    opacity: .6;
-    transition: .7s;
-   }
-   
-   .static-banner:hover:after {
-    transform: translateX(300px) skewX(-15deg);
-    opacity: 1;
-    transition: .7s;
-   }
+.static-banner:before {
+    content: '';
+    position: absolute;
+    background: #ffad49;
+    left: 50%;
+    top: 50%;
+    z-index: -1;
+    transition: all 0.6s ease;
+    height: 0;
+    width: 100%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+    
+.static-banner:hover:before {
+    height: 450%;
+}
+.static-banner:hover {
+    color: #314e4e;
+}
 
+.setTitle{
+      margin: 1% 0 0 2%;
+      font-weight: bold;
+      background: #FDFEFD;
+      padding: 10px;
+      width:30%;
+      text-align: center;
+}
+.menuInfo{
+    display: flex;
+}
+
+.signatureDish{
+    width: 80%;
+}
+
+.signatureDish h3{
+    width: 90%;
+    padding: 5px;
+    margin: 0 auto;
+    border-bottom: #FDFEFD solid 3px;
+    color: #FDFEFD;
+    font-weight: bold;
+    text-align: center;
+}
+
+.region{
+    position: absolute;
+    left:80%;
+    top:15%;
+
+}
+
+.gallery{
+    width:100%;
+    justify-content: center;
+    display:flex;
+    flex-flow: row wrap;
+    margin: 0;
+  }
+  
+  .gallery_item{
+    width:50%;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .gallery_item a, .gallery_image{
+    width:100%;
+    height:100%;
+    display:block;
+  }
+  
+  .gallery_image{
+    max-width: 100%;
+    transition: transform .2s;
+    transform: scale(0.9);
+  }
+  
+  .gallery_item:hover .gallery_image{
+    transform: scale(1);
+  }
+  
+  
+  /*product description style*/
+  .all_details{
+    position: absolute;
+    bottom:-600px;
+    background:#fff;
+    padding:5%;
+    transition: .5s;
+    height:100%;
+    width:100%;
+    opacity: 0.9;
+  }
+  
+  .description h2{
+    margin:0;
+    padding:0;
+    width:100%;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: normal;
+  }
+  
+  .description p{
+    margin:0;
+    padding:0;
+    width:100%;
+    text-align: center;
+    color: grey;
+  }
+  
+  
+  .gallery_item:hover .all_details{
+  bottom:0;
+  }
+  
+  /*improves fluidity of product catalog page*/
+  @media only screen and (min-width: 48em){
+    .gallery_item{
+      flex-basis: calc(50% - 2rem);
+    }
+  }
+  
+  @media only screen and (min-width: 60em){
+    .gallery_item{
+      flex-basis: calc((100% / 3) - 2rem);
+    }
+  }
+  .allItems{
+      background: #34261bcc;
+      color:white;
+      padding: 3%;
+      margin: 3%;
+  }
+
+  
 /* --------------------------------------------------------------footer------------------------------------------------------------------ */
 footer{
     height: 100%;
