@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
 from accounts.models import InsertStock
+from accounts.models import MenuItem
 
 # Create your views here.
 
@@ -59,6 +60,20 @@ def Insertrecord(request):
             return render(request, 'accounts/stock.html')
     else:
         return render(request, 'accounts/stock.html')
+
+def InsertMenu(request):
+    re = InsertStock.objects.all()
+    if request.method == 'POST':
+        if request.POST.get('stockID') and request.POST.get('itemName') and request.POST.get('itemPrice'):
+            saverecord = MenuItem()
+            saverecord.stockID = InsertStock.objects.get(stockID = request.POST.get('stockID'))
+            saverecord.itemName = request.POST.get('itemName')
+            saverecord.itemPrice = request.POST.get('itemPrice')
+            saverecord.save()
+            messages.success(request,'Menu Item Saved')
+            return render(request, 'accounts/menu.html', {'re': re})
+    else:
+         return render(request, 'accounts/menu.html', {'re': re})
 
 def DeleteRecord(request, stockID):
     record = InsertStock.objects.get(stockID=stockID)

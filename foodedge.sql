@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2020 at 04:49 PM
+-- Generation Time: Oct 07, 2020 at 10:23 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -318,20 +318,17 @@ CREATE TABLE `foodprep` (
 
 CREATE TABLE `menuitem` (
   `menuItemID` int(3) NOT NULL,
+  `stockID_id` int(5) NOT NULL,
   `itemName` varchar(255) NOT NULL,
   `itemPrice` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `preprequirements`
+-- Dumping data for table `menuitem`
 --
 
-CREATE TABLE `preprequirements` (
-  `menuItemID` int(3) NOT NULL,
-  `stockID` int(5) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+INSERT INTO `menuitem` (`menuItemID`, `stockID_id`, `itemName`, `itemPrice`) VALUES
+(3, 1, 'menuitem1', 99);
 
 -- --------------------------------------------------------
 
@@ -376,7 +373,7 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`stockID`, `stockName`, `amountLeft`, `deficit`) VALUES
-(1, 'stockedit', 1000, 1000),
+(1, 'stock1', 100, 100),
 (2, 'stock2', 100, 100),
 (3, 'stock3', 100, 100);
 
@@ -513,14 +510,8 @@ ALTER TABLE `foodprep`
 -- Indexes for table `menuitem`
 --
 ALTER TABLE `menuitem`
-  ADD PRIMARY KEY (`menuItemID`);
-
---
--- Indexes for table `preprequirements`
---
-ALTER TABLE `preprequirements`
-  ADD PRIMARY KEY (`menuItemID`,`stockID`),
-  ADD KEY `stockID` (`stockID`);
+  ADD PRIMARY KEY (`menuItemID`),
+  ADD KEY `stockID` (`stockID_id`);
 
 --
 -- Indexes for table `staff`
@@ -639,7 +630,7 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT for table `menuitem`
 --
 ALTER TABLE `menuitem`
-  MODIFY `menuItemID` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `menuItemID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `staff`
@@ -657,7 +648,7 @@ ALTER TABLE `staffteam`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stockID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `stockID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

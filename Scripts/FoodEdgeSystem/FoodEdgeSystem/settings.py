@@ -84,7 +84,6 @@ DATABASES = {
     }
 }'''
 
-'''
 # local host testing
 DATABASES = {
         'default': {
@@ -105,7 +104,7 @@ DATABASES = {
         'PASSWORD': 'dp2sem22020',
         'HOST': 'FoodEdgeCatering.mysql.pythonanywhere-services.com',
     }
-}
+}'''
 
 
 # Password validation

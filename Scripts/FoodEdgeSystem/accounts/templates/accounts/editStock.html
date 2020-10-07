@@ -20,7 +20,7 @@
             {%block content%}
             <form id="StockEdit" method="post">
                 {% csrf_token %}
-                <h1 id = "feedbackTitle">Edit and Remove Stock</h1>
+                <h1 id = "feedbackTitle">Edit Stock</h1>
                 <fieldset>
                     <legend>Edit Existing Stock Item</legend>
                     <input type="hidden" name="stockID" id="stockID" value="{{record.stockID}}">
