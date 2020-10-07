@@ -139,3 +139,15 @@ def EditRecords(request, stockID):
 
 def ShowSets(request):
     return render(request, 'accounts/sets.html')
+
+def StaffLogin(request):
+    return render(request, 'accounts/indexStaff.html')
+
+def ShowGivenOrders(request):
+    return render(request, 'accounts/CheckAssignedOrders.html')
+
+def ShowAddMenuItems(request):
+    return render(request, 'accounts/addMenuItems.html')
+
+def ShowAssignOrdersToStaff(request):
+    return render(request, 'accounts/AssignOrdersToStaff.html')

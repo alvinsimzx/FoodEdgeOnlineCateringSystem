@@ -1,0 +1,79 @@
+{% extends 'accounts/mainStaff.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!--Description: Development project 2-->
+<!--Author: Chan Kwang Yung-->
+<!--Date: 4/10/20-->
+<!--Validate: -->
+
+<head>
+    <title>Home - Staff</title>
+    <style>
+   
+    .home::after{
+        content: "";
+        display: block;
+        width: 100%;
+        height:2px;
+        background-color: #a92507;
+    }
+
+    header{
+        position: absolute;
+        top:0;
+        left:0;
+        background: linear-gradient(rgba(0, 0, 0, 0.8), transparent);
+        z-index: 10;
+        width: 100%;
+        box-shadow: none;
+        
+    }
+
+    nav ul a{
+        color:white;
+        font-size: 15px;
+    }
+
+
+    </style>
+  </head>
+  <body>
+      
+      {%block content%}   
+      <main>
+        <section class="banner">
+            <img src="{% static 'images/backgroundStaff.jpg' %}" class="bigBanner">
+            <div class="textWrap">
+                <h1 class="title">We</h1>
+                <h1 class="titleSpecial">Serve</h1>
+                <h1 class="title">To</h1>
+                <h1 class="titleSpecial">Satisfy</h1>
+            </div>
+        </section>
+        <section class="introHome">
+                <div class="shadow"></div>
+                <table class="staffButtons">
+                    <!-- -----------------------------------------Subject to change ALVIN IDK WHAT BUTTONS SHUD THERE BE---------------------------- -->
+                    <tr>
+                        <td><a href = "#" >Profile</a></td>
+                        <td><a href = "#" >Notifications</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href = "#" >My Orders</a></td>
+                        <td><a href = "#" >Calendar</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href = "#" >Assign Orders</a></td>
+                        <td><a href = "#" >Inventory</a></td>
+                    </tr>
+
+                </table>
+        </section>
+           
+          
+      </main>
+      {%endblock content%}
+    </body>
+  
+  </html>
