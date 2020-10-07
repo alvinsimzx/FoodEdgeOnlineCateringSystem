@@ -1,0 +1,116 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!--Description: Development project 2-->
+<!--Author: Chan Kwang Yung-->
+<!--Date: 4/10/20-->
+<!--Validate: -->
+
+<head>
+    <title>Home</title>
+    <style>
+   
+    .home::after{
+        content: "";
+        display: block;
+        width: 100%;
+        height:2px;
+        background-color: #a92507;
+    }
+
+    header{
+        position: absolute;
+        top:0;
+        left:0;
+        background: linear-gradient(rgba(0, 0, 0, 0.8), transparent);
+        z-index: 10;
+        width: 100%;
+        box-shadow: none;
+        
+    }
+
+    nav ul a{
+        color:white;
+        font-size: 15px;
+    }
+
+
+    </style>
+  </head>
+  <body>
+      
+      {%block content%}  
+      <main>
+        <section class="banner">
+            <img src="{% static '/images/background.jpg' %}" class="bigBanner">
+            <div class="textWrap">
+                <h1 class="title">Where</h1>
+                <h1 class="titleSpecial">Food</h1>
+                <h1 class="title">Meets</h1>
+                <h1 class="titleSpecial">Taste</h1>
+            </div>
+        </section>
+        <section class="introHome">
+                <div class="shadow"></div>
+        
+                <div class="containerHome">
+                    <div class="descriptionHome">
+                        <h3 class="titleHome">
+                            Introduction
+                        </h3>
+                        <p class="textHome">Welcome to FoodEdge where we do our best to cater to your hungry needs! We supply you multiple choices of cuisines to excite you tastebuds! Our workers are friendly and helpful during services and our Cater Leaders would do their best to handle your needs.</p>
+                    </div>
+        
+                    <div class="imgContainerHome">
+                        <img src="{% static 'images/backgroundIntro.jpg' %}" alt="">
+                    </div>
+                </div>
+            </section>
+            <!-- --------------------------------------------------href needed---------------------------------------------------------------------- -->
+            <section>
+                <div class="joinMember">
+                    <div class="ptext">
+                        <a class="index_products" href="#"><h2>
+                            BE A MEMBER
+                        </h2></a>
+                        <div class="view_button"><p>&#8618;Click for more details</p></div>
+                        <p><em>Join our membership program and get awesome perks such as discounts and gifts.</em></p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                    <div class="orderHome">
+                        <div class="ptext">
+                            <a class="index_products" href="#"><h2>
+                                ORDER NOW
+                            </h2></a>
+                            <div class="view_button"><p>&#8618;Click for more details</p></div>
+                            <p><em>Like what you see? Just click the button, fill the form and our staff members will cater to you as soon as possible</em></p>
+                        </div>
+                    </div>
+                </section>
+          
+      </main>
+    {%endblock content%}
+      <footer>
+              <div class="wrapper">
+                  <div class="logo_footer">
+                      <a href="index.html"><img src="styles/images/logo.png" alt="Food Edge Logo" title="Back to Home"/></a>
+                    </div>
+                  <div class="products_footer">
+                    <ul>
+                      <li><a class="hover_line" href="#">Order Now</a> | </li>
+                      <li><a class="hover_line" href="#">About Us</a> | </li>
+                      <li><a class="hover_line" href="feedback.html">Make Feedback</a> | </li>
+                      <li><a class="hover_line" href="sets.html">Sets</a></li>
+                      
+              
+                    </ul>
+                </div>
+        <p>&#xa9;Page developed by Chan Kwang Yung | Last updated: 01/04/2019 5:26pm</p>
+        
+      </footer>
+    </body>
+  
+  </html>

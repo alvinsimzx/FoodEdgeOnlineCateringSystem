@@ -1,15 +1,40 @@
 {% extends 'accounts/main.html' %}
 {% load crispy_forms_tags %}
 
+<body>
 {%block content%}
-    <div class="content-section">
-        <div class="media">
-            <img class="rounded-circle account-img" src="{{user.profile.image.url}}">
-            <div class="media- body">
-                <h2 class="account-heading">{{user.username}}</h2>
-                <p class="text-secondary">{{user.email}}</p>
-            </div>
-        </div>
-    </div>
+<div class="profile">
+    <div id="profile_info">
+    <h1> Welcome, {{user.username}}!</h1>
+        <p>Your username: {{user.username}}</p>
+        <p>Date Joined: {{user.date_joined}}</p>
         
+    </div>
+    
+    <h2> Your Previous Orders </h2>
+    <table>
+        <tr>
+            <th>Date and Time</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Ordered Item</th>
+            <th>Additional Request</th>
+            <th>Address</th>
+            <th>Amount (RM)</th>
+        </tr>
+        {% for order in allOrders %}
+            <tr>
+                <td>{{order.cateringDatetime}}</td>
+                <td>{{order.custEmail}}</td>
+                <td>{{order.custContact}}</td>
+                <td>{{order.custOrder}}</td>
+                <td>{{order.custRequest}}</td>
+                <td>{{order.location}}</td>
+                <td>{{order.amountDue}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+          
 {% endblock %}
+</body>

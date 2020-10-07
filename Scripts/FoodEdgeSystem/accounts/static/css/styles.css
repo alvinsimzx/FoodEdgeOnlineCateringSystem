@@ -5,6 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Satisfy&display=swap');
 *{
     box-sizing: border-box;
     padding: 0;
@@ -86,20 +88,183 @@ nav ul a:hover{
     color: #ffad49;
 }
 
-table{
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+  /* ------------------------------------------------profile.html----------------------------------------------------- */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){background-color: #f2f2f2}
+  
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .profile
+  {
+    background-color: #f2f2f2;
+    box-shadow: 0 0 15px 1px black;
+    padding: 5%;
+    margin: 2% auto;
+    width: 90%;
+  }
+
+  #profile_info
+  {
+      width: 70%;
+  }
+
+  /* ------------------------------------------------index.html----------------------------------------------------- */
+.banner{
+    width:100%;
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-table, th{
+.textWrap{
+    text-align: left;
+}
+
+.title{
+    font-family: 'Permanent Marker', sans-serif;
+    font-size: 2rem;
+    color:white;
+}
+
+.titleSpecial{
+    font-family: 'Satisfy', sans-serif;
+    font-size: 6rem;
     font-weight: bold;
+    color:white;
 }
 
-table, th, td{
-    border: 1px solid black; 
-    text-align: center; 
+.bigBanner{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
 }
+
+.introHome{
+    width: 100%;
+    background-color: #151515;
+    position: relative;
+    z-index: 10;
+}
+
+.introHome .containerHome{
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 100vh;
+}
+
+.introHome img{
+    width: 100%;
+}
+
+.introHome .containerHome > *{
+    margin: 2rem;
+}
+
+.descriptionHome{
+    color: #fff;
+    width:50%;
+}
+
+.imgContainerHome{
+    width:50%;
+}
+
+.titleHome{
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    position: relative;
+}
+
+
+.shadow{
+    position: absolute;
+    bottom: 100%;
+    height: 300px;
+    width: 100%;
+    left: 0;
+    z-index: 20;
+    background: linear-gradient(to top, #151515, transparent);
+}
+
+@media (max-width: 850px){
+    section .containerHome{
+        grid-template-columns: 1fr;
+    }
+}
+
+.joinMember, .orderHome{
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-image: url(../images/joinMember.jpg);
+    overflow: hidden;
+  }
+
+  .orderHome{background-image: url(../images/orderHome.jpg)}
+  
+
+  .ptext .index_products{
+    position: relative;
+    width: 25%;
+    text-align: center;
+    display: block;
+    margin:40vh auto 0 auto;
+    background: #32241a99;
+    border-radius: 2%;
+    padding: 20px;
+    color:white;
+    z-index:10;
+    font-size: 1.3rem;
+    font-weight: 500;
+    overflow: hidden;
+    transition: .5s all ease;
+  }
+ 
+  
+  .ptext p{
+    color:white;
+    position: absolute;
+    top: 70%;
+    width: 100%;
+    margin: 0;
+    padding:0 5% 0 5%;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  .view_button p{
+    position: absolute;
+    top: 55%;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+  }
 /* -----------------------------------------------------feedback.html------------------------------------------------------------------ */
 form{
     background: white;
@@ -359,7 +524,7 @@ border-color: #a92507;
 
 /* --------------------------------------------------------------karyn is dying---------------------------------------------------------- */
 
-.collapsible {
+.collapsible1, .collapsible2 {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -372,7 +537,7 @@ border-color: #a92507;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .collapsible:hover {
+.active, .collapsible1:hover, .collapsible2:hover {
   background-color: #ccc;
 }
 
@@ -382,6 +547,33 @@ border-color: #a92507;
   display: none;
   overflow: hidden;
   background-color: #f1f1f1;
+}
+
+#extra_info{
+  font-size: 15px;
+}
+
+#assign_date{
+  text-align: right
+}
+
+
+#owner_pic{
+  margin-left: 50px;
+  max-width: 30%;
+  width: 40%;
+  min-width: 100px;
+  height: auto;
+}
+
+
+#fig{
+  align-content: flex-end;
+  max-width: 60%;
+  width: 60%;
+  min-width: 100px;
+  height: auto;
+  float: right;
 }
 
 /* -------------------------------------------------- sets.html--------------------------------------------------- */
@@ -395,7 +587,7 @@ border-color: #a92507;
     width:90%;
     min-height:80vh;
     margin-right:10px;
-    background: url(../images/set1Background.jpg);
+    background-image: url(../images/set1Background.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -424,64 +616,195 @@ border-color: #a92507;
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    background: #ffad49;
-      color:#314e4e;
+    background: #a92507;
+    color:white;
     z-index:10;
-    font-size: 3em;
-    transition: .5s;
+    font-size: 2em;
+    font-weight: 500;
     overflow: hidden;
+    transition: .5s all ease;
 }
 
-bu.static-bannertton:focus {
-    outline: none;
-   }
    
-   .static-banner:before {
-       content: '';
-       display: block;
-       position: absolute;
-       background: rgba(255,255,255,.5);
-       width: 60px;
-       height: 100%;
-       left: 0;
-       top: 0;
-       opacity: .5;
-       filter: blur(30px);
-       transform: translateX(-130px) skewX(-15deg);
-   }
-   
-   .static-banner:after {
-       content: '';
-       display: block;
-       position: absolute;
-       background: rgba(255,255,255,.2);
-       width: 30px;
-       height: 100%;
-       left: 30px;
-       top: 0;
-       opacity: 0;
-       filter: blur(30px);
-       transform: translateX(-100px) scaleX(-15deg);
-   }
-   
-   .static-banner:hover {
-    background: #a92507;
-    color: white;
-   }
-   
-   .static-banner:hover:before {
-    transform: translateX(300px) skewX(-15deg);
-    opacity: .6;
-    transition: .7s;
-   }
-   
-   .static-banner:hover:after {
-    transform: translateX(300px) skewX(-15deg);
-    opacity: 1;
-    transition: .7s;
-   }
+.static-banner:before, .ptext h2::before, .staffButtons tr td a::before{
+    content: '';
+    position: absolute;
+    background: #ffad49;
+    left: 50%;
+    top: 50%;
+    z-index: -1;
+    transition: all 0.6s ease;
+    height: 0;
+    width: 100%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
 
+.ptext h2::before, .staffButtons tr td a::before{
+    background: #a92507;
+}
+
+.static-banner:hover:before, .ptext h2:hover::before, .staffButtons tr td a:hover::before{
+    height: 450%;
+}
+.static-banner:hover {
+    color: #314e4e;
+}
+
+.setTitle{
+      margin: 1% 0 0 2%;
+      font-weight: bold;
+      background: #FDFEFD;
+      padding: 10px;
+      width:30%;
+      text-align: center;
+}
+.menuInfo{
+    display: flex;
+}
+
+.signatureDish{
+    width: 80%;
+}
+
+.signatureDish h3{
+    width: 90%;
+    padding: 5px;
+    margin: 0 auto;
+    border-bottom: #FDFEFD solid 3px;
+    color: #FDFEFD;
+    font-weight: bold;
+    text-align: center;
+}
+
+.region{
+    position: absolute;
+    left:80%;
+    top:15%;
+
+}
+
+.gallery{
+    width:100%;
+    justify-content: center;
+    display:flex;
+    flex-flow: row wrap;
+    margin: 0;
+  }
+  
+  .gallery_item{
+    width:50%;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .gallery_item a, .gallery_image{
+    width:100%;
+    height:100%;
+    display:block;
+  }
+  
+  .gallery_image{
+    max-width: 100%;
+    transition: transform .2s;
+    transform: scale(0.9);
+  }
+  
+  .gallery_item:hover .gallery_image{
+    transform: scale(1);
+  }
+  
+  
+  /*product description style*/
+  .all_details{
+    position: absolute;
+    bottom:-600px;
+    background:#fff;
+    padding:5%;
+    transition: .5s;
+    height:100%;
+    width:100%;
+    opacity: 0.9;
+  }
+  
+  .description h2{
+    margin:0;
+    padding:0;
+    width:100%;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: normal;
+  }
+  
+  .description p{
+    margin:0;
+    padding:0;
+    width:100%;
+    text-align: center;
+    color: grey;
+  }
+  
+  
+  .gallery_item:hover .all_details{
+  bottom:0;
+  }
+  
+  /*improves fluidity of product catalog page*/
+  @media only screen and (min-width: 48em){
+    .gallery_item{
+      flex-basis: calc(50% - 2rem);
+    }
+  }
+  
+  @media only screen and (min-width: 60em){
+    .gallery_item{
+      flex-basis: calc((100% / 3) - 2rem);
+    }
+  }
+  .allItems{
+      background: #34261bcc;
+      color:white;
+      padding: 3%;
+      margin: 3%;
+  }
+
+  /* ---------------------------------------------------------indexStaff.html---------------------------------------------------------- */
+  .loginStaff img{
+      margin: 0 10px;
+      height: 30px;
+      width: 30px;
+      
+  }
+
+  .staffButtons{
+      width: 80%;
+      margin: 0 auto;
+  }
+
+  .staffButtons tr td{
+      padding: 1%;
+      text-align: center;
+  }
+
+  .staffButtons tr td a{
+    border-radius: 320px;
+    position: relative;
+    color: #fff;
+    padding: 5%;
+    display: block;
+    width: 80%;
+    border: white solid 3px;
+    font-weight: 500;
+    transition: .8s;
+    overflow: hidden;
+  }
+
+  .staffButtons tr td a:hover{
+      border-color: #a92507;
+      background-color: #a92507;
+  }
+
+  
 /* --------------------------------------------------------------footer------------------------------------------------------------------ */
 footer{
     height: 100%;
