@@ -93,6 +93,7 @@
                     <li>Fruit Punch</li>
                 </ol>
                 {% for item in AvailableItems %}
+                {% if item %}
                   <p>Available</p>
                 {% empty %}
                   <p>Not Available</p>
