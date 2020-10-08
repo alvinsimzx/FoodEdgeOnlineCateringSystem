@@ -1,0 +1,22 @@
+{% load static %}
+<footer>
+              <div class="wrapper">
+                  <div class="logo_footer">
+                      <a href="{% url 'staff-home' %}">
+                      <img src="{% static '/images/logo.png'%}" alt="FoodEdge Online Catering System" title="Back to Home"/>
+                      </a>
+                    </div>
+                  <div class="products_footer">
+                    <ul>
+                      <li><a class="hover_line" href="{% url 'order' %}">Order Now</a> | </li>
+                      <li><a class="hover_line" href="mermaid.html">About Us</a> | </li>
+                      <li><a class="hover_line" href="{% url 'feedback' %}">Make Feedback</a> | </li>
+                      <li><a class="hover_line" href="{% url 'sets' %}">Sets</a></li>
+                      <li><a class="hover_line" href="{% url 'accounts-home' %}">Customer Preview</a></li>
+                      
+              
+                    </ul>
+                </div>
+        <p>&#xa9;2020 Power| Page developed by DP2 Team | Last updated: 01/04/2019 5:26pm</p>
+        
+      </footer>

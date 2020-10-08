@@ -11,8 +11,8 @@
     
 <body>
 {%block content%}
-    <form  action = "ordermade.html" method="GET">
-    
+    <form method="post">
+    {% csrf_token %}
 
   
     <!--<img src = "styles/images/hint.png" alt="Hint/Help" title="hello"/>-->
@@ -25,8 +25,8 @@
     
         <p class="ordername"> 
             <label name = "ordername">Full Name:</label>
-            <input type="text" id="owner" name="First Name" maxlength="25" placeholder="First Name e.g. MICHAEL" required = required/>
-            <input type="text" id="owner" name="Last Name" maxlength="25" placeholder="Last Name e.g. JORDAN" required = required/>
+            <input type="text" id="owner" name="CustFirstName" maxlength="25" placeholder="First Name e.g. MICHAEL" required = required/>
+            <input type="text" id="owner" name="CustlastName " maxlength="25" placeholder="Last Name e.g. JORDAN" required = required/>
         </p>
      <!--
         <p class="dob">
@@ -34,9 +34,9 @@
         </p>
     -->
         <label name = "email">Email:</label>
-        <p><input type="email" name="email"id="email" placeholder="Email Address e.g. howard123@hotmail.com" /></p>
+        <p><input type="email" name="custEmail" id="email" placeholder="Email Address e.g. howard123@hotmail.com" /></p>
         <label name = "email">Contact Number</label>
-        <p><input type="tel"id="tel" maxlength="11" name="Mobile no." placeholder="Phone number eg.012-3456789" pattern="[0-9]{3}-[0-9]{7}" required=required /></p>
+        <p><input type="tel"id="tel" maxlength="11" name="custContact" placeholder="Phone number eg.012-3456789" pattern="[0-9]{3}-[0-9]{7}" required=required /></p>
     
     </fieldset>
         
@@ -44,7 +44,7 @@
     <legend>Billing Address</legend>
                     
     <label name = "address">Street Address:</label>
-        <p><textarea name="Street Address" id="address"placeholder="Your street address" rows="3" maxlength="40" required=required></textarea></p>
+        <p><textarea name="location" id="address"placeholder="Your street address" rows="3" maxlength="40" required=required></textarea></p>
     
     
     
@@ -66,14 +66,19 @@
     <fieldset>
 
     <legend>Catering Set</legend>
-    <center><select name="Products"id="product">
-    </select></center>  
+    <center>
+      <select name="custOrder"id="product">
+         <option value="Set 1 - Western">Set 1 - Western</option>
+         <option value="Set 2 - Local">Set 2 - Local</option>
+         <option value="Set 3 - Chinese">Set 3 - Chinese</option>
+      </select>
+    </center> 
     </fieldset>
         
     
     <fieldset>
     <legend>Additional Requests</legend>
-        <p><textarea name="Additional Requests" rows="10" cols="50" placeholder="Please specify the aspect you are interested in (if any)"></textarea></p>
+        <p><textarea name="custRequest" rows="10" cols="50" placeholder="Please specify the aspect you are interested in (if any)"></textarea></p>
     </fieldset>
 
     
@@ -96,7 +101,7 @@
             
             <label for="ccnum">Credit card number</label> 
             <i class="fa fa-credit-card-alt"></i>
-            <p><input type="password" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required = "required" ></p>
+            <p><input type="password" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" ></p>
             <!--<p><label for="cname">Show password</label></p>
             <p><input type="checkbox" name="checkbox" onclick="myFunction()"></p>
             <script>

@@ -1,0 +1,110 @@
+{% extends 'accounts/mainStaff.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!--Description: Development project 2-->
+<!--Author: Karyn Chong Huei Xien-->
+<!--Date: 4/10/20-->
+<!--Validate: -->
+
+<head>
+    <title>Check Assigned Orders</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="shortcut icon" href="styles/images/logo.png">
+    <meta charset="utf-8">
+    <meta name="author" content="Karyn Chong Huei Xien">
+    <meta name="description" content="Food Edge assign orders">
+    <meta name="keywords" content="Food, Edge, Assign, Orders"> 
+  </head>
+
+  <body>
+  
+  {%block content%}   
+  <form id="Orders" method="post" novalidate="novalidate">
+  
+  <h1 id = "feedbackTitle">Assigned Orders</h1>    
+    
+    <fieldset>
+      
+      <legend id="assign_date">6 / 9 / 2020</legend>
+    
+      <p>Role: Cater Leader</p>
+      <p>Team: Worker 2, Worker 3</p>     
+      <p>Food Set 1</p> 
+      
+    <button type="button" class="collapsible1">More Info +</button>
+      
+      <div class="content">
+    
+        <p>Customer Name: Bob</p>
+        <p>Pax: 50</p>
+        <p>Address: Some random address</p>
+        <p>Extra information</p>
+        <p id="extra_info"><i>It's a birthday party. </i></p>
+      
+      </div>
+    
+    <script>
+      var coll = document.getElementsByClassName("collapsible1");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+        });
+      }
+    </script>
+    
+  </fieldset>
+  
+    
+    <fieldset>
+      
+      <legend id="assign_date">7 / 10 / 2020</legend>
+    
+      <p>Role: Cater Helper</p>
+      <p>Team: Worker 1, Worker 3</p>     
+      <p>Food Set 2</p> 
+      
+    <button type="button" class="collapsible2">More Info +</button>
+      
+      <div class="content">
+    
+        <p>Customer Name: Jane</p>
+        <p>Pax: 80</p>
+        <p>Address: Some random address</p>
+        <p>Extra information</p>
+        <p id="extra_info"><i>It's a birthday party. </i></p>
+      
+      </div>
+    
+    <script>
+      var coll = document.getElementsByClassName("collapsible2");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+        });
+      }
+    </script>
+    
+  </fieldset>
+      
+
+  </form>
+  {%endblock content%}
+
+</html>

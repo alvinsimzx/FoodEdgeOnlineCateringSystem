@@ -1,0 +1,28 @@
+{% extends 'accounts/mainStaff.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!--Description: Development project 2-->
+<!--Author: Wong Jun Jie-->
+<!--Date: 5/10/20-->
+<!--Validate: -->
+    <head>
+        <title>Stock Management</title>
+        <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css'%}">
+        <link rel="shortcut icon" href="style/images/logo.png">
+        <meta charset="utf-8">
+        <meta name="author" content="Wong Jun Jie">
+        <meta name="description" content="Food Edge Feedback">
+        <meta name="keywords" content="Food, Edge, Stock, Management, Edit, Remove"> 
+    </head>
+    <body>
+        {%block content%}
+        <main>
+            <p><a href="{% url 'AddStocks' %}">Add Stocks</a></p>
+            <p><a href="{% url 'ViewStocks' %}">View Stocks</a></p>
+        </main>
+        {%endblock content%}
+    </body>
+
+
+</html>

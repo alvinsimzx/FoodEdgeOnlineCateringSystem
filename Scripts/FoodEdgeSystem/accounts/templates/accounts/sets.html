@@ -8,8 +8,7 @@
 <!--Validate: -->
 
 <head>
-    <title>Feedback Form</title>
-    
+    <title>Sets</title>
 
     <style>
     .sets{
@@ -23,22 +22,218 @@
         height:2px;
         background-color: #a92507;
     }
-
     </style>
   </head>
 
   <body>
-    {%block content%}
-      <main>
-        <div class = "carousel" data-flickity='{ "cellSelector": ".carousel-slide", "wrapAround": true, "pageDots":"white" }'>
-            <a href="#"><div class="static-banner">Order Now!</div></a>
-            <div class="carousel-slide"></div>
-            <div class="carousel-slide"></div>
-            <div class="carousel-slide"></div>
+  
+    {%block content%} 
+    <main>
+
+      <div class = "carousel" data-flickity='{ "cellSelector": ".carousel-slide", "wrapAround": true, "pageDots":"white" }'>
+          <a href="#"><div class="static-banner">Order Now!</div></a>
+        <div class="carousel-slide">
+            <h2 class="setTitle">Set 1</h2>
+            <img class="region" src = "{% static 'images/western.png' %}">
+            <div class="menuInfo">
+            <div class="signatureDish">
+                <h3>Signature Dish</h3>
+                <section class="gallery">
+                    <figure class="gallery_item">
+                      <img class="gallery_image" src="{% static 'images/western1.jpg' %}" alt="Steak" />
+                      <figcaption>
+                        <div class="all_details">
+                            <div class="description">
+                                    <h2>Beef Steak</h2>
+                                    <p>Comments</p>
+                            </div>
+                        </div>
+                      </figcaption>
+                    </figure> 
+                    
+                    
+                    <figure class="gallery_item">
+                    <img class="gallery_image" src="{% static 'images/western2.jpg' %}" alt="Creamy Fish"/>
+                      <figcaption>
+                          <div class="all_details">
+                              <div class="description">
+                                      <h2>Creamy Fish Stew</h2>
+                                      <p>Comments</p>
+                              </div>
+                          </div>
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="gallery_item">
+                    <img class="gallery_image" src="{% static 'images/western3.jpg' %}" alt="Spaghetti" />
+                      <figcaption class="gallery_image-caption">
+                          <div class="all_details">
+                              <div class="description">
+                                      <h2>Spaghetti</h2>
+                                      <p>Comments</p>
+                              </div>
+                          </div>
+                      </figcaption>
+                    </figure>
+            </div>
+          
+            <div class="allItems">
+                <h3>Items include: </h3>
+                <ol>
+                    <li>Clam Chowder Soup</li>
+                    <li>Chimicanga</li>
+                    <li>Herb Butter Rice</li>
+                    <li>Creamy Fish Stew</li>
+                    <li>Beef Steak</li>
+                    <li>Prawn Cocktail Salad</li>
+                    <li>Roasted Lam Leg</li>
+                    <li>Spaghetti</li>
+                    <li>Bread & Butter Pudding with Strawberries</li>
+                    <li>Tiramisu</li>
+                    <li>Fruit Punch</li>
+                </ol>
+                {% for item in AvailableItems %}
+                  <p>Available</p>
+                {% empty %}
+                  <p>Not Available</p>
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="carousel-slide">
+            <h2 class="setTitle">Set 2</h2>
+            <img class="region" src = "{% static 'images/local.png' %}">
+            <div class="menuInfo">
+            <div class="signatureDish">
+                <h3>Signature Dish</h3>
+                <section class="gallery">
+                    <figure class="gallery_item">
+                      <img class="gallery_image" src="{% static 'images/local1.jpg' %}" alt="BBQ Chicken Wings" />
+                      <figcaption>
+                        <div class="all_details">
+                            <div class="description">
+                                    <h2>BBQ Chicken Wings</h2>
+                                    <p>Comments</p>
+                            </div>
+                        </div>
+                      </figcaption>
+                    </figure> 
+                    
+                    
+                    <figure class="gallery_item">
+                    <img class="gallery_image" src="{% static 'images/local2.jpg' %}" alt="Satay"/>
+                      <figcaption>
+                          <div class="all_details">
+                              <div class="description">
+                                      <h2>Satay</h2>
+                                      <p>Comments</p>
+                              </div>
+                          </div>
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="gallery_item">
+                    <img class="gallery_image" src="{% static 'images/local3.jpg' %}" alt="Nyonya Fried Rice" />
+                      <figcaption class="gallery_image-caption">
+                          <div class="all_details">
+                              <div class="description">
+                                      <h2>Nyonya Fried Rice</h2>
+                                      <p>Comments</p>
+                              </div>
+                          </div>
+                      </figcaption>
+                    </figure>
+            </div>
+          
+            <div class="allItems">
+                <h3>Items include: </h3>
+                <ol>
+                    <li>Fried Shrimp Ball</li>
+                    <li>Nyonya Fried Rice</li>
+                    <li>Bihun Siame</li>
+                    <li>Rendang Chicken</li>
+                    <li>Broccoli, Cauliflower, Mushroom</li>
+                    <li>Satay</li>
+                    <li>Assam Deep Fried Talapia</li>
+                    <li>BBQ Chicken Wings</li>
+                    <li>Black Pepper Beef</li>
+                    <li>Nyonya Kuih</li>
+                    <li>Fruit Punch</li>
+                </ol>
+            </div>
+            
+          </div>
+        </div>
+        <div class="carousel-slide">
+            <h2 class="setTitle">Set 3</h2>
+            <img class="region" src = "{% static 'images/chinese.png' %}">
+            <div class="menuInfo">
+            <div class="signatureDish">
+                <h3>Signature Dish</h3>
+                <section class="gallery">
+                    <figure class="gallery_item">
+                      <img class="gallery_image" src="{% static 'images/chinese1.jpg' %}" alt="Braised Pork Leg" />
+                      <figcaption>
+                        <div class="all_details">
+                            <div class="description">
+                                    <h2>Braised Pork Leg</h2>
+                                    <p>Comments</p>
+                            </div>
+                        </div>
+                      </figcaption>
+                    </figure> 
+                    
+                    
+                    <figure class="gallery_item">
+                    <img class="gallery_image" src="{% static 'images/chinese2.jpg' %}" alt="Steam Fish"/>
+                      <figcaption>
+                          <div class="all_details">
+                              <div class="description">
+                                      <h2>Steam Fish</h2>
+                                      <p>Comments</p>
+                              </div>
+                          </div>
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="gallery_item">
+                    <img class="gallery_image" src="{% static 'images/chinese3.jpg' %}" alt="Roasted Chicken" />
+                      <figcaption class="gallery_image-caption">
+                          <div class="all_details">
+                              <div class="description">
+                                      <h2>Roasted Chicken</h2>
+                                      <p>Comments</p>
+                              </div>
+                          </div>
+                      </figcaption>
+                    </figure>
+            </div>
+          
+            <div class="allItems">
+                <h3>Items include: </h3>
+                <ol>
+                    <li>Cold Dish</li>
+                    <li>Fried Longevity Noodles</li>
+                    <li>Shark Fin Soup</li>
+                    <li>Braised Pork Leg</li>
+                    <li>Peking Duck</li>
+                    <li>Steam Fish</li>
+                    <li>Scallops</li>
+                    <li>Roasted Chicken</li>
+                    <li>Abalone and sea cucumber</li>
+                    <li>Red bean soup with lotus seeds</li>
+                    <li>Fruit Punch</li>
+                </ol>
+            </div>
+            
+          </div>
         </div>
           
-      </main>
-  {%endblock content%}
-  </body>
+      </div>
+        
+    </main>
+    {%endblock content%}
 
+  </footer>
+</body>
 </html>

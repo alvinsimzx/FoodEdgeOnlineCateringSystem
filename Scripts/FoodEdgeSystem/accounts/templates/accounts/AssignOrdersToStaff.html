@@ -1,0 +1,165 @@
+{% extends 'accounts/mainStaff.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!--Description: Development project 2-->
+<!--Author: Karyn Chong Huei Xien-->
+<!--Date: 4/10/20-->
+<!--Validate: -->
+
+<head>
+    <title>Assign orders to staff</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="shortcut icon" href="styles/images/logo.png">
+    <meta charset="utf-8">
+    <meta name="author" content="Karyn Chong Huei Xien">
+    <meta name="description" content="Food Edge assign orders">
+    <meta name="keywords" content="Food, Edge, Assign, Orders"> 
+  </head>
+
+  <body>
+  
+  {%block content%}    
+  <form id="Orders" method="post" novalidate="novalidate">
+  
+  <h1 id = "feedbackTitle">Orders</h1>    
+    
+    <fieldset>
+      
+      <legend>Edit Orders Information</legend>
+    
+    <button type="button" class="collapsible1">Order 1</button>
+  
+      <div class="content">
+      <p>Customer Name: Bob</p>
+      <p>Catering Date: 6 / 9 / 2020</p>     
+      <p>Pax: 50</p> 
+      <p>Address: Some random address here.</p> 
+      
+      
+      <p>Cater Leader: </p>
+      
+      <select name="CLeader"id="CLeader">
+  
+      <option value="worker1">Worker 1</option>
+      <option value="worker2">Worker 2</option>
+      <option value="worker3">Worker 3</option>
+        
+      </select>
+      
+      <p>Cater Worker(s): </p>
+    
+      <select name="CWorker"id="CWorker" multiple>
+    
+      <option value="worker1">Worker 1</option>
+      <option value="worker2">Worker 2</option>
+      <option value="worker3">Worker 3</option>
+      
+      </select>
+    
+      <p>Food set: </p>
+      
+    <select name="foodSet"id="foodSet">
+  
+      <option value="foodset1">Set 1</option>
+      <option value="foodset2">Set 2</option>
+      <option value="foodset3">Set 3</option>
+    
+    </select> 
+      
+      <p>Extra information: </p>
+      <p id="extra_info"><i>It's a birthday party.</i></p>
+      
+    </div>
+    
+    <script>
+      var coll = document.getElementsByClassName("collapsible1");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+        });
+      }
+    </script>
+    
+  </fieldset>
+  
+    
+    <fieldset>
+      
+      <legend>Edit Orders Information</legend>
+    
+    <button type="button" class="collapsible2">Order 2</button>
+    <div class="content">
+      <p>Customer Name: Jane</p>
+      <p>Catering Date: 7 / 10 / 2020</p>     
+      <p>Pax: 80</p> 
+      <p>Address: Some random address here.</p> 
+      
+      
+      <p>Cater Leader: </p>
+      
+      <select name="CLeader"id="CLeader">
+  
+      <option value="worker1">Worker 1</option>
+      <option value="worker2">Worker 2</option>
+      <option value="worker3">Worker 3</option>
+        
+      </select>
+      
+      <p>Cater Worker(s): </p>
+    
+      <select name="CWorker"id="CWorker" multiple>
+    
+      <option value="worker1">Worker 1</option>
+      <option value="worker2">Worker 2</option>
+      <option value="worker3">Worker 3</option>
+      
+      </select>
+    
+      <p>Food set: </p>
+      
+    <select name="foodSet"id="foodSet">
+  
+      <option value="foodset1">Set 1</option>
+      <option value="foodset2">Set 2</option>
+      <option value="foodset3">Set 3</option>
+    
+    </select> 
+      
+      <p>Extra information: </p>
+      <p id="extra_info"><i>It's a birthday party.</i></p>
+      
+    </div>
+    
+    <script>
+      var coll = document.getElementsByClassName("collapsible2");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+        });
+      }
+    </script>
+    
+  </fieldset>
+      
+
+  </form>
+  {%endblock content%}
+
+</html>

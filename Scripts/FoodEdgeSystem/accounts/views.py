@@ -2,13 +2,15 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
-from accounts.models import InsertStock
-from accounts.models import MenuItem
+from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'accounts/dashboard.html')
+    return render(request, 'accounts/index.html')
+
+def StaffHome(request):
+    return render(request, 'accounts/indexStaff.html')
 
 def products(request):
     return render(request, 'accounts/products.html')
@@ -33,20 +35,63 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'accounts/profile.html')
+    allOrders = InsertOrder.objects.filter(customerID=request.user.id)
+    return render(request, 'accounts/profile.html', {'allOrders' : allOrders})
+
 
 def showStockPage(request):
-    return render(request, 'accounts/stock.html')
+    return render(request, 'accounts/StockManagementPage.html')
 
-def showStockPage2(request):
+def ViewStocks(request):
     re = InsertStock.objects.all()
     return render(request, 'accounts/stock2.html', {'re': re})
     
-def Order(request):
-    return render(request, 'accounts/order.html')
 
 def OrderMade(request):
     return render(request, 'accounts/ordermade.html')
+
+'''
+def CreateAccount(request):
+    if request.method =='POST':
+        if request.POST.get('CustomerName') and request.POST.get('phoneNo') and request.POST.get('email') and request.POST.get('username') and request.POST.get('password'):
+            saverecord = InsertCustomer()
+            saverecord.name=request.POST.get('CustomerName')
+            saverecord.phoneNo=request.POST.get('phoneNo')
+            saverecord.email=request.POST.get('email')
+            saverecord.save()
+
+            saveAccount = InsertAccount()
+            saveAccount.customerID = saverecord.pk
+            saveAccount.username = request.POST.get('username')
+            saveAccount.accountPassword = request.POST.get('password')
+            saveAccount.save()
+
+            messages.success(request,'Account Created! Please Login')
+            return render(request, 'accounts/login.html')
+    else:
+        return render(request, 'accounts/register.html')
+'''
+
+def InsertCustomerOrder(request):
+    if request.method =='POST':
+        saverecord = InsertOrder()
+        i = True
+        if request.POST.get('CustFirstName'):
+            saverecord.CustFirstName = request.POST.get('CustFirstName')
+            saverecord.customerID = request.user.id
+            saverecord.CustlastName = request.POST.get('CustlastName')
+            saverecord.custEmail = request.POST.get('custEmail')
+            saverecord.custContact = request.POST.get('custContact')
+            saverecord.custOrder = request.POST.get('custOrder')
+            saverecord.location = request.POST.get('location')
+            saverecord.save()
+            messages.success(request,'Order Sent')
+            return render(request, 'accounts/order.html')
+        else:
+            messages.success(request,'Order did not send')
+            return render(request, 'accounts/order.html')
+    else:
+        return render(request, 'accounts/order.html')
 
 def Insertrecord(request):
     if request.method =='POST':
@@ -66,7 +111,7 @@ def InsertMenu(request):
     if request.method == 'POST':
         if request.POST.get('stockID') and request.POST.get('itemName') and request.POST.get('itemPrice'):
             saverecord = MenuItem()
-            saverecord.stockID = InsertStock.objects.get(stockID = request.POST.get('stockID'))
+            saverecord.stockID = request.POST.get('stockID')
             saverecord.itemName = request.POST.get('itemName')
             saverecord.itemPrice = request.POST.get('itemPrice')
             saverecord.save()
@@ -96,4 +141,17 @@ def EditRecords(request, stockID):
         return render(request, 'accounts/editStock.html')
 
 def ShowSets(request):
-    return render(request, 'accounts/sets.html')
+    AvailableItems = ActiveMenuItem.objects.all()
+    return render(request, 'accounts/sets.html', {'AvailableItems' : AvailableItems})
+
+def StaffLogin(request):
+    return render(request, 'accounts/indexStaff.html')
+
+def ShowGivenOrders(request):
+    return render(request, 'accounts/CheckAssignedOrders.html')
+
+def ShowAddMenuItems(request):
+    return render(request, 'accounts/addMenuItems.html')
+
+def ShowAssignOrdersToStaff(request):
+    return render(request, 'accounts/AssignOrdersToStaff.html')
