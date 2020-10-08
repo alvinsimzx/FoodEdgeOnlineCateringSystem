@@ -54,7 +54,7 @@ nav ul a::after{
     content: "";
     display: block;
     width: 0;
-    height:2px;/*This makes it look like a thin line, the higher the value, the thicker the underline it will be*/
+    height:2px;
     background-color: #a92507;
     transition: width 500ms;
 }
@@ -132,7 +132,7 @@ table {
 }
 
 .textWrap{
-    text-align: left;
+    text-align: center;
 }
 
 .title{
