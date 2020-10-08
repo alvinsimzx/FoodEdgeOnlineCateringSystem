@@ -9,6 +9,9 @@ from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem
 def home(request):
     return render(request, 'accounts/index.html')
 
+def aboutUs(request):
+    return render(request, 'accounts/AboutUs.html')
+
 def StaffHome(request):
     return render(request, 'accounts/indexStaff.html')
 
