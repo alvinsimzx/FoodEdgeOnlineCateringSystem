@@ -34,53 +34,20 @@
     </header>
   
     
-  <form id="Orders" method="post" novalidate="novalidate">
+  <form id="about_us" method="post" novalidate="novalidate">
   
-  <h1 id = "feedbackTitle">About Us</h1> 
+    <h1 id = "AboutUsTitle">- Our Mission -</h1> 
     
-    <figure id="about_us">
-    <img src="styles/images/ky.jpg" alt="Ky's Beautiful Face" width="303" height="360" id="owner_pic">
-    
-    <figcaption id="fig">
-      
-      <fieldset>
-      <legend>About the Owner</legend>
-    
-      <p>Role: Cater Leader</p>
-
-      </fieldset>
-      </figcaption>
-      </figure>
+    <p id= "about_info">To provide the best catering services for your special day.</p>
   
-    <script>
-      
-     function changeImage(){
-       var img = document.getElementById("owner_pic");
-       img.src = images[x];
-       x++;
-       
-       if(x >= images.length){
-        x = 0;
-    } 
-
-    setTimeout("changeImage()", 3000);
-     }
+    <h1 id = "AboutUsTitle2">- About Us -</h1> 
     
-      
-      var images = [],
-          x = 0;
-
-      images[0] = "styles/images/ky.jpg";
-      images[1] = "styles/images/ky1.jpg";
-      images[2] = "styles/images/ky2.jpg";
-      images[3] = "styles/images/ky3.jpg";
+    <p id= "about_info2">FoodEdge was found in 2008 by John Wilson Jr, who grew up helping his family business of running their family restaurant. After finishing school, he decided to open his own company which is now known as FoodEdge.</p>
+    <p id= "about_info2"> The company was originally a simple restaurant that sold a mix of local, western and chinese delights. After the restaurant was opened sucessfully for the next 2 years, John Wilson Jr decided they should open a catering service to increase their profit. The website is used for clients to order catering services from the company, this is to not limit the ways of asking for catering services just to face to face or going to the restaurant to order.</p>
     
-    </script>
-      
-    <body onload ="changeImage()"></body>
-
   </form>
-
+    
+    
   <footer>
           <div class="wrapper">
               <div class="logo_footer">
