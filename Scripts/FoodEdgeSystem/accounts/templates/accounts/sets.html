@@ -92,8 +92,12 @@
                     <li>Tiramisu</li>
                     <li>Fruit Punch</li>
                 </ol>
+                {% for item in AvailableItems %}
+                  <p>Available</p>
+                {% empty %}
+                  <p>Not Available</p>
+                {% endfor %}
             </div>
-            
           </div>
         </div>
         <div class="carousel-slide">

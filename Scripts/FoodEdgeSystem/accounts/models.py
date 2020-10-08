@@ -36,11 +36,19 @@ class InsertStock(models.Model):
         
 class MenuItem(models.Model):
     menuItemID = models.IntegerField(primary_key=True)
-    stockID = models.ForeignKey(InsertStock, on_delete=models.CASCADE) #Issue is here, something about the column does not exist
+    stockID = models.IntegerField() 
     itemName = models.CharField(max_length=100)
     itemPrice = models.IntegerField()
     class Meta:
         db_table = "menuitem"
+
+class ActiveMenuItem(models.Model):
+    activeItemID = models.IntegerField(primary_key=True)
+    menuItemID = models.IntegerField()
+    rating = models.IntegerField()
+    class Meta:
+        db_table = "activemenuitems"
+
 
 class InsertOrder(models.Model):
     orderID = models.IntegerField(primary_key=True)	

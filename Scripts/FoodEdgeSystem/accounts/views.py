@@ -2,13 +2,15 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
-from accounts.models import InsertStock,InsertOrder
-from accounts.models import MenuItem
+from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem
 
 # Create your views here.
 
 def home(request):
     return render(request, 'accounts/index.html')
+
+def StaffHome(request):
+    return render(request, 'accounts/indexStaff.html')
 
 def products(request):
     return render(request, 'accounts/products.html')
@@ -36,10 +38,11 @@ def profile(request):
     allOrders = InsertOrder.objects.filter(customerID=request.user.id)
     return render(request, 'accounts/profile.html', {'allOrders' : allOrders})
 
-def showStockPage(request):
-    return render(request, 'accounts/stock.html')
 
-def showStockPage2(request):
+def showStockPage(request):
+    return render(request, 'accounts/StockManagementPage.html')
+
+def ViewStocks(request):
     re = InsertStock.objects.all()
     return render(request, 'accounts/stock2.html', {'re': re})
     
@@ -108,7 +111,7 @@ def InsertMenu(request):
     if request.method == 'POST':
         if request.POST.get('stockID') and request.POST.get('itemName') and request.POST.get('itemPrice'):
             saverecord = MenuItem()
-            saverecord.stockID = InsertStock.objects.get(stockID = request.POST.get('stockID'))
+            saverecord.stockID = request.POST.get('stockID')
             saverecord.itemName = request.POST.get('itemName')
             saverecord.itemPrice = request.POST.get('itemPrice')
             saverecord.save()
@@ -138,7 +141,8 @@ def EditRecords(request, stockID):
         return render(request, 'accounts/editStock.html')
 
 def ShowSets(request):
-    return render(request, 'accounts/sets.html')
+    AvailableItems = ActiveMenuItem.objects.all()
+    return render(request, 'accounts/sets.html', {'AvailableItems' : AvailableItems})
 
 def StaffLogin(request):
     return render(request, 'accounts/indexStaff.html')

@@ -4,10 +4,10 @@
         <a href = "#"><img class="logo" src="{% static '/images/logo.png'%}" alt="Logo" width="150" height="75"></a>
         <nav>
             <ul>
-                <a href = "{% url 'accounts-home' %}" class="home"><li>Home</li></a>
+                <a href = "{% url 'staff-home' %}" class="home"><li>Home</li></a>
                 <a href = "{% url 'CheckAssignedOrders' %}" class="sets"><li>Check Orders</li></a>
-                <a href = "{% url 'feedback' %}" class="feedback"><li>Add Stocks</li></a>
                 <a href = "{% url 'AssignOrdersToStaff' %}" class="about"><li>Assign Orders</li></a>
+                <a href = "{% url 'stock' %}" class="feedback"><li>Stock Management</li></a>
                 <a href = "{% url 'addMenuItems' %}" class="order"><li>Add Menu</li></a>
             </ul>
             

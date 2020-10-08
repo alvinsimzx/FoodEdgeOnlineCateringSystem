@@ -2,7 +2,7 @@
 <footer>
               <div class="wrapper">
                   <div class="logo_footer">
-                      <a href="index.html">
+                      <a href="{% url 'staff-home' %}">
                       <img src="{% static '/images/logo.png'%}" alt="FoodEdge Online Catering System" title="Back to Home"/>
                       </a>
                     </div>
@@ -12,7 +12,7 @@
                       <li><a class="hover_line" href="mermaid.html">About Us</a> | </li>
                       <li><a class="hover_line" href="{% url 'feedback' %}">Make Feedback</a> | </li>
                       <li><a class="hover_line" href="{% url 'sets' %}">Sets</a></li>
-                      <li><a class="hover_line" href="{% url 'StaffLogin' %}">Staff Login</a></li>
+                      <li><a class="hover_line" href="{% url 'accounts-home' %}">Customer Preview</a></li>
                       
               
                     </ul>
