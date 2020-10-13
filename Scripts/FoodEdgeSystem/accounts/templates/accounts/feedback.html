@@ -8,13 +8,21 @@
 <!--Validate: -->
 
 <head>
-    <title>Feedback Form</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
-  </head>
+  {%block content%}
 
-  <body>
-  <main>
-  {%block content%}  
+  <style type="text/css">
+    .feedback{
+        color: #a92507;
+    }  
+    
+    .feedback::after{
+        content: "";
+        display: block;
+        width: 100%;
+        height:2px;
+        background-color: #a92507;
+    }
+    </style>  
   <form id="feedback_form" method="post">
       <h1 id = "feedbackTitle">Feedback</h1>
       <fieldset>

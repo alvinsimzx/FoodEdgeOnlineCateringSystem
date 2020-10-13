@@ -9,7 +9,12 @@
 
 <head>
     <title>Home</title>
-    <style>
+    
+  </head>
+  <body>
+      
+      {%block content%}  
+      <style type="text/css">
    
     .home::after{
         content: "";
@@ -37,10 +42,6 @@
 
 
     </style>
-  </head>
-  <body>
-      
-      {%block content%}  
       <main>
         <section class="banner">
             <img src="{% static '/images/background.jpg' %}" class="bigBanner">
