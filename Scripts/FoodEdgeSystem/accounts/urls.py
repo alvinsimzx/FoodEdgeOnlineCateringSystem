@@ -19,7 +19,6 @@ urlpatterns = [
     path('order/',views.InsertCustomerOrder,name='order'),
     path('StaffLogin/',views.StaffLogin,name='StaffLogin'),
     path('CheckAssignedOrders/',views.ShowGivenOrders,name='CheckAssignedOrders'),
-    path('addMenuItems/',views.ShowAddMenuItems,),
     path('AssignOrdersToStaff/',views.ShowAssignOrdersToStaff,name='AssignOrdersToStaff'),
     path('delete/<int:stockID>', views.DeleteRecord), 
     path('edit/<int:stockID>', views.EditRecords),

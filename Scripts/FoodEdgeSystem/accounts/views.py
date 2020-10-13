@@ -47,6 +47,14 @@ def showStockPage(request):
 
 def ViewStocks(request):
     re = InsertStock.objects.all()
+    lowStock = []
+    for res in re:
+        if(res.amountLeft <= 10):
+            lowStock.append(res.stockID)
+    if(len(lowStock) != 0):
+        messages.warning(request,'Low stock detected')
+        messages.warning(request, 'Low Stock IDs: {}'.format(str(lowStock).strip('[]')))
+
     return render(request, 'accounts/stock2.html', {'re': re})
     
 
@@ -91,7 +99,7 @@ def InsertCustomerOrder(request):
             messages.success(request,'Order Sent')
             return render(request, 'accounts/order.html')
         else:
-            messages.success(request,'Order did not send')
+            messages.warning(request,'Order did not send')
             return render(request, 'accounts/order.html')
     else:
         return render(request, 'accounts/order.html')
@@ -127,7 +135,7 @@ def DeleteRecord(request, stockID):
     record = InsertStock.objects.get(stockID=stockID)
     record.delete()
     re = InsertStock.objects.all()
-    return render(request, 'accounts/stock2.html', {'re': re})
+    return redirect('ViewStocks')
 
 def EditRecords(request, stockID):
      record = InsertStock.objects.get(stockID=stockID)
@@ -139,7 +147,7 @@ def EditRecords(request, stockID):
             record.save()
             messages.success(request,'Record Edited')
             re = InsertStock.objects.all()
-            return render(request, 'accounts/stock2.html', {'re': re}) 
+            return redirect('ViewStocks')
      else:
         return render(request, 'accounts/editStock.html')
 
@@ -152,9 +160,6 @@ def StaffLogin(request):
 
 def ShowGivenOrders(request):
     return render(request, 'accounts/CheckAssignedOrders.html')
-
-def ShowAddMenuItems(request):
-    return render(request, 'accounts/addMenuItems.html')
 
 def ShowAssignOrdersToStaff(request):
     return render(request, 'accounts/AssignOrdersToStaff.html')

@@ -18,8 +18,10 @@
     <body>
         {%block content%}
         <main>
-            <p><a href="{% url 'AddStocks' %}">Add Stocks</a></p>
-            <p><a href="{% url 'ViewStocks' %}">View Stocks</a></p>
+            <form>
+                <p><a href="{% url 'AddStocks' %}">Add Stocks</a></p>
+                <p><a href="{% url 'ViewStocks' %}">View Stocks</a></p>
+            </form>
         </main>
         {%endblock content%}
     </body>
