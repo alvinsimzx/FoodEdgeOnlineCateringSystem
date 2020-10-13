@@ -1,0 +1,13 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+	<form id="about_us">
+	{% csrf_token %}
+		<img src="{% static 'images/check.png' %}">
+		<h4>Thank you for your contribution of ${{amount}}!</h4>
+		<p>Your support helps me fulfill my dream of teaching aspiring developers around the world! You should receive a receipt to the email you provided shortly :)</p>
+		<hr>
+		<a class="myButton" href="{% url 'accounts-home' %}">&#x2190;Back to donation page</a>
+	</form>
+
+{% endblock content %}
