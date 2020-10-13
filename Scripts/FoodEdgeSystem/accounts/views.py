@@ -8,7 +8,7 @@ from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem
 
 import stripe
 
-stripe.api_key = "sk_test_51HbhNWLtploVWFIVmL1e1QoEkN797RYDVs5AE6WbJzED0Pu1ihoLnhcGtNTRj9zPbAxeRxoFM8B0e1fY9cxGaUve00CqXIEgoH"
+stripe.api_key = "sk_test_51HbjHmLUA515JZ27Y0RRePShcZS6VFq53mx0jiLs1DfdpRvA0YuyemAJWnhiI5Z0wNIwTZTaL3tngw9o2l0QMalz00lPtp37Mm"
 # Create your views here.
 
 def home(request):
@@ -65,6 +65,21 @@ def charge(request):
     amount = 5
     if request.method == 'POST':
         print("Data:", request.POST)
+
+        amount = int(request.POST['amount'])
+
+        customer = stripe.Customer.create(
+            email = request.POST['email'],
+            name = request.POST['name'],
+            source = request.POST['stripeToken']
+        )
+
+        charge = stripe.Charge.create(
+            customer = customer,
+            amount = amount*100,
+            currency = 'myr',
+            description = "CateringPayment"
+        )
     
     return redirect(reverse('PaymentSuccess',args=[amount]))
 
