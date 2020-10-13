@@ -158,3 +158,12 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 STATICFILES_DIR =[
     os.path.join(BASE_DIR,'static')
 ]
+
+
+# Email Settings
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = '1025'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+# EMAIL_USE_SSL = False
