@@ -1,9 +1,14 @@
 from django.shortcuts import render,redirect
+from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from .forms import UserRegisterForm
 from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem
 
+import stripe
+
+stripe.api_key = "sk_test_51HbjHmLUA515JZ27Y0RRePShcZS6VFq53mx0jiLs1DfdpRvA0YuyemAJWnhiI5Z0wNIwTZTaL3tngw9o2l0QMalz00lPtp37Mm"
 # Create your views here.
 
 def home(request):
@@ -53,27 +58,34 @@ def ViewStocks(request):
 def OrderMade(request):
     return render(request, 'accounts/ordermade.html')
 
-'''
-def CreateAccount(request):
-    if request.method =='POST':
-        if request.POST.get('CustomerName') and request.POST.get('phoneNo') and request.POST.get('email') and request.POST.get('username') and request.POST.get('password'):
-            saverecord = InsertCustomer()
-            saverecord.name=request.POST.get('CustomerName')
-            saverecord.phoneNo=request.POST.get('phoneNo')
-            saverecord.email=request.POST.get('email')
-            saverecord.save()
+def Payment(request):
+    return render(request, 'accounts/CustomerPayment.html')
 
-            saveAccount = InsertAccount()
-            saveAccount.customerID = saverecord.pk
-            saveAccount.username = request.POST.get('username')
-            saveAccount.accountPassword = request.POST.get('password')
-            saveAccount.save()
+def charge(request):
+    amount = 5
+    if request.method == 'POST':
+        print("Data:", request.POST)
 
-            messages.success(request,'Account Created! Please Login')
-            return render(request, 'accounts/login.html')
-    else:
-        return render(request, 'accounts/register.html')
-'''
+        amount = int(request.POST['amount'])
+
+        customer = stripe.Customer.create(
+            email = request.POST['email'],
+            name = request.POST['name'],
+            source = request.POST['stripeToken']
+        )
+
+        charge = stripe.Charge.create(
+            customer = customer,
+            amount = amount*100,
+            currency = 'myr',
+            description = "CateringPayment"
+        )
+    
+    return redirect(reverse('PaymentSuccess',args=[amount]))
+
+def successMsg(request,args):
+    amount = args
+    return render(request,'accounts/PaymentSuccess.html',{'amount':amount})
 
 def InsertCustomerOrder(request):
     if request.method =='POST':
