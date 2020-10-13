@@ -15,7 +15,7 @@ stripe.api_key = "sk_test_51HbjHmLUA515JZ27Y0RRePShcZS6VFq53mx0jiLs1DfdpRvA0Yuye
 
 def home(request):
     return render(request, 'accounts/index.html')
-
+# Email Confirmation
 def contact(request):
     if request.method == "POST":
         message_name = request.POST['message-name']
