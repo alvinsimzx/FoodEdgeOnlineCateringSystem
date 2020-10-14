@@ -55,12 +55,12 @@ def ViewStocks(request):
     lowStock = []
     for res in re:
         if(res.amountLeft <= 10):
-            lowStock.append(res.stockID)
+            lowStock.append(res)
     if(len(lowStock) != 0):
-        messages.warning(request,'Low stock detected')
-        messages.warning(request, 'Low Stock IDs: {}'.format(str(lowStock).strip('[]')))
+        messages.warning(request,'!!!Low stock detected!!!')
+        messages.warning(request,'Low Stocks Displayed')
 
-    return render(request, 'accounts/stock2.html', {'re': re})
+    return render(request, 'accounts/stock2.html', {'re': re, 'lowStock': lowStock})
     
 
 def OrderMade(request):
