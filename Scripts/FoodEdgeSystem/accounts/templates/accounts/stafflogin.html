@@ -60,10 +60,7 @@
 
     <div class="content-section">
     <h3 id="form-title">Staff LOGIN</h3>
-        <form method="POST" action="">
-        {% for message in messages %}
-					<p id="messages">{{message}}</p>
-				{% endfor %}	
+        <form method="POST" action="">	
 						{% csrf_token %}
 						<div class="input-group mb-3">
 							<div class="input-group-append">

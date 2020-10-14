@@ -30,8 +30,7 @@ def contact(request):
 
         send_mail(
             'message from' +  message_name, # subject
-            , # message
-            , # from email
+             # message# from email
             ['desmondsim2222@gmail.com'], # To Email
         )
 
@@ -200,7 +199,7 @@ def StaffLogin(request):
         user = authenticate(request, username=username,password=password)
         print()
 
-        if(user is not None) and (user.groups.filter(name='Operations').exists()):
+        if (user is not None) and (user.groups.filter(name='Operations').exists()):
             login(request,user)
             return redirect('staff-home')
         else:
