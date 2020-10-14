@@ -54,7 +54,7 @@ nav ul a::after{
     content: "";
     display: block;
     width: 0;
-    height:2px;/*This makes it look like a thin line, the higher the value, the thicker the underline it will be*/
+    height:2px;
     background-color: #a92507;
     transition: width 500ms;
 }
@@ -132,7 +132,7 @@ table {
 }
 
 .textWrap{
-    text-align: left;
+    text-align: center;
 }
 
 .title{
@@ -557,24 +557,22 @@ border-color: #a92507;
   text-align: right
 }
 
-
-#owner_pic{
-  margin-left: 50px;
-  max-width: 30%;
-  width: 40%;
-  min-width: 100px;
-  height: auto;
-}
-
-
-#fig{
-  align-content: flex-end;
-  max-width: 60%;
-  width: 60%;
-  min-width: 100px;
-  height: auto;
-  float: right;
-}
+#AboutUsTitle, #about_info{
+    text-align: center;
+    margin: 15px;
+  }
+  
+  #AboutUsTitle2{
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  #about_info2{
+    text-align: center;
+    margin-top: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
 
 /* -------------------------------------------------- sets.html--------------------------------------------------- */
 .carousel{
@@ -713,7 +711,75 @@ border-color: #a92507;
   .gallery_item:hover .gallery_image{
     transform: scale(1);
   }
-  
+  .user-content-part{
+    margin-top: 5%;
+}
+.hedding-p p{	
+	margin:0px;
+	padding:0px 0px 10px 0px;
+	font-size:15px;
+}
+.average-rating{
+	text-align: center;
+    width:100%;
+}
+.overall-rating{
+    text-align: center;
+    margin-top: 2%;
+}
+
+.fa-star,.fa-star-o,.fa-star-half-o{
+	color:#FDC91B;
+	font-size:15px;
+}
+.reviews p{
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    text-decoration: underline ;
+    margin-top: 2%;
+}
+.user-img img{	
+	height: 80px;
+	width: 80px;
+	border: solid 1px black;
+	border-radius: 50%;
+}
+.user-img-part{
+	width:30%;
+	float:left;
+}
+.user-img{
+	width:30%;
+	float:left;
+	text-align: center;
+}
+.user-text{
+    float:left;
+}
+.user-text h4{
+    font-size: 13px;
+    font-weight: bold;
+}
+.user-text p{
+    font-size: 10px
+}
+.user-text h4,.user-text p{
+    margin:0px 0px 5px 0px;
+}
+
+
+.comment{
+	width:68%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.5%;
+}
+
+.user-review{
+    font-size: 0.8rem;
+}
   
   /*product description style*/
   .all_details{
@@ -725,6 +791,7 @@ border-color: #a92507;
     height:100%;
     width:100%;
     opacity: 0.9;
+    overflow: auto;
   }
   
   .description h2{

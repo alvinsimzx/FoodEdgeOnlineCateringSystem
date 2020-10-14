@@ -748,6 +748,7 @@ border-color: #a92507;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 2.5%;
 }
 
 .user-review{

@@ -9,8 +9,26 @@
 
 <head>
     <title>Sets</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="shortcut icon" href="styles/images/logo.png">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="author" content="Chang Kwang Yung">
+    <meta name="description" content="Food Edge Feedback">
+    <meta name="keywords" content="Food, Edge, Feedback, Form">
 
-    <style>
+    
+  </head>
+
+  <body>
+  
+   {%block content%} 
+   <style type="text/css">
     .sets{
         color: #a92507;
     }  
@@ -22,218 +40,974 @@
         height:2px;
         background-color: #a92507;
     }
-    </style>
-  </head>
+    </style>  
+  <main>
 
-  <body>
-  
-    {%block content%} 
-    <main>
+    <div class = "carousel" data-flickity='{ "cellSelector": ".carousel-slide", "wrapAround": true}'>
+        <a href="#"><div class="static-banner">Order Now!</div></a>
+      <div class="carousel-slide">
+          <h2 class="setTitle">Set 1</h2>
+          <img class="region" src = "{% static 'images/western.png' %}">
+          <div class="menuInfo">
+          <div class="signatureDish">
+              <h3>Signature Dish</h3>
+              <section class="gallery">
+                  <figure class="gallery_item">
+                    <img class="gallery_image" src="{% static 'images/western1.jpg' %}" alt="Steak" />
+                    <figcaption>
+                      <div class="all_details">
+                          <div class="description">
+                                  <h2>Beef Steak</h2>
+                                  <div class="hedding-p"><p>Star Rating System</p></div> 
+                                  <div class="rating-part">
+                                    <div class="average-rating">
+                                        <h2>4.5</h2>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                        <i aria-hidden="true" class="fa fa-star-o"></i>
+                                    </div>
+                                   
+                                    <div class="overall-rating">
+                                          <p>Average Rating</p>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <span>80%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>60%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>40%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>20%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>10%</span>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                    <div class="reviews"><p>Reviews</p></div>
+                                    <div class = user-content-part>
+                                        <div class="user-img">
+                                          <div>
+                                              <img class="anonymouspp" src="{% static 'images/man-01.png' %}" alt="man1" />
+                                            </div>
+                                            <div class="user-text">
+                                                <h4>Lebron Jamies</h4>
+                                                <p>3 days ago</p>
+                                            </div>
+                                            <div style="clear: both;"></div>
+                                        </div>
+                                  
+                                      <div class="comment">
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star-o"></i>
+                                      </div>
+                                      <p class="user-review">One of the best beef steak! I always recommend this place !</p>
+                                      <div style="clear: both;"></div>
+                                    </div>
+                                    <div class = user-content-part>
+                                      <div class="user-img">
+                                        <div>
+                                            <img class="anonymouspp" src="{% static 'images/woman-01.png' %}" alt="woman1" />
+                                          </div>
+                                          <div class="user-text">
+                                              <h4>Jennie Kim</h4>
+                                              <p>10 days ago</p>
+                                          </div>
+                                          <div style="clear: both;"></div>
+                                      </div>
+                                
+                                    <div class="comment">
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                    </div>
+                                    <p class="user-review">Delicious steak! Excellent and just perfect! Definitely recommend to everyone who what steaks.</p>
+                                    <div style="clear: both;"></div>
+                                  </div>
+                          
+                          </div>
+                      </div>
+                    </figcaption>
+                  </figure> 
+                  
+                  
+                  <figure class="gallery_item">
+                   <img class="gallery_image" src="{% static 'images/western2.jpg' %}" alt="Creamy Fish"/>
+                     <figcaption>
+                        <div class="all_details">
+                            <div class="description">
+                                    <h2>Creamy Fish Stew</h2>
+                                    <div class="hedding-p"><p>Star Rating System</p></div> 
+                                  <div class="rating-part">
+                                    <div class="average-rating">
+                                        <h2>5</h2>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                    </div>
+                                   
+                                    <div class="overall-rating">
+                                          <p>Average Rating</p>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <span>80%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                          <span>60%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>40%</span><br>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                    <div class="reviews"><p>Reviews</p></div>
+                                    <div class = user-content-part>
+                                        <div class="user-img">
+                                          <div>
+                                              <img class="anonymouspp" src="{% static 'images/woman-01.png' %}" alt="woman2" />
+                                            </div>
+                                            <div class="user-text">
+                                                <h4>Rosiee Park</h4>
+                                                <p>15 days ago</p>
+                                            </div>
+                                            <div style="clear: both;"></div>
+                                        </div>
+                                  
+                                      <div class="comment">
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                      </div>
+                                      <p class="user-review"> It was so good! Best Creamy fish stew ever so far! </p>
+                                      <div style="clear: both;"></div>
+                                    </div>
 
-      <div class = "carousel" data-flickity='{ "cellSelector": ".carousel-slide", "wrapAround": true, "pageDots":"white" }'>
-          <a href="#"><div class="static-banner">Order Now!</div></a>
-        <div class="carousel-slide">
-            <h2 class="setTitle">Set 1</h2>
-            <img class="region" src = "{% static 'images/western.png' %}">
-            <div class="menuInfo">
-            <div class="signatureDish">
-                <h3>Signature Dish</h3>
-                <section class="gallery">
-                    <figure class="gallery_item">
-                      <img class="gallery_image" src="{% static 'images/western1.jpg' %}" alt="Steak" />
-                      <figcaption>
-                        <div class="all_details">
-                            <div class="description">
-                                    <h2>Beef Steak</h2>
-                                    <p>Comments</p>
+                                    <div class = user-content-part>
+                                      <div class="user-img">
+                                        <div>
+                                            <img class="anonymouspp" src="{% static 'images/woman-01.png' %}" alt="woman3" />
+                                          </div>
+                                          <div class="user-text">
+                                              <h4>Stephany Lee</h4>
+                                              <p>2 days ago</p>
+                                          </div>
+                                          <div style="clear: both;"></div>
+                                      </div>
+                                
+                                      <div class="comment">
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                      </div>
+                                      <p class="user-review">The fish was fresh and it tastes delicious!</p>
+                                      <div style="clear: both;"></div>
+                                    </div>
+                                    <div class = user-content-part>
+                                          <div class="user-img">
+                                            <div>
+                                                <img class="anonymouspp" src="{% static 'images/man-01.png' %}" alt="man2" />
+                                              </div>
+                                              <div class="user-text">
+                                                  <h4>Rockie Chan</h4>
+                                                  <p>1 days ago</p>
+                                              </div>
+                                              <div style="clear: both;"></div>
+                                          </div>
+                                    
+                                        <div class="comment">
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                        </div>
+                                        <p class="user-review"> Best Creamy Fish Stew in town so far! </p>
+                                        <div style="clear: both;"></div>
+                                  </div>
+
+                                  
+                                </div>
                             </div>
                         </div>
-                      </figcaption>
-                    </figure> 
-                    
-                    
-                    <figure class="gallery_item">
-                    <img class="gallery_image" src="{% static 'images/western2.jpg' %}" alt="Creamy Fish"/>
-                      <figcaption>
-                          <div class="all_details">
-                              <div class="description">
-                                      <h2>Creamy Fish Stew</h2>
-                                      <p>Comments</p>
-                              </div>
-                          </div>
-                      </figcaption>
-                    </figure>
-                    
-                    <figure class="gallery_item">
-                    <img class="gallery_image" src="{% static 'images/western3.jpg' %}" alt="Spaghetti" />
-                      <figcaption class="gallery_image-caption">
-                          <div class="all_details">
-                              <div class="description">
-                                      <h2>Spaghetti</h2>
-                                      <p>Comments</p>
-                              </div>
-                          </div>
-                      </figcaption>
-                    </figure>
-            </div>
-          
-            <div class="allItems">
-                <h3>Items include: </h3>
-                <ol>
-                    <li>Clam Chowder Soup</li>
-                    <li>Chimicanga</li>
-                    <li>Herb Butter Rice</li>
-                    <li>Creamy Fish Stew</li>
-                    <li>Beef Steak</li>
-                    <li>Prawn Cocktail Salad</li>
-                    <li>Roasted Lam Leg</li>
-                    <li>Spaghetti</li>
-                    <li>Bread & Butter Pudding with Strawberries</li>
-                    <li>Tiramisu</li>
-                    <li>Fruit Punch</li>
-                </ol>
-                {% for item in AvailableItems %}
-                  <p>Available</p>
-                {% empty %}
-                  <p>Not Available</p>
-                {% endfor %}
-            </div>
-          </div>
-        </div>
-        <div class="carousel-slide">
-            <h2 class="setTitle">Set 2</h2>
-            <img class="region" src = "{% static 'images/local.png' %}">
-            <div class="menuInfo">
-            <div class="signatureDish">
-                <h3>Signature Dish</h3>
-                <section class="gallery">
-                    <figure class="gallery_item">
-                      <img class="gallery_image" src="{% static 'images/local1.jpg' %}" alt="BBQ Chicken Wings" />
-                      <figcaption>
+                    </figcaption>
+                  </figure>
+                  
+                  <figure class="gallery_item">
+                   <img class="gallery_image" src="{% static 'images/western3.jpg' %}" alt="Spaghetti" />
+                     <figcaption class="gallery_image-caption">
                         <div class="all_details">
                             <div class="description">
-                                    <h2>BBQ Chicken Wings</h2>
-                                    <p>Comments</p>
+                                    <h2>Spaghetti</h2>
+                                    <div class="hedding-p"><p>Star Rating System</p></div> 
+                                    <div class="rating-part">
+                                      <div class="average-rating">
+                                          <h2>3.5</h2>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                      </div>
+                                     
+                                      <div class="overall-rating">
+                                            <p>Average Rating</p>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                                            <span>90%</span><br>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                                            <span>50%</span><br>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                                            <span>20%</span><br>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                                            <span>10%</span><br>
+                                      </div>
+                                      <div style="clear: both;"></div>
+                                      <div class="reviews"><p>Reviews</p></div>
+                                      <div class = user-content-part>
+                                        <div class="user-img">
+                                          <div>
+                                              <img class="anonymouspp" src="{% static 'images/man-01.png' %}" alt="man3" />
+                                            </div>
+                                            <div class="user-text">
+                                                <h4>Daniel Song</h4>
+                                                <p>15 days ago</p>
+                                            </div>
+                                            <div style="clear: both;"></div>
+                                        </div>
+                                    
+                                      <div class="comment">
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                        <i aria-hidden="true" class="fa fa-star-o"></i>
+                                      </div>
+                                      <p class="user-review"> It tastes good! </p>
+                                      <div style="clear: both;"></div>
+                                      
+                                      <div class = user-content-part>
+                                        <div class="user-img">
+                                          <div>
+                                              <img class="anonymouspp" src="{% static 'images/man-01.png' %}" alt="man4" />
+                                            </div>
+                                            <div class="user-text">
+                                                <h4>Kendrick Su</h4>
+                                                <p>15 days ago</p>
+                                            </div>
+                                            <div style="clear: both;"></div>
+                                        </div>
+                                    
+                                      <div class="comment">
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                        <i aria-hidden="true" class="fa fa-star-o"></i>
+                                      </div>
+                                      <p class="user-review"> Best! </p>
+                                      <div style="clear: both;"></div>
+                                    </div>
+                                  </div>
                             </div>
                         </div>
-                      </figcaption>
-                    </figure> 
-                    
-                    
-                    <figure class="gallery_item">
-                    <img class="gallery_image" src="{% static 'images/local2.jpg' %}" alt="Satay"/>
-                      <figcaption>
-                          <div class="all_details">
-                              <div class="description">
-                                      <h2>Satay</h2>
-                                      <p>Comments</p>
-                              </div>
-                          </div>
-                      </figcaption>
-                    </figure>
-                    
-                    <figure class="gallery_item">
-                    <img class="gallery_image" src="{% static 'images/local3.jpg' %}" alt="Nyonya Fried Rice" />
-                      <figcaption class="gallery_image-caption">
-                          <div class="all_details">
-                              <div class="description">
-                                      <h2>Nyonya Fried Rice</h2>
-                                      <p>Comments</p>
-                              </div>
-                          </div>
-                      </figcaption>
-                    </figure>
-            </div>
-          
-            <div class="allItems">
-                <h3>Items include: </h3>
-                <ol>
-                    <li>Fried Shrimp Ball</li>
-                    <li>Nyonya Fried Rice</li>
-                    <li>Bihun Siame</li>
-                    <li>Rendang Chicken</li>
-                    <li>Broccoli, Cauliflower, Mushroom</li>
-                    <li>Satay</li>
-                    <li>Assam Deep Fried Talapia</li>
-                    <li>BBQ Chicken Wings</li>
-                    <li>Black Pepper Beef</li>
-                    <li>Nyonya Kuih</li>
-                    <li>Fruit Punch</li>
-                </ol>
-            </div>
-            
+                    </figcaption>
+                  </figure>
           </div>
+         
+          <div class="allItems">
+              <h3>Items include: </h3>
+              {% for items in AvailableItems %}
+                {% if items %}
+                <p>Available</p>
+                {% endif %}
+              {% empty %}
+                <p>Unavailable</p>
+              {% endfor %}
+              <ol>
+                  <li>Clam Chowder Soup</li>
+                  <li>Chimicanga</li>
+                  <li>Herb Butter Rice</li>
+                  <li>Creamy Fish Stew</li>
+                  <li>Beef Steak</li>
+                  <li>Prawn Cocktail Salad</li>
+                  <li>Roasted Lam Leg</li>
+                  <li>Spaghetti</li>
+                  <li>Bread & Butter Pudding with Strawberries</li>
+                  <li>Tiramisu</li>
+                  <li>Fruit Punch</li>
+              </ol>
+              
+          </div>
+          
         </div>
-        <div class="carousel-slide">
-            <h2 class="setTitle">Set 3</h2>
-            <img class="region" src = "{% static 'images/chinese.png' %}">
-            <div class="menuInfo">
-            <div class="signatureDish">
-                <h3>Signature Dish</h3>
-                <section class="gallery">
-                    <figure class="gallery_item">
-                      <img class="gallery_image" src="{% static 'images/chinese1.jpg' %}" alt="Braised Pork Leg" />
-                      <figcaption>
+      </div>
+      <div class="carousel-slide">
+          <h2 class="setTitle">Set 2</h2>
+          <img class="region" src = "{% static 'images/local.png' %}">
+          <div class="menuInfo">
+          <div class="signatureDish">
+              <h3>Signature Dish</h3>
+              <section class="gallery">
+                  <figure class="gallery_item">
+                    <img class="gallery_image" src="{% static 'images/local1.jpg' %}" alt="BBQ Chicken Wings" />
+                    <figcaption>
+                      <div class="all_details">
+                          <div class="description">
+                                  <h2>BBQ Chicken Wings</h2>
+                                  <div class="hedding-p"><p>Star Rating System</p></div> 
+                                  <div class="rating-part">
+                                    <div class="average-rating">
+                                        <h2>5</h2>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                    </div>
+                                   
+                                    <div class="overall-rating">
+                                          <p>Average Rating</p>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <span>90%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                          <span>80%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>50%</span><br>
+                              
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                    <div class="reviews"><p>Reviews</p></div>
+                                    <div class = user-content-part>
+                                      <div class="user-img">
+                                        <div>
+                                            <img class="anonymouspp" src="{% static 'images/man-01.png' %}" alt="man6" />
+                                          </div>
+                                          <div class="user-text">
+                                              <h4>Joseph Lee</h4>
+                                              <p>30 days ago</p>
+                                          </div>
+                                          <div style="clear: both;"></div>
+                                      </div>
+                                    
+                                      <div class="comment">
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                      </div>
+                                      <p class="user-review"> It was so good! Just Perfect BBQ Chicken Wings! </p>
+                                      <div style="clear: both;"></div>
+                                  </div>
+                                  <div class = user-content-part>
+                                    <div class="user-img">
+                                      <div>
+                                          <img class="anonymouspp" src="{% static 'images/woman-01.png' %}" alt="woman2" />
+                                        </div>
+                                        <div class="user-text">
+                                            <h4>Taeyeon Kim</h4>
+                                            <p>19 days ago</p>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                  
+                                    <div class="comment">
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <p class="user-review"> Delicious! Would recommend to everyone! </p>
+                                    <div style="clear: both;"></div>
+                                </div>
+                          </div>
+                      </div>
+                    </figcaption>
+                  </figure> 
+                  
+                  
+                  <figure class="gallery_item">
+                   <img class="gallery_image" src="{% static 'images/local2.jpg' %}" alt="Satay"/>
+                     <figcaption>
                         <div class="all_details">
                             <div class="description">
-                                    <h2>Braised Pork Leg</h2>
-                                    <p>Comments</p>
+                                    <h2>Satay</h2>
+                                    <div class="hedding-p"><p>Star Rating System</p></div> 
+                                  <div class="rating-part">
+                                    <div class="average-rating">
+                                        <h2>4</h2>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star-o"></i>
+                                    </div>
+                                   
+                                    <div class="overall-rating">
+                                          <p>Average Rating</p>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>70%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>50%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>30%</span><br>
+                              
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                    <div class="reviews"><p>Reviews</p></div>
+                                    <div class = user-content-part>
+                                      <div class="user-img">
+                                        <div>
+                                            <img class="anonymouspp" src="{% static 'images/man-01.png' %}" alt="man7" />
+                                          </div>
+                                          <div class="user-text">
+                                              <h4>Julian Tan</h4>
+                                              <p>30 days ago</p>
+                                          </div>
+                                          <div style="clear: both;"></div>
+                                      </div>
+                                    
+                                      <div class="comment">
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star-o"></i>
+                                        <i aria-hidden="true" class="fa fa-star-o"></i>
+                                      </div>
+                                      <p class="user-review"> Recommend! </p>
+                                      <div style="clear: both;"></div>
+                                  </div>
                             </div>
                         </div>
-                      </figcaption>
-                    </figure> 
-                    
-                    
-                    <figure class="gallery_item">
-                    <img class="gallery_image" src="{% static 'images/chinese2.jpg' %}" alt="Steam Fish"/>
-                      <figcaption>
-                          <div class="all_details">
-                              <div class="description">
-                                      <h2>Steam Fish</h2>
-                                      <p>Comments</p>
-                              </div>
-                          </div>
-                      </figcaption>
-                    </figure>
-                    
-                    <figure class="gallery_item">
-                    <img class="gallery_image" src="{% static 'images/chinese3.jpg' %}" alt="Roasted Chicken" />
-                      <figcaption class="gallery_image-caption">
-                          <div class="all_details">
-                              <div class="description">
-                                      <h2>Roasted Chicken</h2>
-                                      <p>Comments</p>
-                              </div>
-                          </div>
-                      </figcaption>
-                    </figure>
-            </div>
-          
-            <div class="allItems">
-                <h3>Items include: </h3>
-                <ol>
-                    <li>Cold Dish</li>
-                    <li>Fried Longevity Noodles</li>
-                    <li>Shark Fin Soup</li>
-                    <li>Braised Pork Leg</li>
-                    <li>Peking Duck</li>
-                    <li>Steam Fish</li>
-                    <li>Scallops</li>
-                    <li>Roasted Chicken</li>
-                    <li>Abalone and sea cucumber</li>
-                    <li>Red bean soup with lotus seeds</li>
-                    <li>Fruit Punch</li>
-                </ol>
-            </div>
-            
+                    </figcaption>
+                  </figure>
+                  
+                  <figure class="gallery_item">
+                   <img class="gallery_image" src="{% static 'images/local3.jpg' %}" alt="Nyonya Fried Rice" />
+                     <figcaption class="gallery_image-caption">
+                        <div class="all_details">
+                            <div class="description">
+                                    <h2>Nyonya Fried Rice</h2>
+                                    <div class="hedding-p"><p>Star Rating System</p></div> 
+                                  <div class="rating-part">
+                                    <div class="average-rating">
+                                        <h2>4.5</h2>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                        <i aria-hidden="true" class="fa fa-star-o"></i>
+                                    </div>
+                                   
+                                    <div class="overall-rating">
+                                          <p>Average Rating</p>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <span>90%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>70%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>50%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>20%</span><br>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                    <div class="reviews"><p>Reviews</p></div>
+                                    <div class = user-content-part>
+                                      <div class="user-img">
+                                        <div>
+                                            <img class="anonymouspp" src="{% static 'images/woman-01.png' %}" alt="woman4" />
+                                          </div>
+                                          <div class="user-text">
+                                              <h4>Song JiHyo </h4>
+                                              <p>22 days ago</p>
+                                          </div>
+                                          <div style="clear: both;"></div>
+                                      </div>
+                                    
+                                      <div class="comment">
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                      </div>
+                                      <p class="user-review"> It was so good! Highly recommend guys! </p>
+                                      <div style="clear: both;"></div>
+                                  </div>
+                                  <div class = user-content-part>
+                                    <div class="user-img">
+                                      <div>
+                                          <img class="anonymouspp" src="{% static 'images/man-01.png' %}" alt="man8" />
+                                        </div>
+                                        <div class="user-text">
+                                            <h4>Kim Jong Kook</h4>
+                                            <p>9 days ago</p>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                  
+                                    <div class="comment">
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                    </div>
+                                    <p class="user-review"> The fried rice were perfectly cooked and it tastes delicious! Fabulous! </p>
+                                    <div style="clear: both;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </figcaption>
+                  </figure>
           </div>
-        </div>
+         
+          <div class="allItems">
+              <h3>Items include: </h3>
+              <ol>
+                  <li>Fried Shrimp Ball</li>
+                  <li>Nyonya Fried Rice</li>
+                  <li>Bihun Siame</li>
+                  <li>Rendang Chicken</li>
+                  <li>Broccoli, Cauliflower, Mushroom</li>
+                  <li>Satay</li>
+                  <li>Assam Deep Fried Talapia</li>
+                  <li>BBQ Chicken Wings</li>
+                  <li>Black Pepper Beef</li>
+                  <li>Nyonya Kuih</li>
+                  <li>Fruit Punch</li>
+              </ol>
+          </div>
           
+        </div>
+      </div>
+      <div class="carousel-slide">
+          <h2 class="setTitle">Set 3</h2>
+          <img class="region" src = "{% static 'images/chinese.png' %}">
+          <div class="menuInfo">
+          <div class="signatureDish">
+              <h3>Signature Dish</h3>
+              <section class="gallery">
+                  <figure class="gallery_item">
+                    <img class="gallery_image" src="{% static 'images/chinese1.jpg' %}" alt="Braised Pork Leg" />
+                    <figcaption>
+                      <div class="all_details">
+                          <div class="description">
+                                  <h2>Braised Pork Leg</h2>
+                                  <div class="hedding-p"><p>Star Rating System</p></div> 
+                                  <div class="rating-part">
+                                    <div class="average-rating">
+                                        <h2>5</h2>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                    </div>
+                                   
+                                    <div class="overall-rating">
+                                          <p>Average Rating</p>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <span>90%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                          <span>70%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>40%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>10%</span><br>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                    <div class="reviews"><p>Reviews</p></div>
+                                    <div class = user-content-part>
+                                      <div class="user-img">
+                                        <div>
+                                            <img class="anonymouspp" src="{% static 'images/man-01.png' %}" alt="man9" />
+                                          </div>
+                                          <div class="user-text">
+                                              <h4>Allvin Chan</h4>
+                                              <p>24 days ago</p>
+                                          </div>
+                                          <div style="clear: both;"></div>
+                                      </div>
+                                    
+                                      <div class="comment">
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                      </div>
+                                      <p class="user-review"> Perfect!  Delicious food! 5 star indeed!  </p>
+                                      <div style="clear: both;"></div>
+                                  </div>
+                                  <div class = user-content-part>
+                                    <div class="user-img">
+                                      <div>
+                                          <img class="anonymouspp" src="{% static 'images/man-01.png' %}" alt="man10" />
+                                        </div>
+                                        <div class="user-text">
+                                            <h4>Kim Nam Joon</h4>
+                                            <p>29 days ago</p>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                  
+                                    <div class="comment">
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                    </div>
+                                    <p class="user-review"> Perfect! Outstanding food! </p>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <div class = user-content-part>
+                                  <div class="user-img">
+                                    <div>
+                                        <img class="anonymouspp" src="{% static 'images/man-01.png' %}" alt="man11" />
+                                      </div>
+                                      <div class="user-text">
+                                          <h4>Wong Jimin</h4>
+                                          <p>7 days ago</p>
+                                      </div>
+                                      <div style="clear: both;"></div>
+                                  </div>
+                                
+                                  <div class="comment">
+                                    <i aria-hidden="true" class="fa fa-star"></i>
+                                    <i aria-hidden="true" class="fa fa-star"></i>
+                                    <i aria-hidden="true" class="fa fa-star"></i>
+                                    <i aria-hidden="true" class="fa fa-star"></i>
+                                    <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                  </div>
+                                  <p class="user-review"> Best Braised Pork Leg so far that i've ate! </p>
+                                  <div style="clear: both;"></div>
+                              </div>
+                          </div>
+                      </div>
+                    </figcaption>
+                  </figure> 
+                  
+                  
+                  <figure class="gallery_item">
+                   <img class="gallery_image" src="{% static 'images/chinese2.jpg' %}" alt="Steam Fish"/>
+                     <figcaption>
+                        <div class="all_details">
+                            <div class="description">
+                                    <h2>Steam Fish</h2>
+                                    <div class="hedding-p"><p>Star Rating System</p></div> 
+                                  <div class="rating-part">
+                                    <div class="average-rating">
+                                        <h2>4.5</h2>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                        <i aria-hidden="true" class="fa fa-star-o"></i>
+                                    </div>
+                                   
+                                    <div class="overall-rating">
+                                          <p>Average Rating</p>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                          <span>70%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>50%</span><br>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <i aria-hidden="true" class="fa fa-star-o"></i>
+                                          <span>30%</span><br>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                    <div class="reviews"><p>Reviews</p></div>
+                                    <div class = user-content-part>
+                                      <div class="user-img">
+                                        <div>
+                                            <img class="anonymouspp" src="{% static 'images/woman-01.png' %}" alt="woman6" />
+                                          </div>
+                                          <div class="user-text">
+                                              <h4>Karynn Jee</h4>
+                                              <p>19 days ago</p>
+                                          </div>
+                                          <div style="clear: both;"></div>
+                                      </div>
+                                    
+                                      <div class="comment">
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                        <i aria-hidden="true" class="fa fa-star-o"></i>
+                                      </div>
+                                      <p class="user-review"> The fish was perfectly cooked! It tastes good! </p>
+                                      <div style="clear: both;"></div>
+                                  </div>
+                                  <div class = user-content-part>
+                                    <div class="user-img">
+                                      <div>
+                                          <img class="anonymouspp" src="{% static 'images/woman-01.png' %}" alt="woman7" />
+                                        </div>
+                                        <div class="user-text">
+                                            <h4>Joeyie Sim</h4>
+                                            <p>23 days ago</p>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                  
+                                    <div class="comment">
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star"></i>
+                                      <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                      <i aria-hidden="true" class="fa fa-star-o"></i>
+                                      <i aria-hidden="true" class="fa fa-star-o"></i>
+                                    </div>
+                                    <p class="user-review"> The fish tastes fresh and it is perfectly cooked! </p>
+                                    <div style="clear: both;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </figcaption>
+                  </figure>
+                  
+                  <figure class="gallery_item">
+                   <img class="gallery_image" src="{% static 'images/chinese3.jpg' %}" alt="Roasted Chicken" />
+                     <figcaption class="gallery_image-caption">
+                        <div class="all_details">
+                            <div class="description">
+                                    <h2>Roasted Chicken</h2>
+                                    <div class="hedding-p"><p>Star Rating System</p></div> 
+                                    <div class="rating-part">
+                                      <div class="average-rating">
+                                          <h2>5</h2>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                      </div>
+                                     
+                                      <div class="overall-rating">
+                                            <p>Average Rating</p>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <span>90%</span><br>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                                            <span>70%</span><br>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                                            <span>50%</span><br>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star"></i>
+                                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                                            <span>20%</span><br>
+                                      </div>
+                                      <div style="clear: both;"></div>
+                                      <div class="reviews"><p>Reviews</p></div>
+                                      <div class = user-content-part>
+                                        <div class="user-img">
+                                          <div>
+                                              <img class="anonymouspp" src="{% static 'images/woman-01.png' %}" alt="man11" />
+                                            </div>
+                                            <div class="user-text">
+                                                <h4>Briann Chen</h4>
+                                                <p>15 days ago</p>
+                                            </div>
+                                            <div style="clear: both;"></div>
+                                        </div>
+                                      
+                                        <div class="comment">
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                          <i aria-hidden="true" class="fa fa-star"></i>
+                                        </div>
+                                        <p class="user-review"> Outstanding meal! 5 Star Indeed! </p>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                    <div class = user-content-part>
+                                      <div class="user-img">
+                                        <div>
+                                            <img class="anonymouspp" src="{% static 'images/woman-01.png' %}" alt="man13" />
+                                          </div>
+                                          <div class="user-text">
+                                              <h4>Desmond Foo</h4>
+                                              <p>15 days ago</p>
+                                          </div>
+                                          <div style="clear: both;"></div>
+                                      </div>
+                                    
+                                      <div class="comment">
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                        <i aria-hidden="true" class="fa fa-star"></i>
+                                      </div>
+                                      <p class="user-review"> The Roasted Chicken was so juicy! Delicious af! </p>
+                                      <div style="clear: both;"></div>
+                                  </div>
+                            </div>
+                        </div>
+                    </figcaption>
+                  </figure>
+          </div>
+         
+          <div class="allItems">
+              <h3>Items include: </h3>
+              <ol>
+                  <li>Cold Dish</li>
+                  <li>Fried Longevity Noodles</li>
+                  <li>Shark Fin Soup</li>
+                  <li>Braised Pork Leg</li>
+                  <li>Peking Duck</li>
+                  <li>Steam Fish</li>
+                  <li>Scallops</li>
+                  <li>Roasted Chicken</li>
+                  <li>Abalone and sea cucumber</li>
+                  <li>Red bean soup with lotus seeds</li>
+                  <li>Fruit Punch</li>
+              </ol>
+          </div>
+          
+        </div>
       </div>
         
-    </main>
-    {%endblock content%}
-
-  </footer>
+    </div>
+      
+  </main>
+ {%endblock content%}
 </body>
 </html>

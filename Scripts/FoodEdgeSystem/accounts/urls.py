@@ -5,6 +5,7 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='accounts-home'),
+    path('about/', views.aboutUs, name='AboutUs'),
     path('staffHome/', views.StaffHome, name='staff-home'),
     path('products/', views.products),
     path('customer/', views.customer),
@@ -17,6 +18,9 @@ urlpatterns = [
     path('sets/',views.ShowSets,name='sets'),
     path('order/',views.InsertCustomerOrder,name='order'),
     path('StaffLogin/',views.StaffLogin,name='StaffLogin'),
+    path('Payment/',views.Payment, name='Payment'),
+    path('charge/',views.charge, name="charge"),
+    path('success/<str:args>/',views.successMsg,name="PaymentSuccess"),
     path('CheckAssignedOrders/',views.ShowGivenOrders,name='CheckAssignedOrders'),
     path('addMenuItems/',views.ShowAddMenuItems,),
     path('AssignOrdersToStaff/',views.ShowAssignOrdersToStaff,name='AssignOrdersToStaff'),
