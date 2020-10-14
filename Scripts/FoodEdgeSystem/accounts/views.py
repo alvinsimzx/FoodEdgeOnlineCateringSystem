@@ -5,14 +5,36 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .forms import UserRegisterForm
 from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem
-
+# Email Confirmation
+from django.shortcuts import render
+from django.core.mail import send_mail
 import stripe
 
-stripe.api_key = "sk_test_51HbhNWLtploVWFIVmL1e1QoEkN797RYDVs5AE6WbJzED0Pu1ihoLnhcGtNTRj9zPbAxeRxoFM8B0e1fY9cxGaUve00CqXIEgoH"
+stripe.api_key = "sk_test_51HbjHmLUA515JZ27Y0RRePShcZS6VFq53mx0jiLs1DfdpRvA0YuyemAJWnhiI5Z0wNIwTZTaL3tngw9o2l0QMalz00lPtp37Mm"
 # Create your views here.
 
 def home(request):
     return render(request, 'accounts/index.html')
+# Email Confirmation
+def contact(request):
+    if request.method == "POST":
+        message_name = request.POST['message-name']
+        message_email = request.POST['message-email']
+        message = request.POST['message']
+
+        # send an email
+
+        send_mail(
+            'message from' +  message_name, # subject
+            , # message
+            , # from email
+            ['desmondsim2222@gmail.com'], # To Email
+        )
+
+        return render(request, 'profile.html', {'message_name'})
+    
+    else:
+        return render(request, 'profile.html', {})
 
 def aboutUs(request):
     return render(request, 'accounts/AboutUs.html')
@@ -73,6 +95,21 @@ def charge(request):
     amount = 5
     if request.method == 'POST':
         print("Data:", request.POST)
+
+        amount = int(request.POST['amount'])
+
+        customer = stripe.Customer.create(
+            email = request.POST['email'],
+            name = request.POST['name'],
+            source = request.POST['stripeToken']
+        )
+
+        charge = stripe.Charge.create(
+            customer = customer,
+            amount = amount*100,
+            currency = 'myr',
+            description = "CateringPayment"
+        )
     
     return redirect(reverse('PaymentSuccess',args=[amount]))
 

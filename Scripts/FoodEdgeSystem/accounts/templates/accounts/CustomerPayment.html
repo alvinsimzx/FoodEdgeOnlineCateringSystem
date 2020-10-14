@@ -34,6 +34,13 @@
 
 <form action="{% url 'charge' %}" method="post" id="payment-form">
 {% csrf_token %}
+<select required name="amount" id="amount">
+	<option selected value="5">$5</option>
+	<option value="10">$10</option>
+	<option value="25">$25</option>
+</select>
+<input type="email" name="email" placeholder="Email..">
+<input type="text" name="name" placeholder="Name..">
     <label for="card-element">
       Credit or debit card
     </label>
@@ -50,7 +57,7 @@
 
 <script>
         // Create a Stripe client.
-        var stripe = Stripe('pk_test_51HbhNWLtploVWFIV14v3NklynoXSUOB7SLlh8CHU399a6FV2tzTakaQXaMaCMb9mK5Ay0m8Jx8GKDmFfhde9WP7s00N3RmrUHS');
+        var stripe = Stripe('pk_test_51HbjHmLUA515JZ27LzRLXvtX2PBYi0fYmIoL9CIeDf99kV3EfOWMNwH1ouamQaBscvNzox8JpZGsnTRXvFCl2gBh00HBcqYxnZ');
 
         // Create an instance of Elements.
         var elements = stripe.elements();

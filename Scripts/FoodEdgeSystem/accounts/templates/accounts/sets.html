@@ -43,7 +43,7 @@
     </style>  
   <main>
 
-    <div class = "carousel" data-flickity='{ "cellSelector": ".carousel-slide", "wrapAround": true, "pageDots":"white" }'>
+    <div class = "carousel" data-flickity='{ "cellSelector": ".carousel-slide", "wrapAround": true}'>
         <a href="#"><div class="static-banner">Order Now!</div></a>
       <div class="carousel-slide">
           <h2 class="setTitle">Set 1</h2>
@@ -369,6 +369,13 @@
          
           <div class="allItems">
               <h3>Items include: </h3>
+              {% for items in AvailableItems %}
+                {% if items %}
+                <p>Available</p>
+                {% endif %}
+              {% empty %}
+                <p>Unavailable</p>
+              {% endfor %}
               <ol>
                   <li>Clam Chowder Soup</li>
                   <li>Chimicanga</li>
@@ -382,6 +389,7 @@
                   <li>Tiramisu</li>
                   <li>Fruit Punch</li>
               </ol>
+              
           </div>
           
         </div>

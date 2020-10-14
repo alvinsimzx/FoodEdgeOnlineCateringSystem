@@ -37,7 +37,12 @@ $(function(){
             $(error_message).css("color", "red");
             $(error_message).show();
             $(name).css("border","2px solid red");
-            error_fname = true;
+            if (name === "#fname"){
+                error_fname = true;
+            }else if (name === "#lname"){
+                error_lname = true;
+            }
+            
         }
     }
 
@@ -61,8 +66,8 @@ $(function(){
         var error_lname = false;
         var error_email = false;
 
-        check_fname();
-        check_lname();
+        check_name("#fname_error_message", "#fname");
+        check_name("#lname_error_message", "#lname");
         check_email();
 
         if (error_fname === false && error_lname === false && error_email === false){
