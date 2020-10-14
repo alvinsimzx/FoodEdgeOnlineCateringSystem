@@ -2,7 +2,11 @@ from django.shortcuts import render,redirect
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
+from django.contrib.auth import authenticate, login, logout
+
 from django.http import JsonResponse
+from .decorators import allowed_users
 from .forms import UserRegisterForm
 from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem
 
@@ -17,8 +21,7 @@ def home(request):
 def aboutUs(request):
     return render(request, 'accounts/AboutUs.html')
 
-def StaffHome(request):
-    return render(request, 'accounts/indexStaff.html')
+
 
 def products(request):
     return render(request, 'accounts/products.html')
@@ -33,8 +36,11 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
             username = form.cleaned_data.get('username')
+            group = Group.objects.get(name='Customer')
+            user.groups.add(group)
+
             messages.success(request, f'Your accounts has been created! Please login')
             return redirect('login')
     else:
@@ -159,14 +165,35 @@ def ShowSets(request):
     AvailableItems = ActiveMenuItem.objects.all()
     return render(request, 'accounts/sets.html', {'AvailableItems' : AvailableItems})
 
-def StaffLogin(request):
+@allowed_users(allowed_roles=['Operations'])
+def StaffHome(request):
     return render(request, 'accounts/indexStaff.html')
 
+def StaffLogin(request):
+    allowed_roles=['c']
+    if(request.method == 'POST'):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username,password=password)
+        print()
+
+        if(user is not None) and (user.groups.filter(name='Operations').exists()):
+            login(request,user)
+            return redirect('staff-home')
+        else:
+            messages.info(request,'You do not have the permission to log into this')
+
+    return render(request, 'accounts/stafflogin.html')
+
+@allowed_users(allowed_roles=['Operations'])
 def ShowGivenOrders(request):
     return render(request, 'accounts/CheckAssignedOrders.html')
 
+@allowed_users(allowed_roles=['Operations'])
 def ShowAddMenuItems(request):
     return render(request, 'accounts/addMenuItems.html')
 
+@allowed_users(allowed_roles=['Operations'])
 def ShowAssignOrdersToStaff(request):
     return render(request, 'accounts/AssignOrdersToStaff.html')
