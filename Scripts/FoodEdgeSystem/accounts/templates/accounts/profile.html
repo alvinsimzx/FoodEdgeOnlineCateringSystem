@@ -54,22 +54,14 @@
 
 +<div class="profile">
     
-    <h2> Your Payment Avenues </h2>
+    <h2> Your Last transactions </h2>
     <table>
-        <tr>
-            <th>Brand</th>
-            <th>Last 4 Digits</th>
-            <th>Expiry Month</th>
-            <th>Expiry Year</th>
-        </tr>
-        {% if Allinfo %}
+        {% for key,value in transactionInfo.items %}
             <tr>
-                <td>{{Allinfo.0}}</td>
-                <td>{{Allinfo.1}}</td>
-                <td>{{Allinfo.2}}</td>
-                <td>{{Allinfo.3}}</td>
+                <th>{{ key }}</th>
+                <td>{{ value }}</td>
             </tr>
-        {% endif %}
+        {% endfor %}
     </table>
 </div>
           

@@ -35,11 +35,12 @@
 <form action="{% url 'charge' %}" method="post" id="payment-form">
 {% csrf_token %}
 
+{% if total %}
 <select required name="amount" id="amount">
-	<option selected value="5">$5</option>
-	<option value="10">$10</option>
-	<option value="25">$25</option>
+	<option selected value={{ total }}>{{ total }}</option>
 </select>
+{% endif %}
+
 <input type="email" name="email" placeholder="Email..">
 <input type="text" name="name" placeholder="Name..">
     <label for="card-element">

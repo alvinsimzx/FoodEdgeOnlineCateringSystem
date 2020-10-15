@@ -66,19 +66,20 @@ def createCustomer(request,customerID,authID,username,email):
 def profile(request):
     allOrders = InsertOrder.objects.filter(customerID=request.user.id)
     allPayment = InsertCustomer.objects.get(authID=request.user.id)
-    cardinfo = []
+    transactionInfo = []
     
-    if(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)):
-        info = stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][0]["card"]
-        cardinfo.append(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][0]["card"]["brand"])
-        cardinfo.append(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][0]["card"]["last4"])
-        cardinfo.append(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][0]["card"]["exp_month"])
-        cardinfo.append(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][0]["card"]["exp_year"])
-        print(cardinfo)
-    else:
-        print("null")
-    
-    return render(request, 'accounts/profile.html', {'allOrders' : allOrders,'Allinfo':cardinfo})
+
+    if(stripe.Charge.list(customer=allPayment.customerID,limit=3)):
+        transactionInfo = {
+            "amount":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["amount"],
+            "transaction_id":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["balance_transaction"],
+            "description":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["description"],
+            "brand": stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["source"]["brand"],
+            "last4": stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["source"]["last4"],
+            "exp_month":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["source"]["exp_month"],
+            "exp_year":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["source"]["exp_year"]
+        }
+    return render(request, 'accounts/profile.html', {'allOrders' : allOrders,'transactionInfo':transactionInfo})
 
 def customerAccounts(request):
     users = User.objects.all()
@@ -109,8 +110,9 @@ def ViewStocks(request):
 def OrderMade(request):
     return render(request, 'accounts/ordermade.html')
 
-def Payment(request):
-    return render(request, 'accounts/CustomerPayment.html')
+def Payment(request,args):
+    total = args
+    return render(request, 'accounts/CustomerPayment.html',{'total':total})
 
 def charge(request):
     if request.method == 'POST':
@@ -137,8 +139,10 @@ def charge(request):
             "foodedgecateringassignment@gmail.com", 
             [request.POST['email']]
         )
-    
-    return redirect(reverse('PaymentSuccess',args=[amount]))
+        return redirect('order')
+    else:
+        return redirect('order')
+
 
 def successMsg(request,args):
     amount = args
@@ -159,10 +163,10 @@ def InsertCustomerOrder(request):
             saverecord.location = request.POST.get('location')
             saverecord.save()
             messages.success(request,'Order Sent')
-            return redirect('Payment')
+            return redirect(reverse('Payment',args=[price]))
         else:
             messages.success(request,'Order did not send')
-            return redirect('Payment')
+            return redirect(reverse('Payment',args=[price]))
     else:
         return render(request, 'accounts/order.html')
 
@@ -216,7 +220,7 @@ def EditRecords(request, stockID):
 def ShowSets(request):
     AvailableItems = ActiveMenuItem.objects.all()
     return render(request, 'accounts/sets.html', {'AvailableItems' : AvailableItems})
-    
+
 def ShowTransactions(request):
     return render(request, 'accounts/CustomerTransactions.html')
 
