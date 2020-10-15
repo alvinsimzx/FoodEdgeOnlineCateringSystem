@@ -28,6 +28,7 @@ class InsertAccount(models.Model):
     class Meta:
         db_table = "account"
 '''
+
 class InsertStock(models.Model):
     stockID = models.IntegerField(primary_key=True)
     stockName = models.CharField(max_length=100)

@@ -25,6 +25,8 @@ urlpatterns = [
     path('AssignOrdersToStaff/',views.ShowAssignOrdersToStaff,name='AssignOrdersToStaff'),
     path('delete/<int:stockID>', views.DeleteRecord), 
     path('edit/<int:stockID>', views.EditRecords),
+    path('customerAccounts/', views.customerAccounts, name='CustomerAccounts'),
+    path('delete/<str:username>', views.deleteCustomerAccount), 
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

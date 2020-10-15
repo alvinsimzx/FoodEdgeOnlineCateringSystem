@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.urls import reverse,resolve
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from django.contrib.auth import authenticate, login, logout
 
 from django.http import JsonResponse
@@ -52,6 +52,15 @@ def profile(request):
     allOrders = InsertOrder.objects.filter(customerID=request.user.id)
     return render(request, 'accounts/profile.html', {'allOrders' : allOrders})
 
+def customerAccounts(request):
+    users = User.objects.all()
+    return render(request, 'accounts/customerAccounts.html', {'users' : users})
+
+def deleteCustomerAccount(request, username):
+    account = User.objects.get(username=username)
+    account.delete()
+    users = User.objects.all()
+    return redirect('CustomerAccounts')
 
 def showStockPage(request):
     return render(request, 'accounts/StockManagementPage.html')
