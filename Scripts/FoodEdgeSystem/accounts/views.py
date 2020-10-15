@@ -30,12 +30,7 @@ def contact(request):
 
         send_mail(
             'message from' +  message_name, # subject
-<<<<<<< HEAD
-             # message
-             # from email
-=======
              # message# from email
->>>>>>> a651afc7d6cbaaaeeb9f5b6b9d1388d8ae8c57bb
             ['desmondsim2222@gmail.com'], # To Email
         )
 
