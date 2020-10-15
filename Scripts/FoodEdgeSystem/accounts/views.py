@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from .decorators import allowed_users
 from .forms import UserRegisterForm
-from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem
+from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem,InsertCustomer
 # Email Confirmation
 from django.shortcuts import render
 from django.core.mail import send_mail
@@ -36,10 +36,17 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
+            customer1 = stripe.Customer.create(
+                email = form.cleaned_data.get('email'),
+                name = form.cleaned_data.get('username')
+                )
+            
+            customerID = customer1.id 
             user = form.save()
             username = form.cleaned_data.get('username')
             group = Group.objects.get(name='Customer')
             user.groups.add(group)
+            createCustomer(request,customerID,user.id,username,form.cleaned_data.get('email'))
 
             messages.success(request, f'Your accounts has been created! Please login')
             return redirect('login')
@@ -47,10 +54,31 @@ def register(request):
         form = UserRegisterForm()
     return render(request,'accounts/register.html',{'form': form})
 
+def createCustomer(request,customerID,authID,username,email):
+    saverecords = InsertCustomer()
+    saverecords.customerID = customerID
+    saverecords.authID = authID
+    saverecords.name = username
+    saverecords.email = email
+    saverecords.save() 
+
 @login_required
 def profile(request):
     allOrders = InsertOrder.objects.filter(customerID=request.user.id)
-    return render(request, 'accounts/profile.html', {'allOrders' : allOrders})
+    allPayment = InsertCustomer.objects.get(authID=request.user.id)
+    cardinfo = []
+    
+    if(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)):
+        info = stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][0]["card"]
+        cardinfo.append(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][0]["card"]["brand"])
+        cardinfo.append(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][0]["card"]["last4"])
+        cardinfo.append(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][0]["card"]["exp_month"])
+        cardinfo.append(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][0]["card"]["exp_year"])
+        print(cardinfo)
+    else:
+        print("null")
+    
+    return render(request, 'accounts/profile.html', {'allOrders' : allOrders,'Allinfo':cardinfo})
 
 def customerAccounts(request):
     users = User.objects.all()
@@ -87,14 +115,20 @@ def Payment(request):
 def charge(request):
     if request.method == 'POST':
         print("Data:", request.POST)
+        userid = ""
 
         amount = int(request.POST['amount'])
 
-        customer = stripe.Customer.create(
-            email = request.POST['email'],
-            name = request.POST['name'],
-            source = request.POST['stripeToken']
-        )
+        if request.user.is_authenticated:
+            allPayment = InsertCustomer.objects.get(authID=request.user.id)
+            userid = allPayment.customerID
+            source = stripe.Customer.create_source(allPayment.customerID,source=request.POST['stripeToken'])
+            charge = stripe.Charge.create(customer = allPayment.customerID,amount = amount*100,currency = 'myr',description = "CateringPayment")
+            
+        else:
+            customer = stripe.Customer.create(email = request.POST['email'],name = request.POST['name'],source = request.POST['stripeToken'])
+            charge = stripe.Charge.create(customer = customer,amount = amount*100,currency = 'myr',description = "CateringPayment")  
+            userid = customer.id
 
         #Sends automated email after payment is processed
         send_mail(
@@ -102,13 +136,6 @@ def charge(request):
             "This is a test email", #message
             "foodedgecateringassignment@gmail.com", 
             [request.POST['email']]
-        )
-
-        charge = stripe.Charge.create(
-            customer = customer,
-            amount = amount*100,
-            currency = 'myr',
-            description = "CateringPayment"
         )
     
     return redirect(reverse('PaymentSuccess',args=[amount]))
@@ -132,7 +159,7 @@ def InsertCustomerOrder(request):
             saverecord.location = request.POST.get('location')
             saverecord.save()
             messages.success(request,'Order Sent')
-            return resolve('Payment',args=price)
+            return redirect('Payment')
         else:
             messages.success(request,'Order did not send')
             return redirect('Payment')
@@ -189,6 +216,9 @@ def EditRecords(request, stockID):
 def ShowSets(request):
     AvailableItems = ActiveMenuItem.objects.all()
     return render(request, 'accounts/sets.html', {'AvailableItems' : AvailableItems})
+    
+def ShowTransactions(request):
+    return render(request, 'accounts/CustomerTransactions.html')
 
 @allowed_users(allowed_roles=['Operations'])
 def StaffHome(request):

@@ -11,15 +11,15 @@ class Profile (models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-'''
+
 class InsertCustomer(models.Model):
-    CustomerID = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=100)
+    customerID = models.CharField(max_length=20,primary_key=True)
+    authID = models.IntegerField()
     phoneNo = models.CharField(max_length=20)
     email = models.CharField(max_length=50)
     class Meta:
         db_table = "customer"
-
+'''
 class InsertAccount(models.Model):
     accountID = models.IntegerField(primary_key=True)
     CustomerID = models.IntegerField()
