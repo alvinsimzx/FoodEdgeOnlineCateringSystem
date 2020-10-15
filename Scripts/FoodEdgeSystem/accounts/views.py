@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.urls import reverse
+from django.urls import reverse,resolve
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
@@ -97,7 +97,6 @@ def Payment(request):
     return render(request, 'accounts/CustomerPayment.html')
 
 def charge(request):
-    amount = 5
     if request.method == 'POST':
         print("Data:", request.POST)
 
@@ -133,13 +132,14 @@ def InsertCustomerOrder(request):
             saverecord.custEmail = request.POST.get('custEmail')
             saverecord.custContact = request.POST.get('custContact')
             saverecord.custOrder = request.POST.get('custOrder')
+            price = int(request.POST.get('custOrder'))
             saverecord.location = request.POST.get('location')
             saverecord.save()
             messages.success(request,'Order Sent')
-            return render(request, 'accounts/order.html')
+            return resolve('Payment',args=price)
         else:
-            messages.warning(request,'Order did not send')
-            return render(request, 'accounts/order.html')
+            messages.success(request,'Order did not send')
+            return redirect('Payment')
     else:
         return render(request, 'accounts/order.html')
 

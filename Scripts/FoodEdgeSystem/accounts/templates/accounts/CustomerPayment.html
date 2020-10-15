@@ -34,6 +34,7 @@
 
 <form action="{% url 'charge' %}" method="post" id="payment-form">
 {% csrf_token %}
+
 <select required name="amount" id="amount">
 	<option selected value="5">$5</option>
 	<option value="10">$10</option>
