@@ -1,15 +1,31 @@
 {% extends 'accounts/main.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 <body>
 {%block content%}
-<div class="profile">
-    <div id="profile_info">
-    <h1> Welcome, {{user.username}}!</h1>
-        <p>Your username: {{user.username}}</p>
-        <p>Date Joined: {{user.date_joined}}</p>
+
+<div class="profile_card">
+    <div class="profile_box">
+        <div class="profile_desc">
+                <h2>Username: {{ user.username }}</h2>
+                <p>Email: {{ user.email }}</p>
+                <p>Date Joined: {{user.date_joined}}</p>
+                <img src="{% static 'images/chip.png' %}" class="chip">
+                <button>Edit</button>
+                <h2 class="member_status">MEM­BER.</h2>
+                
+            </div>
+        <div class = "profile_img">
+            <img class="profile_pic" src="{{ user.profile.image.url }}" alt="Logo">
+        </div>
+        
         
     </div>
+    <p id="more_details">Scroll down for more details</p>
+</div>
+
+<div class="profile">
     
     <h2> Your Previous Orders </h2>
     <table>

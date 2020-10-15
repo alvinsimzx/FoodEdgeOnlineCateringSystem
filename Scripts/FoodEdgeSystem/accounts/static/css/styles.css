@@ -89,7 +89,59 @@ nav ul a:hover{
 }
 
   /* ------------------------------------------------profile.html----------------------------------------------------- */
-table {
+
+  .profile_box{
+    width:70%;
+    height: 80vh;
+    display: inline-block;
+    background-color: #ffffff;
+    background-image: linear-gradient(315deg, #ffffff 0%, #1b2845 74%);
+    margin:2% 15%;
+    box-shadow: 15px 15px 15px 1px rgba(0, 0, 0, 0.5);
+    overflow:hidden;
+    border-radius: 32px;
+}
+
+.chip{
+    width:50px;
+}
+
+.profile_pic{
+    width:50%;
+}
+
+.profile_img{
+    width:40%;
+    height: 100%;
+    float: left;
+    text-align: end;
+}
+
+
+.profile_desc{
+    width:60%;
+    color: white;
+    float:left;
+    padding:5%;
+}
+
+.member_status{
+    font-size: 10em;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+#more_details{
+    position: absolute;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    color:white;
+    font-weight: bold;
+    font-style: italic;
+}
+
+  table {
     border-collapse: collapse;
     width: 100%;
     margin: 10px;

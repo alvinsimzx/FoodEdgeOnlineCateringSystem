@@ -16,25 +16,25 @@ stripe.api_key = "sk_test_51HbjHmLUA515JZ27Y0RRePShcZS6VFq53mx0jiLs1DfdpRvA0Yuye
 def home(request):
     return render(request, 'accounts/index.html')
 # Email Confirmation
-def contact(request):
-    if request.method == "POST":
-        message_name = request.POST['message-name']
-        message_email = request.POST['message-email']
-        message = request.POST['message']
+# def contact(request):
+#     if request.method == "POST":
+#         message_name = request.POST['message-name']
+#         message_email = request.POST['message-email']
+#         message = request.POST['message']
 
-        # send an email
+#         # send an email
 
-        send_mail(
-            'message from' +  message_name, # subject
-            , # message
-            , # from email
-            ['desmondsim2222@gmail.com'], # To Email
-        )
+#         send_mail(
+#             'message from' +  message_name, # subject
+#             , # message
+#             , # from email
+#             ['desmondsim2222@gmail.com'], # To Email
+#         )
 
-        return render(request, 'profile.html', {'message_name'})
+#         return render(request, 'profile.html', {'message_name'})
     
-    else:
-        return render(request, 'profile.html', {})
+#     else:
+#         return render(request, 'profile.html', {})
 
 def aboutUs(request):
     return render(request, 'accounts/AboutUs.html')

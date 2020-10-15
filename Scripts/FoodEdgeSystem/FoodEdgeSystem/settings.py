@@ -146,8 +146,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_URL = 'accounts/static/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'accounts/static/images/')
+MEDIA_URL = '/accounts/static/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'accounts/static/images')
 
 LOGIN_REDIRECT_URL = 'accounts-home'
 
