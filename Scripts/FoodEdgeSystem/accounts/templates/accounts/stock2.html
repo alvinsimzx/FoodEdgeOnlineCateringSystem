@@ -20,6 +20,23 @@
             {%block content%}
             <form id="StockEditRemove" method="post">
                 {% csrf_token %}
+                {% if lowStock %}
+                <h4>Low Stocks:</h4>
+                <table>
+                    <tr>
+                        <th>Stock ID</th>
+                        <th>Name</th>
+                        <th>Amount Left</th>
+                    </tr>
+                    {%for item in lowStock%}
+                    <tr>
+                        <td>{{item.stockID}}</td>
+                        <td>{{item.stockName}}</td>
+                        <td>{{item.amountLeft}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
                 <h1 id = "feedbackTitle">Edit and Remove Stock</h1>
                 <table>
                     <tr>

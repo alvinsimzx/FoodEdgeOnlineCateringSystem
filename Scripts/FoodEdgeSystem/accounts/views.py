@@ -1,8 +1,12 @@
 from django.shortcuts import render,redirect
-from django.urls import reverse
+from django.urls import reverse,resolve
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
+from django.contrib.auth import authenticate, login, logout
+
 from django.http import JsonResponse
+from .decorators import allowed_users
 from .forms import UserRegisterForm
 from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem
 # Email Confirmation
@@ -15,32 +19,9 @@ stripe.api_key = "sk_test_51HbjHmLUA515JZ27Y0RRePShcZS6VFq53mx0jiLs1DfdpRvA0Yuye
 
 def home(request):
     return render(request, 'accounts/index.html')
-# Email Confirmation
-# def contact(request):
-#     if request.method == "POST":
-#         message_name = request.POST['message-name']
-#         message_email = request.POST['message-email']
-#         message = request.POST['message']
-
-#         # send an email
-
-#         send_mail(
-#             'message from' +  message_name, # subject
-#             , # message
-#             , # from email
-#             ['desmondsim2222@gmail.com'], # To Email
-#         )
-
-#         return render(request, 'profile.html', {'message_name'})
-    
-#     else:
-#         return render(request, 'profile.html', {})
 
 def aboutUs(request):
     return render(request, 'accounts/AboutUs.html')
-
-def StaffHome(request):
-    return render(request, 'accounts/indexStaff.html')
 
 def products(request):
     return render(request, 'accounts/products.html')
@@ -55,8 +36,11 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
             username = form.cleaned_data.get('username')
+            group = Group.objects.get(name='Customer')
+            user.groups.add(group)
+
             messages.success(request, f'Your accounts has been created! Please login')
             return redirect('login')
     else:
@@ -74,7 +58,15 @@ def showStockPage(request):
 
 def ViewStocks(request):
     re = InsertStock.objects.all()
-    return render(request, 'accounts/stock2.html', {'re': re})
+    lowStock = []
+    for res in re:
+        if(res.amountLeft <= 10):
+            lowStock.append(res)
+    if(len(lowStock) != 0):
+        messages.warning(request,'!!!Low stock detected!!!')
+        messages.warning(request,'Low Stocks Displayed')
+
+    return render(request, 'accounts/stock2.html', {'re': re, 'lowStock': lowStock})
     
 
 def OrderMade(request):
@@ -84,7 +76,6 @@ def Payment(request):
     return render(request, 'accounts/CustomerPayment.html')
 
 def charge(request):
-    amount = 5
     if request.method == 'POST':
         print("Data:", request.POST)
 
@@ -94,6 +85,14 @@ def charge(request):
             email = request.POST['email'],
             name = request.POST['name'],
             source = request.POST['stripeToken']
+        )
+
+        #Sends automated email after payment is processed
+        send_mail(
+            "FoodEdge Catering Payment Confirmation", 
+            "This is a test email", #message
+            "foodedgecateringassignment@gmail.com", 
+            [request.POST['email']]
         )
 
         charge = stripe.Charge.create(
@@ -120,13 +119,14 @@ def InsertCustomerOrder(request):
             saverecord.custEmail = request.POST.get('custEmail')
             saverecord.custContact = request.POST.get('custContact')
             saverecord.custOrder = request.POST.get('custOrder')
+            price = int(request.POST.get('custOrder'))
             saverecord.location = request.POST.get('location')
             saverecord.save()
             messages.success(request,'Order Sent')
-            return render(request, 'accounts/order.html')
+            return resolve('Payment',args=price)
         else:
             messages.success(request,'Order did not send')
-            return render(request, 'accounts/order.html')
+            return redirect('Payment')
     else:
         return render(request, 'accounts/order.html')
 
@@ -161,7 +161,7 @@ def DeleteRecord(request, stockID):
     record = InsertStock.objects.get(stockID=stockID)
     record.delete()
     re = InsertStock.objects.all()
-    return render(request, 'accounts/stock2.html', {'re': re})
+    return redirect('ViewStocks')
 
 def EditRecords(request, stockID):
      record = InsertStock.objects.get(stockID=stockID)
@@ -173,7 +173,7 @@ def EditRecords(request, stockID):
             record.save()
             messages.success(request,'Record Edited')
             re = InsertStock.objects.all()
-            return render(request, 'accounts/stock2.html', {'re': re}) 
+            return redirect('ViewStocks')
      else:
         return render(request, 'accounts/editStock.html')
 
@@ -181,14 +181,35 @@ def ShowSets(request):
     AvailableItems = ActiveMenuItem.objects.all()
     return render(request, 'accounts/sets.html', {'AvailableItems' : AvailableItems})
 
-def StaffLogin(request):
+@allowed_users(allowed_roles=['Operations'])
+def StaffHome(request):
     return render(request, 'accounts/indexStaff.html')
 
+def StaffLogin(request):
+    allowed_roles=['c']
+    if(request.method == 'POST'):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username,password=password)
+        print()
+
+        if (user is not None) and (user.groups.filter(name='Operations').exists()):
+            login(request,user)
+            return redirect('staff-home')
+        else:
+            messages.info(request,'You do not have the permission to log into this')
+
+    return render(request, 'accounts/stafflogin.html')
+
+@allowed_users(allowed_roles=['Operations'])
 def ShowGivenOrders(request):
     return render(request, 'accounts/CheckAssignedOrders.html')
 
+@allowed_users(allowed_roles=['Operations'])
 def ShowAddMenuItems(request):
     return render(request, 'accounts/addMenuItems.html')
 
+@allowed_users(allowed_roles=['Operations'])
 def ShowAssignOrdersToStaff(request):
     return render(request, 'accounts/AssignOrdersToStaff.html')
