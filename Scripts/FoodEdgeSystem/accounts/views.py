@@ -26,8 +26,8 @@ def contact(request):
 
         send_mail(
             'message from' +  message_name, # subject
-            , # message
-            , # from email
+             # message
+             # from email
             ['desmondsim2222@gmail.com'], # To Email
         )
 
