@@ -68,9 +68,9 @@
     <legend>Catering Set</legend>
     <center>
       <select name="custOrder"id="product">
-         <option value="Set 1 - Western">Set 1 - Western</option>
-         <option value="Set 2 - Local">Set 2 - Local</option>
-         <option value="Set 3 - Chinese">Set 3 - Chinese</option>
+         <option value="1000">Set 1 - Western</option>
+         <option value="2000">Set 2 - Local</option>
+         <option value="3000">Set 3 - Chinese</option>
       </select>
     </center> 
     </fieldset>
@@ -82,58 +82,9 @@
     </fieldset>
 
     
-    <fieldset>
-        <legend>Payment Method</legend>
-            <!--<p><textarea name="" rows="10" cols="50" placeholder="Please specify the aspect you are interested in (if any)"></textarea></p>-->
-            <div class="payment">
-            <label for="fname">Accepted Cards</label>
-            <div class="icon-container">
-              <i class="fa fa-cc-visa" style="color:navy;"></i>
-              <i class="fa fa-cc-amex" style="color:blue;"></i>
-              <i class="fa fa-cc-mastercard" style="color:red;"></i>
-              <i class="fa fa-cc-discover" style="color:orange;"></i>
-            </div>
-          </div>
-          <div>
-            <label for="cname">Name on Card</label>
-            <i class="fa fa-user-o"></i>
-            <input type="text" id="cname" name="cardname" placeholder="Michael Jordan" required = "required"/>
-            
-            <label for="ccnum">Credit card number</label> 
-            <i class="fa fa-credit-card-alt"></i>
-            <p><input type="password" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" ></p>
-            <!--<p><label for="cname">Show password</label></p>
-            <p><input type="checkbox" name="checkbox" onclick="myFunction()"></p>
-            <script>
-                function myFunction() {
-                  var x = document.getElementById("ccnum");
-                  if (x.type === "password") {
-                    x.type = "text";
-                  } else {
-                    x.type = "password";
-                  }
-                }
-            </script>-->
-            <label for="expmonth">Exp Month</label>
-            <i class="fa fa-calendar"></i>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September" required = "required">
-
-          
-              <div>
-                <label for="expyear">Exp Year</label>
-                <i class="fa fa-calendar"></i>
-                <input type="text" id="expyear" name="expyear" placeholder="2015" required = "required">
-              </div>
-              <div>
-                <label for="cvv">CVV</label>
-                <i class="fa fa-key"></i>
-                <input type="password" id="cvv" name="cvv" placeholder="365(***)">
-              </div>
-            
-            </div>
-    </fieldset>
     
-    <button type="submit">Place Order</button>
+    
+    <button type="submit">Proceed to Payment</button>
     <button type="reset">Reset</button>
     </form>
     {%endblock content%}
