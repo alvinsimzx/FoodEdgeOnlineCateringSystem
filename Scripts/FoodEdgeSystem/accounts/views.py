@@ -42,8 +42,6 @@ def contact(request):
 def aboutUs(request):
     return render(request, 'accounts/AboutUs.html')
 
-
-
 def products(request):
     return render(request, 'accounts/products.html')
 
