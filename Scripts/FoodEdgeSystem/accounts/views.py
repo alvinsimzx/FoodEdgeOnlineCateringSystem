@@ -69,6 +69,7 @@ def profile(request):
     transactionInfo = []
     
 
+
     if(stripe.Charge.list(customer=allPayment.customerID,limit=3)):
         transactionInfo = {
             "amount":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["amount"],
@@ -79,6 +80,7 @@ def profile(request):
             "exp_month":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["source"]["exp_month"],
             "exp_year":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["source"]["exp_year"]
         }
+    
     return render(request, 'accounts/profile.html', {'allOrders' : allOrders,'transactionInfo':transactionInfo})
 
 def customerAccounts(request):
