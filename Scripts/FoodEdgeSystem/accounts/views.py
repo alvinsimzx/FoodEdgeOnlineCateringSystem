@@ -118,27 +118,22 @@ def charge(request):
     if request.method == 'POST':
         print("Data:", request.POST)
         userid = ""
-
+        
         amount = int(request.POST['amount'])
 
         if request.user.is_authenticated:
             allPayment = InsertCustomer.objects.get(authID=request.user.id)
+            email = allPayment.email
             userid = allPayment.customerID
             source = stripe.Customer.create_source(allPayment.customerID,source=request.POST['stripeToken'])
             charge = stripe.Charge.create(customer = allPayment.customerID,amount = amount*100,currency = 'myr',description = "CateringPayment")
+            #sends automated email to users
             
         else:
             customer = stripe.Customer.create(email = request.POST['email'],name = request.POST['name'],source = request.POST['stripeToken'])
             charge = stripe.Charge.create(customer = customer,amount = amount*100,currency = 'myr',description = "CateringPayment")  
             userid = customer.id
 
-        #Sends automated email after payment is processed
-        send_mail(
-            "FoodEdge Catering Payment Confirmation", 
-            "This is a test email", #message
-            "foodedgecateringassignment@gmail.com", 
-            [request.POST['email']]
-        )
         return redirect('order')
     else:
         return redirect('order')
@@ -151,17 +146,34 @@ def successMsg(request,args):
 def InsertCustomerOrder(request):
     if request.method =='POST':
         saverecord = InsertOrder()
-        i = True
-        if request.POST.get('CustFirstName'):
-            saverecord.CustFirstName = request.POST.get('CustFirstName')
+        if request.POST.get('CustFirstName') and request.POST.get('custLastName'):
             saverecord.customerID = request.user.id
-            saverecord.CustlastName = request.POST.get('CustlastName')
+            saverecord.CustFirstName = request.POST.get('CustFirstName')
+            saverecord.custLastName = request.POST.get('custLastName')
             saverecord.custEmail = request.POST.get('custEmail')
             saverecord.custContact = request.POST.get('custContact')
             saverecord.custOrder = request.POST.get('custOrder')
+            saverecord.custRequest = request.POST.get('custRequest')
             price = int(request.POST.get('custOrder'))
             saverecord.location = request.POST.get('location')
             saverecord.save()
+            send_mail(
+                "FoodEdge Catering Payment Confirmation", 
+                """
+Thank you {} for ordering with FoodEdge Catering,
+                \n
+Your order is valued at {}. 
+                \n
+If you have not placed an order and received this email or have some other enquires, please send an email to foodedgecateringassignment@gmail.com, and we will clear things up shortly.
+                \n
+Regards,
+FoodEdge Customer Service Team 
+                \n
+This is an auto-generated email, please send a new email instead of replying. 
+                """.format(request.POST.get('custLastName'), request.POST.get('custOrder')), #message
+                "foodedgecateringassignment@gmail.com", 
+                [request.POST.get('custEmail')]
+            )
             messages.success(request,'Order Sent')
             return redirect(reverse('Payment',args=[price]))
         else:
