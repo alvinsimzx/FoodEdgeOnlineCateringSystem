@@ -22,9 +22,10 @@ urlpatterns = [
     path('StaffLogin/',views.StaffLogin,name='StaffLogin'),
     path('Payment/<str:args>/',views.Payment, name='Payment'),
     path('charge/',views.charge, name="charge"),
-    path('success/<str:args>/',views.successMsg,name="PaymentSuccess"),
-    path('CheckAssignedOrders/',views.ShowGivenOrders,name='CheckAssignedOrders'),
+    path('success/<str:args>/',views.successMsg,name="PaymentSuccess"), 
     path('AssignOrdersToStaff/',views.ShowAssignOrdersToStaff,name='AssignOrdersToStaff'),
+    path('CheckAssignedOrders/',views.ShowGivenOrders,name='CheckAssignedOrders'),  
+  
     path('delete/<int:stockID>', views.DeleteRecord), 
     path('edit/<int:stockID>', views.EditRecords),
     path('customerAccounts/', views.customerAccounts, name='CustomerAccounts'),
