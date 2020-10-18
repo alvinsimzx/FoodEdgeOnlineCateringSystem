@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from django.http import JsonResponse
 from .decorators import allowed_users
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem,InsertCustomer
 # Email Confirmation
 from django.shortcuts import render
@@ -64,6 +64,14 @@ def createCustomer(request,customerID,authID,username,email):
 
 @login_required
 def profile(request):
+    # Edit Option of the profile page
+    u_form = UserUpdateForm()
+    p_form = ProfileUpdateForm()
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
     allOrders = InsertOrder.objects.filter(customerID=request.user.id)
     allPayment = InsertCustomer.objects.get(authID=request.user.id)
     transactionInfo = []
@@ -81,7 +89,7 @@ def profile(request):
             "exp_year":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["source"]["exp_year"]
         }
     
-    return render(request, 'accounts/profile.html', {'allOrders' : allOrders,'transactionInfo':transactionInfo})
+    return render(request, 'accounts/profile.html', {'allOrders' : allOrders,'transactionInfo':transactionInfo}, context)
 
 def customerAccounts(request):
     users = User.objects.all()
