@@ -7,19 +7,19 @@ from datetime import datetime
 
 class Profile (models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
-    image = models.ImageField(default = 'default.png', upload_to='profile_pics')
+    image = models.ImageField(default = 'default.jpg', upload_to='profile_pics')
     def __str__(self):
         return f'{self.user.username} Profile'
 
-'''
+
 class InsertCustomer(models.Model):
-    CustomerID = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=100)
+    customerID = models.CharField(max_length=20,primary_key=True)
+    authID = models.IntegerField()
     phoneNo = models.CharField(max_length=20)
     email = models.CharField(max_length=50)
     class Meta:
         db_table = "customer"
-
+'''
 class InsertAccount(models.Model):
     accountID = models.IntegerField(primary_key=True)
     CustomerID = models.IntegerField()
@@ -28,6 +28,7 @@ class InsertAccount(models.Model):
     class Meta:
         db_table = "account"
 '''
+
 class InsertStock(models.Model):
     stockID = models.IntegerField(primary_key=True)
     stockName = models.CharField(max_length=100)

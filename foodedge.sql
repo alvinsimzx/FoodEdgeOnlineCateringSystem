@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2020 at 10:23 AM
+-- Generation Time: Oct 17, 2020 at 05:44 AM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- PHP Version: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,6 +33,13 @@ CREATE TABLE `account` (
   `username` varchar(255) DEFAULT NULL,
   `accountPassword` varchar(30) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`accountID`, `customerID`, `username`, `accountPassword`) VALUES
+(1, NULL, 'alvinsim00', 'alvinsim123');
 
 -- --------------------------------------------------------
 
@@ -68,6 +75,15 @@ CREATE TABLE `auth_group` (
   `id` int(11) NOT NULL,
   `name` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `auth_group`
+--
+
+INSERT INTO `auth_group` (`id`, `name`) VALUES
+(1, 'Customer'),
+(3, 'Management'),
+(2, 'Operations');
 
 -- --------------------------------------------------------
 
@@ -153,7 +169,11 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$jZcNXyoLGEWl$JVKleY02IjI0aHIk7wJ5frY8vdhxtBIQQqBHCMRLhhI=', '2020-10-06 09:34:32.412039', 0, 'alvinsimzx', '', '', 'alvinsim74@gmail.com', 0, 1, '2020-10-06 09:34:26.744351');
+(3, 'pbkdf2_sha256$216000$vGBxghvART62$v3dCj/6FkNWtaSfYcCVBjHXLzbJX7hZcRM7ENEU5iLg=', '2020-10-15 17:22:17.922952', 1, 'alvin', '', '', 'alvinsim74@gmail.com', 1, 1, '2020-10-07 09:22:30.298723'),
+(7, 'pbkdf2_sha256$216000$v0L9GzYCIOLT$vOhz6LVx79OwVkpNES+EhQzSOkZl8stwhxC8DvX6Yu0=', '2020-10-14 13:18:26.078387', 0, 'TestOperation', '', '', '', 0, 1, '2020-10-14 12:21:30.000000'),
+(8, 'pbkdf2_sha256$216000$8j76c1axpxIk$4ZfNrd/4Y9fPaxyqhXfAyBC099MZ49b5U1rS6LcsVaw=', NULL, 0, 'TestManagement', '', '', '', 0, 1, '2020-10-14 12:21:54.000000'),
+(9, 'pbkdf2_sha256$216000$8yCjon3FKzIy$8XtsizfyVP5lCdCaoRoXTYyOLvS1eOafT8oDNVPqXr4=', NULL, 0, 'TestCustomer', '', '', '', 0, 1, '2020-10-14 13:13:22.000000'),
+(30, 'pbkdf2_sha256$216000$bT360oMeh2g3$44x3koINbGY7kVOSgzwP6NT+0v9e/sXWNC/xvitjkTc=', '2020-10-15 18:41:30.585900', 0, 'alvinsim00', '', '', 'alvinsim74@gmail.com', 0, 1, '2020-10-15 17:23:25.127026');
 
 -- --------------------------------------------------------
 
@@ -166,6 +186,16 @@ CREATE TABLE `auth_user_groups` (
   `user_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `auth_user_groups`
+--
+
+INSERT INTO `auth_user_groups` (`id`, `user_id`, `group_id`) VALUES
+(4, 7, 2),
+(5, 8, 3),
+(6, 9, 1),
+(27, 30, 1);
 
 -- --------------------------------------------------------
 
@@ -188,11 +218,30 @@ CREATE TABLE `auth_user_user_permissions` (
 CREATE TABLE `cateringorder` (
   `orderID` int(7) NOT NULL,
   `teamID` int(4) DEFAULT NULL,
-  `customerID` int(6) NOT NULL,
+  `customerID` int(6) DEFAULT NULL,
   `cateringDatetime` datetime NOT NULL,
+  `CustFirstName` varchar(255) NOT NULL,
+  `custLastName` varchar(255) NOT NULL,
+  `custEmail` varchar(50) NOT NULL,
+  `custContact` varchar(20) NOT NULL,
+  `custOrder` varchar(255) NOT NULL,
+  `custRequest` varchar(255) DEFAULT NULL,
   `location` varchar(255) NOT NULL,
   `amountDue` int(4) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cateringorder`
+--
+
+INSERT INTO `cateringorder` (`orderID`, `teamID`, `customerID`, `cateringDatetime`, `CustFirstName`, `custLastName`, `custEmail`, `custContact`, `custOrder`, `custRequest`, `location`, `amountDue`) VALUES
+(30, NULL, 30, '2020-10-16 03:12:07', 'ada', '', 'alvinsim74@gmail.com', '010-9606565', '1000', '', 'asd', 50),
+(28, NULL, 30, '2020-10-16 03:02:30', 'asd', '', 'alvinsim74@gmail.com', '010-9606565', '1000', '', 'asd', 50),
+(29, NULL, 30, '2020-10-16 03:08:58', 'asdfasf', '', 'alvinsim74@gmail.com', '010-9606565', '1000', '', 'asd', 50),
+(27, NULL, 30, '2020-10-16 03:01:37', 'asd', '', 'alvinsim74@gmail.com', '010-9606565', '1000', '', 'asd', 50),
+(26, NULL, 30, '2020-10-16 02:58:54', 'asdas', '', 'alvinsim74@gmail.com', '010-9606565', '1000', '', 'asd', 50),
+(25, NULL, 30, '2020-10-16 02:57:57', 'ad', '', 'alvinsim74@gmail.com', '010-9606565', '1000', '', 'asd', 50),
+(24, NULL, 30, '2020-10-16 02:54:46', 'alvins', '', 'alvinsim74@gmail.com', '010-9606565', '2000', '', 'asdf', 50);
 
 -- --------------------------------------------------------
 
@@ -201,11 +250,22 @@ CREATE TABLE `cateringorder` (
 --
 
 CREATE TABLE `customer` (
-  `customerID` int(6) NOT NULL,
+  `customerID` varchar(20) NOT NULL,
+  `authID` int(3) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `phoneNo` varchar(15) NOT NULL,
-  `email` varchar(255) NOT NULL
+  `email` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customerID`, `authID`, `name`, `phoneNo`, `email`) VALUES
+('cus_ICyuDHyaFZ3Z6j', 0, 'alvinsim00', '', 'alvinsim74@gmail.com'),
+('', 28, 'testagain', '', 'alvinsim74@gmail.com'),
+('cus_ID07fwZZ6HDvJH', 29, 'afafasd', '', 'alvinsim74@gmail.com'),
+('cus_ID0BehpDQffE1O', 30, 'alvinsim00', '', 'alvinsim74@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -223,6 +283,48 @@ CREATE TABLE `django_admin_log` (
   `content_type_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
+(1, '2020-10-14 11:57:17.080284', '1', 'Customer', 1, '[{\"added\": {}}]', 4, 3),
+(2, '2020-10-14 11:57:28.560841', '2', 'Operations', 1, '[{\"added\": {}}]', 4, 3),
+(3, '2020-10-14 11:57:33.977964', '3', 'Management', 1, '[{\"added\": {}}]', 4, 3),
+(4, '2020-10-14 11:58:06.969135', '2', 'alvinsim00', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 5, 3),
+(5, '2020-10-14 11:58:29.174662', '4', 'testcustomer', 2, '[{\"changed\": {\"fields\": [\"Username\", \"Groups\"]}}]', 5, 3),
+(6, '2020-10-14 12:20:55.084034', '2', 'alvinsim00', 3, '', 5, 3),
+(7, '2020-10-14 12:20:55.086062', '1', 'alvinsimzx', 3, '', 5, 3),
+(8, '2020-10-14 12:20:55.093009', '6', 'jeff', 3, '', 5, 3),
+(9, '2020-10-14 12:20:55.095051', '5', 'steve', 3, '', 5, 3),
+(10, '2020-10-14 12:20:55.098671', '4', 'testcustomer', 3, '', 5, 3),
+(11, '2020-10-14 12:21:30.925225', '7', 'TestOperation', 1, '[{\"added\": {}}]', 5, 3),
+(12, '2020-10-14 12:21:36.812930', '7', 'TestOperation', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 5, 3),
+(13, '2020-10-14 12:21:55.276764', '8', 'TestManagement', 1, '[{\"added\": {}}]', 5, 3),
+(14, '2020-10-14 12:22:01.204185', '8', 'TestManagement', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 5, 3),
+(15, '2020-10-14 13:13:22.555495', '9', 'TestCustomer', 1, '[{\"added\": {}}]', 5, 3),
+(16, '2020-10-14 13:13:28.039853', '9', 'TestCustomer', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 5, 3),
+(17, '2020-10-15 16:03:00.847006', '10', 'alvinsim00', 3, '', 5, 3),
+(18, '2020-10-15 16:03:00.852878', '12', 'alvinsim74', 3, '', 5, 3),
+(19, '2020-10-15 16:03:00.855903', '11', 'alvinsim75', 3, '', 5, 3),
+(20, '2020-10-15 16:03:00.858863', '13', 'alvinsim89', 3, '', 5, 3),
+(21, '2020-10-15 16:44:05.587743', '14', 'alvinsim00', 3, '', 5, 3),
+(22, '2020-10-15 16:44:05.591684', '15', 'alvinsim80', 3, '', 5, 3),
+(23, '2020-10-15 16:44:05.594427', '16', 'alvinsim99', 3, '', 5, 3),
+(24, '2020-10-15 16:53:33.138157', '17', 'alvin12345', 3, '', 5, 3),
+(25, '2020-10-15 16:53:33.143742', '18', 'alvin123452348923', 3, '', 5, 3),
+(26, '2020-10-15 16:57:25.669599', '19', 'alvinsim00', 3, '', 5, 3),
+(27, '2020-10-15 17:22:31.252329', '29', 'afafasd', 3, '', 5, 3),
+(28, '2020-10-15 17:22:31.255360', '25', 'alvin14124', 3, '', 5, 3),
+(29, '2020-10-15 17:22:31.259596', '23', 'alvin2929', 3, '', 5, 3),
+(30, '2020-10-15 17:22:31.262109', '20', 'alvinsim22', 3, '', 5, 3),
+(31, '2020-10-15 17:22:31.263505', '24', 'alvinsim222', 3, '', 5, 3),
+(32, '2020-10-15 17:22:31.266420', '21', 'alvinsim555', 3, '', 5, 3),
+(33, '2020-10-15 17:22:31.268588', '22', 'alvinsim5554566', 3, '', 5, 3),
+(34, '2020-10-15 17:22:31.272186', '27', 'dfsdfds3', 3, '', 5, 3),
+(35, '2020-10-15 17:22:31.276421', '26', 'jelvin', 3, '', 5, 3),
+(36, '2020-10-15 17:22:31.279277', '28', 'testagain', 3, '', 5, 3);
 
 -- --------------------------------------------------------
 
@@ -299,6 +401,15 @@ CREATE TABLE `django_session` (
   `expire_date` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `django_session`
+--
+
+INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('l4qzigw2swcnufudmoe9lqf2913yk9tq', 'e30:1kSgQe:FwIEIDP7oBQpVwXcOevg1WgkeNh7WTEQGnb7OXD11YE', '2020-10-28 13:02:52.196400'),
+('lj46dkzwi3ephda8tr9rsf9q5gct8e49', '.eJxVjEEOgjAQRe_StWko0zLFpXvPQIaZqaCmTSisjHdXEha6_e-9_zIDbes0bFWXYRZzNtCY0-84Ej8070TulG_FcsnrMo92V-xBq70W0eflcP8OJqrTt-66GAJi9EAJlLWPmKBP4Lhn9IEjtuowJAJthNS1zEGBvXhw0mE07w_4_jf1:1kT8Bu:w1WNbT-HXeqfcUaSpXqviT4NX7b31qx39q7dmO7KksI', '2020-10-29 18:41:30.590099'),
+('zffs5acvqjwwkg5gd18x4em8u8gj4mcw', 'e30:1kSgYn:tOqI7T2fCcfw-WiNilTRRS09vZ1oe0lPfppOHuXAT4U', '2020-10-28 13:11:17.065795');
+
 -- --------------------------------------------------------
 
 --
@@ -318,7 +429,7 @@ CREATE TABLE `foodprep` (
 
 CREATE TABLE `menuitem` (
   `menuItemID` int(3) NOT NULL,
-  `stockID_id` int(5) NOT NULL,
+  `stockID` int(11) NOT NULL,
   `itemName` varchar(255) NOT NULL,
   `itemPrice` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -327,8 +438,8 @@ CREATE TABLE `menuitem` (
 -- Dumping data for table `menuitem`
 --
 
-INSERT INTO `menuitem` (`menuItemID`, `stockID_id`, `itemName`, `itemPrice`) VALUES
-(3, 1, 'menuitem1', 99);
+INSERT INTO `menuitem` (`menuItemID`, `stockID`, `itemName`, `itemPrice`) VALUES
+(1, 10, 'Set 1 - Asian', 212);
 
 -- --------------------------------------------------------
 
@@ -373,9 +484,7 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`stockID`, `stockName`, `amountLeft`, `deficit`) VALUES
-(1, 'stock1', 100, 100),
-(2, 'stock2', 100, 100),
-(3, 'stock3', 100, 100);
+(10, 'Hans', 25, 25);
 
 -- --------------------------------------------------------
 
@@ -511,7 +620,7 @@ ALTER TABLE `foodprep`
 --
 ALTER TABLE `menuitem`
   ADD PRIMARY KEY (`menuItemID`),
-  ADD KEY `stockID` (`stockID_id`);
+  ADD KEY `stockID` (`stockID`);
 
 --
 -- Indexes for table `staff`
@@ -546,7 +655,7 @@ ALTER TABLE `suspendedaccount`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `accountID` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `accountID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `accounts_profile`
@@ -564,7 +673,7 @@ ALTER TABLE `activemenuitems`
 -- AUTO_INCREMENT for table `auth_group`
 --
 ALTER TABLE `auth_group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `auth_group_permissions`
@@ -582,13 +691,13 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
 --
 ALTER TABLE `auth_user_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `auth_user_user_permissions`
@@ -600,19 +709,13 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `cateringorder`
 --
 ALTER TABLE `cateringorder`
-  MODIFY `orderID` int(7) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `customer`
---
-ALTER TABLE `customer`
-  MODIFY `customerID` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `orderID` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -630,7 +733,7 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT for table `menuitem`
 --
 ALTER TABLE `menuitem`
-  MODIFY `menuItemID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `menuItemID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `staff`
@@ -648,7 +751,7 @@ ALTER TABLE `staffteam`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stockID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `stockID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

@@ -7,8 +7,10 @@ urlpatterns = [
     path('', views.home, name='accounts-home'),
     path('about/', views.aboutUs, name='AboutUs'),
     path('staffHome/', views.StaffHome, name='staff-home'),
+    path('insertcustomer',views.createCustomer,name='CreateCustomer'),
     path('products/', views.products),
     path('customer/', views.customer),
+    path('Transactions/',views.ShowTransactions, name='Transactions'),
     path('register/',views.register,name='register'),
     path('feedback/', views.feedback,name='feedback'),
     path('stockManagement/',views.showStockPage, name="stock"),
@@ -18,7 +20,7 @@ urlpatterns = [
     path('sets/',views.ShowSets,name='sets'),
     path('order/',views.InsertCustomerOrder,name='order'),
     path('StaffLogin/',views.StaffLogin,name='StaffLogin'),
-    path('Payment/',views.Payment, name='Payment'),
+    path('Payment/<str:args>/',views.Payment, name='Payment'),
     path('charge/',views.charge, name="charge"),
     path('success/<str:args>/',views.successMsg,name="PaymentSuccess"), 
     path('AssignOrdersToStaff/',views.ShowAssignOrdersToStaff,name='AssignOrdersToStaff'),
@@ -26,6 +28,10 @@ urlpatterns = [
   
     path('delete/<int:stockID>', views.DeleteRecord), 
     path('edit/<int:stockID>', views.EditRecords),
+    path('customerAccounts/', views.customerAccounts, name='CustomerAccounts'),
+    path('delete/<str:username>', views.deleteCustomerAccount), 
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

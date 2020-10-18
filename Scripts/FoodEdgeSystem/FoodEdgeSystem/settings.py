@@ -146,8 +146,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_URL = 'accounts/static/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'accounts/static/images/')
+MEDIA_URL = '/accounts/static/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'accounts/static/images')
 
 LOGIN_REDIRECT_URL = 'accounts-home'
 
@@ -161,9 +161,9 @@ STATICFILES_DIR =[
 
 
 # Email Settings
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = '1025'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587' #exact gmail port
+EMAIL_HOST_USER = 'foodedgecateringassignment@gmail.com' #hide it if its professional lmao
+EMAIL_HOST_PASSWORD = 'dp2sem22020' 
+EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = False

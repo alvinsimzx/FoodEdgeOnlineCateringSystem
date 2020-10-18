@@ -32,13 +32,23 @@
         }
 </style>
 
+<div class="form-group">
+    <label for="seeAnotherField">Do You Want To See Another Field?</label>
+    <select class="form-control" id="seeAnotherField">
+          <option value="no">No Way.</option>
+          <option value="yes">Absolutely!</option>
+    </select>
+  </div>
+
 <form action="{% url 'charge' %}" method="post" id="payment-form">
 {% csrf_token %}
+
+{% if total %}
 <select required name="amount" id="amount">
-	<option selected value="5">$5</option>
-	<option value="10">$10</option>
-	<option value="25">$25</option>
+	<option selected value={{ total }}>{{ total }}</option>
 </select>
+{% endif %}
+
 <input type="email" name="email" placeholder="Email..">
 <input type="text" name="name" placeholder="Name..">
     <label for="card-element">
@@ -51,11 +61,21 @@
     <!-- Used to display form errors. -->
     <div id="card-errors" role="alert"></div>
 
-  <button>Submit Payment</button>
+  <button >Submit Payment</button>
 </form>
 
 
 <script>
+
+      $("#seeAnotherField").change(function() {
+        if ($("#seeAnotherField").val() == "yes") {
+          $('#payment-form').show();
+        } else {
+          $('#payment-form').hide();
+        }
+      });
+
+      $("#seeAnotherField").trigger("change");
         // Create a Stripe client.
         var stripe = Stripe('pk_test_51HbjHmLUA515JZ27LzRLXvtX2PBYi0fYmIoL9CIeDf99kV3EfOWMNwH1ouamQaBscvNzox8JpZGsnTRXvFCl2gBh00HBcqYxnZ');
 
