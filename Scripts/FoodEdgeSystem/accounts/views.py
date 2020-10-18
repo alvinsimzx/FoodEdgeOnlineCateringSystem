@@ -149,7 +149,10 @@ def InsertCustomerOrder(request):
     if request.method =='POST':
         saverecord = InsertOrder()
         if request.POST.get('CustFirstName') and request.POST.get('custLastName'):
-            saverecord.customerID = request.user.id
+            if(request.user.id != None):
+                saverecord.customerID = request.user.id
+            else:
+                saverecord.customerID = 0
             saverecord.CustFirstName = request.POST.get('CustFirstName')
             saverecord.custLastName = request.POST.get('custLastName')
             saverecord.custEmail = request.POST.get('custEmail')
