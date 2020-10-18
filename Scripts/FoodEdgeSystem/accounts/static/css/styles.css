@@ -626,6 +626,11 @@ border-color: #a92507;
     padding-right: 50px;
   }
 
+.leadersName{
+  text-align: left;
+  float: left;
+}
+
 /* -------------------------------------------------- sets.html--------------------------------------------------- */
 .carousel{
     background: #314e4e;

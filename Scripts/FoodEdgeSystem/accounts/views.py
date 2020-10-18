@@ -275,13 +275,26 @@ def StaffLogin(request):
     return render(request, 'accounts/stafflogin.html')
 
 @allowed_users(allowed_roles=['Operations'])
-def ShowGivenOrders(request):
-    return render(request, 'accounts/CheckAssignedOrders.html')
-
-@allowed_users(allowed_roles=['Operations'])
 def ShowAddMenuItems(request):
     return render(request, 'accounts/addMenuItems.html')
-
+  
 @allowed_users(allowed_roles=['Operations'])
-def ShowAssignOrdersToStaff(request):
-    return render(request, 'accounts/AssignOrdersToStaff.html')
+def ShowGivenOrders(request):          
+    data = request.POST.get('fulltextarea')    
+    return render(request, 'accounts/CheckAssignedOrders.html', {'data':data})
+
+def ShowAssignOrdersToStaff(request, orderID):
+   record = InsertOrder.objects.get(orderID=orderID)
+    if request.method =='POST':
+      if request.POST.get('customerName'):
+          record.stockName = request.POST.get('stockName')
+          record.amountLeft = request.POST.get('amountLeft')
+          record.deficit = request.POST.get('deficit')
+          record.save()
+          messages.success(request,'Record Edited')
+          re = InsertStock.objects.all()
+          return redirect('ViewStocks')
+    else:
+      return render(request, 'accounts/AssignOrdersToStaff.html')
+    
+    
