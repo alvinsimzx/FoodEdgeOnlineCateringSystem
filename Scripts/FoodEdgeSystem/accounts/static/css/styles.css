@@ -8,17 +8,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Satisfy&display=swap');
 *{
-    box-sizing: border-box!important;
-    padding: 0!important;
-    margin: 0!important;
-    text-decoration: none !important;
-    font-family: "Montserrat", sans-serif !important; 
-    font-weight: 400 !important;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif; 
+    font-weight: 400;
 }
 
 body{
     
-    background-color: #314e4e !important;
+    background-color: #314e4e;
 }
 
 header{
