@@ -19,6 +19,25 @@ stripe.api_key = "sk_test_51HbjHmLUA515JZ27Y0RRePShcZS6VFq53mx0jiLs1DfdpRvA0Yuye
 
 def home(request):
     return render(request, 'accounts/index.html')
+# Email Confirmation
+def contact(request):
+    if request.method == "POST":
+        message_name = request.POST['message-name']
+        message_email = request.POST['message-email']
+        message = request.POST['message']
+
+        # send an email
+
+        send_mail(
+            'message from' +  message_name, # subject
+             # message# from email
+            ['desmondsim2222@gmail.com'], # To Email
+        )
+
+        return render(request, 'profile.html', {'message_name'})
+    
+    else:
+        return render(request, 'profile.html', {})
 
 def aboutUs(request):
     return render(request, 'accounts/AboutUs.html')
@@ -67,7 +86,7 @@ def profile(request):
     #Edit Option of the profile page
     u_form = UserUpdateForm()
     p_form = ProfileUpdateForm()
-    
+
     allOrders = InsertOrder.objects.filter(customerID=request.user.id)
     allPayment = InsertCustomer.objects.get(authID=request.user.id)
     transactionInfo = []
@@ -93,7 +112,7 @@ def profile(request):
         }
     
     return render(request, 'accounts/profile.html', context)
-    #context
+   
 
 def customerAccounts(request):
     users = User.objects.all()
@@ -282,6 +301,3 @@ def ShowGivenOrders(request):
 def ShowAddMenuItems(request):
     return render(request, 'accounts/addMenuItems.html')
 
-@allowed_users(allowed_roles=['Operations'])
-def ShowAssignOrdersToStaff(request):
-    return render(request, 'accounts/AssignOrdersToStaff.html')

@@ -24,7 +24,7 @@ urlpatterns = [
     path('charge/',views.charge, name="charge"),
     path('success/<str:args>/',views.successMsg,name="PaymentSuccess"),
     path('CheckAssignedOrders/',views.ShowGivenOrders,name='CheckAssignedOrders'),
-    path('AssignOrdersToStaff/',views.ShowAssignOrdersToStaff,name='AssignOrdersToStaff'),
+    # path('AssignOrdersToStaff/',views.ShowAssignOrdersToStaff,name='AssignOrdersToStaff'),
     path('delete/<int:stockID>', views.DeleteRecord), 
     path('edit/<int:stockID>', views.EditRecords),
     path('customerAccounts/', views.customerAccounts, name='CustomerAccounts'),
