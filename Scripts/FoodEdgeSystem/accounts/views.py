@@ -64,17 +64,17 @@ def createCustomer(request,customerID,authID,username,email):
 
 @login_required
 def profile(request):
-    # Edit Option of the profile page
-    u_form = UserUpdateForm()
-    p_form = ProfileUpdateForm()
+    #Edit Option of the profile page
+    #u_form = UserUpdateForm()
+    #p_form = ProfileUpdateForm()
 
-    context = {
-        'u_form': u_form,
-        'p_form': p_form
-    }
-    allOrders = InsertOrder.objects.filter(customerID=request.user.id)
-    allPayment = InsertCustomer.objects.get(authID=request.user.id)
-    transactionInfo = []
+    #context = {
+    #    'u_form': u_form,
+    #    'p_form': p_form
+    #}
+    #allOrders = InsertOrder.objects.filter(customerID=request.user.id)
+    #allPayment = InsertCustomer.objects.get(authID=request.user.id)
+    #transactionInfo = []
     
 
 
@@ -89,7 +89,8 @@ def profile(request):
             "exp_year":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["source"]["exp_year"]
         }
     
-    return render(request, 'accounts/profile.html', {'allOrders' : allOrders,'transactionInfo':transactionInfo}, context)
+    return render(request, 'accounts/profile.html', {'allOrders' : allOrders,'transactionInfo':transactionInfo})
+    #context
 
 def customerAccounts(request):
     users = User.objects.all()
