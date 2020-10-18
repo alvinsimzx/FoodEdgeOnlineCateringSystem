@@ -19,6 +19,25 @@ stripe.api_key = "sk_test_51HbjHmLUA515JZ27Y0RRePShcZS6VFq53mx0jiLs1DfdpRvA0Yuye
 
 def home(request):
     return render(request, 'accounts/index.html')
+# Email Confirmation
+def contact(request):
+    if request.method == "POST":
+        message_name = request.POST['message-name']
+        message_email = request.POST['message-email']
+        message = request.POST['message']
+
+        # send an email
+
+        send_mail(
+            'message from' +  message_name, # subject
+             # message# from email
+            ['desmondsim2222@gmail.com'], # To Email
+        )
+
+        return render(request, 'profile.html', {'message_name'})
+    
+    else:
+        return render(request, 'profile.html', {})
 
 def aboutUs(request):
     return render(request, 'accounts/AboutUs.html')
@@ -65,17 +84,20 @@ def createCustomer(request,customerID,authID,username,email):
 @login_required
 def profile(request):
     #Edit Option of the profile page
-    #u_form = UserUpdateForm()
-    #p_form = ProfileUpdateForm()
+    u_form = UserUpdateForm()
+    p_form = ProfileUpdateForm()
 
-    #context = {
-    #    'u_form': u_form,
-    #    'p_form': p_form
-    #}
-    #allOrders = InsertOrder.objects.filter(customerID=request.user.id)
-    #allPayment = InsertCustomer.objects.get(authID=request.user.id)
-    #transactionInfo = []
+    allOrders = InsertOrder.objects.filter(customerID=request.user.id)
+    allPayment = InsertCustomer.objects.get(authID=request.user.id)
+    transactionInfo = []
     
+    context = {
+        'u_form': u_form,
+        'p_form': p_form,
+        'allOrders' : allOrders,
+        'transactionInfo':transactionInfo
+    }
+   
 
 
     if(stripe.Charge.list(customer=allPayment.customerID,limit=3)):
@@ -89,8 +111,8 @@ def profile(request):
             "exp_year":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["source"]["exp_year"]
         }
     
-    return render(request, 'accounts/profile.html', {'allOrders' : allOrders,'transactionInfo':transactionInfo})
-    #context
+    return render(request, 'accounts/profile.html', context)
+   
 
 def customerAccounts(request):
     users = User.objects.all()
@@ -272,41 +294,9 @@ def StaffLogin(request):
     return render(request, 'accounts/stafflogin.html')
 
 @allowed_users(allowed_roles=['Operations'])
+def ShowGivenOrders(request):
+    return render(request, 'accounts/CheckAssignedOrders.html')
+
+@allowed_users(allowed_roles=['Operations'])
 def ShowAddMenuItems(request):
     return render(request, 'accounts/addMenuItems.html')
-  
-@allowed_users(allowed_roles=['Operations'])
-def ShowGivenOrders(request):   
-    return render(request, 'accounts/CheckAssignedOrders.html', {'data':data})
-
-def ShowAssignOrdersToStaff(request):
-    record = InsertOrder.objects.filter(teamID__isnull=True)
-    if request.method == 'POST':
-        if request.POST.get('teamID'):
-            update = InsertOrder.objects.get(orderID=request.POST.get('order'))
-            update.teamID = request.POST.get('teamID')
-            update.save()
-            messages.success(request,'Order number #' + str(request.POST.get('order'))+' has been assigned to Team #' + str(request.POST.get('teamID')))
-    # if request.method == 'POST':
-    #     if request.POST.get('orderID') and request.POST.get('teamID') and request.POST.get('customerID') and request.POST.get('cateringDatetime') and request.POST.get('CustFirstName') and request.POST.get('custLastName') and request.POST.get('custEmail') and request.POST.get('custContact') and request.POST.get('custOrder') and request.POST.get('custRequest') and request.POST.get('location') and request.POST.get('amountDue'):
-            
-    #         record.orderID = request.POST.get('orderID')
-    #         record.teamID = request.POST.get('teamID')
-    #         record.customerID = request.POST.get('customerID')
-    #         record.cateringDatetime = request.POST.get('cateringDatetime')
-    #         record.CustFirstName = request.POST.get('CustFirstName')
-    #         record.custLastName = request.POST.get('custLastName')
-    #         record.custEmail = request.POST.get('custEmail')
-    #         record.custContact = request.POST.get('custContact')
-    #         record.custOrder = request.POST.get('custOrder')
-    #         record.custRequest = request.POST.get('custRequest')
-    #         record.location = request.POST.get('location')
-    #         record.amountDue = request.POST.get('amountDue')
-    #         saverecord.save()
-    #         messages.success(request,'Orders Saved')
-    #         re = InsertOrder.objects.all()
-    #         return render(request, 'accounts/AssignOrdersToStaff.html', {'re': re})
-    # else:
-    return render(request, 'accounts/AssignOrdersToStaff.html', {'records': record})
-    
-    
