@@ -58,7 +58,7 @@ class InsertOrder(models.Model):
     teamID 	= models.IntegerField()
     customerID = models.IntegerField()
     cateringDatetime = models.DateTimeField(default=datetime.now, blank=True)	
-    CustFirstName =	models.CharField(max_length=255)
+    custFirstName =	models.CharField(max_length=255)
     custLastName = models.CharField(max_length=255)	
     custEmail =	models.CharField(max_length=50)
     custContact = models.CharField(max_length=20)	

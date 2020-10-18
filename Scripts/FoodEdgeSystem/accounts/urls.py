@@ -23,6 +23,7 @@ urlpatterns = [
     path('Payment/<str:args>/',views.Payment, name='Payment'),
     path('charge/',views.charge, name="charge"),
     path('success/<str:args>/',views.successMsg,name="PaymentSuccess"), 
+    
     path('AssignOrdersToStaff/',views.ShowAssignOrdersToStaff,name='AssignOrdersToStaff'),
     path('CheckAssignedOrders/',views.ShowGivenOrders,name='CheckAssignedOrders'),  
   

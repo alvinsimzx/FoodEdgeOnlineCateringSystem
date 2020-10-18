@@ -19,100 +19,84 @@
 
   <body>
   
-  {%block content%}    
-  <form id="Orders" method="post" novalidate="novalidate">
+  {%block content%}  
   
-  <h1 id = "feedbackTitle">Orders</h1>    
-    
+  
+  <form id="editOrders" method="post">
+    {% csrf_token %}
+    <h1 id = "feedbackTitle">Orders</h1>    
     <fieldset>
       
       <legend>Edit Orders Information</legend>
-      
-      <form method="POST" id="systemForm">
-        {% csrf_token %}
-        <fieldset>
-          <legend>Edit Customer Name</legend>
-          <label type="hidden" name="ordersID" id="ordersID" value="{{record.ordersID}}">
-            <p>
-              <label for="changeCustName">Customer Name:</label>
-              <input type="text" id="changeCustName" name="customerName" maxlength="50" placeholder="Customer Name" required/>
-            </p>
-          </label>
-        </fieldset>
+    
+      {% for record in records%}
+        <p id= "ordersInfo">Edit Orders</p>
+        <select name="order">
+            <option value={{record.orderID}}>{{record.orderID}}</option>
+        </select>
+
+
+        <p id= "customerID">Customer ID:</p>
+            <p>{{record.customerID}}</p>
+
         <p>
-          <input type="Submit" name="submit" value="Submit"/>
+          <label for="teamID">Team ID: </label>
+          <input type="number" id="teamID" name="teamID" min="1" max="999" placeholder="Enter Team ID" required/>
         </p>
-      	</form>    
-  </fieldset>
-  
-    
-    <fieldset>
-      
-      <legend>Edit Orders Information</legend>
-    
-    <button type="button" class="collapsible2">Order 2</button>
-    <div class="content">
-      <p>Customer Name: Jane</p>
-      <p>Catering Date: 7 / 10 / 2020</p>     
-      <p>Pax: 80</p> 
-      <p>Address: Some random address here.</p> 
-      
-      
-      <p>Cater Leader: </p>
-      
-      <select name="CLeader"id="CLeader">
-  
-      <option value="worker1">Worker 1</option>
-      <option value="worker2">Worker 2</option>
-      <option value="worker3">Worker 3</option>
-        
-      </select>
-      
-      <p>Cater Worker(s): </p>
-    
-      <select name="CWorker"id="CWorker" multiple>
-    
-      <option value="worker1">Worker 1</option>
-      <option value="worker2">Worker 2</option>
-      <option value="worker3">Worker 3</option>
-      
-      </select>
-    
-      <p>Food set: </p>
-      
-    <select name="foodSet"id="foodSet">
-  
-      <option value="foodset1">Set 1</option>
-      <option value="foodset2">Set 2</option>
-      <option value="foodset3">Set 3</option>
-    
-    </select> 
-      
-      <p>Extra information: </p>
-      <p id="extra_info"><i>It's a birthday party.</i></p>
-      
-    </div>
-    
-    <script>
-      var coll = document.getElementsByClassName("collapsible2");
-      var i;
 
-      for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-        });
-      }
-    </script>
-    
-  </fieldset>
-      
+        <p style="font-size: 20px;" id= "cateringDatetime">Catering Date and Time: </p>
+          <p>{{record.cateringDatetime}}</p>
+        </p>
 
+        <p>
+          <p id="CustFirstName">Customer First Name: </p>
+          <p>{{record.custFirstName}}</p>
+        </p>
+
+        <p>
+          <p id="CustLastName">Customer Last Name: </p>
+          <p>{{record.custLastName}}</p>
+        </p>
+
+        <p>
+          <p id="custEmail">Customer email: </p>
+          <p>{{record.custEmail}}</p>
+        </p>
+
+        <p>
+          <p id="custContact">Customer contact: </p>
+          <p>{{record.custContact}}</p>
+        </p>
+
+        <p>
+          <p id="custOrder">Customer order: </p>
+          <p>{{record.custOrder}}</p>
+        </p>
+
+        <p>
+          <p id="custRequest">Customer request: </p>
+          <p>{{record.custRequest}}</p>
+        </p>
+
+        <p>
+          <p idr="location">Location: </p>
+          <p>{{record.location}}</p>
+        </p>
+
+        <p>
+          <p id="amountDue">amountDue: </p>
+          <p>{{record.amountDue}}</p>
+        </p>
+
+        {% endfor %}
+
+
+      </label>
+    </fieldset>
+    <p>
+      <input type="Submit" name="submit" value="Submit"/>
+    </p>
+  </fieldset>   
   </form>
   {%endblock content%}
 

@@ -276,22 +276,37 @@ def ShowAddMenuItems(request):
     return render(request, 'accounts/addMenuItems.html')
   
 @allowed_users(allowed_roles=['Operations'])
-def ShowGivenOrders(request):          
-    data = request.POST.get('fulltextarea')    
+def ShowGivenOrders(request):   
     return render(request, 'accounts/CheckAssignedOrders.html', {'data':data})
 
-def ShowAssignOrdersToStaff(request, orderID):
-   record = InsertOrder.objects.get(orderID=orderID)
-    if request.method =='POST':
-      if request.POST.get('customerName'):
-          record.stockName = request.POST.get('stockName')
-          record.amountLeft = request.POST.get('amountLeft')
-          record.deficit = request.POST.get('deficit')
-          record.save()
-          messages.success(request,'Record Edited')
-          re = InsertStock.objects.all()
-          return redirect('ViewStocks')
-    else:
-      return render(request, 'accounts/AssignOrdersToStaff.html')
+def ShowAssignOrdersToStaff(request):
+    record = InsertOrder.objects.filter(teamID__isnull=True)
+    if request.method == 'POST':
+        if request.POST.get('teamID'):
+            update = InsertOrder.objects.get(orderID=request.POST.get('order'))
+            update.teamID = request.POST.get('teamID')
+            update.save()
+            messages.success(request,'Order number #' + str(request.POST.get('order'))+' has been assigned to Team #' + str(request.POST.get('teamID')))
+    # if request.method == 'POST':
+    #     if request.POST.get('orderID') and request.POST.get('teamID') and request.POST.get('customerID') and request.POST.get('cateringDatetime') and request.POST.get('CustFirstName') and request.POST.get('custLastName') and request.POST.get('custEmail') and request.POST.get('custContact') and request.POST.get('custOrder') and request.POST.get('custRequest') and request.POST.get('location') and request.POST.get('amountDue'):
+            
+    #         record.orderID = request.POST.get('orderID')
+    #         record.teamID = request.POST.get('teamID')
+    #         record.customerID = request.POST.get('customerID')
+    #         record.cateringDatetime = request.POST.get('cateringDatetime')
+    #         record.CustFirstName = request.POST.get('CustFirstName')
+    #         record.custLastName = request.POST.get('custLastName')
+    #         record.custEmail = request.POST.get('custEmail')
+    #         record.custContact = request.POST.get('custContact')
+    #         record.custOrder = request.POST.get('custOrder')
+    #         record.custRequest = request.POST.get('custRequest')
+    #         record.location = request.POST.get('location')
+    #         record.amountDue = request.POST.get('amountDue')
+    #         saverecord.save()
+    #         messages.success(request,'Orders Saved')
+    #         re = InsertOrder.objects.all()
+    #         return render(request, 'accounts/AssignOrdersToStaff.html', {'re': re})
+    # else:
+    return render(request, 'accounts/AssignOrdersToStaff.html', {'records': record})
     
     
