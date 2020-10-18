@@ -27,22 +27,68 @@
     <fieldset>
       
       <legend>Edit Orders Information</legend>
+    
+    <button type="button" class="collapsible1">Order 1</button>
+  
+      <div class="content">
+      <p>Customer Name: Bob</p>
+      <p>Catering Date: 6 / 9 / 2020</p>     
+      <p>Pax: 50</p> 
+      <p>Address: Some random address here.</p> 
       
-      <form method="POST" id="systemForm">
-        {% csrf_token %}
-        <fieldset>
-          <legend>Edit Customer Name</legend>
-          <label type="hidden" name="ordersID" id="ordersID" value="{{record.ordersID}}">
-            <p>
-              <label for="changeCustName">Customer Name:</label>
-              <input type="text" id="changeCustName" name="customerName" maxlength="50" placeholder="Customer Name" required/>
-            </p>
-          </label>
-        </fieldset>
-        <p>
-          <input type="Submit" name="submit" value="Submit"/>
-        </p>
-      	</form>    
+      
+      <p>Cater Leader: </p>
+      
+      <select name="CLeader"id="CLeader">
+  
+      <option value="worker1">Worker 1</option>
+      <option value="worker2">Worker 2</option>
+      <option value="worker3">Worker 3</option>
+        
+      </select>
+      
+      <p>Cater Worker(s): </p>
+    
+      <select name="CWorker"id="CWorker" multiple>
+    
+      <option value="worker1">Worker 1</option>
+      <option value="worker2">Worker 2</option>
+      <option value="worker3">Worker 3</option>
+      
+      </select>
+    
+      <p>Food set: </p>
+      
+    <select name="foodSet"id="foodSet">
+  
+      <option value="foodset1">Set 1</option>
+      <option value="foodset2">Set 2</option>
+      <option value="foodset3">Set 3</option>
+    
+    </select> 
+      
+      <p>Extra information: </p>
+      <p id="extra_info"><i>It's a birthday party.</i></p>
+      
+    </div>
+    
+    <script>
+      var coll = document.getElementsByClassName("collapsible1");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+        });
+      }
+    </script>
+    
   </fieldset>
   
     
