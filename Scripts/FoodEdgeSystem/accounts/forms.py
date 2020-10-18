@@ -8,7 +8,6 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-<<<<<<< HEAD
         fields = ['username','email','password1','password2']
 
 class UserUpdateForm(forms.ModelForm):
@@ -22,6 +21,3 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta: 
         model = Profile
         fields = ['image']
-=======
-        fields = ['username','email','password1','password2']
->>>>>>> parent of 76dc16d... Tested some code to see if Django works.
