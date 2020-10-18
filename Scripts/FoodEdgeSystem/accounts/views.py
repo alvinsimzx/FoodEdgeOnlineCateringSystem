@@ -313,4 +313,3 @@ def ShowGivenOrders(request):
 @allowed_users(allowed_roles=['Operations'])
 def ShowAddMenuItems(request):
     return render(request, 'accounts/addMenuItems.html')
-
