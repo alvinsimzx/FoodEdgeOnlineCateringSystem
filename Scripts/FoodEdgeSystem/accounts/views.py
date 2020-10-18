@@ -19,6 +19,33 @@ stripe.api_key = "sk_test_51HbjHmLUA515JZ27Y0RRePShcZS6VFq53mx0jiLs1DfdpRvA0Yuye
 
 def home(request):
     return render(request, 'accounts/index.html')
+<<<<<<< HEAD
+=======
+# Email Confirmation
+def contact(request):
+    if request.method == "POST":
+        message_name = request.POST['message-name']
+        message_email = request.POST['message-email']
+        message = request.POST['message']
+
+        # send an email
+
+        send_mail(
+            'message from' +  message_name, # subject
+<<<<<<< HEAD
+             # message
+             # from email
+=======
+             # message# from email
+>>>>>>> a651afc7d6cbaaaeeb9f5b6b9d1388d8ae8c57bb
+            ['desmondsim2222@gmail.com'], # To Email
+        )
+
+        return render(request, 'profile.html', {'message_name'})
+    
+    else:
+        return render(request, 'profile.html', {})
+>>>>>>> parent of 76dc16d... Tested some code to see if Django works.
 
 def aboutUs(request):
     return render(request, 'accounts/AboutUs.html')
@@ -282,6 +309,30 @@ def ShowGivenOrders(request):
 def ShowAddMenuItems(request):
     return render(request, 'accounts/addMenuItems.html')
 
+<<<<<<< HEAD
 @allowed_users(allowed_roles=['Operations'])
 def ShowAssignOrdersToStaff(request):
     return render(request, 'accounts/AssignOrdersToStaff.html')
+=======
+<<<<<<< HEAD
+# def ShowAssignOrdersToStaff(request, orderID):
+#    record = InsertOrder.objects.get(orderID=orderID)
+#     if request.method =='POST':
+#       if request.POST.get('customerName'):
+#           record.stockName = request.POST.get('stockName')
+#           record.amountLeft = request.POST.get('amountLeft')
+#           record.deficit = request.POST.get('deficit')
+#           record.save()
+#           messages.success(request,'Record Edited')
+#           re = InsertStock.objects.all()
+#           return redirect('ViewStocks')
+#     else:
+#       return render(request, 'accounts/AssignOrdersToStaff.html')
+    
+    
+=======
+@allowed_users(allowed_roles=['Operations'])
+def ShowAssignOrdersToStaff(request):
+    return render(request, 'accounts/AssignOrdersToStaff.html')
+>>>>>>> parent of 76dc16d... Tested some code to see if Django works.
+>>>>>>> 7f72401503f1e0d09a58fca75536a1f50679e55c

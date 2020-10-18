@@ -524,6 +524,8 @@ border-color: #a92507;
   text-align: right
 }
 
+<<<<<<< HEAD
+
 /*About us page */
 
 #AboutUs, #about{
@@ -543,11 +545,8 @@ border-color: #a92507;
   padding-right: 50px;
 }
 
-.leadersName{
-  text-align: left;
-  float: left;
-}
-
+=======
+>>>>>>> 1738a279b8582ef2186e45d56f8dfeddd9daaa7f
 /* -------------------------------------------------- sets.html--------------------------------------------------- */
 .carousel{
     background: #314e4e;
