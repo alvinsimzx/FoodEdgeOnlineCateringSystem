@@ -83,9 +83,22 @@ def createCustomer(request,customerID,authID,username,email):
 
 @login_required
 def profile(request):
-    #Edit Option of the profile page
-    u_form = UserUpdateForm()
-    p_form = ProfileUpdateForm()
+    if request.method == 'POST':
+        #Edit Option of the profile page
+        #Profile form (request.FILES for images)
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, 
+                                   request.FILES, 
+                                   instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your accounts has been updated!')
+            return redirect('profile')
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
 
     allOrders = InsertOrder.objects.filter(customerID=request.user.id)
     allPayment = InsertCustomer.objects.get(authID=request.user.id)
