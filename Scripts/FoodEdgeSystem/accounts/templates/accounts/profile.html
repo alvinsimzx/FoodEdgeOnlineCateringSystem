@@ -60,6 +60,7 @@
     <h2> Your Previous Orders </h2>
     <table>
         <tr>
+            <th>Order #</th>
             <th>Date and Time</th>
             <th>Email</th>
             <th>Contact</th>
@@ -70,6 +71,7 @@
         </tr>
         {% for order in allOrders %}
             <tr>
+                <td>{{order.orderID}}</td>
                 <td>{{order.cateringDatetime}}</td>
                 <td>{{order.custEmail}}</td>
                 <td>{{order.custContact}}</td>

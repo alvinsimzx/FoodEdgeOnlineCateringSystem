@@ -86,16 +86,14 @@ def profile(request):
     if request.method == 'POST':
         #Edit Option of the profile page
         #Profile form (request.FILES for images)
-        u_form = UserUpdateForm(request.POST, request.user)
+        u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
             messages.success(request, f'Your accounts has been updated!')
             return redirect('profile')
-
     else:
-       
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
@@ -104,14 +102,6 @@ def profile(request):
     transactionInfo = []
     paymentInfo = {"brand":[],"last4":[]}
     paymentLength = len(paymentInfo)
-    
-    context = {
-        'u_form': u_form,
-        'p_form': p_form,
-        'allOrders' : allOrders,
-        'transactionInfo':transactionInfo
-    }
-   
     
 
     if(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)):
@@ -131,6 +121,13 @@ def profile(request):
             "exp_year":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["source"]["exp_year"]
         }
     
+    context = {
+        'u_form': u_form,
+        'p_form': p_form,
+        'allOrders' : allOrders,
+        'paymentInfo':paymentInfo,
+        'transactionInfo':transactionInfo
+    }
     
     return render(request, 'accounts/profile.html', context)
 
@@ -189,17 +186,19 @@ def OrderMade(request):
     return render(request, 'accounts/ordermade.html')
 
 def Payment(request,args):
+    orderid = args
     if request.user.is_authenticated:
-        total = int(int(args) * 0.9)
+        total = int(int(InsertOrder.objects.get(orderID=orderid).amountDue)*0.9)
     else:
-        total = args
-    return render(request, 'accounts/CustomerPayment.html',{'total':total})
+        total = int(InsertOrder.objects.get(orderID=orderid).amountDue)
+    return render(request, 'accounts/CustomerPayment.html',{'total':total,'orderID':orderid})
 
 def charge(request):
     if request.method == 'POST':
         print("Data:", request.POST)
         userid = ""
         
+        orderid = request.POST['orderid']
         amount = int(request.POST['amount'])
 
         if request.user.is_authenticated:
@@ -207,21 +206,23 @@ def charge(request):
             email = allPayment.email
             userid = allPayment.customerID
             source = stripe.Customer.create_source(allPayment.customerID,source=request.POST['stripeToken'])
-            charge = stripe.Charge.create(customer = allPayment.customerID,amount = amount*100,currency = 'myr',description = "CateringPayment")
-            #sends automated email to users
+            charge = stripe.Charge.create(customer = allPayment.customerID,amount = amount*100,currency = 'myr',description = orderid)
+            print("OK")
             
         else:
-            customer = stripe.Customer.create(email= request.POST['email'],name = request.POST['name'],source = request.POST['stripeToken'])
+            customer = stripe.Customer.create(email = request.POST['email'],name = request.POST['name'],source = request.POST['stripeToken'])
             charge = stripe.Charge.create(customer = customer,amount = amount*100,currency = 'myr',description = "CateringPayment")  
             userid = customer.id
 
-        return redirect(reverse('PaymentSuccess',args=[amount]))
+        return redirect(reverse('PaymentSuccess',args=[orderid]))
     else:
         return render(request,'accounts/PaymentSuccess.html')
 
+
 def successMsg(request,args):
-    amount = args
-    return render(request,'accounts/PaymentSuccess.html',{'amount': args})
+    orderid= args
+    Orderinfo = InsertOrder.objects.get(orderID=orderid)
+    return render(request,'accounts/PaymentSuccess.html',{'OrderInfo': Orderinfo})
 
 def InsertCustomerOrder(request):
     if request.method =='POST':
@@ -258,7 +259,7 @@ This is an auto-generated email, please send a new email instead of replying.
                 [request.POST.get('custEmail')]
             )
             messages.success(request,'Order Sent')
-            return redirect(reverse('Payment',args=[price]))
+            return redirect(reverse('Payment',args=[saverecord.orderID]))
         else:
             messages.success(request,'Order did not send')
             return redirect(reverse('Payment',args=[price]))

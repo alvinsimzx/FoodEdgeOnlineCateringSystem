@@ -2,7 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime   
-
+from PIL import Image
 from django.dispatch import receiver 
 from django.db.models.signals import post_save
 
@@ -13,6 +13,15 @@ class Profile (models.Model):
     image = models.ImageField(default = 'default.jpg', upload_to='profile_pics')
     def __str__(self):
         return f'{self.user.username} Profile'
+
+    def save(self):
+        super().save()
+
+        img = Image.open(self.image.path)
+        if img.height > 300 or img.width>300:
+            output_Size = (300,300)
+            img.thumbnail(output_Size)
+            img.save(self.image.path)
 
 
 @receiver(post_save, sender=User)
@@ -56,7 +65,7 @@ class ActiveMenuItem(models.Model):
 
 
 class InsertOrder(models.Model):
-    orderID = models.IntegerField(primary_key=True)	
+    orderID = models.AutoField(primary_key=True)	
     teamID 	= models.IntegerField()
     customerID = models.IntegerField()
     cateringDatetime = models.DateTimeField(default=datetime.now, blank=True)	

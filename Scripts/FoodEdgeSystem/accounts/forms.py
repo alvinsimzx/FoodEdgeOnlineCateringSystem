@@ -18,7 +18,6 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['username', 'email']
 
 class ProfileUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
     class Meta: 
         model = Profile
-        fields = ['image', 'email']
+        fields = ['image']

@@ -35,9 +35,9 @@
 
 <form action="{% url 'charge' %}" method="post" id="payment-form">
 {% csrf_token %}
-
 {% if total %}
-<p>Total Price: </p>
+<p>Total Price for order #{{ orderID }}: </p>
+  <input type ="hidden" name="orderid" value={{orderID}}>
   <input type="text" name="amount" value={{ total }} readonly>
 {% endif %}
 
