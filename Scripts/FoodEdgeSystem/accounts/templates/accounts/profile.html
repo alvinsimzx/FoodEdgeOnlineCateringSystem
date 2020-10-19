@@ -26,7 +26,10 @@
         
      
     </div>
-    <form method="POST" enctype="multipart/form-data">
+    <p id="more_details">Scroll down for more details</p>
+</div>
+
+<form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Profile Info</legend>
@@ -36,27 +39,21 @@
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">Update</button>
         </div>
-    </form> 
-    <p id="more_details">Scroll down for more details</p>
-</div>
+</form> 
 
 <div class="profile" >
-<h2> Your Previous Orders </h2>
-    <button id="addPaymentButton">Add new Payment Method</button>
-    <form action="{% url 'profile' %}" method="post" id="payment-form">
-    {% csrf_token %}
-        <label for="card-element">
-        Credit or debit card
-        </label>
-        <div id="card-element">
-        <!-- A Stripe Element will be inserted here. -->
-        </div>
+<h2> Your Payment Avenues </h2>
 
-        <!-- Used to display form errors. -->
-        <div id="card-errors" role="alert"></div>
-
-    <button >Submit Payment</button>
-    </form>
+    <table>
+    {% for key,value in paymentInfo.items %}
+            <tr>
+                <th>{{ key }}</th>
+                {% for v in value %}
+                    <td>{{ v }}</td>
+                {% endfor %}
+            </tr>
+    {% endfor %}
+    </table>
 </div>
 
 <div class="profile">
@@ -141,22 +138,7 @@
         // Handle form submission.
         var form = document.getElementById('payment-form');
         form.addEventListener('submit', function(event) {
-            test = stripe
-                    .createPaymentMethod({
-                        type: 'card',
-                        card: card,
-                        billing_details: {
-                        name: 'Jenny Rosen',
-                        },
-                    })
-                    .then(function(result) {
-                        if(result.paymentMethod){
-                            alert("ok");
-                        }else{
-                            alert("no");
-                        }
-                        // Handle result.error or result.paymentMethod
-                    });
+            
             
             event.preventDefault();
 

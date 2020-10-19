@@ -5,8 +5,8 @@
         <nav>
             <ul>
                 <a href = "{% url 'staff-home' %}" class="home"><li>Home</li></a>
-                <a href = "{% url 'CheckAssignedOrders' %}" class="sets"><li>Check Orders</li></a>
-                <!-- <a href = "" class="about"><li>Assign Orders</li></a> -->
+                <a href = "{% url 'ShowGivenOrders' %}" class="sets"><li>Check Orders</li></a>
+                <a href = "{% url 'AssignOrdersToStaff' %}" class="about"><li>Assign Orders</li></a>
                 <a href = "{% url 'stock' %}" class="feedback"><li>Stock Management</li></a>
                 <a href = "{% url 'addMenuItems' %}" class="order"><li>Add Menu</li></a>
             </ul>
