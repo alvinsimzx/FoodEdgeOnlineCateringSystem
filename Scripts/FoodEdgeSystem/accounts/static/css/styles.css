@@ -7,6 +7,9 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Satisfy&display=swap');
+
+
+
 *{
     box-sizing: border-box;
     padding: 0;
@@ -949,7 +952,7 @@ border-color: #a92507;
       margin: auto 1%;
   }
 
-  .login_textbox input{
+  .login_textbox input, .login_textbox .form-group{
       border:none;
       outline:none;
       background: none;
@@ -966,7 +969,7 @@ border-color: #a92507;
     color:rgb(121, 120, 120);
 }
 
-.login_button input[type=submit]{
+.login_button input[type=submit], .login_button button[type=submit]{
     width:100%;
     background:#FDC91B;
     border:2px solid #FDC91B;
@@ -977,7 +980,8 @@ border-color: #a92507;
     transition: .5s;
 }
 
-.login_button input[type=submit]:hover{
+.login_button input[type=submit]:hover, .login_button button[type=submit]:hover{
+    width:100%;
     background:#a92507;
     border:2px solid #a92507;
     color: white;
@@ -1070,4 +1074,38 @@ footer p{
 a, a:hover, a:focus, a:active {
     text-decoration: none;
     color: inherit;
+}
+
+/* -----------------------------------------------------alert message----------------------------------------------------------- */
+.alert-success {
+    -moz-animation: cssAnimation .5s ease-in 5s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation .5s ease-in 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation .5s ease-in 5s forwards;
+    /* Opera */
+    animation: cssAnimation .5s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    z-index:10;
+    margin:0;
+}
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+        padding:0;
+        border:none;
+
+    }
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+        padding:0;
+        border:none;
+    }
 }

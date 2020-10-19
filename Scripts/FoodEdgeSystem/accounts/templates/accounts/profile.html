@@ -12,15 +12,14 @@
                 <p>Email: {{ user.email }}</p>
                 <p>Date Joined: {{user.date_joined}}</p>
                 <img src="{% static 'images/chip.png' %}" class="chip">
-                <button>Edit</button>
+                <a href="/deleteCustomer/{{user.username}}">Delete</a>
                 <h2 class="member_status">MEM­BER.</h2>
                 
             </div>
         <div class = "profile_img">
          
-                <img class="profile_pic" src="{{ user.profile.image.url }}" alt="Profile picture">
-          
-      
+            <img class="profile_pic" src="{{ user.profile.image.url }}" alt="Profile picture">
+
         </div>
         
         

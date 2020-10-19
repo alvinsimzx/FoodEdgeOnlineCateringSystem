@@ -144,6 +144,13 @@ def deleteCustomerAccount(request, username):
     users = User.objects.all()
     return redirect('CustomerAccounts')
 
+def deleteCustomerAccountCustomer(request, username):
+    account = User.objects.get(username=username)
+    account.delete()
+    users = User.objects.all()
+    messages.success(request, f'Your accounts has been deleted!')
+    return redirect('accounts-home')
+
 def showStockPage(request):
     return render(request, 'accounts/StockManagementPage.html')
 
