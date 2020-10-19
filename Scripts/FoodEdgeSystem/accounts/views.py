@@ -86,7 +86,7 @@ def profile(request):
     if request.method == 'POST':
         #Edit Option of the profile page
         #Profile form (request.FILES for images)
-        u_form = UserUpdateForm(request.POST, instance=request.user)
+        u_form = UserUpdateForm(request.POST, request.user)
         p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
@@ -95,7 +95,7 @@ def profile(request):
             return redirect('profile')
 
     else:
-        print("testasdfasd") 
+       
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
@@ -132,7 +132,7 @@ def profile(request):
         }
     
     
-    return render(request, 'accounts/profile.html', {'allOrders' : allOrders,'transactionInfo':transactionInfo,"paymentInfo":paymentInfo,"paymentLength":paymentLength})
+    return render(request, 'accounts/profile.html', context)
 
 def customerAccounts(request):
     users = User.objects.all()
