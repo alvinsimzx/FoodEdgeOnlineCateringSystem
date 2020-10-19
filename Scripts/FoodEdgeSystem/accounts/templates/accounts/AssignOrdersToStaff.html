@@ -7,165 +7,101 @@
 <!--Date: 4/10/20-->
 <!--Validate: -->
 
-<head>
-    <title>Assign orders to staff</title>
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
-    <link rel="shortcut icon" href="styles/images/logo.png">
-    <meta charset="utf-8">
-    <meta name="author" content="Karyn Chong Huei Xien">
-    <meta name="description" content="Food Edge assign orders">
-    <meta name="keywords" content="Food, Edge, Assign, Orders"> 
-  </head>
-
   <body>
   
   {%block content%}  
   
-  <h1 id = "feedbackTitle">Orders</h1>    
-    
-    <fieldset>
-      
-      <legend>Edit Orders Information</legend>
-    
-    <button type="button" class="collapsible1">Order 1</button>
   
-      <div class="content">
-      <p>Customer Name: Bob</p>
-      <p>Catering Date: 6 / 9 / 2020</p>     
-      <p>Pax: 50</p> 
-      <p>Address: Some random address here.</p> 
-      
-      
-      <p>Cater Leader: </p>
-      
-      <select name="CLeader"id="CLeader">
-  
-      <option value="worker1">Worker 1</option>
-      <option value="worker2">Worker 2</option>
-      <option value="worker3">Worker 3</option>
-        
-      </select>
-      
-      <p>Cater Worker(s): </p>
-    
-      <select name="CWorker"id="CWorker" multiple>
-    
-      <option value="worker1">Worker 1</option>
-      <option value="worker2">Worker 2</option>
-      <option value="worker3">Worker 3</option>
-      
-      </select>
-    
-      <p>Food set: </p>
-      
-    <select name="foodSet"id="foodSet">
-  
-      <option value="foodset1">Set 1</option>
-      <option value="foodset2">Set 2</option>
-      <option value="foodset3">Set 3</option>
-    
-    </select> 
-      
-      <p>Extra information: </p>
-      <p id="extra_info"><i>It's a birthday party.</i></p>
-      
-    </div>
-    
-    <script>
-      var coll = document.getElementsByClassName("collapsible1");
-      var i;
-
-      for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-        });
-      }
-    </script>
-    
-  </fieldset>
-  
-  <form id="editOrders" method="post">
+  <form id="editOrders" name='editorders' method="post">
     {% csrf_token %}
     <h1 id = "feedbackTitle">Orders</h1>    
     <fieldset>
       
       <legend>Edit Orders Information</legend>
     
-      {% for record in records%}
-        <p id= "ordersInfo">Edit Orders</p>
-        <select name="order">
-            <option value={{record.orderID}}>{{record.orderID}}</option>
+        <p id= "ordersInfo">Select an Order to edit</p>
+        <select name="order" id="SelectOrder">
+          <option value='null'>--SELECT--  </option>
+          {% for record in records%}
+              <option value={{record.orderID}}>{{record.orderID}}</option>
+          {% endfor %}
         </select>
 
+        <p><input id="SearchButton" type="Submit" value="Search"/></p>
+        
+        
+        {% for searchedOrder in SearchedOrder%}
+            <h3>Assign Order #{{searchedOrder.orderID}}</h3>
+            <p id= "customerID">Customer ID:</p>
+                <p>{{searchedOrder.customerID}}</p>
 
-        <p id= "customerID">Customer ID:</p>
-            <p>{{record.customerID}}</p>
+            <p>
+              <label for="teamID">Team ID: </label>
+              <input type="number" id="teamID" name="teamID" min="1" max="999" placeholder="Enter Team ID"/>
+              <input type="hidden" id="orderID" name="ChosenOrder" value{{searchedOrder.orderID}}/>
+            </p>
 
-        <p>
-          <label for="teamID">Team ID: </label>
-          <input type="number" id="teamID" name="teamID" min="1" max="999" placeholder="Enter Team ID" required/>
-        </p>
+            <p style="font-size: 20px;" id= "cateringDatetime">Catering Date and Time: </p>
+              <p>{{searchedOrder.cateringDatetime}}</p>
+            </p>
 
-        <p style="font-size: 20px;" id= "cateringDatetime">Catering Date and Time: </p>
-          <p>{{record.cateringDatetime}}</p>
-        </p>
+            <p>
+              <p id="CustFirstName">Customer First Name: </p>
+              <p>{{searchedOrder.custFirstName}}</p>
+            </p>
 
-        <p>
-          <p id="CustFirstName">Customer First Name: </p>
-          <p>{{record.custFirstName}}</p>
-        </p>
+            <p>
+              <p id="CustLastName">Customer Last Name: </p>
+              <p>{{searchedOrder.custLastName}}</p>
+            </p>
 
-        <p>
-          <p id="CustLastName">Customer Last Name: </p>
-          <p>{{record.custLastName}}</p>
-        </p>
+            <p>
+              <p id="custEmail">Customer email: </p>
+              <p>{{searchedOrder.custEmail}}</p>
+            </p>
 
-        <p>
-          <p id="custEmail">Customer email: </p>
-          <p>{{record.custEmail}}</p>
-        </p>
+            <p>
+              <p id="custContact">Customer contact: </p>
+              <p>{{searchedOrder.custContact}}</p>
+            </p>
 
-        <p>
-          <p id="custContact">Customer contact: </p>
-          <p>{{record.custContact}}</p>
-        </p>
+            <p>
+              <p id="custOrder">Customer order: </p>
+              <p>{{searchedOrder.custOrder}}</p>
+            </p>
 
-        <p>
-          <p id="custOrder">Customer order: </p>
-          <p>{{record.custOrder}}</p>
-        </p>
+            <p>
+              <p id="custRequest">Customer request: </p>
+              <p>{{searchedOrder.custRequest}}</p>
+            </p>
 
-        <p>
-          <p id="custRequest">Customer request: </p>
-          <p>{{record.custRequest}}</p>
-        </p>
+            <p>
+              <p idr="location">Location: </p>
+              <p>{{searchedOrder.location}}</p>
+            </p>
 
-        <p>
-          <p idr="location">Location: </p>
-          <p>{{record.location}}</p>
-        </p>
-
-        <p>
-          <p id="amountDue">amountDue: </p>
-          <p>{{record.amountDue}}</p>
-        </p>
-
-        {% endfor %}
-
-
-      </label>
+            <p>
+              <p id="amountDue">amountDue: </p>
+              <p>{{searchedOrder.amountDue}}</p>
+            </p>
+            </div>
+            <p><input type="Submit" name="submit" value="Submit"/></p>
+            {% endfor %}
+        
+        
     </fieldset>
-    <p>
-      <input type="Submit" name="submit" value="Submit"/>
-    </p>
-  </fieldset>   
+    
   </form>
+
+  <script>
+    $('#SearchButton').hide();
+    $(document).ready(function() {
+        $('#SelectOrder').on('change', function() {
+          var $form = $(this).closest('form');
+          $form.find('input[type=submit]').click();
+        });
+      });
+  </script>
   {%endblock content%}
 
 </html>

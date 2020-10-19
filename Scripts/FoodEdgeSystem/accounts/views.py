@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from .decorators import allowed_users
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem,InsertCustomer
+from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem,InsertCustomer,StaffTable
 # Email Confirmation
 from django.shortcuts import render
 from django.core.mail import send_mail
@@ -87,9 +87,7 @@ def profile(request):
         #Edit Option of the profile page
         #Profile form (request.FILES for images)
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST, 
-                                   request.FILES, 
-                                   instance=request.user.profile)
+        p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
@@ -97,12 +95,15 @@ def profile(request):
             return redirect('profile')
 
     else:
+        print("testasdfasd") 
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
     allOrders = InsertOrder.objects.filter(customerID=request.user.id)
     allPayment = InsertCustomer.objects.get(authID=request.user.id)
     transactionInfo = []
+    paymentInfo = {"brand":[],"last4":[]}
+    paymentLength = len(paymentInfo)
     
     context = {
         'u_form': u_form,
@@ -111,8 +112,14 @@ def profile(request):
         'transactionInfo':transactionInfo
     }
    
+    
 
-
+    if(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)):
+        for i in range(len(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",))):
+            paymentInfo["brand"].append(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][i]["card"]["brand"])
+            paymentInfo["last4"].append(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][i]["card"]["last4"])
+        
+    
     if(stripe.Charge.list(customer=allPayment.customerID,limit=3)):
         transactionInfo = {
             "amount":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["amount"],
@@ -124,8 +131,8 @@ def profile(request):
             "exp_year":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["source"]["exp_year"]
         }
     
-    return render(request, 'accounts/profile.html', context)
-   
+    
+    return render(request, 'accounts/profile.html', {'allOrders' : allOrders,'transactionInfo':transactionInfo,"paymentInfo":paymentInfo,"paymentLength":paymentLength})
 
 def customerAccounts(request):
     users = User.objects.all()
@@ -151,6 +158,24 @@ def ViewStocks(request):
         messages.warning(request,'Low Stocks Displayed')
 
     return render(request, 'accounts/stock2.html', {'re': re, 'lowStock': lowStock})
+
+def ShowGivenOrders(request):   
+    return render(request, 'accounts/CheckAssignedOrders.html', {'data':data})
+
+def ShowAssignOrdersToStaff(request):
+    record = InsertOrder.objects.filter(teamID__isnull=True)
+    SearchedOrder = None
+
+    if request.method == 'POST':
+        if request.POST.get('teamID'):
+            update = InsertOrder.objects.get(orderID=request.POST.get('ChosenOrder'))
+            update.teamID = request.POST.get('teamID')
+            update.save()
+            messages.success(request,'Order number #' + str(request.POST.get('ChosenOrder')) +   ' has been assigned to Team #' + str(request.POST.get('teamID')))
+        elif request.POST.get('order'):
+            SearchedOrder = InsertOrder.objects.filter(orderID=request.POST.get('order'))
+       
+    return render(request, 'accounts/AssignOrdersToStaff.html', {'records': record,'SearchedOrder':SearchedOrder})
     
 
 def OrderMade(request):
@@ -308,7 +333,15 @@ def StaffLogin(request):
 
 @allowed_users(allowed_roles=['Operations'])
 def ShowGivenOrders(request):
-    return render(request, 'accounts/CheckAssignedOrders.html')
+    UserTeamID = StaffTable.objects.get(staffID=request.user.id).teamID
+    AssignedOrder = InsertOrder.objects.filter(teamID=UserTeamID)
+    SearchedOrder = None
+
+    if request.method == 'POST':
+        if request.POST.get('order'):
+            SearchedOrder = InsertOrder.objects.filter(orderID=request.POST.get('order'))
+
+    return render(request, 'accounts/CheckAssignedOrders.html', {'AssignedOrder': AssignedOrder,'SearchedOrder':SearchedOrder})
 
 @allowed_users(allowed_roles=['Operations'])
 def ShowAddMenuItems(request):
