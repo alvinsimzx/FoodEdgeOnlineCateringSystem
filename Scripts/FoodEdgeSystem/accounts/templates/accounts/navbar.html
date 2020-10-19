@@ -1,7 +1,7 @@
 {% load static %}
 
 <header>
-        <a href = "#"><img class="logo" src="{% static '/images/logo.png'%}" alt="Logo" width="150" height="75"></a>
+        <a href = "{% url 'accounts-home' %}"><img class="logo" src="{% static '/images/logo.png'%}" alt="Logo" width="150" height="75"></a>
         <nav>
             <ul>
                 <a href = "{% url 'accounts-home' %}" class="home"><li>Home</li></a>
@@ -13,8 +13,8 @@
             
         </nav>
         {% if user.is_authenticated%}
-          <a class="login" href= "{% url 'profile' %}"><button class="loginButton">Profile</button></a>
           <a class="login" href= "{% url 'logout' %}"><button class="loginButton">Log Out</button></a>
+          <a class="login" href= "{% url 'profile' %}" title="Profile"><img src="{{ user.profile.image.url }}" class="profile_icon"></a>
         {% else %}
           <a class="login" href= "{% url 'register' %}"><button class="loginButton">Register</button></a>
           <a class="login" href= "{% url 'login' %}"><button class="loginButton">Login</button></a>

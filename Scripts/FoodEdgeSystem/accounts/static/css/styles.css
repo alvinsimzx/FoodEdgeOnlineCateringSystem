@@ -17,22 +17,34 @@
 }
 
 body{
-    
+    margin-top:5%;
     background-color: #314e4e;
 }
 
+
 header{
+    position: absolute;
+    top:0;
+    left:0;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), transparent);
+    z-index: 10;
+    width: 100%;
+    box-shadow: none;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 0 2%;
-    background: #FDFEFD;
-    box-shadow: 0 0 15px 1px black;
-    
+}
+
+
+nav ul{
+    margin-bottom: 0;
 }
 
 nav{
     margin-right: auto;
+    margin-top: auto;
+    margin-bottom:auto;
 }
 
 
@@ -47,7 +59,8 @@ nav ul a {
     display: inline-block;
     padding: 0 5px;
     font-weight: bold;
-    color: rgba(49, 78, 78, 0.8);
+    color:white;
+    font-size: 15px;
     
 }
 nav ul a::after{
@@ -72,7 +85,7 @@ nav ul a:hover{
 
 
 .loginButton{
-    padding: 10px 25px;
+    padding: 8px 15px;
     margin: 0 10px;
     background-color: rgba(169, 37, 7, 0.7);
     border: none;
@@ -80,12 +93,24 @@ nav ul a:hover{
     cursor: pointer;
     transition: all .5s ease 0s;
     color: #FDFEFD;
-    font-weight: bold;
+    font-size: 16px;
+    line-height: normal;
 }
 
 .loginButton:hover{
     background-color: #a92507;
     color: #ffad49;
+}
+
+.profile_icon{
+    margin-left:20%;
+    border-radius: 50%;
+    width:40px;
+    height: 40px;
+}
+
+.profile_icon:hover{
+    opacity:.5;
 }
 
   /* ------------------------------------------------profile.html----------------------------------------------------- */
@@ -887,7 +912,85 @@ border-color: #a92507;
       padding: 3%;
       margin: 3%;
   }
+  /* -------------------------------------------------------login pages--------------------------------------------------------------- */
+  .login_box, .logout{
+      width:30%;
+      position: absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+      color:white;
+      background: rgba(0, 0, 0, 0.6);
+      padding:5%;
+      border-radius: 20px;
+  }
 
+  .login_box h3{
+      float: left;
+      border-bottom: 3px solid #FDC91B;
+      margin-bottom: 50px;
+      padding:13px 0;
+  }
+
+  .login_textbox{
+      width:90%;
+      overflow: hidden;
+      display: flex;
+      flex-flow: row wrap;
+      font-size: 20px;
+      padding: 8px 0;
+      margin:8px 0;
+      border-bottom: 1px solid #FDC91B;
+  }
+
+  .login_textbox i{
+      width: 26px;
+      text-align: center;
+      margin: auto 1%;
+  }
+
+  .login_textbox input{
+      border:none;
+      outline:none;
+      background: none;
+      color: white;
+      width:80%;
+      margin:0 10px;
+  }
+
+  .login_textbox input::placeholder{
+    color:white;
+}
+
+.login_textbox input:focus::placeholder{
+    color:rgb(121, 120, 120);
+}
+
+.login_button input[type=submit]{
+    width:100%;
+    background:#FDC91B;
+    border:2px solid #FDC91B;
+    color: #314e4e;
+    padding: 5px;
+    margin: 10% 0;
+    font-size:18px;
+    transition: .5s;
+}
+
+.login_button input[type=submit]:hover{
+    background:#a92507;
+    border:2px solid #a92507;
+    color: white;
+}
+
+/* ----------------------------------------------------------logout.html------------------------------------------------------------ */
+.logout{
+    text-align: center;
+}
+
+.text-muted a{
+    color:white;
+}
   /* ---------------------------------------------------------indexStaff.html---------------------------------------------------------- */
   .loginStaff img{
       margin: 0 10px;
