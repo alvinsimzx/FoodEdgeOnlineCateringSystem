@@ -603,7 +603,7 @@ border-color: #a92507;
 
 
 
-/* --------------------------------------------------------------karyn is dying---------------------------------------------------------- */
+/* --------------------------------------------------------------Orders Assigned to Staff---------------------------------------------------------- */
 
 .collapsible1, .collapsible2 {
   background-color: #eee;
@@ -643,17 +643,31 @@ border-color: #a92507;
     margin: 15px;
   }
   
-  #AboutUsTitle2{
+#AboutUsTitle2{
     margin-top: 50px;
     text-align: center;
-  }
+}
   
-  #about_info2{
+#about_info2{
     text-align: center;
     margin-top: 15px;
     padding-left: 50px;
     padding-right: 50px;
-  }
+}
+
+/* ---------------------------------------------------sucess.html------------------------------------------------- */
+
+#paymentSuccessful{
+    text-align: left;
+    padding: 2%;
+}
+
+#tickPicture{
+    width: 5%;
+    margin: 0 auto;
+    display: block;
+}
+
 
 /* -------------------------------------------------- sets.html--------------------------------------------------- */
 .carousel{

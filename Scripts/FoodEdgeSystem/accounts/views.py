@@ -190,7 +190,7 @@ def OrderMade(request):
 
 def Payment(request,args):
     if request.user.is_authenticated:
-        total = int(args) * 0.9
+        total = int(int(args) * 0.9)
     else:
         total = args
     return render(request, 'accounts/CustomerPayment.html',{'total':total})
@@ -211,14 +211,13 @@ def charge(request):
             #sends automated email to users
             
         else:
-            customer = stripe.Customer.create(email = request.POST['email'],name = request.POST['name'],source = request.POST['stripeToken'])
+            customer = stripe.Customer.create(email= request.POST['email'],name = request.POST['name'],source = request.POST['stripeToken'])
             charge = stripe.Charge.create(customer = customer,amount = amount*100,currency = 'myr',description = "CateringPayment")  
             userid = customer.id
 
         return redirect(reverse('PaymentSuccess',args=[amount]))
     else:
         return render(request,'accounts/PaymentSuccess.html')
-
 
 def successMsg(request,args):
     amount = args

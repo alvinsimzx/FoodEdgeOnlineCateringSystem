@@ -1,11 +1,17 @@
 {% extends 'accounts/main.html' %}
 {% load static %}
 {% block content %}
-	<form id="about_us">
+	<form id="paymentSuccessful">
 	{% csrf_token %}
-		<img src="{% static 'images/check.png' %}">
-		<h4>Thank you for your contribution of ${{amount}}!</h4>
-		<p>Your support helps me fulfill my dream of teaching aspiring developers around the world! You should receive a receipt to the email you provided shortly :)</p>
+		<img id="tickPicture" src="{% static 'images/check.png' %}">
+		<h4><strong>Customer name:</strong> </h4>
+		<h4><strong>Customer ID:</strong> </h4>
+		<h4><strong>Customer contact number:</strong> </h4>
+		<h4><strong>Customer email:</strong> </h4>
+		<h4><strong>Customer address:</strong> </h4>
+		<h4><strong>Food set:</strong> </h4>
+		<h4><strong>Additional information:</strong> </h4>
+		<h4><strong>Total amount:</strong> RM {{amount}}</h4>
 		<hr>
 		<a class="myButton" href="{% url 'order' %}">&#x2190;Back to donation page</a>
 	</form>
