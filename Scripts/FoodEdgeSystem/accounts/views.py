@@ -182,7 +182,10 @@ def OrderMade(request):
     return render(request, 'accounts/ordermade.html')
 
 def Payment(request,args):
-    total = args
+    if request.user.is_authenticated:
+        total = int(args) * 0.9
+    else:
+        total = args
     return render(request, 'accounts/CustomerPayment.html',{'total':total})
 
 def charge(request):
@@ -205,14 +208,14 @@ def charge(request):
             charge = stripe.Charge.create(customer = customer,amount = amount*100,currency = 'myr',description = "CateringPayment")  
             userid = customer.id
 
-        return redirect('order')
+        return redirect(reverse('PaymentSuccess',args=[amount]))
     else:
-        return redirect('order')
+        return render(request,'accounts/PaymentSuccess.html')
 
 
 def successMsg(request,args):
     amount = args
-    return render(request,'accounts/PaymentSuccess.html',{'amount':amount})
+    return render(request,'accounts/PaymentSuccess.html',{'amount': args})
 
 def InsertCustomerOrder(request):
     if request.method =='POST':

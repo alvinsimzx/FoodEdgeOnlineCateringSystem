@@ -37,9 +37,8 @@
 {% csrf_token %}
 
 {% if total %}
-<select required name="amount" id="amount">
-	<option selected value={{ total }}>{{ total }}</option>
-</select>
+<p>Total Price: </p>
+  <input type="text" name="amount" value={{ total }} readonly>
 {% endif %}
 
 <input type="email" name="email" placeholder="Email..">
