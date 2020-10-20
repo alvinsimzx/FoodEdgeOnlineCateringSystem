@@ -660,6 +660,13 @@
          
           <div class="allItems">
               <h3>Items include: </h3>
+              {% for items in AvailableItems %}
+                {% if items %}
+                <p>Available</p>
+                {% endif %}
+              {% empty %}
+                <p>Unavailable</p>
+              {% endfor %}
               <ol>
                   <li>Fried Shrimp Ball</li>
                   <li>Nyonya Fried Rice</li>
@@ -989,6 +996,13 @@
          
           <div class="allItems">
               <h3>Items include: </h3>
+              {% for items in AvailableItems %}
+                {% if items %}
+                <p>Available</p>
+                {% endif %}
+              {% empty %}
+                <p>Unavailable</p>
+              {% endfor %}
               <ol>
                   <li>Cold Dish</li>
                   <li>Fried Longevity Noodles</li>

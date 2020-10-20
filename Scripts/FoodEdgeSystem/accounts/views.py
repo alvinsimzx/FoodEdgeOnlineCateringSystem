@@ -172,6 +172,7 @@ def ShowAssignOrdersToStaff(request):
 
     if request.method == 'POST':
         if request.POST.get('teamID'):
+            print(request.POST.get('ChosenOrder'))
             update = InsertOrder.objects.get(orderID=request.POST.get('ChosenOrder'))
             update.teamID = request.POST.get('teamID')
             update.save()
