@@ -41,6 +41,20 @@
   <input type="text" name="amount" value={{ total }} readonly>
 {% endif %}
 
+<h2>Select your previous payment methods</h2>
+<select name="custPrevPayment" id="custPrevPayment">
+<option select=selected value="null">--Select Payment--</option>
+  {% for value in allCustPayment.id %}
+    {% for value2 in allCustPayment.last4 %}
+      <option value={{value}}>**** **** **** {{value2}}</option>
+    {% endfor %}
+  {% endfor %}
+</select>
+
+
+<br><br>
+<h2>Or add another Card</h2>
+
 <input type="email" name="email" placeholder="Email..">
 <input type="text" name="name" placeholder="Name..">
     <label for="card-element">
@@ -92,7 +106,7 @@
         // Handle real-time validation errors from the card Element.
         card.on('change', function(event) {
         var displayError = document.getElementById('card-errors');
-        if (event.error) {
+        if (event.error $('#custPrevPayment').val()==null) {
             displayError.textContent = event.error.message;
         } else {
             displayError.textContent = '';

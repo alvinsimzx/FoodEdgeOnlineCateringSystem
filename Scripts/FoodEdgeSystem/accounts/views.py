@@ -112,7 +112,7 @@ def profile(request):
     
     if(stripe.Charge.list(customer=allPayment.customerID,limit=3)):
         transactionInfo = {
-            "amount":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["amount"],
+            "amount":(stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["amount"]/100),
             "transaction_id":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["balance_transaction"],
             "description":stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["description"],
             "brand": stripe.Charge.list(customer=allPayment.customerID,limit=3)["data"][0]["source"]["brand"],
@@ -187,11 +187,24 @@ def OrderMade(request):
 
 def Payment(request,args):
     orderid = args
+    paymentInfo = {"last4":[],"id":[]}
     if request.user.is_authenticated:
-        total = int(int(InsertOrder.objects.get(orderID=orderid).amountDue)*0.9)
+        allPayment = InsertCustomer.objects.get(authID=request.user.id)
+        if(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)):
+            for i in range(len(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",))):
+                paymentInfo["last4"].append(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][i]["card"]["last4"])
+                paymentInfo["id"].append(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)["data"][i]["id"])
+        allPayment = InsertCustomer.objects.get(authID=request.user.id)
+        total = InsertOrder.objects.get(orderID=orderid).amountDue
     else:
-        total = int(InsertOrder.objects.get(orderID=orderid).amountDue)
-    return render(request, 'accounts/CustomerPayment.html',{'total':total,'orderID':orderid})
+        total = InsertOrder.objects.get(orderID=orderid).amountDue
+    
+    context={
+        'total':total,
+        'orderID':orderid,
+        'allCustPayment':paymentInfo
+        }
+    return render(request, 'accounts/CustomerPayment.html',context)
 
 def charge(request):
     if request.method == 'POST':
@@ -199,15 +212,18 @@ def charge(request):
         userid = ""
         
         orderid = request.POST['orderid']
-        amount = int(request.POST['amount'])
+        amount = InsertOrder.objects.get(orderID=orderid).amountDue
 
         if request.user.is_authenticated:
             allPayment = InsertCustomer.objects.get(authID=request.user.id)
             email = allPayment.email
             userid = allPayment.customerID
-            source = stripe.Customer.create_source(allPayment.customerID,source=request.POST['stripeToken'])
-            charge = stripe.Charge.create(customer = allPayment.customerID,amount = amount*100,currency = 'myr',description = orderid)
-            print("OK")
+            if(request.POST['custPrevPayment']!="null"):
+                charge = stripe.Charge.create(customer = allPayment.customerID,amount = amount*100,currency = 'myr',source=request.POST['custPrevPayment'],description = orderid)
+                print("OK")
+            else:
+                source = stripe.Customer.create_source(allPayment.customerID,source=request.POST['stripeToken'])
+                charge = stripe.Charge.create(customer = allPayment.customerID,amount = amount*100,currency = 'myr',description = orderid)
             
         else:
             customer = stripe.Customer.create(email = request.POST['email'],name = request.POST['name'],source = request.POST['stripeToken'])
@@ -238,7 +254,11 @@ def InsertCustomerOrder(request):
             saverecord.custContact = request.POST.get('custContact')
             saverecord.custOrder = request.POST.get('custOrder')
             saverecord.custRequest = request.POST.get('custRequest')
-            price = int(request.POST.get('custOrder'))
+            if request.user.is_authenticated:
+                 price = int(request.POST.get('custOrder'))*0.9
+            else:
+                price = int(request.POST.get('custOrder'))
+            saverecord.amountDue = price
             saverecord.location = request.POST.get('location')
             saverecord.save()
             send_mail(
