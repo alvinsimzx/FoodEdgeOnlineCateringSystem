@@ -49,6 +49,8 @@ def customer(request):
     return render(request, 'accounts/customer.html')
 
 def feedback(request):
+    if request.method == 'POST':
+        print("dasdasd")
     return render(request, 'accounts/feedback.html')
 
 def register(request):
