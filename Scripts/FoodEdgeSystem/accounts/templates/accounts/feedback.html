@@ -24,6 +24,7 @@
     }
     </style>  
   <form id="feedback_form" method="post">
+  {% csrf_token %}
       <h1 id = "feedbackTitle">Feedback</h1>
       <fieldset>
       <legend>Customer Information</legend>  

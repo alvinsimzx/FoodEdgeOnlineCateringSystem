@@ -51,7 +51,11 @@ def customer(request):
 def feedback(request):
     items = MenuItem.objects.all()
     if request.method == 'POST':
-        print("dasdasd")
+        saverecord = ActiveMenuItem()
+        saverecord.menuItemID = request.POST.get('menuItemID')
+        saverecord.rating = request.POST.get('rating')
+        saverecord.save()
+        messages.success(request, f'You have succesfully sent your feedback!')
     return render(request, 'accounts/feedback.html', {'items': items})
 
 def register(request):
