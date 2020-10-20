@@ -284,13 +284,17 @@ def InsertMenu(request):
     mn = MenuItem.objects.all()
     if request.method == 'POST':
         if request.POST.get('stockID') and request.POST.get('itemName') and request.POST.get('itemPrice'):
+            for mns in mn:
+                if(mns.itemName == request.POST.get('itemName')):
+                    messages.warning(request, 'Same Item Detected')
+                    return redirect('addMenuItems')
             saverecord = MenuItem()
             saverecord.stockID = request.POST.get('stockID')
             saverecord.itemName = request.POST.get('itemName')
             saverecord.itemPrice = request.POST.get('itemPrice')
             saverecord.save()
             messages.success(request,'Menu Item Saved')
-            return render(request, 'accounts/menu.html', {'re': re, 'mn': mn})
+            return redirect('addMenuItems')
     else:
          return render(request, 'accounts/menu.html', {'re': re, 'mn': mn})
 
