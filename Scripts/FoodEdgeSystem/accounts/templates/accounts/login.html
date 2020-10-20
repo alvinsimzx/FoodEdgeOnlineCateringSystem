@@ -18,18 +18,7 @@ form{
         <h3>Customer Login</h3>
         <form method="POST">
             {% csrf_token %}
-            <div class="login_textbox">
-                {{ form.username|as_crispy_field }}
-			</div>
-
-			<div class="login_textbox">
-                {{ form.password|as_crispy_field }}
-            </div>
-            
-                <!-- <legend class="border-bottom mb-4">Customer Log In</legend>
-                {{ form.username|as_crispy_field }}
-                {{ form.password|as_crispy_field }}
-                {{form | crispy}} -->
+                {{form | crispy}}
             <div class="login_button">
                 <button class="btn btn-outline-info" type="submit">Log In</button>
             </div>

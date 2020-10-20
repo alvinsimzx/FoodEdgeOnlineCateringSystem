@@ -180,8 +180,7 @@ nav ul a:hover{
     text-align: left;
     padding: 8px;
   }
-  
-  tr:nth-child(even){background-color: #f2f2f2}
+
   
   th {
     background-color: #4CAF50;
@@ -941,13 +940,13 @@ border-color: #a92507;
   }
 
   .login_box h3{
-      float: left;
+      text-align: center;
       border-bottom: 3px solid #FDC91B;
       margin-bottom: 50px;
       padding:13px 0;
   }
 
-  .login_textbox{
+  .login_textbox, #div_id_username div,  #div_id_password div{
       width:90%;
       overflow: hidden;
       display: flex;
@@ -958,20 +957,28 @@ border-color: #a92507;
       border-bottom: 1px solid #FDC91B;
   }
 
+  #div_id_username div, #div_id_password div{
+      width:100%;
+  }
+
   .login_textbox i{
       width: 26px;
       text-align: center;
       margin: auto 1%;
   }
 
-  .login_textbox input, .login_textbox .form-group{
+  .login_textbox input,  #div_id_username .form-control, #div_id_password .form-control{
       border:none;
       outline:none;
       background: none;
       color: white;
       width:80%;
-      margin:0 10px;
+      margin:0;
   }
+
+  #div_id_username .form-control, #div_id_password .form-control{
+    width:100%;
+}
 
   .login_textbox input::placeholder{
     color:white;
@@ -1029,9 +1036,9 @@ border-color: #a92507;
     border-radius: 320px;
     position: relative;
     color: #fff;
-    padding: 5%;
     display: block;
     width: 80%;
+    padding: 5%;
     border: white solid 3px;
     font-weight: 500;
     transition: .8s;
@@ -1089,7 +1096,7 @@ a, a:hover, a:focus, a:active {
 }
 
 /* -----------------------------------------------------alert message----------------------------------------------------------- */
-.alert-success {
+.alert-success, .alert-danger, .alert-info {
     -moz-animation: cssAnimation .5s ease-in 5s forwards;
     /* Firefox */
     -webkit-animation: cssAnimation .5s ease-in 5s forwards;
@@ -1120,4 +1127,10 @@ a, a:hover, a:focus, a:active {
         padding:0;
         border:none;
     }
+}
+
+.alert-danger{
+    position: absolute;
+    top:0;
+    left:0;
 }
