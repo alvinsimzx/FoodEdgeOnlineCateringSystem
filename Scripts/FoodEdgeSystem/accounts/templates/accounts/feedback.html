@@ -43,8 +43,11 @@
               
       <fieldset>
       <legend>Menu Item</legend>
-      <select name="food"id="food" required>
-      </select>
+      <select id="menuItemID" name="menuItemID">
+        {%for item in items%}
+        <option value="{{item.menuItemID}}">{{item.itemName}}</option>
+        {% endfor %}
+    </select>
       </fieldset>
           
     

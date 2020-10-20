@@ -49,9 +49,10 @@ def customer(request):
     return render(request, 'accounts/customer.html')
 
 def feedback(request):
+    items = MenuItem.objects.all()
     if request.method == 'POST':
         print("dasdasd")
-    return render(request, 'accounts/feedback.html')
+    return render(request, 'accounts/feedback.html', {'items': items})
 
 def register(request):
     if request.method == 'POST':
