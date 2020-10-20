@@ -281,6 +281,7 @@ def Insertrecord(request):
 
 def InsertMenu(request):
     re = InsertStock.objects.all()
+    mn = MenuItem.objects.all()
     if request.method == 'POST':
         if request.POST.get('stockID') and request.POST.get('itemName') and request.POST.get('itemPrice'):
             saverecord = MenuItem()
@@ -289,9 +290,9 @@ def InsertMenu(request):
             saverecord.itemPrice = request.POST.get('itemPrice')
             saverecord.save()
             messages.success(request,'Menu Item Saved')
-            return render(request, 'accounts/menu.html', {'re': re})
+            return render(request, 'accounts/menu.html', {'re': re, 'mn': mn})
     else:
-         return render(request, 'accounts/menu.html', {'re': re})
+         return render(request, 'accounts/menu.html', {'re': re, 'mn': mn})
 
 def DeleteRecord(request, stockID):
     record = InsertStock.objects.get(stockID=stockID)
