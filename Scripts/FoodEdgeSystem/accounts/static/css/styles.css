@@ -638,17 +638,15 @@ border-color: #a92507;
   text-align: right
 }
 
-#AboutUsTitle, #about_info{
-    text-align: center;
-    margin: 15px;
-  }
+/* --------------------------------------------------------------AboutUs.html---------------------------------------------------------- */
+
   
-#AboutUsTitle2{
+#AboutUs, #AboutUsTitle2{
     margin-top: 50px;
     text-align: center;
 }
   
-#about_info2{
+#about, #about_info2{
     text-align: center;
     margin-top: 15px;
     padding-left: 50px;
