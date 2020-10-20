@@ -43,7 +43,7 @@
 
 <h2>Select your previous payment methods</h2>
 <select name="custPrevPayment" id="custPrevPayment">
-<option select=selected value="null">--Select Payment--</option>
+<option select=selected value="select">--Select Payment--</option>
   {% for value in allCustPayment.id %}
     {% for value2 in allCustPayment.last4 %}
       <option value={{value}}>**** **** **** {{value2}}</option>
@@ -107,7 +107,7 @@
         card.on('change', function(event) {
         var displayError = document.getElementById('card-errors');
         //fix this
-        if (event.error && $('#custPrevPayment').val()==null) {
+        if (event.error && $('#custPrevPayment').val()=="select") {
             displayError.textContent = event.error.message;
         } else {
             displayError.textContent = '';
@@ -117,10 +117,11 @@
         // Handle form submission.
         var form = document.getElementById('payment-form');
         form.addEventListener('submit', function(event) {
-        event.preventDefault();
+          if( $('#custPrevPayment').val()=='select'){
+            event.preventDefault();
 
         stripe.createToken(card).then(function(result) {
-            if (result.error) {
+            if (result.error && $('#custPrevPayment').val()=='select') {
             // Inform the user if there was an error.
             var errorElement = document.getElementById('card-errors');
             errorElement.textContent = result.error.message;
@@ -129,6 +130,8 @@
             stripeTokenHandler(result.token);
             }
         });
+
+          }
         });
 
         // Submit the form with the token ID.
