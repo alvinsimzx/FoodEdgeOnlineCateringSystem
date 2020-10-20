@@ -83,6 +83,12 @@ def createCustomer(request,customerID,authID,username,email):
 
 @login_required
 def profile(request):
+    allOrders = InsertOrder.objects.filter(customerID=request.user.id)
+    allPayment = InsertCustomer.objects.get(authID=request.user.id)
+    transactionInfo = []
+    paymentInfo = {"brand":[],"last4":[]}
+    paymentLength = len(paymentInfo)
+
     if request.method == 'POST':
         #Edit Option of the profile page
         #Profile form (request.FILES for images)
@@ -96,13 +102,6 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
-
-    allOrders = InsertOrder.objects.filter(customerID=request.user.id)
-    allPayment = InsertCustomer.objects.get(authID=request.user.id)
-    transactionInfo = []
-    paymentInfo = {"brand":[],"last4":[]}
-    paymentLength = len(paymentInfo)
-    
 
     if(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",)):
         for i in range(len(stripe.PaymentMethod.list(customer=allPayment.customerID,type="card",))):
@@ -130,6 +129,7 @@ def profile(request):
     }
     
     return render(request, 'accounts/profile.html', context)
+
 
 def customerAccounts(request):
     users = User.objects.all()

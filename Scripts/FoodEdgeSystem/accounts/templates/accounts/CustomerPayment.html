@@ -106,7 +106,7 @@
         // Handle real-time validation errors from the card Element.
         card.on('change', function(event) {
         var displayError = document.getElementById('card-errors');
-        if (event.error $('#custPrevPayment').val()==null) {
+        if (event.error && $('#custPrevPayment').val()==null) {
             displayError.textContent = event.error.message;
         } else {
             displayError.textContent = '';

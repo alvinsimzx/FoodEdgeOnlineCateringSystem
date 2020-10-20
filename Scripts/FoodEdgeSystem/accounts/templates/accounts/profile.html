@@ -40,22 +40,22 @@
         </div>
     </form>
 
-<div class="profile" >
-<h2> Your Payment Avenues </h2>
-
-    <table>
-    {% for key,value in paymentInfo.items %}
-            <tr>
-                <th>{{ key }}</th>
-                {% for v in value %}
-                    <td>{{ v }}</td>
-                {% endfor %}
-            </tr>
-    {% endfor %}
-    </table>
-</div>
-
-<div class="profile">
+    <h2> Your Payment Avenues </h2>
+        <table>
+        <tr>
+            {% for key in paymentInfo.keys %}
+                    <th>{{key}}</th>
+            {% endfor %}
+        </tr>
+        {% for value in paymentInfo.brand %}
+            {% for value2 in paymentInfo.last4 %}
+                    <tr>
+                        <td>{{value}}</td>
+                        <td>{{value2}}</td>
+                    </tr>
+            {% endfor %}
+        {% endfor %}
+        </table>
     
     <h2> Your Previous Orders </h2>
     <table>
