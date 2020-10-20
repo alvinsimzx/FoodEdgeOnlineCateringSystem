@@ -258,7 +258,7 @@ This is an auto-generated email, please send a new email instead of replying.
                 "foodedgecateringassignment@gmail.com", 
                 [request.POST.get('custEmail')]
             )
-            messages.success(request,'Order Sent')
+            messages.success(request,'Order Sent to our team')
             return redirect(reverse('Payment',args=[saverecord.orderID]))
         else:
             messages.success(request,'Order did not send')
