@@ -226,7 +226,7 @@ def charge(request):
             allPayment = InsertCustomer.objects.get(authID=request.user.id)
             email = allPayment.email
             userid = allPayment.customerID
-            if(request.POST['custPrevPayment']!="null"):
+            if(request.POST['custPrevPayment']!="select"):
                 charge = stripe.Charge.create(customer = allPayment.customerID,amount = amount*100,currency = 'myr',source=request.POST['custPrevPayment'],description = orderid)
                 print("OK")
             else:

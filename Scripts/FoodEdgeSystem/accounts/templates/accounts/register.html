@@ -2,6 +2,11 @@
 {% load crispy_forms_tags %}
 
 {%block content%}
+<style>
+#div_id_username .form-control{
+    color:black;
+}
+</style>
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
