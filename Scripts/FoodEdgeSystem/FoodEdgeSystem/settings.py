@@ -162,8 +162,9 @@ STATICFILES_DIR =[
 
 # Email Settings
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '587' #exact gmail port
+EMAIL_PORT = 587 #exact gmail port
 EMAIL_HOST_USER = 'foodedgecateringassignment@gmail.com' #hide it if its professional lmao
 EMAIL_HOST_PASSWORD = 'dp2sem22020' 
 EMAIL_USE_TLS = True
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_USE_SSL = False
