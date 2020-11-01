@@ -116,6 +116,10 @@ nav ul a:hover{
     opacity:.5;
 }
 
+table tr{
+
+}
+
   /* ------------------------------------------------profile.html----------------------------------------------------- */
 
   .profile_box{
@@ -183,7 +187,7 @@ nav ul a:hover{
 
   
   th {
-    background-color: #4CAF50;
+    background-color: #314e4e;
     color: white;
   }
 
@@ -1133,4 +1137,75 @@ a, a:hover, a:focus, a:active {
     position: absolute;
     top:0;
     left:0;
+}
+
+/* ----------------------------------------------------------delete Confirmation--------------------------------------------------------------- */
+table tr:nth-child(even){
+    background: rgba(128, 128, 128, 0.2);
+}
+
+.deleteBtn, .deletebtn, .cancelbtn {
+  background-color: #a92507;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 500px;
+  width: 100%;
+  transition: .5s;
+}
+
+.deleteBtn:hover, .deletebtn:hover{
+  background-color: #ffad49;
+  color: black;
+}
+
+.cancelbtn, .deletebtn{
+  width: 80%;
+}
+
+/* Add a color to the cancel button */
+.cancelbtn {
+  background-color: rgba(128, 128, 128, 0.5);
+  color: black;
+}
+
+.cancelbtn:hover{
+    background-color:gray;
+}
+
+.clearfix{
+    margin: 0 auto;
+}
+
+
+/* Add padding and center-align text to the container */
+.deleteContainer {
+  text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.7);
+  
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  border-radius: 30px;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #888;
+  width: 30%; 
+  box-shadow:none;
 }
