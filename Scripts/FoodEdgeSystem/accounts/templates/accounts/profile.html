@@ -4,6 +4,7 @@
 
 <body>
 {%block content%}
+{% include 'accounts/deleteConfirm.html'%}
 
 <div class="profile_card">
     <div class="profile_box">
@@ -12,7 +13,7 @@
                 <p>Email: {{ user.email }}</p>
                 <p>Date Joined: {{user.date_joined}}</p>
                 <img src="{% static 'images/chip.png' %}" class="chip">
-                <a href="/deleteCustomer/{{user.username}}">Delete</a>
+                <button onclick=deleteBox(this) data-username = "{{user.username}}" class="deleteBtn">Delete</button>
                 <h2 class="member_status">MEM­BER.</h2>
                 
             </div>
@@ -36,7 +37,7 @@
             {{p_form|crispy}}
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Update</button>
+            <button class="btn btn-outline-info" type="submit" onclick="return confirm('Confirm Edit?')">Update</button>
         </div>
     </form>
 <div class="profile">

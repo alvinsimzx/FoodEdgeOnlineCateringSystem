@@ -78,4 +78,22 @@ $(function(){
             return false;
         }
     });
+
 });
+
+
+
+function deleteBox(username) {
+    var name = username.getAttribute("data-username");
+    var box = document.getElementById('id01');
+    box.style.display = "block";
+    var deleteMessage = document.getElementById('deleteMessage');
+    deleteMessage.innerHTML = "Delete "+ name +"'s account?";
+    var deleteConfirm = document.getElementById('deleteYes');
+    deleteConfirm.setAttribute("href", "/delete/"+name);
+}
+
+function editBox(){
+    var box = document.getElementById('id02');
+    box.style.display = "block";
+}

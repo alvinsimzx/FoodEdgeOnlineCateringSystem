@@ -137,7 +137,7 @@ def profile(request):
     
     return render(request, 'accounts/profile.html', context)
 
-
+@allowed_users(allowed_roles=['Operations'])
 def customerAccounts(request):
     users = User.objects.all()
     return render(request, 'accounts/customerAccounts.html', {'users' : users})

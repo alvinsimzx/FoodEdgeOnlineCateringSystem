@@ -32,10 +32,11 @@
                 <td>{{user.first_name}}</td>
                 <td>{{user.last_name}}</td>
                 <td>{{user.is_active}}</td>
-                <td><a href="/delete/{{user.username}}">Delete</a></td>
+                <td><button onclick=deleteBox(this) data-username = "{{user.username}}" class="deleteBtn">Delete</button></td>
             </tr>
         {% endfor %}
     </table>
+    {% include 'accounts/deleteConfirm.html'%}
 </div>
           
 {% endblock %}
