@@ -18,7 +18,7 @@
     <body>
         <main>
         {%block content%}
-            <form id="StockAdd" method="post">
+            <form id="StockAdd" method="post" onsubmit="return confirm('Confirm the addition of Stock?');">
             {% csrf_token %}
                 <h1 id = "feedbackTitle">Stock Management</h1>
                 <fieldset>
@@ -26,6 +26,14 @@
                     <p>
                         <label for="stockname">Enter Stock Name: </label>
                         <input type="text" id="stockname" name="stockName" maxlength="25" placeholder="Stock Name" required/>
+                    </p>
+                    <p>
+                     <label for="menuItemID">Select Menu Item for Stock Item: </label>
+                        <select id="menuItemID" name="menuItemID">
+                            {%for mns in mn%}
+                            <option value="{{mns.menuItemID}}">{{mns.itemName}}</option>
+                            {% endfor %}
+                        </select> 
                     </p>
                     <p>
                         <label for="currentAmount">Enter Current Amount of Stock: </label>

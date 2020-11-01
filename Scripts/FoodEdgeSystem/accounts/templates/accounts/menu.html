@@ -18,20 +18,18 @@
     <body>
         <main>
         {%block content%}
-            <form id="MenuAdd" method="post">
+            <form id="MenuAdd" method="post" onsubmit="return confirm('Confirm the adding of this set?');">
             {% csrf_token %}
                 <h1 id = "feedbackTitle">Menu Management</h1>
                 <table>
                     <tr>
                         <th>Menu Item ID</th>
-                        <th>Stock ID</th>
                         <th>Item Name</th>
                         <th>Price($)</th>
                     </tr>
                     {%for mns in mn%}
                     <tr>
                         <td>{{mns.menuItemID}}</td>
-                        <td>{{mns.stockID}}</td>
                         <td>{{mns.itemName}}</td>
                         <td>{{mns.itemPrice}}</td>
                     </tr>
@@ -39,14 +37,6 @@
                 </table>
                 <fieldset>
                     <legend>Add New Menu Item</legend>
-                    <p>
-                        <label for="stockID">Select Stock ID for Menu Item: </label>
-                        <select id="stockID" name="stockID">
-                            {%for res in re%}
-                            <option value="{{res.stockID}}">{{res.stockName}}</option>
-                            {% endfor %}
-                        </select>
-                    </p>
                     <p>
                         <label for="itemname">Enter Menu Item Name: </label>
                         <input type="text" id="itemname" name="itemName" maxlength="25" placeholder="Menu Item Name" required />

@@ -295,36 +295,38 @@ This is an auto-generated email, please send a new email instead of replying.
         return render(request, 'accounts/order.html')
 
 def Insertrecord(request):
+    re = InsertStock.objects.all()
+    mn = MenuItem.objects.all()
     if request.method =='POST':
-        if request.POST.get('stockName') and request.POST.get('amountLeft') and request.POST.get('deficit'):
+        if request.POST.get('stockName') and request.POST.get('menuItemID') and request.POST.get('amountLeft') and request.POST.get('deficit'): 
             saverecord = InsertStock()
             saverecord.stockName=request.POST.get('stockName')
+            saverecord.menuItemID=request.POST.get('menuItemID')
             saverecord.amountLeft=request.POST.get('amountLeft')
             saverecord.deficit=request.POST.get('deficit')
             saverecord.save()
             messages.success(request,'Record Saved')
-            return render(request, 'accounts/stock.html')
+            return render(request, 'accounts/stock.html', {'re': re, 'mn': mn})
     else:
-        return render(request, 'accounts/stock.html')
+        return render(request, 'accounts/stock.html' , {'re': re, 'mn': mn})
 
 def InsertMenu(request):
     re = InsertStock.objects.all()
     mn = MenuItem.objects.all()
     if request.method == 'POST':
-        if request.POST.get('stockID') and request.POST.get('itemName') and request.POST.get('itemPrice'):
+        if request.POST.get('itemName') and request.POST.get('itemPrice'):
             for mns in mn:
                 if(mns.itemName == request.POST.get('itemName')):
                     messages.warning(request, 'Same Item Detected')
                     return redirect('addMenuItems')
             saverecord = MenuItem()
-            saverecord.stockID = request.POST.get('stockID')
             saverecord.itemName = request.POST.get('itemName')
             saverecord.itemPrice = request.POST.get('itemPrice')
             saverecord.save()
             messages.success(request,'Menu Item Saved')
             return redirect('addMenuItems')
     else:
-         return render(request, 'accounts/menu.html', {'re': re, 'mn': mn})
+         return render(request, 'accounts/menu.html', {'mn': mn})
 
 def DeleteRecord(request, stockID):
     record = InsertStock.objects.get(stockID=stockID)
@@ -333,18 +335,19 @@ def DeleteRecord(request, stockID):
     return redirect('ViewStocks')
 
 def EditRecords(request, stockID):
-     record = InsertStock.objects.get(stockID=stockID)
-     if request.method =='POST':
-        if request.POST.get('stockName') and request.POST.get('amountLeft') and request.POST.get('deficit'):
+    mn = MenuItem.objects.all()
+    record = InsertStock.objects.get(stockID=stockID)
+    if request.method =='POST':
+        if request.POST.get('stockName') and request.POST.get('menuItemID') and request.POST.get('amountLeft') and request.POST.get('deficit'):
             record.stockName = request.POST.get('stockName')
+            record.menuItemID = request.POST.get('menuItemID')
             record.amountLeft = request.POST.get('amountLeft')
             record.deficit = request.POST.get('deficit')
             record.save()
             messages.success(request,'Record Edited')
-            re = InsertStock.objects.all()
             return redirect('ViewStocks')
-     else:
-        return render(request, 'accounts/editStock.html')
+    else:
+        return render(request, 'accounts/editStock.html', {'mn': mn, 'record': record})
 
 def ShowSets(request):
     AvailableItems = ActiveMenuItem.objects.all()

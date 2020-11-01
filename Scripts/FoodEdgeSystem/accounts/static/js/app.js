@@ -45,7 +45,7 @@ $(function(){
             
         }
     }
-
+    
     function check_email(){
         var pattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
         var email = $("#email").val();
