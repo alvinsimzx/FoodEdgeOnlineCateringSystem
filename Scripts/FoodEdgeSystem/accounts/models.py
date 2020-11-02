@@ -21,7 +21,7 @@ class Profile (models.Model):
         if img.height > 300 or img.width>300:
             output_Size = (300,300)
             img.thumbnail(output_Size)
-            img.save(self.image.path)
+            imsg.save(self.image.path)
 
 
 @receiver(post_save, sender=User)
@@ -95,14 +95,3 @@ class StaffTeam(models.Model):
     dateDisbanded = models.DateField()
     class Meta:
         db_table = "staffteam"
-
-
-
-
-class Event(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.TextField()
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
-    class Meta:
-        db_table = "calendar"
