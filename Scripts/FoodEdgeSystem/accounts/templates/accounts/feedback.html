@@ -9,23 +9,12 @@
 
 <head>
   {%block content%}
-
-  <style type="text/css">
-    .feedback{
-        color: #a92507;
-    }  
-    
-    .feedback::after{
-        content: "";
-        display: block;
-        width: 100%;
-        height:2px;
-        background-color: #a92507;
-    }
-    </style>  
+  <div class="pageBanner">
+      <h1>Feedback</h1>
+  </div>
   <form id="feedback_form" method="post">
   {% csrf_token %}
-      <h1 id = "feedbackTitle">Feedback</h1>
+      <h1 id = "feedbackTitle">Feedback form</h1>
       <fieldset>
       <legend>Customer Information</legend>  
       

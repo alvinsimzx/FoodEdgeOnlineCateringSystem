@@ -11,6 +11,9 @@
     
 <body>
 {%block content%}
+<div class="pageBanner">
+        <h1>Order</h1>
+    </div>
     <form method="post">
     {% csrf_token %}
 
@@ -84,7 +87,7 @@
     
     
     
-    <button type="submit">Proceed to Payment</button>
+    <button type="submit" class="makePayment">Proceed to Payment</button>
     <button type="reset">Reset</button>
     </form>
     {%endblock content%}

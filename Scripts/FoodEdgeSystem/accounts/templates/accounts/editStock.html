@@ -18,6 +18,7 @@
     <body>
         <main>
             {%block content%}
+            {% include 'accounts/confirmBox.html'%}
             <form id="StockEdit" method="post">
                 {% csrf_token %}
                 <h1 id = "feedbackTitle">Edit Stock</h1>
@@ -37,7 +38,7 @@
                         <input type="number" id="changepricing" name="deficit" min="0" max="99999" placeholder="Enter Pricing (0 to 99999)" pattern="[0-9]{1,5}" required/>
                     </p>
                     <p>
-                        <input type="submit" onclick="return confirm('Confirm Edit?')" value="Edit Stock"/>
+                        <input type="button" onclick=editBox(this) data-username = "edit" value="Edit Stock"/>
                     </p>
                 </fieldset>
             </form>
