@@ -18,6 +18,8 @@ from django import forms
 from django.contrib.admin.widgets import  AdminDateWidget, AdminTimeWidget, AdminSplitDateTime
 import datetime
 
+from django.core import serializers
+
 stripe.api_key = "sk_test_51HbjHmLUA515JZ27Y0RRePShcZS6VFq53mx0jiLs1DfdpRvA0YuyemAJWnhiI5Z0wNIwTZTaL3tngw9o2l0QMalz00lPtp37Mm"
 # Create your views here.
 
@@ -407,3 +409,12 @@ def ShowGivenOrders(request):
 @allowed_users(allowed_roles=['Operations'])
 def ShowAddMenuItems(request):
     return render(request, 'accounts/addMenuItems.html')
+
+
+def dashboard_with_pivot(request):
+    return render(request, 'accounts/BalanceReport.html', {})
+
+def pivot_data(request):
+    dataset = InsertOrder.objects.all()
+    data = serializers.serialize('json', dataset)
+    return JsonResponse(data, safe=False)
