@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2020 at 05:44 AM
+-- Generation Time: Nov 01, 2020 at 07:00 AM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.33
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -429,7 +429,6 @@ CREATE TABLE `foodprep` (
 
 CREATE TABLE `menuitem` (
   `menuItemID` int(3) NOT NULL,
-  `stockID` int(11) NOT NULL,
   `itemName` varchar(255) NOT NULL,
   `itemPrice` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -438,8 +437,10 @@ CREATE TABLE `menuitem` (
 -- Dumping data for table `menuitem`
 --
 
-INSERT INTO `menuitem` (`menuItemID`, `stockID`, `itemName`, `itemPrice`) VALUES
-(1, 10, 'Set 1 - Asian', 212);
+INSERT INTO `menuitem` (`menuItemID`, `itemName`, `itemPrice`) VALUES
+(2, 'Set 1 - Uno', 99),
+(3, 'Set 2 - Dos', 88),
+(4, 'Set 3 - Tres', 77);
 
 -- --------------------------------------------------------
 
@@ -476,15 +477,20 @@ CREATE TABLE `stock` (
   `stockID` int(5) NOT NULL,
   `stockName` varchar(255) NOT NULL,
   `amountLeft` int(4) NOT NULL,
-  `deficit` int(6) NOT NULL
+  `deficit` int(6) NOT NULL,
+  `menuItemID` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `stock`
 --
 
-INSERT INTO `stock` (`stockID`, `stockName`, `amountLeft`, `deficit`) VALUES
-(10, 'Hans', 25, 25);
+INSERT INTO `stock` (`stockID`, `stockName`, `amountLeft`, `deficit`, `menuItemID`) VALUES
+(11, 'Uno1', 99, 999, 2),
+(12, 'Uno2', 99, 999, 2),
+(14, 'Dos1', 88, 888, 3),
+(15, 'Dos2', 88, 888, 3),
+(16, 'Tres1', 77, 777, 4);
 
 -- --------------------------------------------------------
 
@@ -619,8 +625,7 @@ ALTER TABLE `foodprep`
 -- Indexes for table `menuitem`
 --
 ALTER TABLE `menuitem`
-  ADD PRIMARY KEY (`menuItemID`),
-  ADD KEY `stockID` (`stockID`);
+  ADD PRIMARY KEY (`menuItemID`);
 
 --
 -- Indexes for table `staff`
@@ -639,7 +644,8 @@ ALTER TABLE `staffteam`
 -- Indexes for table `stock`
 --
 ALTER TABLE `stock`
-  ADD PRIMARY KEY (`stockID`);
+  ADD PRIMARY KEY (`stockID`),
+  ADD KEY `menuItemID` (`menuItemID`);
 
 --
 -- Indexes for table `suspendedaccount`
@@ -733,7 +739,7 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT for table `menuitem`
 --
 ALTER TABLE `menuitem`
-  MODIFY `menuItemID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `menuItemID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `staff`
@@ -751,7 +757,7 @@ ALTER TABLE `staffteam`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stockID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `stockID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables

@@ -45,12 +45,12 @@ class InsertStock(models.Model):
     stockName = models.CharField(max_length=100)
     amountLeft = models.IntegerField()
     deficit = models.IntegerField()
+    menuItemID = models.IntegerField()
     class Meta:
         db_table = "Stock"
         
 class MenuItem(models.Model):
     menuItemID = models.IntegerField(primary_key=True)
-    stockID = models.IntegerField() 
     itemName = models.CharField(max_length=100)
     itemPrice = models.IntegerField()
     class Meta:

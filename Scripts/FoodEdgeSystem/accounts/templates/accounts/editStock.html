@@ -26,15 +26,27 @@
                     <input type="hidden" name="stockID" id="stockID" value="{{record.stockID}}">
                     <p>
                         <label for="changename">Change Name of Stock: </label>
-                        <input type="text" id="changename" name="stockName" maxlength="25" placeholder="Stock Name" required/>
+                        <input type="text" id="changename" name="stockName" maxlength="25" placeholder="Stock Name" value="{{record.stockName}}" required/>
                     </p>
                     <p>
+                        <label for="menuItemID">Select Menu Item for Stock Item: </label>
+                           <select id="menuItemID" name="menuItemID">
+                               {%for mns in mn%}
+                                    {%if mns.menuItemID == record.menuItemID%}
+                                        <option value="{{mns.menuItemID}}" selected="selected">{{mns.itemName}}</option>
+                                    {% else %}
+                                        <option value="{{mns.menuItemID}}">{{mns.itemName}}</option>
+                                    {% endif %}
+                               {% endfor %}
+                           </select> 
+                       </p>
+                    <p>
                         <label for="changeamount">Change Amount of Stock Left: </label>
-                        <input type="number" id="changeamount" name="amountLeft" min="0" max="9999" placeholder="Enter Quantity (from 0 to 9999)" pattern="[0-9]{1,4}" required/>
+                        <input type="number" id="changeamount" name="amountLeft" min="0" max="9999" placeholder="Enter Quantity (from 0 to 9999)" value="{{record.amountLeft}}" pattern="[0-9]{1,4}" required/>
                     </p>
                     <p>
                         <label for="changepricing">Change Stock Pricing: </label>
-                        <input type="number" id="changepricing" name="deficit" min="0" max="99999" placeholder="Enter Pricing (0 to 99999)" pattern="[0-9]{1,5}" required/>
+                        <input type="number" id="changepricing" name="deficit" min="0" max="99999" placeholder="Enter Pricing (0 to 99999)" value="{{record.deficit}}" pattern="[0-9]{1,5}" required/>
                     </p>
                     <p>
                         <input type="submit" onclick="return confirm('Confirm Edit?')" value="Edit Stock"/>
