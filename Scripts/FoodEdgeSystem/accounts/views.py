@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from .decorators import allowed_users
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem,InsertCustomer,StaffTable
+from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem,InsertCustomer,StaffTable,StaffTeam
 # Email Confirmation
 from django.shortcuts import render
 from django.core.mail import send_mail
@@ -175,6 +175,7 @@ def ShowGivenOrders(request):
 
 def ShowAssignOrdersToStaff(request):
     record = InsertOrder.objects.filter(teamID__isnull=True)
+    teams = StaffTeam.objects.all()
     SearchedOrder = None
 
     if request.method == 'POST':
@@ -187,7 +188,7 @@ def ShowAssignOrdersToStaff(request):
         elif request.POST.get('order'):
             SearchedOrder = InsertOrder.objects.filter(orderID=request.POST.get('order'))
        
-    return render(request, 'accounts/AssignOrdersToStaff.html', {'records': record,'SearchedOrder':SearchedOrder})
+    return render(request, 'accounts/AssignOrdersToStaff.html', {'records': record,'SearchedOrder':SearchedOrder, 'teams': teams})
     
 
 def OrderMade(request):

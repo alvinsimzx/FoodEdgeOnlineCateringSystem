@@ -88,3 +88,21 @@ class StaffTable(models.Model):
     salary = models.IntegerField()
     class Meta:
         db_table = "staff"
+
+class StaffTeam(models.Model):
+    teamID = models.IntegerField(primary_key = True)
+    dateFormed = models.DateField()
+    dateDisbanded = models.DateField()
+    class Meta:
+        db_table = "staffteam"
+
+
+
+
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    class Meta:
+        db_table = "calendar"

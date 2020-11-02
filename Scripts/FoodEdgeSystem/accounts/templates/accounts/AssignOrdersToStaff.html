@@ -37,7 +37,13 @@
 
             <p>
               <label for="teamID">Team ID: </label>
-              <input type="number" id="teamID" name="teamID" min="1" max="999" placeholder="Enter Team ID">
+              <select name="teamID" id="SelectTeam">
+                <option value='null'>--SELECT--  </option>
+                {% for t in teams%}
+                    <option value={{t.teamID}} id="teamID" name="teamID">{{t.teamID}}</option>
+                {% endfor %}
+              </select>
+              <!-- <input type="number" id="teamID" name="teamID" min="1" max="999" placeholder="Enter Team ID"> -->
               <input type="hidden" id='ChosenOrder' name='ChosenOrder' value={{searchedOrder.orderID}}>
             </p>
 
