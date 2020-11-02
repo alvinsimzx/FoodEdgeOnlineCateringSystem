@@ -2,10 +2,12 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
+
+
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='accounts-home'),
+    path('home/', views.home, name='accounts-home'),
     path('about/', views.aboutUs, name='AboutUs'),
     path('staffHome/', views.StaffHome, name='staff-home'),
     path('insertcustomer',views.createCustomer,name='CreateCustomer'),

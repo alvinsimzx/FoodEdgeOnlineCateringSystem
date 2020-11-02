@@ -13,12 +13,17 @@ from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem,Inse
 from django.shortcuts import render
 from django.core.mail import send_mail
 import stripe
+# #Date and time picker
+from django import forms
+from django.contrib.admin.widgets import  AdminDateWidget, AdminTimeWidget, AdminSplitDateTime
+import datetime
 
 stripe.api_key = "sk_test_51HbjHmLUA515JZ27Y0RRePShcZS6VFq53mx0jiLs1DfdpRvA0YuyemAJWnhiI5Z0wNIwTZTaL3tngw9o2l0QMalz00lPtp37Mm"
 # Create your views here.
 
 def home(request):
     return render(request, 'accounts/index.html')
+
 # Email Confirmation
 def contact(request):
     if request.method == "POST":
@@ -247,6 +252,16 @@ def successMsg(request,args):
     orderid= args
     Orderinfo = InsertOrder.objects.get(orderID=orderid)
     return render(request,'accounts/PaymentSuccess.html',{'OrderInfo': Orderinfo})
+
+# # Date and time picker
+# class DTForm(forms.Form):
+#     date_input = forms.DateField(widget=AdminDateWidget())
+#     time_input = forms.DateField(widget=AdminTimeWidget())
+#     # date_time_input = forms.DateField(widget=AdminSplitDateTime())
+
+# def dtpicker(request):
+#     form = DTForm()
+#     return render(request, 'accounts/order.html', {'form':form})
 
 def InsertCustomerOrder(request):
     if request.method =='POST':
