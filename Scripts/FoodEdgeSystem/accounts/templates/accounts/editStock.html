@@ -18,7 +18,7 @@
     <body>
         <main>
             {%block content%}
-            <form id="StockEdit" method="post" onsubmit="return confirm('Confirm Edit?');">
+            <form id="StockEdit" method="post">
                 {% csrf_token %}
                 <h1 id = "feedbackTitle">Edit Stock</h1>
                 <fieldset>
