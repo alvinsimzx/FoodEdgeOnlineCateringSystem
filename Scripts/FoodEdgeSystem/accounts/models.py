@@ -88,3 +88,10 @@ class StaffTable(models.Model):
     salary = models.IntegerField()
     class Meta:
         db_table = "staff"
+
+class StaffTeam(models.Model):
+    teamID = models.IntegerField(primary_key = True)
+    dateFormed = models.DateField()
+    dateDisbanded = models.DateField()
+    class Meta:
+        db_table = "staffteam" 
