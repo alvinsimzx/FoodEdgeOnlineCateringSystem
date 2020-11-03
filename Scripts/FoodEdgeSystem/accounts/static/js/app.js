@@ -88,12 +88,28 @@ function deleteBox(username) {
     var box = document.getElementById('id01');
     box.style.display = "block";
     var deleteMessage = document.getElementById('deleteMessage');
-    deleteMessage.innerHTML = "Delete "+ name +"'s account?";
+    deleteMessage.innerHTML = "Confirm "+ name +" ?";
     var deleteConfirm = document.getElementById('deleteYes');
-    deleteConfirm.setAttribute("href", "/delete/"+name);
+    deleteConfirm.innerHTML = "Delete";
+    deleteConfirm.setAttribute("href", name);
 }
 
-function editBox(){
-    var box = document.getElementById('id02');
+function editBox(details){
+    var name = details.getAttribute("data-username");
+    var box = document.getElementById('id01');
     box.style.display = "block";
+    var deleteMessage = document.getElementById('deleteMessage');
+    deleteMessage.innerHTML = "Confirm "+ name +" ?";
+    var deleteConfirm = document.getElementById('deleteYes');
+    deleteConfirm.innerHTML = "Edit";
+    deleteConfirm.removeAttribute("href");
+    deleteConfirm.setAttribute("onclick", "submitForm()");
 }
+
+function submitForm() {
+    document.getElementById("editForm").submit();
+    document.getElementById("StockEdit").submit();
+    document.getElementById("StockAdd").submit();
+    document.getElementById("StockAdd").submit();
+    document.getElementById("MenuAdd").submit();
+  }

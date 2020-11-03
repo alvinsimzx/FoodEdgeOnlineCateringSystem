@@ -3,10 +3,34 @@
 
 {%block content%}
 <style>
-#div_id_username .form-control{
-    color:black;
-}
-</style>
+        body{
+            margin:0;
+        }
+        
+        form{
+            all:revert;
+        }
+
+        #div_id_username{
+            all:revert;
+        }
+
+        #div_id_username div{
+            border: none;
+        }
+
+        #div_id_username .form-control{
+            background: white;
+            color:black;
+        }
+
+        #div_id_email, #div_id_password2{
+            all:revert;
+        }
+        </style>
+<div class="joinMember">
+		
+	</div>
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
@@ -14,7 +38,7 @@
                 <legend class="border-bottom mb-4">Join Today</legend>
                 {{form | crispy}}
             </fieldset>
-            <div class="form-group">
+            <div class="registerBtn">
                 <button class="btn btn-outline-info" type="submit">Sign Up</button>
             </div>
         </form>
