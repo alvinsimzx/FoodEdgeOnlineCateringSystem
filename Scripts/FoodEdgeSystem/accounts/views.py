@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from .decorators import allowed_users
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem,InsertCustomer,StaffTable
+from accounts.models import InsertStock,InsertOrder,MenuItem,Comments,InsertCustomer,StaffTable
 # Email Confirmation
 from django.shortcuts import render
 from django.core.mail import send_mail
@@ -58,9 +58,12 @@ def customer(request):
 def feedback(request):
     items = MenuItem.objects.all()
     if request.method == 'POST':
-        saverecord = ActiveMenuItem()
+        saverecord = Comments()
         saverecord.menuItemID = request.POST.get('menuItemID')
         saverecord.rating = request.POST.get('rating')
+        saverecord.commentfName = request.POST.get('commentfName')
+        saverecord.commentlName = request.POST.get('commentlName')
+        saverecord.commentContent = request.POST.get('commentContent')
         saverecord.save()
         messages.success(request, f'You have succesfully sent your feedback!')
     return render(request, 'accounts/feedback.html', {'items': items})
@@ -367,7 +370,7 @@ def EditRecords(request, stockID):
         return render(request, 'accounts/editStock.html', {'mn': mn, 'record': record})
 
 def ShowSets(request):
-    AvailableItems = ActiveMenuItem.objects.all()
+    AvailableItems = MenuItem.objects.all()
     return render(request, 'accounts/sets.html', {'AvailableItems' : AvailableItems})
 
 def ShowTransactions(request):
