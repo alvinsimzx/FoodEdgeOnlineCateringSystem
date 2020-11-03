@@ -56,12 +56,15 @@ class MenuItem(models.Model):
     class Meta:
         db_table = "menuitem"
 
-class ActiveMenuItem(models.Model):
-    activeItemID = models.IntegerField(primary_key=True)
+class Comments(models.Model):
+    commentID = models.IntegerField(primary_key=True)
     menuItemID = models.IntegerField()
     rating = models.IntegerField()
+    commentfName = models.CharField(max_length=100)
+    commentlName = models.CharField(max_length=100)
+    commentContent = models.CharField(max_length=255)
     class Meta:
-        db_table = "activemenuitems"
+        db_table = "comments"
 
 
 class InsertOrder(models.Model):
