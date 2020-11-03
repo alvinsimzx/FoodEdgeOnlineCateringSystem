@@ -9,9 +9,7 @@
 
   <body>
   
-  {%block content%}  
-  
-  
+  {%block content%}   
   <form id="editOrders" name='editorders' method="post">
     {% csrf_token %}
     <h1 id = "feedbackTitle">Orders</h1>    
@@ -29,60 +27,69 @@
 
         <p><input id="SearchButton" type="Submit" value="Search"/></p>
         
-        
         {% for searchedOrder in SearchedOrder%}
             <h3>Assign Order #{{searchedOrder.orderID}}</h3>
-            <p id= "customerID">Customer ID:</p>
-                <p>{{searchedOrder.customerID}}</p>
+            <p>
+              <p style="font-size: 20px;  font-weight: bold; " id= "customerID">Customer ID:</p>
+              <p>{{searchedOrder.customerID}}</p>
+            </p>
 
             <p>
-              <label for="teamID">Team ID: </label>
-              <input type="number" id="teamID" name="teamID" min="1" max="999" placeholder="Enter Team ID">
+              <label style="font-size: 20px;  font-weight: bold; for="teamID">Team ID: </label>
+              <select name="teamID" id="SelectTeam">
+                <option value='null'>--SELECT--  </option>
+                {% for t in teams%}
+                    <option value={{t.teamID}} id="teamID" name="teamID">{{t.teamID}}</option>
+                {% endfor %}
+              </select>
+              <!-- <input type="number" id="teamID" name="teamID" min="1" max="999" placeholder="Enter Team ID"> -->
               <input type="hidden" id='ChosenOrder' name='ChosenOrder' value={{searchedOrder.orderID}}>
             </p>
 
 
-            <p style="font-size: 20px;" id= "cateringDatetime">Catering Date and Time: </p>
-              <p>{{searchedOrder.cateringDatetime}}</p>
+            <p>
+              <p style="font-size: 20px;  font-weight: bold; " id= "cateringDatetime">Catering Date and Time: </p>
+                <p>{{searchedOrder.cateringDatetime}}</p>
+              </p>
             </p>
 
             <p>
-              <p id="CustFirstName">Customer First Name: </p>
-              <p>{{searchedOrder.custFirstName}}</p>
+              <p style="font-size: 20px;  font-weight: bold; " id="CustFirstName">Customer First Name: </p>
+              <p>{{searchedOrder.CustFirstName}}</p>
             </p>
 
             <p>
-              <p id="CustLastName">Customer Last Name: </p>
+              <p style="font-size: 20px;  font-weight: bold; " id="CustLastName">Customer Last Name: </p>
               <p>{{searchedOrder.custLastName}}</p>
             </p>
 
             <p>
-              <p id="custEmail">Customer email: </p>
+              <p style="font-size: 20px;  font-weight: bold; " id="custEmail">Customer email: </p>
               <p>{{searchedOrder.custEmail}}</p>
             </p>
 
             <p>
-              <p id="custContact">Customer contact: </p>
+              <p style="font-size: 20px;  font-weight: bold; " id="custContact">Customer contact: </p>
               <p>{{searchedOrder.custContact}}</p>
             </p>
 
             <p>
-              <p id="custOrder">Customer order: </p>
+              <p style="font-size: 20px;  font-weight: bold; " id="custOrder">Customer order: </p>
               <p>{{searchedOrder.custOrder}}</p>
             </p>
 
             <p>
-              <p id="custRequest">Customer request: </p>
+              <p style="font-size: 20px;  font-weight: bold; " id="custRequest">Customer request: </p>
               <p>{{searchedOrder.custRequest}}</p>
             </p>
 
             <p>
-              <p idr="location">Location: </p>
+              <p style="font-size: 20px;  font-weight: bold; " idr="location">Location: </p>
               <p>{{searchedOrder.location}}</p>
             </p>
 
             <p>
-              <p id="amountDue">amountDue: </p>
+              <p style="font-size: 20px;  font-weight: bold; "  id="amountDue">amountDue: </p>
               <p>{{searchedOrder.amountDue}}</p>
             </p>
             </div>
