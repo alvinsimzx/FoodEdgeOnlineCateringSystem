@@ -1006,11 +1006,12 @@ label {
 
   .content-section .form-group{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto;
-    grid-auto-flow: column;
-    grid-column-gap: 20px;
+    grid-auto-flow: row;
+    grid-column-gap: 5%;
   }
+
 
   .mb-4{
     grid-area:  1 / 1 / span 1 / span 2;
