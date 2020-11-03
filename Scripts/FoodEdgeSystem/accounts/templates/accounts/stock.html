@@ -29,6 +29,14 @@
                         <input type="text" id="stockname" name="stockName" maxlength="25" placeholder="Stock Name" required/>
                     </p>
                     <p>
+                     <label for="menuItemID">Select Menu Item for Stock Item: </label>
+                        <select id="menuItemID" name="menuItemID">
+                            {%for mns in mn%}
+                            <option value="{{mns.menuItemID}}">{{mns.itemName}}</option>
+                            {% endfor %}
+                        </select> 
+                    </p>
+                    <p>
                         <label for="currentAmount">Enter Current Amount of Stock: </label>
                         <input type="number" id="currentAmount" name="amountLeft" min="0" max="9999" placeholder="Enter Quantity (from 0 to 9999)" pattern="[0-9]{1,4}" required/>
                     </p>
