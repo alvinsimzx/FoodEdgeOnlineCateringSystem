@@ -103,13 +103,10 @@ function editBox(details){
     var deleteConfirm = document.getElementById('deleteYes');
     deleteConfirm.innerHTML = "Edit";
     deleteConfirm.removeAttribute("href");
-    deleteConfirm.setAttribute("onclick", "submitForm()");
+    var id = details.getAttribute("data-form-id")
+    deleteConfirm.setAttribute("onclick", "submitForm(\""+ id+"\")");
 }
 
-function submitForm() {
-    document.getElementById("editForm").submit();
-    document.getElementById("StockEdit").submit();
-    document.getElementById("StockAdd").submit();
-    document.getElementById("StockAdd").submit();
-    document.getElementById("MenuAdd").submit();
+function submitForm(id) {
+    document.getElementById(id).submit();
   }
