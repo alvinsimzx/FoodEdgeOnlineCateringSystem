@@ -776,7 +776,7 @@ label {
 }
 
    
-.static-banner:before, .ptext h2::before, .staffButtons tr td a::before{
+.static-banner:before, .ptext h2::before{
     content: '';
     position: absolute;
     background: #ffad49;
@@ -789,11 +789,11 @@ label {
     transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.ptext h2::before, .staffButtons tr td a::before{
+.ptext h2::before{
     background: #a92507;
 }
 
-.static-banner:hover:before, .ptext h2:hover::before, .staffButtons tr td a:hover::before{
+.static-banner:hover:before, .ptext h2:hover::before{
     height: 450%;
 }
 .static-banner:hover {
@@ -1109,30 +1109,35 @@ label {
       
   }
 
-  .staffButtons{
-      width: 80%;
-      margin: 0 auto;
+  .staffButtons {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+    width:60%;
+    margin: 0 auto;
+  }
+  .staffBtn {
+    padding: 20px;
+    text-align: center;
   }
 
-  .staffButtons tr td{
-      padding: 1%;
+  .staffButtons div{
+      margin: 1%;
       text-align: center;
   }
 
-  .staffButtons tr td a{
+  .staffButtons div a{
     border-radius: 320px;
-    position: relative;
     color: #fff;
-    display: block;
-    width: 80%;
     padding: 5%;
     border: white solid 3px;
     font-weight: 500;
     transition: .8s;
     overflow: hidden;
+    display: block;
   }
 
-  .staffButtons tr td a:hover{
+  .staffButtons div a:hover{
       border-color: #a92507;
       background-color: #a92507;
   }
