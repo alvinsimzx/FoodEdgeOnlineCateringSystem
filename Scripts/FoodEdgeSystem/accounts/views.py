@@ -182,8 +182,8 @@ def ViewStocks(request):
 
     return render(request, 'accounts/stock2.html', {'re': re, 'lowStock': lowStock})
 
-def ShowGivenOrders(request):   
-    return render(request, 'accounts/CheckAssignedOrders.html', {'data':data})
+# def ShowGivenOrders(request):   
+#     return render(request, 'accounts/CheckAssignedOrders.html', {'data':data})
 
 def ShowAssignOrdersToStaff(request):
     record = InsertOrder.objects.filter(teamID__isnull=True)
@@ -404,10 +404,17 @@ def StaffLogin(request):
 def ShowGivenOrders(request):
     UserTeamID = StaffTable.objects.get(staffID=request.user.id).teamID
     AssignedOrder = InsertOrder.objects.filter(teamID=UserTeamID)
+    AssignedOrder = AssignedOrder.filter(Status=0)
     SearchedOrder = None
 
     if request.method == 'POST':
-        if request.POST.get('order'):
+        if request.POST.get('markComplete')=="Mark as Complete":
+            recordAsComplete = InsertOrder.objects.get(orderID=request.POST.get('SearchedID'))
+            recordAsComplete.Status = 1
+            recordAsComplete.save()
+            messages.info(request,'Order #' + request.POST.get('SearchedID') + ' is marked as complete!')
+
+        elif request.POST.get('order'):
             SearchedOrder = InsertOrder.objects.filter(orderID=request.POST.get('order'))
 
     return render(request, 'accounts/CheckAssignedOrders.html', {'AssignedOrder': AssignedOrder,'SearchedOrder':SearchedOrder})
