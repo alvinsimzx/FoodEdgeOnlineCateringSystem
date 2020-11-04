@@ -9,7 +9,7 @@ from django.http import JsonResponse
 from .decorators import allowed_users
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
-from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem,InsertCustomer,StaffTable,StaffTeam
+from accounts.models import InsertStock,InsertOrder,MenuItem,InsertCustomer,StaffTable,StaffTeam
 
 # Email Confirmation
 from django.shortcuts import render
@@ -191,7 +191,7 @@ def ShowAssignOrdersToStaff(request):
     teams = StaffTeam.objects.all()
 
     if request.method == 'POST':
-        if request.POST.get('teamID'):
+        if request.POST.get('teamID') and (request.POST.get('submit') == "Submit"):
             print(request.POST.get('ChosenOrder'))
             update = InsertOrder.objects.get(orderID=request.POST.get('ChosenOrder'))
             update.teamID = request.POST.get('teamID')
