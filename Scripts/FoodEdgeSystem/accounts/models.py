@@ -56,12 +56,15 @@ class MenuItem(models.Model):
     class Meta:
         db_table = "menuitem"
 
-class ActiveMenuItem(models.Model):
-    activeItemID = models.IntegerField(primary_key=True)
+class Comments(models.Model):
+    commentID = models.IntegerField(primary_key=True)
     menuItemID = models.IntegerField()
     rating = models.IntegerField()
+    commentfName = models.CharField(max_length=100)
+    commentlName = models.CharField(max_length=100)
+    commentContent = models.CharField(max_length=255)
     class Meta:
-        db_table = "activemenuitems"
+        db_table = "comments"
 
 
 class InsertOrder(models.Model):
@@ -77,6 +80,7 @@ class InsertOrder(models.Model):
     custRequest = models.CharField(max_length=255)	 	
     location = models.CharField(max_length=255)	 	
     amountDue = models.IntegerField(default="50")
+    Status = models.BooleanField()
     class Meta:
         db_table = "cateringorder"	 	
 
@@ -88,3 +92,10 @@ class StaffTable(models.Model):
     salary = models.IntegerField()
     class Meta:
         db_table = "staff"
+
+class StaffTeam(models.Model):
+    teamID = models.IntegerField(primary_key = True)
+    dateFormed = models.DateField()
+    dateDisbanded = models.DateField()
+    class Meta:
+        db_table = "staffteam" 

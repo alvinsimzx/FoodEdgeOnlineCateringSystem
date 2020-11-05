@@ -8,7 +8,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from .decorators import allowed_users
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-from accounts.models import InsertStock,InsertOrder,MenuItem,ActiveMenuItem,InsertCustomer,StaffTable
+
+from accounts.models import InsertStock,InsertOrder,MenuItem,InsertCustomer,StaffTable,StaffTeam
+
 # Email Confirmation
 from django.shortcuts import render
 from django.core.mail import send_mail
@@ -58,9 +60,12 @@ def customer(request):
 def feedback(request):
     items = MenuItem.objects.all()
     if request.method == 'POST':
-        saverecord = ActiveMenuItem()
+        saverecord = Comments()
         saverecord.menuItemID = request.POST.get('menuItemID')
         saverecord.rating = request.POST.get('rating')
+        saverecord.commentfName = request.POST.get('commentfName')
+        saverecord.commentlName = request.POST.get('commentlName')
+        saverecord.commentContent = request.POST.get('commentContent')
         saverecord.save()
         messages.success(request, f'You have succesfully sent your feedback!')
     return render(request, 'accounts/feedback.html', {'items': items})
@@ -177,15 +182,16 @@ def ViewStocks(request):
 
     return render(request, 'accounts/stock2.html', {'re': re, 'lowStock': lowStock})
 
-def ShowGivenOrders(request):   
-    return render(request, 'accounts/CheckAssignedOrders.html', {'data':data})
+# def ShowGivenOrders(request):   
+#     return render(request, 'accounts/CheckAssignedOrders.html', {'data':data})
 
 def ShowAssignOrdersToStaff(request):
     record = InsertOrder.objects.filter(teamID__isnull=True)
     SearchedOrder = None
+    teams = StaffTeam.objects.all()
 
     if request.method == 'POST':
-        if request.POST.get('teamID'):
+        if request.POST.get('teamID') and (request.POST.get('submit') == "Submit"):
             print(request.POST.get('ChosenOrder'))
             update = InsertOrder.objects.get(orderID=request.POST.get('ChosenOrder'))
             update.teamID = request.POST.get('teamID')
@@ -194,7 +200,7 @@ def ShowAssignOrdersToStaff(request):
         elif request.POST.get('order'):
             SearchedOrder = InsertOrder.objects.filter(orderID=request.POST.get('order'))
        
-    return render(request, 'accounts/AssignOrdersToStaff.html', {'records': record,'SearchedOrder':SearchedOrder})
+    return render(request, 'accounts/AssignOrdersToStaff.html', {'records': record,'SearchedOrder':SearchedOrder, 'teams': teams})
     
 
 def OrderMade(request):
@@ -367,7 +373,7 @@ def EditRecords(request, stockID):
         return render(request, 'accounts/editStock.html', {'mn': mn, 'record': record})
 
 def ShowSets(request):
-    AvailableItems = ActiveMenuItem.objects.all()
+    AvailableItems = MenuItem.objects.all()
     return render(request, 'accounts/sets.html', {'AvailableItems' : AvailableItems})
 
 def ShowTransactions(request):
@@ -398,10 +404,17 @@ def StaffLogin(request):
 def ShowGivenOrders(request):
     UserTeamID = StaffTable.objects.get(staffID=request.user.id).teamID
     AssignedOrder = InsertOrder.objects.filter(teamID=UserTeamID)
+    AssignedOrder = AssignedOrder.filter(Status=0)
     SearchedOrder = None
 
     if request.method == 'POST':
-        if request.POST.get('order'):
+        if request.POST.get('markComplete')=="Mark as Complete":
+            recordAsComplete = InsertOrder.objects.get(orderID=request.POST.get('SearchedID'))
+            recordAsComplete.Status = 1
+            recordAsComplete.save()
+            messages.info(request,'Order #' + request.POST.get('SearchedID') + ' is marked as complete!')
+
+        elif request.POST.get('order'):
             SearchedOrder = InsertOrder.objects.filter(orderID=request.POST.get('order'))
 
     return render(request, 'accounts/CheckAssignedOrders.html', {'AssignedOrder': AssignedOrder,'SearchedOrder':SearchedOrder})

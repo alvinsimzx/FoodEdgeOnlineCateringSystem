@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2020 at 07:00 AM
+-- Generation Time: Nov 03, 2020 at 11:25 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -52,18 +52,6 @@ CREATE TABLE `accounts_profile` (
   `image` varchar(100) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `activemenuitems`
---
-
-CREATE TABLE `activemenuitems` (
-  `activeItemID` int(3) NOT NULL,
-  `menuItemID` int(3) DEFAULT NULL,
-  `rating` decimal(2,1) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -242,6 +230,29 @@ INSERT INTO `cateringorder` (`orderID`, `teamID`, `customerID`, `cateringDatetim
 (26, NULL, 30, '2020-10-16 02:58:54', 'asdas', '', 'alvinsim74@gmail.com', '010-9606565', '1000', '', 'asd', 50),
 (25, NULL, 30, '2020-10-16 02:57:57', 'ad', '', 'alvinsim74@gmail.com', '010-9606565', '1000', '', 'asd', 50),
 (24, NULL, 30, '2020-10-16 02:54:46', 'alvins', '', 'alvinsim74@gmail.com', '010-9606565', '2000', '', 'asdf', 50);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `commentID` int(3) NOT NULL,
+  `menuItemID` int(3) DEFAULT NULL,
+  `rating` decimal(2,1) DEFAULT NULL,
+  `commentfName` varchar(255) DEFAULT NULL,
+  `commentlName` varchar(255) DEFAULT NULL,
+  `commentContent` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`commentID`, `menuItemID`, `rating`, `commentfName`, `commentlName`, `commentContent`) VALUES
+(2, 2, '3.0', 'Feedback ', 'Tester1', 'Pls cook the food tq'),
+(3, 4, '1.0', 'Feedback ', 'Tester 2', 'It sucx');
 
 -- --------------------------------------------------------
 
@@ -521,13 +532,6 @@ ALTER TABLE `accounts_profile`
   ADD UNIQUE KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `activemenuitems`
---
-ALTER TABLE `activemenuitems`
-  ADD PRIMARY KEY (`activeItemID`),
-  ADD KEY `menuItemID` (`menuItemID`);
-
---
 -- Indexes for table `auth_group`
 --
 ALTER TABLE `auth_group`
@@ -579,6 +583,13 @@ ALTER TABLE `cateringorder`
   ADD PRIMARY KEY (`orderID`),
   ADD KEY `teamID` (`teamID`),
   ADD KEY `customerID` (`customerID`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`commentID`),
+  ADD KEY `menuItemID` (`menuItemID`);
 
 --
 -- Indexes for table `customer`
@@ -670,12 +681,6 @@ ALTER TABLE `accounts_profile`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `activemenuitems`
---
-ALTER TABLE `activemenuitems`
-  MODIFY `activeItemID` int(3) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `auth_group`
 --
 ALTER TABLE `auth_group`
@@ -716,6 +721,12 @@ ALTER TABLE `auth_user_user_permissions`
 --
 ALTER TABLE `cateringorder`
   MODIFY `orderID` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `commentID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`

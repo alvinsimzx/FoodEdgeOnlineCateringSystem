@@ -40,14 +40,16 @@
                     <legend>Add New Menu Item</legend>
                     <p>
                         <label for="itemname">Enter Menu Item Name: </label>
-                        <input type="text" id="itemname" name="itemName" maxlength="25" placeholder="Menu Item Name" required />
+                        <input type="text" id="itemName" name="itemName" maxlength="25" placeholder="Menu Item Name"/>
                     </p>
                     <p>
                         <label for="pricing">Enter Item Pricing: </label>
-                        <input type="number" id="pricing" name="itemPrice" min="0" max="999" placeholder="Enter Pricing (0 to 999)"  pattern="[0-9]{1,3}" required/>
+                        <input type="number" id="itemPrice" name="itemPrice" min="0" max="999" placeholder="Enter Pricing (0 to 999)"/>
                     </p>
                     <p>
+
                         <input type="button" onclick=editBox(this) data-form-id="MenuAdd" data-username = "add" value="Insert Item"/>
+
                     </p>
                 </fieldset>
             </form>

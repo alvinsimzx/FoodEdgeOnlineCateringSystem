@@ -56,7 +56,7 @@
                         <td>{{res.amountLeft}}</td>
                         <td>{{res.deficit}}</td>
                         <td><button onclick=deleteBox(this) data-username = "/delete/{{res.stockID}}" class="deleteBtn">Delete</button>
-                            | <a href="/edit/{{res.stockID}}">Edit</a></td>
+                            <a href="/edit/{{res.stockID}}">Edit</a></td>
                     </tr>
                     {% endfor %}
                 </table>
