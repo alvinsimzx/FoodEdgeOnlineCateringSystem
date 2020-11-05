@@ -122,101 +122,10 @@
             {{p_form|crispy}}
         </fieldset>
         <div class="form-group">
-            <button id="editBtn" class="btn btn-outline-info" type="button" onclick=editBox(this) data-username = "edit">Update</button>
+            <button id="editBtn" class="btn btn-outline-info" type="button" onclick=editBox(this) data-form-id="editForm" data-username = "edit">Update</button>
         </div>
     </form>
   </div>
-
-<!-- <div class="profile_card">
-    <div class="profile_box">
-        <div class="profile_desc">
-                <h2>Username: {{ user.username }}</h2>
-                <p>Email: {{ user.email }}</p>
-                <p>Date Joined: {{user.date_joined}}</p>
-                
-                <button onclick=deleteBox(this) data-username = "/delete/{{user.username}}" class="deleteBtn">Delete</button>
-                
-            </div>
-        <div class = "profile_img">
-         
-            <img class="profile_pic" src="{{ user.profile.image.url }}" alt="Profile picture">
-
-        </div>
-        
-        
-     
-    </div>
-</div>
-
-<form id="editForm" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Profile Info</legend>
-            {{u_form|crispy}}
-            {{p_form|crispy}}
-        </fieldset>
-        <div class="form-group">
-            <button id="editBtn" class="btn btn-outline-info" type="button" onclick=editBox(this) data-username = "edit">Update</button>
-        </div>
-    </form>
-<div class="profile">
-    <h2> Your Payment Avenues </h2>
-        <table>
-        <tr>
-            {% for key in paymentInfo.keys %}
-                    <th>{{key}}</th>
-            {% endfor %}
-        </tr>
-        {% for value in paymentInfo.brand %}
-            {% for value2 in paymentInfo.last4 %}
-                    <tr>
-                        <td>{{value}}</td>
-                        <td>{{value2}}</td>
-                    </tr>
-            {% endfor %}
-        {% endfor %}
-        </table>
-        </div>
-   <div class="profile"> 
-    <h2> Your Previous Orders </h2>
-    <table>
-        <tr>
-            <th>Order #</th>
-            <th>Date and Time</th>
-            <th>Email</th>
-            <th>Contact</th>
-            <th>Ordered Item</th>
-            <th>Additional Request</th>
-            <th>Address</th>
-            <th>Amount (RM)</th>
-        </tr>
-        {% for order in allOrders %}
-            <tr>
-                <td>{{order.orderID}}</td>
-                <td>{{order.cateringDatetime}}</td>
-                <td>{{order.custEmail}}</td>
-                <td>{{order.custContact}}</td>
-                <td>{{order.custOrder}}</td>
-                <td>{{order.custRequest}}</td>
-                <td>{{order.location}}</td>
-                <td>{{order.amountDue}}</td>
-            </tr>
-        {% endfor %}
-    </table>
-</div>
-
-<div class="profile">
-    
-    <h2> Your Last transactions </h2>
-    <table>
-        {% for key,value in transactionInfo.items %}
-            <tr>
-                <th>{{ key }}</th>
-                <td>{{ value }}</td>
-            </tr>
-        {% endfor %}
-    </table>
-</div> -->
     <script>
     var stripe = Stripe('pk_test_51HbjHmLUA515JZ27LzRLXvtX2PBYi0fYmIoL9CIeDf99kV3EfOWMNwH1ouamQaBscvNzox8JpZGsnTRXvFCl2gBh00HBcqYxnZ');
 

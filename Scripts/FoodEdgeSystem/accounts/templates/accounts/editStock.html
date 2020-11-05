@@ -50,7 +50,9 @@
                         <input type="number" id="deficit" name="deficit" min="0" max="99999" placeholder="Enter Pricing (0 to 99999)" value="{{record.deficit}}"/>
                     </p>
                     <p>
-                        <input type="button" onclick=validateStock(this) data-username = "edit" value="Edit Stock"/>
+
+                        <input type="button" onclick=editBox(this) data-form-id="StockEdit" data-username = "edit" value="Edit Stock"/>
+
                     </p>
                 </fieldset>
             </form>
