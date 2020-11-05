@@ -18,6 +18,9 @@
     <body>
         <main>
             {%block content%}
+            <div class="pageBanner">
+                    <h1>Edit Stocks</h1>
+                </div>
             {% include 'accounts/confirmBox.html'%}
             <form id="StockEditRemove" method="post">
                 {% csrf_token %}

@@ -296,14 +296,7 @@ nav ul a:hover{
     color: white;
   }
 
-  .profile
-  {
-    background-color: #f2f2f2;
-    box-shadow: 0 0 15px 1px black;
-    padding: 5%;
-    margin: 2% auto;
-    width: 90%;
-  }
+
 
   #profile_info
   {
@@ -455,10 +448,10 @@ nav ul a:hover{
     font-size: 1.2rem;
   }
 /* -----------------------------------------------------feedback.html------------------------------------------------------------------ */
-form{
+form, .profile{
     background: white;
     width: 85%;
-    box-shadow: 0 0 15px 1px black;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
     padding: 5%;
     margin: 2% auto;
 }
@@ -563,9 +556,10 @@ legend{
     
 }
 
-input[type=submit], button[type=submit], button[type=reset]{
-    border: #ffad49 3px solid;
-    color: #ffad49;
+input[type=submit], button[type=submit], button[type=reset], input[type=button]{
+    border:none;
+    background-color: #a92507;
+    color: white;
     padding: 1%;
     margin: 2% auto;
     display: block;
@@ -573,14 +567,13 @@ input[type=submit], button[type=submit], button[type=reset]{
     cursor: pointer;
     transition: .5s;
     border-radius: 200px;
-    width: 60%;
-    background: white;
-    font-weight: 500;
+    width: 30%;
+    font-weight: 600;
 }
 
-input[type=submit]:hover, button[type=submit]:hover, button[type=reset]:hover{
-    background-color: #a92507;
-    border-color: #a92507;
+input[type=submit]:hover, button[type=submit]:hover, button[type=reset]:hover, input[type=button]:hover{
+    background-color: #ffad49;
+    color: #314e4e;
 }
 
 /* --------------------------------------------------------------Customer Order------------------------------------------------------------------ */
@@ -1296,4 +1289,31 @@ table tr:nth-child(even){
   border: 1px solid #888;
   width: 30%; 
   box-shadow:none;
+}
+
+/* ---------------------------------------------Stock Management------------------------------------------- */
+.stockBtn{
+    position: relative;
+    top:revert;
+    left:50%;
+    transform: translateX(-50%);
+    padding:0;
+    width: 40%;
+    height: 7.5vh;
+    font-size: revert;
+    font-weight: 600;
+    border-radius: 500px;
+}
+
+.addStock{
+   display: block;
+   width: 100%;
+   margin: 0;
+}
+
+.stockAction{
+    text-align: center;
+    width: 50%;
+    border-radius: 30px;
+    padding: 5% 0;
 }
