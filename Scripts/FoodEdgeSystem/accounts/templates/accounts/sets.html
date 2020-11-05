@@ -48,7 +48,12 @@
     <div class = "carousel" data-flickity='{ "cellSelector": ".carousel-slide", "wrapAround": true}'>
         <a href="#"><div class="static-banner">Order Now!</div></a>
       <div class="carousel-slide">
-          <h2 class="setTitle">Set 1</h2>
+        <!--{% for items in menu %}
+          {% if items.itemName == "Set 1 - Uno" %}
+          <h2 class="setTitle">{{items.itemName}}</h2>
+          {% endif %}
+        {% endfor %} -->
+        <h2 class="setTitle">Set 1</h2>
           <img class="region" src = "{% static 'images/western.png' %}">
           <div class="menuInfo">
           <div class="signatureDish">
@@ -371,25 +376,17 @@
          
           <div class="allItems">
               <h3>Items include: </h3>
-              {% for items in AvailableItems %}
-                {% if items %}
-                <p>Available</p>
-                {% endif %}
-              {% empty %}
-                <p>Unavailable</p>
-              {% endfor %}
+                  {% if set1Available == False %}
+                    <p>Unavailable</p>
+                  {% else %}
+                    <p>Available</p>
+                  {% endif %}
               <ol>
-                  <li>Clam Chowder Soup</li>
-                  <li>Chimicanga</li>
-                  <li>Herb Butter Rice</li>
-                  <li>Creamy Fish Stew</li>
-                  <li>Beef Steak</li>
-                  <li>Prawn Cocktail Salad</li>
-                  <li>Roasted Lam Leg</li>
-                  <li>Spaghetti</li>
-                  <li>Bread & Butter Pudding with Strawberries</li>
-                  <li>Tiramisu</li>
-                  <li>Fruit Punch</li>
+                {% for res in re%}
+                  {%if res.menuItemID == 2%}
+                    <li>{{res.stockName}}</li>
+                  {% endif %}
+                {% endfor %}
               </ol>
               
           </div>
@@ -660,25 +657,17 @@
          
           <div class="allItems">
               <h3>Items include: </h3>
-              {% for items in AvailableItems %}
-                {% if items %}
-                <p>Available</p>
-                {% endif %}
-              {% empty %}
-                <p>Unavailable</p>
-              {% endfor %}
+              {% if set2Available == False %}
+                    <p>Unavailable</p>
+                  {% else %}
+                    <p>Available</p>
+                  {% endif %}
               <ol>
-                  <li>Fried Shrimp Ball</li>
-                  <li>Nyonya Fried Rice</li>
-                  <li>Bihun Siame</li>
-                  <li>Rendang Chicken</li>
-                  <li>Broccoli, Cauliflower, Mushroom</li>
-                  <li>Satay</li>
-                  <li>Assam Deep Fried Talapia</li>
-                  <li>BBQ Chicken Wings</li>
-                  <li>Black Pepper Beef</li>
-                  <li>Nyonya Kuih</li>
-                  <li>Fruit Punch</li>
+                {% for res in re%}
+                {%if res.menuItemID == 3%}
+                  <li>{{res.stockName}}</li>
+                {% endif %}
+              {% endfor %}
               </ol>
           </div>
           
@@ -996,25 +985,17 @@
          
           <div class="allItems">
               <h3>Items include: </h3>
-              {% for items in AvailableItems %}
-                {% if items %}
-                <p>Available</p>
-                {% endif %}
-              {% empty %}
-                <p>Unavailable</p>
-              {% endfor %}
+              {% if set3Available == False %}
+                    <p>Unavailable</p>
+                  {% else %}
+                    <p>Available</p>
+                  {% endif %}
               <ol>
-                  <li>Cold Dish</li>
-                  <li>Fried Longevity Noodles</li>
-                  <li>Shark Fin Soup</li>
-                  <li>Braised Pork Leg</li>
-                  <li>Peking Duck</li>
-                  <li>Steam Fish</li>
-                  <li>Scallops</li>
-                  <li>Roasted Chicken</li>
-                  <li>Abalone and sea cucumber</li>
-                  <li>Red bean soup with lotus seeds</li>
-                  <li>Fruit Punch</li>
+                {% for res in re%}
+                {%if res.menuItemID == 4%}
+                  <li>{{res.stockName}}</li>
+                {% endif %}
+              {% endfor %}
               </ol>
           </div>
           
