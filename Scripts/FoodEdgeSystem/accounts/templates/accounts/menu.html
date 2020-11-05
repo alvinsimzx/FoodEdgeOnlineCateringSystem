@@ -18,10 +18,13 @@
     <body>
         <main>
         {%block content%}
+        <div class="pageBanner">
+                <h1>Menu Management</h1>
+            </div>
         {% include 'accounts/confirmBox.html'%}
             <form id="MenuAdd" method="post">
             {% csrf_token %}
-                <h1 id = "feedbackTitle">Menu Management</h1>
+                <h1 id = "feedbackTitle">Add Item into Menu</h1>
                 <table>
                     <tr>
                         <th>Menu Item ID</th>

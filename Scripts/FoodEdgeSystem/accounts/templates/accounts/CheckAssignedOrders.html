@@ -9,6 +9,9 @@
 
   <body>
   {%block content%} 
+  <div class="pageBanner">
+      <h1>My Orders</h1>
+  </div>
   <form id="editOrders" name='editorders' method="post">
     {% csrf_token %}
     <h1 id = "feedbackTitle">Assigned Orders</h1>    

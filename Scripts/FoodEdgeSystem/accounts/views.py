@@ -431,3 +431,7 @@ def pivot_data(request):
     dataset = InsertOrder.objects.all()
     data = serializers.serialize('json', dataset)
     return JsonResponse(data, safe=False)
+
+
+def ManagementHome(request):
+    return render(request, 'accounts/indexManagement.html')

@@ -18,6 +18,9 @@
     <body>
         <main>
         {%block content%}
+        <div class="pageBanner">
+                <h1>Add Stocks</h1>
+            </div>
         {% include 'accounts/confirmBox.html'%}
             <form id="StockAdd" method="post">
             {% csrf_token %}

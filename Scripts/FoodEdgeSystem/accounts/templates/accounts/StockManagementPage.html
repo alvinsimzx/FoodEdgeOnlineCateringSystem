@@ -17,11 +17,23 @@
     </head>
     <body>
         {%block content%}
-        <main>
-            <form>
-                <p><a href="{% url 'AddStocks' %}">Add Stocks</a></p>
-                <p><a href="{% url 'ViewStocks' %}">View Stocks</a></p>
-            </form>
+        <div class="pageBanner">
+                <h1>Stock Management</h1>
+            </div>
+        <main class="profile stockAction">
+            <h1>Select an action</h1>
+            <p>
+                <a class="addStock" href="{% url 'AddStocks' %}">
+                    <div class="static-banner stockBtn">Add Stocks</div>
+                </a>
+            </p>
+            <p>
+                <a class="addStock" href="{% url 'ViewStocks' %}">
+                    <div class="static-banner stockBtn">Edit Stocks</div>
+                </a>
+            </p>
+            <!-- <p><a href="{% url 'AddStocks' %}"></a></p>
+            <p><a href="{% url 'ViewStocks' %}">View Stocks</a></p> -->
         </main>
         {%endblock content%}
     </body>
