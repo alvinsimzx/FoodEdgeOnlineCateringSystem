@@ -81,7 +81,46 @@ $(function(){
 
 });
 
+function validateMenuAdd(details)
+{
+    var itemName = document.getElementById("itemName").value; 
+    var itemPrice = document.getElementById("itemPrice").value; 
+    if(itemName == "" || itemPrice == "")
+    {
+        alert("Some fields are empty!"); 
+    }
+    else if(/^\d{1,3}$/.test(itemPrice) == false)
+    {
+        alert("Price should max 3 digits");
+    }
+    else
+    {
+        editBox(details); 
+    }
+}
 
+function validateStock(details)
+{
+    var stockName = document.getElementById("stockName").value; 
+    var amountLeft = document.getElementById("amountLeft").value;
+    var deficit = document.getElementById("deficit").value;
+    if(stockName == "" || amountLeft == "" || deficit == "")
+    {
+        alert("Some fields are empty!"); 
+    }
+    else if(/^\d{1,4}$/.test(amountLeft) == false)
+    {
+        alert("Current Amount should have max 4 digits");
+    }
+    else if(/^\d{1,5}$/.test(deficit) == false)
+    {
+        alert("Pricing should have max 5 digits");
+    }
+    else
+    {
+        editBox(details);
+    }
+}
 
 function deleteBox(username) {
     var name = username.getAttribute("data-username");
