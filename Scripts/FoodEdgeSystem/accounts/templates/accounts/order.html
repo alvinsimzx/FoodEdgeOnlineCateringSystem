@@ -12,10 +12,7 @@
         <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
         <link rel="stylesheet" href="{% static 'admin/css/widgets.css' %}">
 
-        <!--Date Time Picker CSS-->
-        <!-- <link rel ="stylesheet" href="{% static 'date-time-picker/jquery-ui.css' %}">
-        <link rel ="stylesheet" href="{% static 'date-time-picker/jquery-ui-timepicker-addon.css' %}"> -->
-        <!--Date Time Picker CSS-->
+       
     </head>
 
     
@@ -89,7 +86,7 @@
     </fieldset>
 
     <fieldset>
-    <legend>Bookings (Date and Time) *Click the picker*</legend>
+    <legend>Bookings (Date and Time)</legend>
     <div style="text-align: center">
         <input type = "date">
         {{example_form.my_date_field}}
@@ -98,28 +95,6 @@
         <input type = "time">
         {{example_form.my_time_field}}
     </div>
-<!--     
-    {{form.media}}
-    {{form.as_p}} -->
-
-    <!-- Date Time Picker JS-->
-    <!-- <script src ="{% static 'date-time-picker/jquery-ui.js' %}"></script>
-    <script src ="{% static 'date-time-picker/jquery-ui-timepicker-addon.js' %}"></script>
-
-    <script>
-        $( function() {
-            //$( "id_birth_date" ).datetimepicker({ dateFormat: 'yy-mm-dd', maxDate: 0, controlType: 'select'}).attr("autocomplete", "off") ;
-            $( "#id_birth_date" ).datepicker({ dateFormat: 'yy-mm-dd' }).attr("autocomplete", "off") ;
-            // $( "#id_birth_time" ).timepicker({ dateFormat: 'yy-mm-dd', maxDate: 0, controlType: 'select'}).attr("autocomplete", "off") ;
-        });
-
-
-    </script>
-
-    <div id="id_birth_date" class="form-group">
-        <input type= "text" name="BookingDate" value="2020-12-31" class= "dateinput form-control hasDatePicker" id="id_birth_date" autocomplete="off"> 
-    </div> -->
-    <!--Date Time Picker JS -->
     </fieldset>
 
         
