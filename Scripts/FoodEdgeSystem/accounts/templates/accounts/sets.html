@@ -376,14 +376,14 @@
          
           <div class="allItems">
               <h3>Items include: </h3>
-                  {% if set1Available == False %}
+                {%if menu.0 in notAvailable%}
                     <p>Unavailable</p>
-                  {% else %}
-                    <p>Available</p>
-                  {% endif %}
+                {%else%}
+                   <p>Available</p>
+                {%endif%}
               <ol>
                 {% for res in re%}
-                  {%if res.menuItemID == 2%}
+                  {%if res.menuItemID == menu.0.menuItemID%}
                     <li>{{res.stockName}}</li>
                   {% endif %}
                 {% endfor %}
@@ -657,14 +657,14 @@
          
           <div class="allItems">
               <h3>Items include: </h3>
-              {% if set2Available == False %}
+                {%if menu.1 in notAvailable%}
                     <p>Unavailable</p>
-                  {% else %}
+                {%else%}
                     <p>Available</p>
-                  {% endif %}
+                {%endif%}
               <ol>
                 {% for res in re%}
-                {%if res.menuItemID == 3%}
+                {%if res.menuItemID == menu.1.menuItemID%}
                   <li>{{res.stockName}}</li>
                 {% endif %}
               {% endfor %}
@@ -985,14 +985,14 @@
          
           <div class="allItems">
               <h3>Items include: </h3>
-              {% if set3Available == False %}
+                {%if menu.2 in notAvailable%}
                     <p>Unavailable</p>
-                  {% else %}
+                {%else%}
                     <p>Available</p>
-                  {% endif %}
+                {%endif%}
               <ol>
                 {% for res in re%}
-                {%if res.menuItemID == 4%}
+                {%if res.menuItemID == menu.2.menuItemID%}
                   <li>{{res.stockName}}</li>
                 {% endif %}
               {% endfor %}
