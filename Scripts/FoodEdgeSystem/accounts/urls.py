@@ -42,6 +42,9 @@ urlpatterns = [
 
     path('balance/', views.dashboard_with_pivot, name='dashboard_with_pivot'),
     path('data', views.pivot_data, name='pivot_data'),
+    path('calendar/', views.CalendarView.as_view(), name='calendar'),
+    path('event/new/', views.event, name='event_new'),
+    path('event/edit/(?P<event_id>\d+)/', views.event, name='event_edit')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
