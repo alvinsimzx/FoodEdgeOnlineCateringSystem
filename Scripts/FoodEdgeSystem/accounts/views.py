@@ -1,24 +1,29 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.urls import reverse,resolve
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group, User
 from django.contrib.auth import authenticate, login, logout
+from django.views import generic
+from django.utils.safestring import mark_safe
 
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 from .decorators import allowed_users
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,EventForm
+from .models import *
+from .utils import Calendar
 
 from accounts.models import InsertStock,InsertOrder,MenuItem,InsertCustomer,StaffTable,StaffTeam
 
 # Email Confirmation
-from django.shortcuts import render
 from django.core.mail import send_mail
 import stripe
 # #Date and time picker
 from django import forms
 from django.contrib.admin.widgets import  AdminDateWidget, AdminTimeWidget, AdminSplitDateTime
-import datetime
+from datetime import datetime
+from datetime import timedelta
+import calendar
 
 from django.core import serializers
 
@@ -182,8 +187,7 @@ def ViewStocks(request):
 
     return render(request, 'accounts/stock2.html', {'re': re, 'lowStock': lowStock})
 
-# def ShowGivenOrders(request):   
-#     return render(request, 'accounts/CheckAssignedOrders.html', {'data':data})
+
 
 def ShowAssignOrdersToStaff(request):
     record = InsertOrder.objects.filter(teamID__isnull=True)
@@ -445,3 +449,59 @@ def pivot_data(request):
 
 def ManagementHome(request):
     return render(request, 'accounts/indexManagement.html')
+
+
+class CalendarView(generic.ListView):
+    model = Event
+    template_name = 'accounts/calendar.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # use today's date for the calendar
+        d = get_date(self.request.GET.get('month', None))
+
+        # Instantiate our calendar class with today's year and date
+        cal = Calendar(d.year, d.month)
+
+        # Call the formatmonth method, which returns our calendar as a table
+        html_cal = cal.formatmonth(withyear=True)
+        context['calendar'] = mark_safe(html_cal)
+        context['prev_month'] = prev_month(d)
+        context['next_month'] = next_month(d)
+        return context
+
+def prev_month(d):
+    first = d.replace(day=1)
+    prev_month = first - timedelta(days=1)
+    month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
+    return month
+
+
+def next_month(d):
+    days_in_month = calendar.monthrange(d.year, d.month)[1]
+    last = d.replace(day=days_in_month)
+    next_month = last + timedelta(days=1)
+    month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
+    return month
+
+
+def get_date(req_day):
+    if req_day:
+        year, month = (int(x) for x in req_day.split('-'))
+        return datetime(year, month, day=1)
+    return datetime.today()
+
+
+def event(request, event_id=None):
+    instance = Event()
+    if event_id:
+        instance = get_object_or_404(Event, pk=event_id)
+    else:
+        instance = Event()
+    
+    form = EventForm(request.POST or None, instance=instance)
+    if request.POST and form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('calendar'))
+    return render(request, 'accounts/event.html', {'form': form})
