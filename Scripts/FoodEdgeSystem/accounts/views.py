@@ -398,7 +398,7 @@ def StaffHome(request):
     return render(request, 'accounts/indexStaff.html')
 
 def StaffLogin(request):
-    allowed_roles=['c']
+    allowed_roles=['Operations']
     if(request.method == 'POST'):
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -409,6 +409,9 @@ def StaffLogin(request):
         if (user is not None) and (user.groups.filter(name='Operations').exists()):
             login(request,user)
             return redirect('staff-home')
+        elif (user is not None) and (user.groups.filter(name='Management').exists()):
+            login(request,user)
+            return redirect('Management-home')
         else:
             messages.info(request,'You do not have the permission to log into this')
 
@@ -437,7 +440,7 @@ def ShowGivenOrders(request):
 def ShowAddMenuItems(request):
     return render(request, 'accounts/addMenuItems.html')
 
-
+@allowed_users(allowed_roles=['Management'])
 def dashboard_with_pivot(request):
     return render(request, 'accounts/BalanceReport.html', {})
 
@@ -446,15 +449,17 @@ def pivot_data(request):
     data = serializers.serialize('json', dataset)
     return JsonResponse(data, safe=False)
 
-
+@allowed_users(allowed_roles=['Management'])
 def ManagementHome(request):
     return render(request, 'accounts/indexManagement.html')
+
 
 
 class CalendarView(generic.ListView):
     model = Event
     template_name = 'accounts/calendar.html'
     
+    @allowed_users(allowed_roles=['Operations'])
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
