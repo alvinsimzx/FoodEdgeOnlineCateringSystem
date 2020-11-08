@@ -80,7 +80,7 @@ class InsertOrder(models.Model):
     custRequest = models.CharField(max_length=255)	 	
     location = models.CharField(max_length=255)	 	
     amountDue = models.IntegerField(default="50")
-    Status = models.BooleanField()
+    Status = models.BooleanField(default=False)
     class Meta:
         db_table = "cateringorder"	 	
 
