@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from django.urls import reverse,resolve
+from django.urls import reverse,resolve,reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group, User
@@ -9,7 +9,7 @@ from django.utils.safestring import mark_safe
 
 from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 from .decorators import allowed_users
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,EventForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,EventForm,EventMember,AddMemberForm
 from .models import *
 from .utils import Calendar
 
@@ -493,15 +493,61 @@ def get_date(req_day):
     return datetime.today()
 
 
-def event(request, event_id=None):
-    instance = Event()
-    if event_id:
-        instance = get_object_or_404(Event, pk=event_id)
-    else:
-        instance = Event()
-    
-    form = EventForm(request.POST or None, instance=instance)
+def create_event(request):    
+    form = EventForm(request.POST or None)
     if request.POST and form.is_valid():
-        form.save()
+        title = form.cleaned_data['title']
+        description = form.cleaned_data['description']
+        start_time = form.cleaned_data['start_time']
+        end_time = form.cleaned_data['end_time']
+        Event.objects.get_or_create(
+            id=request.user.id,
+            title=title,
+            description=description,
+            start_time=start_time,
+            end_time=end_time
+        )
         return HttpResponseRedirect(reverse('calendar'))
     return render(request, 'accounts/event.html', {'form': form})
+
+class EventEdit(generic.UpdateView):
+    model = Event
+    fields = ['title', 'description', 'start_time', 'end_time']
+    template_name = 'accounts/event.html'
+
+
+def event_details(request, event_id):
+    event = Event.objects.get(id=event_id)
+    eventmember = EventMember.objects.filter(event=event)
+    context = {
+        'event': event,
+        'eventmember': eventmember
+    }
+    return render(request, 'accounts/event-details.html', context)
+
+
+def add_eventmember(request, event_id):
+    forms = AddMemberForm()
+    if request.method == 'POST':
+        forms = AddMemberForm(request.POST)
+        if forms.is_valid():
+            member = EventMember.objects.filter(event=event_id)
+            event = Event.objects.get(id=event_id)
+            if member.count() <= 9:
+                user = forms.cleaned_data['user']
+                EventMember.objects.create(
+                    event=event,
+                    user=user
+                )
+                return redirect('calendar')
+            else:
+                print('--------------User limit exceed!-----------------')
+    context = {
+        'form': forms
+    }
+    return render(request, 'accounts/add_member.html', context)
+
+class EventMemberDeleteView(generic.DeleteView):
+    model = EventMember
+    template_name = 'accounts/event_delete.html'
+    success_url = reverse_lazy('calendar')
