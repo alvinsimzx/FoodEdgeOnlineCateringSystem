@@ -373,8 +373,18 @@ def EditRecords(request, stockID):
         return render(request, 'accounts/editStock.html', {'mn': mn, 'record': record})
 
 def ShowSets(request):
-    AvailableItems = MenuItem.objects.all()
-    return render(request, 'accounts/sets.html', {'AvailableItems' : AvailableItems})
+    re = InsertStock.objects.all()
+    menu = MenuItem.objects.all()
+    lowStock = []
+    notAvailable = []
+    for res in re:
+        if(res.amountLeft <= 10):
+            lowStock.append(res)
+    for item in lowStock:
+        if(MenuItem.objects.get(menuItemID=item.menuItemID) not in notAvailable):
+            notAvailable.append(MenuItem.objects.get(menuItemID=item.menuItemID))
+
+    return render(request, 'accounts/sets.html', {'re': re, 'notAvailable' : notAvailable, 'menu': menu})
 
 def ShowTransactions(request):
     return render(request, 'accounts/CustomerTransactions.html')

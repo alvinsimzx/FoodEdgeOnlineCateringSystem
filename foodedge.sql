@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2020 at 11:25 AM
+-- Generation Time: Nov 07, 2020 at 06:55 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -497,9 +497,9 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`stockID`, `stockName`, `amountLeft`, `deficit`, `menuItemID`) VALUES
-(11, 'Uno1', 99, 999, 2),
+(11, 'Uno1', 9, 999, 2),
 (12, 'Uno2', 99, 999, 2),
-(14, 'Dos1', 88, 888, 3),
+(14, 'Dos1', 8, 888, 3),
 (15, 'Dos2', 88, 888, 3),
 (16, 'Tres1', 77, 777, 4);
 
