@@ -3,10 +3,13 @@ from django.urls import reverse,resolve,reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group, User
+
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-from django.contrib.auth import authenticate, login, logout
+
+from django.views import generic
 from django.utils.safestring import mark_safe
+
 
 from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,EventForm,EventMember,AddMemberForm
