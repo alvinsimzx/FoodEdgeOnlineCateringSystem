@@ -979,6 +979,27 @@ label {
       padding: 3%;
       margin: 3%;
   }
+
+  #set1, #set2, #set3{
+    display:none;
+  }
+  
+  .centerAlign{
+    text-align: center;
+  }
+  
+  .commentSection{
+    background:rgba(245, 245, 245, 0.8);
+    border:1px rgba(128, 128, 128, 0.5) solid;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 2% auto;
+  }
+  
+  .ratingStar{
+    font-size: 16px;
+    font-style: italic;
+  }
   /* -------------------------------------------------------login/register pages--------------------------------------------------------------- */
 
   .login_box, .logout, .content-section{
