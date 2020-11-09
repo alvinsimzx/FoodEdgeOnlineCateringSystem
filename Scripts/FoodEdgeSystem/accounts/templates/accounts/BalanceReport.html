@@ -1,4 +1,4 @@
-{% extends 'accounts/main.html' %}
+{% extends 'accounts/MainManagement.html' %}
 {% load static %}
 {%block content%}<head>
     <meta charset="UTF-8">
@@ -66,32 +66,26 @@ $.ajax({
             height: 430,
             toolbar: true,
             report: {
-                dataSource: {
+                "dataSource": {
                     type: "json",
                     data: processData(data),
                     mapping: {
-                        "product_category": {
-                            "caption": "Product Category"
-                        },
-                        "payment_method": {
-                            "caption": "Payment Method"
-                        },
-                        "shipping_cost": {
-                            "caption": "Shipping Cost",
+                        "custOrder": {
+                            "caption": "Menu Items",
                             "type": "number"
                         },
                         "amountDue": {
-                            "caption": "Unit Price",
+                            "caption": "Total amounts",
                             "type": "number"
                         }
                     }
                 },
                 "slice": {
                     "rows": [{
-                        "uniqueName": "product_category"
+                        "uniqueName": "Orders"
                     }],
                     "columns": [{
-                            "uniqueName": "payment_method"
+                            "uniqueName": "Menu Items"
                         },
                         {
                             "uniqueName": "[Measures]"
@@ -116,38 +110,40 @@ $.ajax({
             height: 430,
             //toolbar: true,
             report: {
-                dataSource: {
+                "dataSource": {
                     type: "json",
                     data: processData(data),
                     mapping: {
-                        "product_category": {
-                            "caption": "Product Category"
-                        },
-                        "payment_method": {
-                            "caption": "Payment Method"
-                        },
-                        "shipping_cost": {
-                            "caption": "Shipping Cost",
+                        "custOrder": {
+                            "caption": "Menu Items",
                             "type": "number"
                         },
-                        "unit_price": {
-                            "caption": "Unit Price",
+                        "amountDue": {
+                            "caption": "Total amounts",
                             "type": "number"
                         }
                     }
                 },
                 "slice": {
                     "rows": [{
-                        "uniqueName": "product_category"
+                        "uniqueName": "Orders"
                     }],
                     "columns": [{
-                        "uniqueName": "[Measures]"
-                    }],
+                            "uniqueName": "Menu Items"
+                        },
+                        {
+                            "uniqueName": "[Measures]"
+                        }
+                    ],
                     "measures": [{
-                        "uniqueName": "Price",
-                        "formula": "sum(\"shipping_cost\") + sum(\"unit_price\")",
-                        "caption": "Price"
-                    }]
+                            "uniqueName": "shipping_cost",
+                            "aggregation": "sum"
+                        },
+                        {
+                            "uniqueName": "unit_price",
+                            "aggregation": "sum"
+                        }
+                    ]
                 },
                 "options": {
                     "viewType": "charts",
