@@ -29,12 +29,14 @@
                 <table>
                     <tr>
                         <th>Stock ID</th>
+                        <th>Stock Image</th>
                         <th>Name</th>
                         <th>Amount Left</th>
                     </tr>
                     {%for item in lowStock%}
                     <tr>
-                        <td>{{item.stockID}}</td>
+                        <td>{{item.id}}</td>
+                        <td><img src="{{item.stockImage.url}}" alt="Stock Image"/></td>
                         <td>{{item.stockName}}</td>
                         <td>{{item.amountLeft}}</td>
                     </tr>
@@ -46,6 +48,7 @@
                     <tr>
                         <th>Stock ID</th>
                         <th>Menu ID</th>
+                        <th>Stock Image</th>
                         <th>Name</th>
                         <th>Amount Left</th>
                         <th>Price($)</th>
@@ -53,13 +56,14 @@
                     </tr>
                     {%for res in re%}
                     <tr>
-                        <td>{{res.stockID}}</td>
+                        <td>{{res.id}}</td>
                         <td>{{res.menuItemID}}</td>
+                        <td><img src="{{res.stockImage.url}}" alt="Stock Image"/></td>
                         <td>{{res.stockName}}</td>
                         <td>{{res.amountLeft}}</td>
                         <td>{{res.deficit}}</td>
-                        <td><button onclick=deleteBox(this) data-username = "/delete/{{res.stockID}}" class="deleteBtn">Delete</button>
-                            <a href="/edit/{{res.stockID}}">Edit</a></td>
+                        <td><button onclick=deleteBox(this) data-username = "/delete/{{res.id}}" class="deleteBtn">Delete</button>
+                            <a href="/edit/{{res.id}}">Edit</a></td>
                     </tr>
                     {% endfor %}
                 </table>

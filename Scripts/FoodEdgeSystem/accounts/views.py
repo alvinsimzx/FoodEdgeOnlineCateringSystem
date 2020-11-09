@@ -9,7 +9,7 @@ from django.utils.safestring import mark_safe
 
 from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 from .decorators import allowed_users
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,EventForm,EventMember,AddMemberForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,EventForm,EventMember,AddMemberForm,StockForm
 from .models import *
 from .utils import Calendar
 
@@ -321,22 +321,6 @@ This is an auto-generated email, please send a new email instead of replying.
     else:
         return render(request, 'accounts/order.html')
 
-def Insertrecord(request):
-    re = InsertStock.objects.all()
-    mn = MenuItem.objects.all()
-    if request.method =='POST':
-        if request.POST.get('stockName') and request.POST.get('menuItemID') and request.POST.get('amountLeft') and request.POST.get('deficit'): 
-            saverecord = InsertStock()
-            saverecord.stockName=request.POST.get('stockName')
-            saverecord.menuItemID=request.POST.get('menuItemID')
-            saverecord.amountLeft=request.POST.get('amountLeft')
-            saverecord.deficit=request.POST.get('deficit')
-            saverecord.save()
-            messages.success(request,'Record Saved')
-            return render(request, 'accounts/stock.html', {'re': re, 'mn': mn})
-    else:
-        return render(request, 'accounts/stock.html' , {'re': re, 'mn': mn})
-
 def InsertMenu(request):
     re = InsertStock.objects.all()
     mn = MenuItem.objects.all()
@@ -355,15 +339,15 @@ def InsertMenu(request):
     else:
          return render(request, 'accounts/menu.html', {'mn': mn})
 
-def DeleteRecord(request, stockID):
-    record = InsertStock.objects.get(stockID=stockID)
+def DeleteRecord(request, id):
+    record = InsertStock.objects.get(id=id)
     record.delete()
     re = InsertStock.objects.all()
     return redirect('ViewStocks')
 
-def EditRecords(request, stockID):
+def EditRecords(request, id):
     mn = MenuItem.objects.all()
-    record = InsertStock.objects.get(stockID=stockID)
+    record = InsertStock.objects.get(id=id)
     if request.method =='POST':
         if request.POST.get('stockName') and request.POST.get('menuItemID') and request.POST.get('amountLeft') and request.POST.get('deficit'):
             record.stockName = request.POST.get('stockName')
@@ -557,3 +541,30 @@ class EventMemberDeleteView(generic.DeleteView):
     model = EventMember
     template_name = 'accounts/event_delete.html'
     success_url = reverse_lazy('calendar')
+
+def addStockImage(request):
+    re = InsertStock.objects.all()
+    img = StockImage.objects.all()
+    if request.method == 'POST': 
+        form = StockImageForm(request.POST, request.FILES)
+        if form.is_valid(): 
+            form.save() 
+            messages.success(request,'Record Edited')
+            return redirect('addStockImage')
+    else:
+        form = StockImageForm() 
+        return render(request, 'accounts/stockAddImage.html', {'form' : form, 're': re, 'img':img}) 
+
+def Insertrecord(request):
+    if request.method =='POST':
+        form = StockForm(request.POST, request.FILES)
+        if form.is_valid(): 
+            form.save() 
+            messages.success(request,'Record Saved')
+            return redirect('AddStocks')
+        else:
+            messages.warning(request,'Form is not valid')
+            return render(request,'accounts/stock.html', {'form':form})
+    else:
+        form = StockForm()
+        return render(request,'accounts/stock.html', {'form':form})
