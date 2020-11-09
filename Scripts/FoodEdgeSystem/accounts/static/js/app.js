@@ -81,7 +81,7 @@ $(function(){
 
 });
 
-function validateMenuAdd(details)
+function validateMenu(details)
 {
     var itemName = document.getElementById("itemName").value; 
     var itemPrice = document.getElementById("itemPrice").value; 

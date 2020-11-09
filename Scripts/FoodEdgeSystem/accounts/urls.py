@@ -10,7 +10,7 @@ urlpatterns = [
     path('home/', views.home, name='accounts-home'),
     path('about/', views.aboutUs, name='AboutUs'),
     path('staffHome/', views.StaffHome, name='staff-home'),
-    path('managementHome/', views.ManagementHome, name='management-home'),
+    path('ManagementHome/', views.ManagementHome, name='Management-home'),
     path('insertcustomer',views.createCustomer,name='CreateCustomer'),
     path('products/', views.products),
     path('customer/', views.customer),
@@ -43,6 +43,12 @@ urlpatterns = [
 
     path('balance/', views.dashboard_with_pivot, name='dashboard_with_pivot'),
     path('data', views.pivot_data, name='pivot_data'),
+    path('staffHome/calendar/', views.CalendarView.as_view(), name='calendar'),
+    path('event/new/', views.create_event, name='event_new'),
+    path('event/edit/<int:pk>/', views.EventEdit.as_view(), name='event_edit'),
+    path('event/<int:event_id>/details/', views.event_details, name='event-detail'),
+    path('add_eventmember/<int:event_id>', views.add_eventmember, name='add_eventmember'),
+    path('event/<int:pk>/remove', views.EventMemberDeleteView.as_view(), name="remove_event"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

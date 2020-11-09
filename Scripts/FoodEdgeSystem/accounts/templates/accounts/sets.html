@@ -48,7 +48,12 @@
     <div class = "carousel" data-flickity='{ "cellSelector": ".carousel-slide", "wrapAround": true}'>
         <a href="#"><div class="static-banner">Order Now!</div></a>
       <div class="carousel-slide">
-          <h2 class="setTitle">Set 1</h2>
+        <!--{% for items in menu %}
+          {% if items.itemName == "Set 1 - Uno" %}
+          <h2 class="setTitle">{{items.itemName}}</h2>
+          {% endif %}
+        {% endfor %} -->
+        <h2 class="setTitle">Set 1</h2>
           <img class="region" src = "{% static 'images/western.png' %}">
           <div class="menuInfo">
           <div class="signatureDish">
@@ -73,25 +78,17 @@
          
           <div class="allItems">
               <h3>Items include: </h3>
-              {% for items in AvailableItems %}
-                {% if items %}
-                <p>Available</p>
-                {% endif %}
-              {% empty %}
-                <p>Unavailable</p>
-              {% endfor %}
+                {%if menu.0 in notAvailable%}
+                    <p>Unavailable</p>
+                {%else%}
+                   <p>Available</p>
+                {%endif%}
               <ol>
-                  <li>Clam Chowder Soup</li>
-                  <li>Chimicanga</li>
-                  <li>Herb Butter Rice</li>
-                  <li>Creamy Fish Stew</li>
-                  <li>Beef Steak</li>
-                  <li>Prawn Cocktail Salad</li>
-                  <li>Roasted Lam Leg</li>
-                  <li>Spaghetti</li>
-                  <li>Bread & Butter Pudding with Strawberries</li>
-                  <li>Tiramisu</li>
-                  <li>Fruit Punch</li>
+                {% for res in re%}
+                  {%if res.menuItemID == menu.0.menuItemID%}
+                    <li>{{res.stockName}}</li>
+                  {% endif %}
+                {% endfor %}
               </ol>
               
           </div>
@@ -122,25 +119,17 @@
          
           <div class="allItems">
               <h3>Items include: </h3>
-              {% for items in AvailableItems %}
-                {% if items %}
-                <p>Available</p>
-                {% endif %}
-              {% empty %}
-                <p>Unavailable</p>
-              {% endfor %}
+                {%if menu.1 in notAvailable%}
+                    <p>Unavailable</p>
+                {%else%}
+                    <p>Available</p>
+                {%endif%}
               <ol>
-                  <li>Fried Shrimp Ball</li>
-                  <li>Nyonya Fried Rice</li>
-                  <li>Bihun Siame</li>
-                  <li>Rendang Chicken</li>
-                  <li>Broccoli, Cauliflower, Mushroom</li>
-                  <li>Satay</li>
-                  <li>Assam Deep Fried Talapia</li>
-                  <li>BBQ Chicken Wings</li>
-                  <li>Black Pepper Beef</li>
-                  <li>Nyonya Kuih</li>
-                  <li>Fruit Punch</li>
+                {% for res in re%}
+                {%if res.menuItemID == menu.1.menuItemID%}
+                  <li>{{res.stockName}}</li>
+                {% endif %}
+              {% endfor %}
               </ol>
           </div>
           
@@ -170,25 +159,17 @@
          
           <div class="allItems">
               <h3>Items include: </h3>
-              {% for items in AvailableItems %}
-                {% if items %}
-                <p>Available</p>
-                {% endif %}
-              {% empty %}
-                <p>Unavailable</p>
-              {% endfor %}
+                {%if menu.2 in notAvailable%}
+                    <p>Unavailable</p>
+                {%else%}
+                    <p>Available</p>
+                {%endif%}
               <ol>
-                  <li>Cold Dish</li>
-                  <li>Fried Longevity Noodles</li>
-                  <li>Shark Fin Soup</li>
-                  <li>Braised Pork Leg</li>
-                  <li>Peking Duck</li>
-                  <li>Steam Fish</li>
-                  <li>Scallops</li>
-                  <li>Roasted Chicken</li>
-                  <li>Abalone and sea cucumber</li>
-                  <li>Red bean soup with lotus seeds</li>
-                  <li>Fruit Punch</li>
+                {% for res in re%}
+                {%if res.menuItemID == menu.2.menuItemID%}
+                  <li>{{res.stockName}}</li>
+                {% endif %}
+              {% endfor %}
               </ol>
           </div>
           
@@ -198,31 +179,39 @@
     </div>
       <div class="profile" id="set1">
         <h2 class="centerAlign" id="commentScroll1">Comments</h2>
-        <h3 class="centerAlign">Set 1</h3>
-        <div class="commentSection">
-          <p><span class="commentUser">Someone</span><span class="ratingStar"> gave 3 <i aria-hidden="true" class="fa fa-star"></i></span></p>
-          <p>Insert comment here</p>
-        </div>
+        {%for comment in comments%}
+          {%if comment.menuItemID == menu.0.menuItemID%}
+          <h3 class="centerAlign">{{menu.0.itemName}}</h3>
+          <div class="commentSection">
+            <p><span class="commentUser">{{comment.commentfName}} {{comment.commentlName}}</span><span class="ratingStar"> gave {{comment.rating}} <i aria-hidden="true" class="fa fa-star"></i></span></p>
+            <p>{{comment.commentContent}}</p>
+          </div>
+          {%endif%}
+        {%endfor%}
       </div>
       <div class="profile" id="set2">
         <h2 class="centerAlign" id="commentScroll2">Comments</h2>
-        <h3 class="centerAlign">Set 2</h3>
-        <div class="commentSection">
-          <p><span class="commentUser">Someone</span><span class="ratingStar"> gave 3 <i aria-hidden="true" class="fa fa-star"></i></span></p>
-          <p>Insert comment here</p>
-        </div>
+        {%for comment in comments%}
+          {%if comment.menuItemID == menu.1.menuItemID%}
+          <h3 class="centerAlign">{{menu.1.itemName}}</h3>
+          <div class="commentSection">
+            <p><span class="commentUser">{{comment.commentfName}} {{comment.commentlName}}</span><span class="ratingStar"> gave {{comment.rating}} <i aria-hidden="true" class="fa fa-star"></i></span></p>
+            <p>{{comment.commentContent}}</p>
+          </div>
+          {%endif%}
+        {%endfor%}
       </div>
       <div class="profile" id="set3">
         <h2 class="centerAlign" id="commentScroll3">Comments</h2>
-        <h3 class="centerAlign">Set 3</h3>
-        <div class="commentSection">
-          <p><span class="commentUser">Someone</span><span class="ratingStar"> gave 3 <i aria-hidden="true" class="fa fa-star"></i></span></p>
-          <p>Insert comment here</p>
-        </div>
-        <div class="commentSection">
-            <p><span class="commentUser">Someone</span><span class="ratingStar"> gave 3 <i aria-hidden="true" class="fa fa-star"></i></span></p>
-            <p>Insert comment here</p>
-        </div>
+        {%for comment in comments%}
+          {%if comment.menuItemID == menu.2.menuItemID%}
+          <h3 class="centerAlign">{{menu.2.itemName}}</h3>
+          <div class="commentSection">
+            <p><span class="commentUser">{{comment.commentfName}} {{comment.commentlName}}</span><span class="ratingStar"> gave {{comment.rating}} <i aria-hidden="true" class="fa fa-star"></i></span></p>
+            <p>{{comment.commentContent}}</p>
+          </div>
+          {%endif%}
+        {%endfor%}
       </div>
 
 

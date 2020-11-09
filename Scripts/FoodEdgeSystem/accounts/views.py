@@ -1,25 +1,33 @@
-from django.shortcuts import render,redirect
-from django.urls import reverse,resolve
+from django.shortcuts import render,redirect,get_object_or_404
+from django.urls import reverse,resolve,reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group, User
+
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 
-from django.http import JsonResponse
+from django.views import generic
+from django.utils.safestring import mark_safe
+
+
+from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 from .decorators import allowed_users
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,EventForm,EventMember,AddMemberForm
+from .models import *
+from .utils import Calendar
 
 from accounts.models import InsertStock,InsertOrder,MenuItem,InsertCustomer,StaffTable,StaffTeam
 
 # Email Confirmation
-from django.shortcuts import render
 from django.core.mail import send_mail
 import stripe
 # #Date and time picker
 from django import forms
 from django.contrib.admin.widgets import  AdminDateWidget, AdminTimeWidget, AdminSplitDateTime
-import datetime
+from datetime import datetime
+from datetime import timedelta
+import calendar
 
 from django.core import serializers
 
@@ -200,8 +208,7 @@ def ViewStocks(request):
 
     return render(request, 'accounts/stock2.html', {'re': re, 'lowStock': lowStock})
 
-# def ShowGivenOrders(request):   
-#     return render(request, 'accounts/CheckAssignedOrders.html', {'data':data})
+
 
 def ShowAssignOrdersToStaff(request):
     record = InsertOrder.objects.filter(teamID__isnull=True)
@@ -391,8 +398,19 @@ def EditRecords(request, stockID):
         return render(request, 'accounts/editStock.html', {'mn': mn, 'record': record})
 
 def ShowSets(request):
-    AvailableItems = MenuItem.objects.all()
-    return render(request, 'accounts/sets.html', {'AvailableItems' : AvailableItems})
+    re = InsertStock.objects.all()
+    menu = MenuItem.objects.all()
+    comments = Comments.objects.all()
+    lowStock = []
+    notAvailable = []
+    for res in re:
+        if(res.amountLeft <= 10):
+            lowStock.append(res)
+    for item in lowStock:
+        if(MenuItem.objects.get(menuItemID=item.menuItemID) not in notAvailable):
+            notAvailable.append(MenuItem.objects.get(menuItemID=item.menuItemID))
+
+    return render(request, 'accounts/sets.html', {'re': re, 'notAvailable' : notAvailable, 'menu': menu, 'comments': comments})
 
 def ShowTransactions(request):
     return render(request, 'accounts/CustomerTransactions.html')
@@ -402,7 +420,7 @@ def StaffHome(request):
     return render(request, 'accounts/indexStaff.html')
 
 def StaffLogin(request):
-    allowed_roles=['c']
+    allowed_roles=['Operations']
     if(request.method == 'POST'):
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -413,6 +431,9 @@ def StaffLogin(request):
         if (user is not None) and (user.groups.filter(name='Operations').exists()):
             login(request,user)
             return redirect('staff-home')
+        elif (user is not None) and (user.groups.filter(name='Management').exists()):
+            login(request,user)
+            return redirect('Management-home')
         else:
             messages.info(request,'You do not have the permission to log into this')
 
@@ -441,7 +462,7 @@ def ShowGivenOrders(request):
 def ShowAddMenuItems(request):
     return render(request, 'accounts/addMenuItems.html')
 
-
+@allowed_users(allowed_roles=['Management'])
 def dashboard_with_pivot(request):
     return render(request, 'accounts/BalanceReport.html', {})
 
@@ -450,6 +471,110 @@ def pivot_data(request):
     data = serializers.serialize('json', dataset)
     return JsonResponse(data, safe=False)
 
-
+@allowed_users(allowed_roles=['Management'])
 def ManagementHome(request):
     return render(request, 'accounts/indexManagement.html')
+
+
+
+class CalendarView(generic.ListView):
+    model = Event
+    template_name = 'accounts/calendar.html'
+    
+    @allowed_users(allowed_roles=['Operations'])
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # use today's date for the calendar
+        d = get_date(self.request.GET.get('month', None))
+
+        # Instantiate our calendar class with today's year and date
+        cal = Calendar(d.year, d.month)
+
+        # Call the formatmonth method, which returns our calendar as a table
+        html_cal = cal.formatmonth(withyear=True)
+        context['calendar'] = mark_safe(html_cal)
+        context['prev_month'] = prev_month(d)
+        context['next_month'] = next_month(d)
+        return context
+
+def prev_month(d):
+    first = d.replace(day=1)
+    prev_month = first - timedelta(days=1)
+    month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
+    return month
+
+
+def next_month(d):
+    days_in_month = calendar.monthrange(d.year, d.month)[1]
+    last = d.replace(day=days_in_month)
+    next_month = last + timedelta(days=1)
+    month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
+    return month
+
+
+def get_date(req_day):
+    if req_day:
+        year, month = (int(x) for x in req_day.split('-'))
+        return datetime(year, month, day=1)
+    return datetime.today()
+
+
+def create_event(request):    
+    form = EventForm(request.POST or None)
+    if request.POST and form.is_valid():
+        title = form.cleaned_data['title']
+        description = form.cleaned_data['description']
+        start_time = form.cleaned_data['start_time']
+        end_time = form.cleaned_data['end_time']
+        Event.objects.get_or_create(
+            id=request.user.id,
+            title=title,
+            description=description,
+            start_time=start_time,
+            end_time=end_time
+        )
+        return HttpResponseRedirect(reverse('calendar'))
+    return render(request, 'accounts/event.html', {'form': form})
+
+class EventEdit(generic.UpdateView):
+    model = Event
+    fields = ['title', 'description', 'start_time', 'end_time']
+    template_name = 'accounts/event.html'
+
+
+def event_details(request, event_id):
+    event = Event.objects.get(id=event_id)
+    eventmember = EventMember.objects.filter(event=event)
+    context = {
+        'event': event,
+        'eventmember': eventmember
+    }
+    return render(request, 'accounts/event-details.html', context)
+
+
+def add_eventmember(request, event_id):
+    forms = AddMemberForm()
+    if request.method == 'POST':
+        forms = AddMemberForm(request.POST)
+        if forms.is_valid():
+            member = EventMember.objects.filter(event=event_id)
+            event = Event.objects.get(id=event_id)
+            if member.count() <= 9:
+                user = forms.cleaned_data['user']
+                EventMember.objects.create(
+                    event=event,
+                    user=user
+                )
+                return redirect('calendar')
+            else:
+                print('--------------User limit exceed!-----------------')
+    context = {
+        'form': forms
+    }
+    return render(request, 'accounts/add_member.html', context)
+
+class EventMemberDeleteView(generic.DeleteView):
+    model = EventMember
+    template_name = 'accounts/event_delete.html'
+    success_url = reverse_lazy('calendar')
