@@ -150,3 +150,14 @@ function editBox(details){
 function submitForm(id) {
     document.getElementById(id).submit();
   }
+
+  function showComments(no){
+    var commentsHide = document.getElementsByClassName("profile");
+      for (i = 0; i < commentsHide.length; i++) {
+        commentsHide[i].style.display = "none";
+      }
+    var comments = document.getElementById("set"+no);
+    comments.style.display = "block";
+    var commentScroll = document.getElementById("commentScroll"+no);
+    commentScroll.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
