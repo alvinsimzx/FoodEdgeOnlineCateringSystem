@@ -12,7 +12,6 @@ from django.utils.safestring import mark_safe
 
 
 from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
-from .decorators import allowed_users
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,EventForm,EventMember,AddMemberForm
 from .models import *
 from .utils import Calendar
