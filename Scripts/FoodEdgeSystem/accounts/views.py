@@ -379,6 +379,7 @@ def EditRecords(request, stockID):
 def ShowSets(request):
     re = InsertStock.objects.all()
     menu = MenuItem.objects.all()
+    comments = Comments.objects.all()
     lowStock = []
     notAvailable = []
     for res in re:
@@ -388,7 +389,7 @@ def ShowSets(request):
         if(MenuItem.objects.get(menuItemID=item.menuItemID) not in notAvailable):
             notAvailable.append(MenuItem.objects.get(menuItemID=item.menuItemID))
 
-    return render(request, 'accounts/sets.html', {'re': re, 'notAvailable' : notAvailable, 'menu': menu})
+    return render(request, 'accounts/sets.html', {'re': re, 'notAvailable' : notAvailable, 'menu': menu, 'comments': comments})
 
 def ShowTransactions(request):
     return render(request, 'accounts/CustomerTransactions.html')

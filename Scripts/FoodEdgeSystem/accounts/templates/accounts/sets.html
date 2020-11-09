@@ -179,31 +179,39 @@
     </div>
       <div class="profile" id="set1">
         <h2 class="centerAlign" id="commentScroll1">Comments</h2>
-        <h3 class="centerAlign">Set 1</h3>
-        <div class="commentSection">
-          <p><span class="commentUser">Someone</span><span class="ratingStar"> gave 3 <i aria-hidden="true" class="fa fa-star"></i></span></p>
-          <p>Insert comment here</p>
-        </div>
+        {%for comment in comments%}
+          {%if comment.menuItemID == menu.0.menuItemID%}
+          <h3 class="centerAlign">{{menu.0.itemName}}</h3>
+          <div class="commentSection">
+            <p><span class="commentUser">{{comment.commentfName}} {{comment.commentlName}}</span><span class="ratingStar"> gave {{comment.rating}} <i aria-hidden="true" class="fa fa-star"></i></span></p>
+            <p>{{comment.commentContent}}</p>
+          </div>
+          {%endif%}
+        {%endfor%}
       </div>
       <div class="profile" id="set2">
         <h2 class="centerAlign" id="commentScroll2">Comments</h2>
-        <h3 class="centerAlign">Set 2</h3>
-        <div class="commentSection">
-          <p><span class="commentUser">Someone</span><span class="ratingStar"> gave 3 <i aria-hidden="true" class="fa fa-star"></i></span></p>
-          <p>Insert comment here</p>
-        </div>
+        {%for comment in comments%}
+          {%if comment.menuItemID == menu.1.menuItemID%}
+          <h3 class="centerAlign">{{menu.1.itemName}}</h3>
+          <div class="commentSection">
+            <p><span class="commentUser">{{comment.commentfName}} {{comment.commentlName}}</span><span class="ratingStar"> gave {{comment.rating}} <i aria-hidden="true" class="fa fa-star"></i></span></p>
+            <p>{{comment.commentContent}}</p>
+          </div>
+          {%endif%}
+        {%endfor%}
       </div>
       <div class="profile" id="set3">
         <h2 class="centerAlign" id="commentScroll3">Comments</h2>
-        <h3 class="centerAlign">Set 3</h3>
-        <div class="commentSection">
-          <p><span class="commentUser">Someone</span><span class="ratingStar"> gave 3 <i aria-hidden="true" class="fa fa-star"></i></span></p>
-          <p>Insert comment here</p>
-        </div>
-        <div class="commentSection">
-            <p><span class="commentUser">Someone</span><span class="ratingStar"> gave 3 <i aria-hidden="true" class="fa fa-star"></i></span></p>
-            <p>Insert comment here</p>
-        </div>
+        {%for comment in comments%}
+          {%if comment.menuItemID == menu.2.menuItemID%}
+          <h3 class="centerAlign">{{menu.2.itemName}}</h3>
+          <div class="commentSection">
+            <p><span class="commentUser">{{comment.commentfName}} {{comment.commentlName}}</span><span class="ratingStar"> gave {{comment.rating}} <i aria-hidden="true" class="fa fa-star"></i></span></p>
+            <p>{{comment.commentContent}}</p>
+          </div>
+          {%endif%}
+        {%endfor%}
       </div>
 
 
