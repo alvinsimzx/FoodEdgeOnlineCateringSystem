@@ -39,6 +39,7 @@ urlpatterns = [
     path('reset_password_sent/',auth_views.PasswordResetDoneView.as_view(template_name="accounts/password_reset_sent.html"),  name="password_reset_done"),
     path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name="accounts/password_reset_form.html"),  name="password_reset_confirm"),
     path('reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(template_name="accounts/password_reset_done.html"),  name="password_reset_complete"),
+    path('change_password/', views.changePassword, name='ChangePassword'),
 
     path('balance/', views.dashboard_with_pivot, name='dashboard_with_pivot'),
     path('data', views.pivot_data, name='pivot_data'),

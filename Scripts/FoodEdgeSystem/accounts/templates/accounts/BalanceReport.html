@@ -33,12 +33,17 @@
   fill: #ffa600 !important;
 }
 
-#items{
-    margin-top:10%;
+.pivot-table-container{
+    margin: 0;
+    background: #314e4e;
 }
+
 </style>
 </head>
 <body>
+        <div class="pageBanner">
+                <h1>Balance Report</h1>
+            </div>
 <div id="items">
 <div id="pivot-table-container" data-url="{% url 'pivot_data' %}"></div>
 <div id="pivot-chart-container"></div>
