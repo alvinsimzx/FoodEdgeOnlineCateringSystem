@@ -460,7 +460,6 @@ class CalendarView(generic.ListView):
     model = Event
     template_name = 'accounts/calendar.html'
     
-    @allowed_users(allowed_roles=['Operations'])
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
