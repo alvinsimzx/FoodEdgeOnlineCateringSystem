@@ -346,6 +346,7 @@ This is an auto-generated email, please send a new email instead of replying.
         MenuList = MenuItem.objects.all()
         return render(request, 'accounts/order.html',{'MenuList':MenuList})
 
+
 def InsertMenu(request):
     re = InsertStock.objects.all()
     mn = MenuItem.objects.all()
