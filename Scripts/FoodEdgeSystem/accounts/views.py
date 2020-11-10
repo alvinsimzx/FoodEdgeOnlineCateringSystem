@@ -310,12 +310,13 @@ def InsertCustomerOrder(request):
             saverecord.custLastName = request.POST.get('custLastName')
             saverecord.custEmail = request.POST.get('custEmail')
             saverecord.custContact = request.POST.get('custContact')
-            saverecord.custOrder = request.POST.get('custOrder')
+            saverecord.custOrder = MenuItem.objects.get(menuItemID=int(request.POST.get('custOrder'))).itemName
             saverecord.custRequest = request.POST.get('custRequest')
             if request.user.is_authenticated:
-                 price = int(request.POST.get('custOrder'))*0.9
+                price = (MenuItem.objects.get(menuItemID=int(request.POST.get('custOrder'))).itemPrice)*0.9
+                
             else:
-                price = int(request.POST.get('custOrder'))
+                price = MenuItem.objects.get(menuItemID=int(request.POST.get('custOrder'))).itemPrice
             saverecord.amountDue = price
             saverecord.location = request.POST.get('location')
             saverecord.save()
@@ -342,7 +343,8 @@ This is an auto-generated email, please send a new email instead of replying.
             messages.success(request,'Order did not send')
             return redirect(reverse('Payment',args=[price]))
     else:
-        return render(request, 'accounts/order.html')
+        MenuList = MenuItem.objects.all()
+        return render(request, 'accounts/order.html',{'MenuList':MenuList})
 
 def InsertMenu(request):
     re = InsertStock.objects.all()
@@ -448,13 +450,17 @@ def ShowGivenOrders(request):
 def ShowAddMenuItems(request):
     return render(request, 'accounts/addMenuItems.html')
 
-@allowed_users(allowed_roles=['Management'])
+# @allowed_users(allowed_roles=['Management'])
 def dashboard_with_pivot(request):
     return render(request, 'accounts/BalanceReport.html', {})
 
 def pivot_data(request):
     dataset = InsertOrder.objects.all()
+    
     data = serializers.serialize('json', dataset)
+    # trans = stripe.Charge.list(limit=3)["data"][0]
+    # trans = stripe.Charge.list(limit=3)["data"][0]["amount"]
+    # print(trans)
     return JsonResponse(data, safe=False)
 
 @allowed_users(allowed_roles=['Management'])
@@ -467,7 +473,6 @@ class CalendarView(generic.ListView):
     model = Event
     template_name = 'accounts/calendar.html'
     
-    @allowed_users(allowed_roles=['Operations'])
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 

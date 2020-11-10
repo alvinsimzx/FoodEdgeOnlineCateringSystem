@@ -78,9 +78,9 @@
     <legend>Catering Set</legend>
     <center>
       <select name="custOrder"id="product">
-         <option value="1000">Set 1 - Western</option>
-         <option value="2000">Set 2 - Local</option>
-         <option value="3000">Set 3 - Chinese</option>
+        {% for items in MenuList %}
+         <option value={{items.menuItemID}}>{{items.itemName}}</option>
+        {% endfor %}
       </select>
     </center> 
     </fieldset>
