@@ -29,8 +29,8 @@ urlpatterns = [
     path('success/<str:args>/',views.successMsg,name="PaymentSuccess"),
     path('CheckAssignedOrders/',views.ShowGivenOrders,name='ShowGivenOrders'),
     path('AssignOrdersToStaff/',views.ShowAssignOrdersToStaff,name='AssignOrdersToStaff'),
-    path('delete/<int:stockID>', views.DeleteRecord), 
-    path('edit/<int:stockID>', views.EditRecords),
+    path('delete/<int:id>', views.DeleteRecord), 
+    path('edit/<int:id>', views.EditRecords),
     path('customerAccounts/', views.customerAccounts, name='CustomerAccounts'),
     path('delete/<str:username>', views.deleteCustomerAccount),
     path('deleteCustomer/<str:username>', views.deleteCustomerAccountCustomer),
@@ -39,6 +39,7 @@ urlpatterns = [
     path('reset_password_sent/',auth_views.PasswordResetDoneView.as_view(template_name="accounts/password_reset_sent.html"),  name="password_reset_done"),
     path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name="accounts/password_reset_form.html"),  name="password_reset_confirm"),
     path('reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(template_name="accounts/password_reset_done.html"),  name="password_reset_complete"),
+    path('change_password/', views.changePassword, name='ChangePassword'),
 
     path('balance/', views.dashboard_with_pivot, name='dashboard_with_pivot'),
     path('data', views.pivot_data, name='pivot_data'),

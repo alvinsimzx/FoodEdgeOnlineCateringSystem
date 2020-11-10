@@ -38,16 +38,6 @@ class InsertCustomer(models.Model):
     email = models.CharField(max_length=50)
     class Meta:
         db_table = "customer"
-
-
-class InsertStock(models.Model):
-    stockID = models.IntegerField(primary_key=True)
-    stockName = models.CharField(max_length=100)
-    amountLeft = models.IntegerField()
-    deficit = models.IntegerField()
-    menuItemID = models.IntegerField()
-    class Meta:
-        db_table = "Stock"
         
 class MenuItem(models.Model):
     menuItemID = models.IntegerField(primary_key=True)
@@ -128,3 +118,11 @@ class EventMember(models.Model):
 
     def __str__(self):
         return str(self.user)
+
+class InsertStock(models.Model):
+    stockName = models.CharField(max_length=100)
+    amountLeft = models.IntegerField()
+    deficit = models.IntegerField()
+    stockImage = models.ImageField(upload_to='stockImage')
+    menuItemID = models.IntegerField()
+    

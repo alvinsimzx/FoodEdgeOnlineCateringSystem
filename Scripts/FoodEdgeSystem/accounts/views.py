@@ -3,13 +3,19 @@ from django.urls import reverse,resolve,reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group, User
-from django.contrib.auth import authenticate, login, logout
+
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+
 from django.views import generic
 from django.utils.safestring import mark_safe
 
+
 from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
+
 from .decorators import allowed_users
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,EventForm,EventMember,AddMemberForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,EventForm,EventMember,AddMemberForm,StockForm
+
 from .models import *
 from .utils import Calendar
 
@@ -154,6 +160,23 @@ def profile(request):
     
     return render(request, 'accounts/profile.html', context)
 
+def changePassword(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, f'Password update successful!')
+            return redirect('accounts-home')
+        else:
+            return redirect('changePassword')
+    else:
+        form = PasswordChangeForm(user=request.user)
+
+        args = {'form': form}
+        return render(request, 'accounts/change_password.html', args)
+
 @allowed_users(allowed_roles=['Operations'])
 def customerAccounts(request):
     users = User.objects.all()
@@ -287,12 +310,13 @@ def InsertCustomerOrder(request):
             saverecord.custLastName = request.POST.get('custLastName')
             saverecord.custEmail = request.POST.get('custEmail')
             saverecord.custContact = request.POST.get('custContact')
-            saverecord.custOrder = request.POST.get('custOrder')
+            saverecord.custOrder = MenuItem.objects.get(menuItemID=int(request.POST.get('custOrder'))).itemName
             saverecord.custRequest = request.POST.get('custRequest')
             if request.user.is_authenticated:
-                 price = int(request.POST.get('custOrder'))*0.9
+                price = (MenuItem.objects.get(menuItemID=int(request.POST.get('custOrder'))).itemPrice)*0.9
+                
             else:
-                price = int(request.POST.get('custOrder'))
+                price = MenuItem.objects.get(menuItemID=int(request.POST.get('custOrder'))).itemPrice
             saverecord.amountDue = price
             saverecord.location = request.POST.get('location')
             saverecord.save()
@@ -319,23 +343,9 @@ This is an auto-generated email, please send a new email instead of replying.
             messages.success(request,'Order did not send')
             return redirect(reverse('Payment',args=[price]))
     else:
-        return render(request, 'accounts/order.html')
+        MenuList = MenuItem.objects.all()
+        return render(request, 'accounts/order.html',{'MenuList':MenuList})
 
-def Insertrecord(request):
-    re = InsertStock.objects.all()
-    mn = MenuItem.objects.all()
-    if request.method =='POST':
-        if request.POST.get('stockName') and request.POST.get('menuItemID') and request.POST.get('amountLeft') and request.POST.get('deficit'): 
-            saverecord = InsertStock()
-            saverecord.stockName=request.POST.get('stockName')
-            saverecord.menuItemID=request.POST.get('menuItemID')
-            saverecord.amountLeft=request.POST.get('amountLeft')
-            saverecord.deficit=request.POST.get('deficit')
-            saverecord.save()
-            messages.success(request,'Record Saved')
-            return render(request, 'accounts/stock.html', {'re': re, 'mn': mn})
-    else:
-        return render(request, 'accounts/stock.html' , {'re': re, 'mn': mn})
 
 def InsertMenu(request):
     re = InsertStock.objects.all()
@@ -355,15 +365,15 @@ def InsertMenu(request):
     else:
          return render(request, 'accounts/menu.html', {'mn': mn})
 
-def DeleteRecord(request, stockID):
-    record = InsertStock.objects.get(stockID=stockID)
+def DeleteRecord(request, id):
+    record = InsertStock.objects.get(id=id)
     record.delete()
     re = InsertStock.objects.all()
     return redirect('ViewStocks')
 
-def EditRecords(request, stockID):
+def EditRecords(request, id):
     mn = MenuItem.objects.all()
-    record = InsertStock.objects.get(stockID=stockID)
+    record = InsertStock.objects.get(id=id)
     if request.method =='POST':
         if request.POST.get('stockName') and request.POST.get('menuItemID') and request.POST.get('amountLeft') and request.POST.get('deficit'):
             record.stockName = request.POST.get('stockName')
@@ -441,13 +451,17 @@ def ShowGivenOrders(request):
 def ShowAddMenuItems(request):
     return render(request, 'accounts/addMenuItems.html')
 
-@allowed_users(allowed_roles=['Management'])
+# @allowed_users(allowed_roles=['Management'])
 def dashboard_with_pivot(request):
     return render(request, 'accounts/BalanceReport.html', {})
 
 def pivot_data(request):
     dataset = InsertOrder.objects.all()
+    
     data = serializers.serialize('json', dataset)
+    # trans = stripe.Charge.list(limit=3)["data"][0]
+    # trans = stripe.Charge.list(limit=3)["data"][0]["amount"]
+    # print(trans)
     return JsonResponse(data, safe=False)
 
 @allowed_users(allowed_roles=['Management'])
@@ -556,3 +570,30 @@ class EventMemberDeleteView(generic.DeleteView):
     model = EventMember
     template_name = 'accounts/event_delete.html'
     success_url = reverse_lazy('calendar')
+
+def addStockImage(request):
+    re = InsertStock.objects.all()
+    img = StockImage.objects.all()
+    if request.method == 'POST': 
+        form = StockImageForm(request.POST, request.FILES)
+        if form.is_valid(): 
+            form.save() 
+            messages.success(request,'Record Edited')
+            return redirect('addStockImage')
+    else:
+        form = StockImageForm() 
+        return render(request, 'accounts/stockAddImage.html', {'form' : form, 're': re, 'img':img}) 
+
+def Insertrecord(request):
+    if request.method =='POST':
+        form = StockForm(request.POST, request.FILES)
+        if form.is_valid(): 
+            form.save() 
+            messages.success(request,'Record Saved')
+            return redirect('AddStocks')
+        else:
+            messages.warning(request,'Form is not valid')
+            return render(request,'accounts/stock.html', {'form':form})
+    else:
+        form = StockForm()
+        return render(request,'accounts/stock.html', {'form':form})

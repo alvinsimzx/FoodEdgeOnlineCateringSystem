@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2020 at 06:55 AM
+-- Generation Time: Nov 09, 2020 at 07:33 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -40,6 +40,33 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`accountID`, `customerID`, `username`, `accountPassword`) VALUES
 (1, NULL, 'alvinsim00', 'alvinsim123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accounts_insertstock`
+--
+
+CREATE TABLE `accounts_insertstock` (
+  `id` int(5) NOT NULL,
+  `stockName` varchar(255) NOT NULL,
+  `amountLeft` int(4) NOT NULL,
+  `deficit` int(6) NOT NULL,
+  `stockImage` varchar(255) NOT NULL,
+  `menuItemID` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `accounts_insertstock`
+--
+
+INSERT INTO `accounts_insertstock` (`id`, `stockName`, `amountLeft`, `deficit`, `stockImage`, `menuItemID`) VALUES
+(7, 'Uno-Image2', 99, 999, 'stockImage/170px-Stalin_1902.jpg', 2),
+(6, 'Uno-Image1', 99, 999, 'stockImage/images.jpg', 2),
+(8, 'Dos-Image1', 88, 888, 'stockImage/download.jpg', 3),
+(9, 'Dos-Image2', 88, 888, 'stockImage/download_1.jpg', 3),
+(10, 'Tres-Image1', 77, 777, 'stockImage/download_2.jpg', 4),
+(11, 'Tres-Image2', 77, 777, 'stockImage/download_3.jpg', 4);
 
 -- --------------------------------------------------------
 
@@ -252,7 +279,8 @@ CREATE TABLE `comments` (
 
 INSERT INTO `comments` (`commentID`, `menuItemID`, `rating`, `commentfName`, `commentlName`, `commentContent`) VALUES
 (2, 2, '3.0', 'Feedback ', 'Tester1', 'Pls cook the food tq'),
-(3, 4, '1.0', 'Feedback ', 'Tester 2', 'It sucx');
+(3, 4, '1.0', 'Feedback ', 'Tester 2', 'It sucx'),
+(4, 3, '2.0', 'FoodTester', 'Dummy3', 'Kinda bad ngl');
 
 -- --------------------------------------------------------
 
@@ -481,31 +509,6 @@ CREATE TABLE `staffteam` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stock`
---
-
-CREATE TABLE `stock` (
-  `stockID` int(5) NOT NULL,
-  `stockName` varchar(255) NOT NULL,
-  `amountLeft` int(4) NOT NULL,
-  `deficit` int(6) NOT NULL,
-  `menuItemID` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `stock`
---
-
-INSERT INTO `stock` (`stockID`, `stockName`, `amountLeft`, `deficit`, `menuItemID`) VALUES
-(11, 'Uno1', 9, 999, 2),
-(12, 'Uno2', 99, 999, 2),
-(14, 'Dos1', 8, 888, 3),
-(15, 'Dos2', 88, 888, 3),
-(16, 'Tres1', 77, 777, 4);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `suspendedaccount`
 --
 
@@ -523,6 +526,13 @@ CREATE TABLE `suspendedaccount` (
 ALTER TABLE `account`
   ADD PRIMARY KEY (`accountID`),
   ADD KEY `customerID` (`customerID`);
+
+--
+-- Indexes for table `accounts_insertstock`
+--
+ALTER TABLE `accounts_insertstock`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `menuItemID` (`menuItemID`);
 
 --
 -- Indexes for table `accounts_profile`
@@ -652,13 +662,6 @@ ALTER TABLE `staffteam`
   ADD PRIMARY KEY (`teamID`);
 
 --
--- Indexes for table `stock`
---
-ALTER TABLE `stock`
-  ADD PRIMARY KEY (`stockID`),
-  ADD KEY `menuItemID` (`menuItemID`);
-
---
 -- Indexes for table `suspendedaccount`
 --
 ALTER TABLE `suspendedaccount`
@@ -673,6 +676,12 @@ ALTER TABLE `suspendedaccount`
 --
 ALTER TABLE `account`
   MODIFY `accountID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `accounts_insertstock`
+--
+ALTER TABLE `accounts_insertstock`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `accounts_profile`
@@ -726,7 +735,7 @@ ALTER TABLE `cateringorder`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `commentID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
@@ -763,12 +772,6 @@ ALTER TABLE `staff`
 --
 ALTER TABLE `staffteam`
   MODIFY `teamID` int(4) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `stock`
---
-ALTER TABLE `stock`
-  MODIFY `stockID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
