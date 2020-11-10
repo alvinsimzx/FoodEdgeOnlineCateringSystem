@@ -25,21 +25,6 @@
     <img src="{% static 'images/trash.png' %}" alt="delete" title="Delete account">
 </button>
 
-<script>
-    function openTab(evt, id) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-      document.getElementById(id).style.display = "block";
-      evt.currentTarget.className += " active";
-    }
-</script>
 <div class="tab">
     
     <button class="tablinks" onclick="openTab(event, 'avenue')">Avenue</button>
@@ -120,12 +105,18 @@
             <legend class="border-bottom mb-4">Profile Info</legend>
             {{u_form|crispy}}
             {{p_form|crispy}}
+            <a href="{% url 'ChangePassword' %}" class="chgPassword">Change Password</a>
         </fieldset>
         <div class="form-group">
-            <button id="editBtn" class="btn btn-outline-info" type="button" onclick=editBox(this) data-form-id="editForm" data-username = "edit">Update</button>
+            <input id="editBtn" class="btn btn-outline-info" type="button" onclick=editBox(this) 
+            data-form-id="editForm" data-username = "edit" value="Update"></input>
         </div>
     </form>
+
   </div>
+  <style>
+  
+  </style>
     <script>
     var stripe = Stripe('pk_test_51HbjHmLUA515JZ27LzRLXvtX2PBYi0fYmIoL9CIeDf99kV3EfOWMNwH1ouamQaBscvNzox8JpZGsnTRXvFCl2gBh00HBcqYxnZ');
 
