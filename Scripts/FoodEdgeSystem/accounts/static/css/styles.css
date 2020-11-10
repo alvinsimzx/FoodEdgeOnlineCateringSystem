@@ -1339,9 +1339,7 @@ table tr:nth-child(even){
     padding: 5% 0;
 }
 
-
 /* ------------------------------------------Change Password---------------------------------- */
-
 .containerChgPassword{
     width:50%;
     margin: 2% auto;
@@ -1352,8 +1350,7 @@ table tr:nth-child(even){
     border-radius: 10px;
 }
 
-
-/* Calendar */
+/* -------------------------------------------Calendar -------------------------------------*/
 .calendar {
     width: 98%;
     margin: auto;
@@ -1414,4 +1411,3 @@ table tr:nth-child(even){
   .clearfix2 {
     margin: 15px;
   }
-
