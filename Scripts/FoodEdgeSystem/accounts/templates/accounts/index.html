@@ -14,14 +14,22 @@
   <body>
       
       {%block content%}  
-      <style type="text/css">
-   
-    body{
-        margin-top:0;
-    }
+      <script>
+            $(window).scroll(function() {
+            var height = $(window).scrollTop();
+            
+            if(height  > 400 && height  < 950) {
+                $("h3").attr("data-scroll", "in");
+                $("p").attr("data-scroll", "in");
+            }else{
+                $("h3").attr("data-scroll", "out");
+                $("p").attr("data-scroll", "out");
+            }
+            
+        });
+        </script>
 
 
-    </style>
       <main>
         <section class="banner">
             <img src="{% static '/images/background.jpg' %}" class="bigBanner">
@@ -32,27 +40,28 @@
                 <h1 class="titleSpecial">Taste</h1>
             </div>
         </section>
+        
         <section class="introHome">
                 <div class="shadow"></div>
         
                 <div class="containerHome">
                     <div class="descriptionHome">
-                        <h3 class="titleHome">
+                        <h3 class="titleHome" data-scroll>
                             Introduction
                         </h3>
-                        <p class="textHome">Welcome to FoodEdge where we do our best to cater to your hungry needs! We supply you multiple choices of cuisines to excite you tastebuds! Our workers are friendly and helpful during services and our Cater Leaders would do their best to handle your needs.</p>
+                        <p class="textHome" data-scroll>Welcome to FoodEdge where we do our best to cater to your hungry needs! We supply you multiple choices of cuisines to excite you tastebuds! Our workers are friendly and helpful during services and our Cater Leaders would do their best to handle your needs.</p>
                     </div>
         
                     <div class="imgContainerHome">
-                        <img src="{% static 'images/backgroundIntro.jpg' %}" alt="">
+                        <img src="{% static 'images/backgroundIntro.jpg' %}" class="imgIntro" alt="picture">
                     </div>
                 </div>
             </section>
-            <!-- --------------------------------------------------href needed---------------------------------------------------------------------- -->
+            
             <section>
                 <div class="joinMember">
                     <div class="ptext">
-                        <a class="index_products" href="#"><h2>
+                        <a class="index_products" href="{% url 'register' %}"><h2>
                             BE A MEMBER
                         </h2></a>
                         <div class="view_button"><p>&#8618;Click for more details</p></div>
@@ -63,7 +72,7 @@
             <section>
                     <div class="orderHome">
                         <div class="ptext">
-                            <a class="index_products" href="#"><h2>
+                            <a class="index_products" href="{% url 'order' %}"><h2>
                                 ORDER NOW
                             </h2></a>
                             <div class="view_button"><p>&#8618;Click for more details</p></div>
