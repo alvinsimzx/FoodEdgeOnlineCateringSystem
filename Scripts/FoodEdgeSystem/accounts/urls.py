@@ -34,7 +34,7 @@ urlpatterns = [
     path('delete/<str:username>', views.deleteCustomerAccount),
     path('deleteCustomer/<str:username>', views.deleteCustomerAccountCustomer),
     path('editImage/<int:id>', views.EditStockImage), 
-    path('report/', views.ProfitLoss), 
+    path('report/', views.ProfitLoss, name='GeneralReport'), 
 
     path('reset_password/',auth_views.PasswordResetView.as_view(template_name="accounts/password_reset.html"), name="reset_password"),
     path('reset_password_sent/',auth_views.PasswordResetDoneView.as_view(template_name="accounts/password_reset_sent.html"),  name="password_reset_done"),
