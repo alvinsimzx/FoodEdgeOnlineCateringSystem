@@ -19,17 +19,24 @@
         <main>
         {%block content%}
         <div class="pageBanner">
-                <h1>Add Stocks</h1>
+                <h1>Update Stock Image</h1>
             </div>
-        {% include 'accounts/confirmBox.html'%}
-            <form id="StockAdd" method="post" enctype="multipart/form-data">
+            {% include 'accounts/confirmBox.html'%}
+            <form id="StockImageEdit" method="post" enctype="multipart/form-data">
             {% csrf_token %}
                 <h1 id = "feedbackTitle">Stock Management</h1>
+                <input type="hidden" name="id" id="id" value="{{record.id}}">
                 <fieldset>
-                    <legend>Add New Stock Item</legend>
+                    <legend>Change Stock Image</legend>
+                    <p>
+                        <img src="{{record.stockImage.url}}" alt="Stock Image"/>
+                    </p>
                     {{ form.as_p }} 
                     <p>
-                        <input type="button" onclick=editBox(this) data-form-id='StockAdd' data-username = "add" value="Insert Record"/>
+                        <input type="submit" onclick="return confirm('Are you sure you want to Change this Image?');" value="Edit Image"/>
+                    </p>
+                    <p>
+                        <a href="/viewStocks" class="deleteBtn">Back</a>
                     </p>
                 </fieldset>
             </form>

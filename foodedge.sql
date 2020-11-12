@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2020 at 07:33 PM
+-- Generation Time: Nov 11, 2020 at 03:04 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -61,12 +61,15 @@ CREATE TABLE `accounts_insertstock` (
 --
 
 INSERT INTO `accounts_insertstock` (`id`, `stockName`, `amountLeft`, `deficit`, `stockImage`, `menuItemID`) VALUES
-(7, 'Uno-Image2', 99, 999, 'stockImage/170px-Stalin_1902.jpg', 2),
-(6, 'Uno-Image1', 99, 999, 'stockImage/images.jpg', 2),
-(8, 'Dos-Image1', 88, 888, 'stockImage/download.jpg', 3),
-(9, 'Dos-Image2', 88, 888, 'stockImage/download_1.jpg', 3),
-(10, 'Tres-Image1', 77, 777, 'stockImage/download_2.jpg', 4),
-(11, 'Tres-Image2', 77, 777, 'stockImage/download_3.jpg', 4);
+(7, 'Uno-Image2', 99, 999, 'stockImage/guitar_rat.jpg', 2),
+(6, 'Uno-Image1', 99, 999, 'stockImage/eatingRat.jpg', 2),
+(8, 'Dos-Image1Duck', 88, 888, 'stockImage/duck_QdfDN5y.jpg', 3),
+(9, 'Dos-Image2', 88, 888, 'stockImage/duck3_38p3GPy.jpg', 3),
+(10, 'Tres-Image1', 77, 777, 'stockImage/squareRat.jpg', 4),
+(11, 'Tres-Image2', 77, 777, 'stockImage/notduck.jpg', 4),
+(20, 'Uno-Filler1', 99, 999, 'stockImage/tiniestRat.jpg', 2),
+(21, 'Dos-Filler1', 88, 888, 'stockImage/anotherRat.jpg', 3),
+(22, 'Tres-Filler1', 77, 777, 'stockImage/protectedRat.png', 4);
 
 -- --------------------------------------------------------
 
@@ -479,7 +482,8 @@ CREATE TABLE `menuitem` (
 INSERT INTO `menuitem` (`menuItemID`, `itemName`, `itemPrice`) VALUES
 (2, 'Set 1 - Uno', 99),
 (3, 'Set 2 - Dos', 88),
-(4, 'Set 3 - Tres', 77);
+(4, 'Set 3 - Tres', 77),
+(5, 'Set 4 - Testing', 66);
 
 -- --------------------------------------------------------
 
@@ -681,7 +685,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `accounts_insertstock`
 --
 ALTER TABLE `accounts_insertstock`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `accounts_profile`
@@ -759,7 +763,7 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT for table `menuitem`
 --
 ALTER TABLE `menuitem`
-  MODIFY `menuItemID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `menuItemID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `staff`
