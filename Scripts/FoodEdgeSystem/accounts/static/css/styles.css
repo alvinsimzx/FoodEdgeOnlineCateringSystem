@@ -123,6 +123,13 @@ nav ul a:hover{
     background-position: center;
 }
 
+.pageBannerStaff{
+    background-image: url(../images/staffBanner.jpg);
+}
+.pageBannerManagement{
+    background-image: url(../images/managementBanner.jpg);
+}
+
 .theCalendar footer{
     display: none;
 }
@@ -1149,26 +1156,27 @@ label {
 
   .staffButtons {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     padding: 10px;
     width:60%;
     margin: 0 auto;
   }
-  .staffBtn {
-    padding: 20px;
-    text-align: center;
-  }
 
   .staffButtons div{
-      margin: 1%;
-      text-align: center;
+      margin: 5%;
+      text-align: left;
+  }
+  .buttonIcon{
+    width:50px;
+    height: 50px;
+    margin-right: 20px;
   }
 
   .staffButtons div a{
     border-radius: 320px;
     color: #fff;
-    padding: 5%;
     border: white solid 3px;
+    padding:2% 10%;
     font-weight: 500;
     transition: .8s;
     overflow: hidden;
@@ -1230,7 +1238,11 @@ a, a:hover, a:focus, a:active {
 }
 
 /* -----------------------------------------------------alert message----------------------------------------------------------- */
-.alert-success, .alert-danger, .alert-info {
+.alert-success, .alert-danger, .alert-info, .alert-warning {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
     -moz-animation: cssAnimation .5s ease-in 5s forwards;
     /* Firefox */
     -webkit-animation: cssAnimation .5s ease-in 5s forwards;
@@ -1346,7 +1358,7 @@ table tr:nth-child(even){
     top:revert;
     left:50%;
     transform: translateX(-50%);
-    padding:0;
+    padding: 0;
     width: 40%;
     height: 7.5vh;
     font-size: revert;
@@ -1357,8 +1369,10 @@ table tr:nth-child(even){
 .addStock{
    display: block;
    width: 100%;
+   color: white;
    margin: 0;
 }
+
 
 .stockAction{
     text-align: center;
