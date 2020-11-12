@@ -9,7 +9,8 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 
 from django.views import generic
 from django.utils.safestring import mark_safe
-import os; 
+import os
+import json
 
 from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 
@@ -450,16 +451,20 @@ def ShowAddMenuItems(request):
 
 # @allowed_users(allowed_roles=['Management'])
 def dashboard_with_pivot(request):
-    return render(request, 'accounts/BalanceReport.html', {})
+    return render(request, 'accounts/profitBalance.html', {})
+
+def dashboard_with_pivot2(request):
+    return render(request, 'accounts/lossBalance.html', {})
 
 def pivot_data(request):
     dataset = InsertOrder.objects.all()
-    
+    dataset2 = InsertStock.objects.all()
     data = serializers.serialize('json', dataset)
+    data2 = serializers.serialize('json',dataset2)
     # trans = stripe.Charge.list(limit=3)["data"][0]
     # trans = stripe.Charge.list(limit=3)["data"][0]["amount"]
     # print(trans)
-    return JsonResponse(data, safe=False)
+    return JsonResponse({'data':data, 'data2':data2}, safe=False)
 
 @allowed_users(allowed_roles=['Management'])
 def ManagementHome(request):
@@ -615,3 +620,18 @@ def EditStockImage(request, id):
     else:
         form = StockImageEdit()
         return render(request,'accounts/stockImageUpdate.html', {'record':record, 'form':form})
+
+def ProfitLoss(request):
+    order = InsertOrder.objects.all()
+    stock = InsertStock.objects.all()
+    menu = MenuItem.objects.all()
+    profitList = []
+    lossList = []
+    for i in order:
+        profitList.append(i.amountDue)
+    for j in stock:
+        lossList.append(j.deficit)
+    profit = sum(profitList)
+    loss = sum(lossList)
+    nett = profit - loss
+    return render(request, 'accounts/profitloss.html', {'order':order, 'stock':stock, 'menu':menu, 'profit':profit, 'loss':loss, 'nett':nett})

@@ -68,13 +68,13 @@ $.ajax({
             report: {
                 "dataSource": {
                     type: "json",
-                    data: processData(data),
+                    data: processData(data.data2),
                     mapping: {
-                        "custOrder": {
-                            "caption": "Menu Items",
+                        "stockName": {
+                            "caption": "Stock Items",
                             "type": "string"
                         },
-                        "amountDue": {
+                        "deficit": {
                             "caption": "Total amounts",
                             "type": "number"
                         }
@@ -82,10 +82,10 @@ $.ajax({
                 },
                 "slice": {
                     "rows": [{
-                        "uniqueName": "Orders"
+                        "uniqueName": "Stock Name"
                     }],
                     "columns": [{
-                            "uniqueName": "Menu Items"
+                            "uniqueName": "Stock Items"
                         },
                         {
                             "uniqueName": "[Measures]"
@@ -103,6 +103,7 @@ $.ajax({
                 }
             }
         });
+
         new Flexmonster({
             container: "#pivot-chart-container",
             componentFolder: "https://cdn.flexmonster.com/",
@@ -112,13 +113,13 @@ $.ajax({
             report: {
                 "dataSource": {
                     type: "json",
-                    data: processData(data),
+                    data: processData(data.data2),
                     mapping: {
-                        "custOrder": {
-                            "caption": "Menu Items",
+                        "stockName": {
+                            "caption": "Stock Items",
                             "type": "string"
                         },
-                        "amountDue": {
+                        "deficit": {
                             "caption": "Total amounts for items",
                             "type": "number"
                         }
@@ -126,10 +127,10 @@ $.ajax({
                 },
                 "slice": {
                     "rows": [{
-                        "uniqueName": "Orders"
+                        "uniqueName": "Stock Name"
                     }],
                     "columns": [{
-                            "uniqueName": "Menu Items"
+                            "uniqueName": "Stock Items"
                         },
                         {
                             "uniqueName": "[Measures]"
@@ -155,8 +156,6 @@ $.ajax({
         });
     }
 });
-
-
 </script>
 </body>
 {% endblock content %}
