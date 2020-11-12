@@ -59,20 +59,11 @@
           <div class="signatureDish">
               <h3>Signature Dish</h3>
               <section class="gallery">
+                {%for items in menu1|slice:":3"%}
                   <figure class="gallery_item">
-                    <img class="gallery_image" src="{% static 'images/western1.jpg' %}" alt="Steak" />
-                    
-                  </figure> 
-                  
-                  
-                  <figure class="gallery_item">
-                   <img class="gallery_image" src="{% static 'images/western2.jpg' %}" alt="Creamy Fish"/>
-                     
+                    <img class="gallery_image" src="{{items.stockImage.url}}" alt="Stock Image" />
                   </figure>
-                  
-                  <figure class="gallery_item">
-                   <img class="gallery_image" src="{% static 'images/western3.jpg' %}" alt="Spaghetti" />
-                  </figure>
+                {%endfor%}
                   <input type="button" onclick="showComments(1)" value="Show Comments"/>
           </div>
          
@@ -102,18 +93,11 @@
           <div class="signatureDish">
               <h3>Signature Dish</h3>
               <section class="gallery">
-                  <figure class="gallery_item">
-                    <img class="gallery_image" src="{% static 'images/local1.jpg' %}" alt="BBQ Chicken Wings" />
-                  </figure> 
-                  
-                  
-                  <figure class="gallery_item">
-                   <img class="gallery_image" src="{% static 'images/local2.jpg' %}" alt="Satay"/>
-                  </figure>
-                  
-                  <figure class="gallery_item">
-                   <img class="gallery_image" src="{% static 'images/local3.jpg' %}" alt="Nyonya Fried Rice" />
-                  </figure>
+                {%for items in menu2|slice:":3"%}
+                <figure class="gallery_item">
+                  <img class="gallery_image" src="{{items.stockImage.url}}" alt="Stock Image" />
+                </figure>
+              {%endfor%}
                   <input type="button" onclick="showComments(2)" value="Show Comments"/>
           </div>
          
@@ -142,18 +126,11 @@
           <div class="signatureDish">
               <h3>Signature Dish</h3>
               <section class="gallery">
-                  <figure class="gallery_item">
-                    <img class="gallery_image" src="{% static 'images/chinese1.jpg' %}" alt="Braised Pork Leg" />
-                  </figure> 
-                  
-                  
-                  <figure class="gallery_item">
-                   <img class="gallery_image" src="{% static 'images/chinese2.jpg' %}" alt="Steam Fish"/>
-                  </figure>
-                  
-                  <figure class="gallery_item">
-                   <img class="gallery_image" src="{% static 'images/chinese3.jpg' %}" alt="Roasted Chicken" />
-                  </figure>
+                {%for items in menu3|slice:":3"%}
+                <figure class="gallery_item">
+                  <img class="gallery_image" src="{{items.stockImage.url}}" alt="Stock Image" />
+                </figure>
+                {%endfor%}
                   <input type="button" onclick="showComments(3)" value="Show Comments"/>
           </div>
          
