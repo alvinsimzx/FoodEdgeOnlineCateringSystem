@@ -9,12 +9,13 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 
 from django.views import generic
 from django.utils.safestring import mark_safe
-
+import os
+import json
 
 from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 
 from .decorators import allowed_users
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,EventForm,EventMember,AddMemberForm,StockForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,EventForm,EventMember,AddMemberForm,StockForm,StockImageEdit
 
 from .models import *
 from .utils import Calendar
@@ -170,7 +171,8 @@ def changePassword(request):
             messages.success(request, f'Password update successful!')
             return redirect('accounts-home')
         else:
-            return redirect('changePassword')
+            messages.warning(request, f'Current password is invalid')
+            return redirect('ChangePassword')
     else:
         form = PasswordChangeForm(user=request.user)
 
@@ -371,35 +373,32 @@ def DeleteRecord(request, id):
     re = InsertStock.objects.all()
     return redirect('ViewStocks')
 
-def EditRecords(request, id):
-    mn = MenuItem.objects.all()
-    record = InsertStock.objects.get(id=id)
-    if request.method =='POST':
-        if request.POST.get('stockName') and request.POST.get('menuItemID') and request.POST.get('amountLeft') and request.POST.get('deficit'):
-            record.stockName = request.POST.get('stockName')
-            record.menuItemID = request.POST.get('menuItemID')
-            record.amountLeft = request.POST.get('amountLeft')
-            record.deficit = request.POST.get('deficit')
-            record.save()
-            messages.success(request,'Record Edited')
-            return redirect('ViewStocks')
-    else:
-        return render(request, 'accounts/editStock.html', {'mn': mn, 'record': record})
-
 def ShowSets(request):
     re = InsertStock.objects.all()
     menu = MenuItem.objects.all()
     comments = Comments.objects.all()
     lowStock = []
     notAvailable = []
+    menu1 = []
+    menu2 = []
+    menu3 = []
     for res in re:
         if(res.amountLeft <= 10):
             lowStock.append(res)
+    for res in re: 
+        if(res.menuItemID == menu[0].menuItemID):
+            menu1.append(res)
+    for res in re: 
+        if(res.menuItemID == menu[1].menuItemID):
+            menu2.append(res)
+    for res in re: 
+        if(res.menuItemID == menu[2].menuItemID):
+            menu3.append(res)
     for item in lowStock:
         if(MenuItem.objects.get(menuItemID=item.menuItemID) not in notAvailable):
             notAvailable.append(MenuItem.objects.get(menuItemID=item.menuItemID))
 
-    return render(request, 'accounts/sets.html', {'re': re, 'notAvailable' : notAvailable, 'menu': menu, 'comments': comments})
+    return render(request, 'accounts/sets.html', {'re': re, 'notAvailable' : notAvailable, 'menu': menu, 'comments': comments, 'menu1': menu1, 'menu2': menu2, 'menu3': menu3})
 
 def ShowTransactions(request):
     return render(request, 'accounts/CustomerTransactions.html')
@@ -453,16 +452,20 @@ def ShowAddMenuItems(request):
 
 # @allowed_users(allowed_roles=['Management'])
 def dashboard_with_pivot(request):
-    return render(request, 'accounts/BalanceReport.html', {})
+    return render(request, 'accounts/profitBalance.html', {})
+
+def dashboard_with_pivot2(request):
+    return render(request, 'accounts/lossBalance.html', {})
 
 def pivot_data(request):
     dataset = InsertOrder.objects.all()
-    
+    dataset2 = InsertStock.objects.all()
     data = serializers.serialize('json', dataset)
+    data2 = serializers.serialize('json',dataset2)
     # trans = stripe.Charge.list(limit=3)["data"][0]
     # trans = stripe.Charge.list(limit=3)["data"][0]["amount"]
     # print(trans)
-    return JsonResponse(data, safe=False)
+    return JsonResponse({'data':data, 'data2':data2}, safe=False)
 
 @allowed_users(allowed_roles=['Management'])
 def ManagementHome(request):
@@ -571,19 +574,6 @@ class EventMemberDeleteView(generic.DeleteView):
     template_name = 'accounts/event_delete.html'
     success_url = reverse_lazy('calendar')
 
-def addStockImage(request):
-    re = InsertStock.objects.all()
-    img = StockImage.objects.all()
-    if request.method == 'POST': 
-        form = StockImageForm(request.POST, request.FILES)
-        if form.is_valid(): 
-            form.save() 
-            messages.success(request,'Record Edited')
-            return redirect('addStockImage')
-    else:
-        form = StockImageForm() 
-        return render(request, 'accounts/stockAddImage.html', {'form' : form, 're': re, 'img':img}) 
-
 def Insertrecord(request):
     if request.method =='POST':
         form = StockForm(request.POST, request.FILES)
@@ -597,3 +587,52 @@ def Insertrecord(request):
     else:
         form = StockForm()
         return render(request,'accounts/stock.html', {'form':form})
+
+def EditRecords(request, id):
+    mn = MenuItem.objects.all()
+    record = InsertStock.objects.get(id=id)
+    if request.method =='POST':
+        if request.POST.get('stockName') and request.POST.get('menuItemID') and request.POST.get('amountLeft') and request.POST.get('deficit'):
+            record.stockName = request.POST.get('stockName')
+            record.menuItemID = request.POST.get('menuItemID')
+            record.amountLeft = request.POST.get('amountLeft')
+            record.deficit = request.POST.get('deficit')
+            record.save()
+            messages.success(request,'Record Edited')
+            return redirect('ViewStocks')
+    else:
+        return render(request, 'accounts/editStock.html', {'mn': mn, 'record': record})
+
+def EditStockImage(request, id):
+    mn = MenuItem.objects.all()
+    record = InsertStock.objects.get(id=id)
+    previousImg = record.stockImage.path
+    if request.method =='POST':
+        form = StockImageEdit(request.POST, request.FILES, instance=record)
+        if form.is_valid(): 
+            os.remove(previousImg)
+            form.save() 
+            messages.success(request,'Image Edited')
+            return redirect('ViewStocks')
+        else:
+            form = StockImageEdit()
+            messages.warning(request,'Form is not valid')
+            return render(request,'accounts/stockImageUpdate.html', {'record':record, 'form':form})
+    else:
+        form = StockImageEdit()
+        return render(request,'accounts/stockImageUpdate.html', {'record':record, 'form':form})
+
+def ProfitLoss(request):
+    order = InsertOrder.objects.all()
+    stock = InsertStock.objects.all()
+    menu = MenuItem.objects.all()
+    profitList = []
+    lossList = []
+    for i in order:
+        profitList.append(i.amountDue)
+    for j in stock:
+        lossList.append(j.deficit)
+    profit = sum(profitList)
+    loss = sum(lossList)
+    nett = profit - loss
+    return render(request, 'accounts/BalanceReport.html', {'order':order, 'stock':stock, 'menu':menu, 'profit':profit, 'loss':loss, 'nett':nett})

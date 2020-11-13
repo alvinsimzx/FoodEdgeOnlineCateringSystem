@@ -18,7 +18,7 @@
     <body>
         <main>
             {%block content%}
-            <div class="pageBanner">
+            <div class="pageBanner pageBannerStaff">
                     <h1>Edit Stocks</h1>
                 </div>
             {% include 'accounts/confirmBox.html'%}
@@ -62,8 +62,11 @@
                         <td>{{res.stockName}}</td>
                         <td>{{res.amountLeft}}</td>
                         <td>{{res.deficit}}</td>
-                        <td><button onclick=deleteBox(this) data-username = "/delete/{{res.id}}" class="deleteBtn">Delete</button>
-                            <a href="/edit/{{res.id}}">Edit</a></td>
+                        <td>
+                            <p><a onclick=deleteBox(this) data-username = "/delete/{{res.id}}" class="deleteBtn">Delete</a></p>
+                            <p><a href="/edit/{{res.id}}" class="cancelbtn">Edit</a></p>
+                            <p><a href="/editImage/{{res.id}}" class="cancelbtn">Image</a></p>
+                        </td>
                     </tr>
                     {% endfor %}
                 </table>

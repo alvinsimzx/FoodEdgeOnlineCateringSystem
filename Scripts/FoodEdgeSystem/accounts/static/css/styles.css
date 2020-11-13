@@ -20,7 +20,7 @@
 }
 
 body{
-    background-color: #325050;
+    background-color: #182525;
 }
 
 
@@ -123,6 +123,13 @@ nav ul a:hover{
     background-position: center;
 }
 
+.pageBannerStaff{
+    background-image: url(../images/staffBanner.jpg);
+}
+.pageBannerManagement{
+    background-image: url(../images/managementBanner.jpg);
+}
+
 .theCalendar footer{
     display: none;
 }
@@ -175,23 +182,6 @@ nav ul a:hover{
     z-index: 1;
 }
 
-
-.profile_box{
-    width:70%;
-    height: 80vh;
-    display: flex;
-    flex-flow: row wrap;
-    background-color: #ffffff;
-    background-image: linear-gradient(315deg, #ffffff 0%, #1b2845 74%);
-    margin:2% 15%;
-    box-shadow: 15px 15px 15px 1px rgba(0, 0, 0, 0.5);
-    overflow:hidden;
-    border-radius: 32px;
-}
-
-.chip{
-    width:50px;
-}
 
 .profile_pic{
     width:100%;
@@ -382,6 +372,42 @@ nav ul a:hover{
     margin-bottom: 1rem;
     padding-bottom: .5rem;
     position: relative;
+    display: inline-block;
+    transition: .5s;
+    transform-origin: left;
+    transform: scaleX(0);
+}
+
+.titleHome[data-scroll="in"]{
+    transform: scaleX(1);
+}
+
+.titleHome::before{
+    content:'';
+    position: absolute;
+    left:0;
+    top:0;
+    width: 200%;
+    height: 100%;
+    background:#a92507;
+    transform-origin: right;
+    transition: .5s;
+} 
+.titleHome[data-scroll="in"]:before{
+    transform: scaleX(0);
+    transition-delay: .5s;
+}
+
+.textHome{
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.textHome[data-scroll="in"]{
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: .8s;
 }
 
 
@@ -453,7 +479,7 @@ nav ul a:hover{
   }
 /* -----------------------------------------------------feedback.html------------------------------------------------------------------ */
 form, .profile{
-    background: white;
+    background: rgba(255, 255, 255, 0.8);
     width: 85%;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
     padding: 5%;
@@ -473,11 +499,12 @@ textarea{
 }
 
 input{
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border:none;
+    border-bottom: 2px solid #182525;
     padding: 12px 20px;
     width:100%;
     margin: 10px 0;
+    background: none;
 }
 
 .name input{
@@ -1129,26 +1156,27 @@ label {
 
   .staffButtons {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     padding: 10px;
     width:60%;
     margin: 0 auto;
   }
-  .staffBtn {
-    padding: 20px;
-    text-align: center;
-  }
 
   .staffButtons div{
-      margin: 1%;
-      text-align: center;
+      margin: 5%;
+      text-align: left;
+  }
+  .buttonIcon{
+    width:50px;
+    height: 50px;
+    margin-right: 20px;
   }
 
   .staffButtons div a{
     border-radius: 320px;
     color: #fff;
-    padding: 5%;
     border: white solid 3px;
+    padding:2% 10%;
     font-weight: 500;
     transition: .8s;
     overflow: hidden;
@@ -1210,7 +1238,11 @@ a, a:hover, a:focus, a:active {
 }
 
 /* -----------------------------------------------------alert message----------------------------------------------------------- */
-.alert-success, .alert-danger, .alert-info {
+.alert-success, .alert-danger, .alert-info, .alert-warning {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
     -moz-animation: cssAnimation .5s ease-in 5s forwards;
     /* Firefox */
     -webkit-animation: cssAnimation .5s ease-in 5s forwards;
@@ -1326,7 +1358,7 @@ table tr:nth-child(even){
     top:revert;
     left:50%;
     transform: translateX(-50%);
-    padding:0;
+    padding: 0;
     width: 40%;
     height: 7.5vh;
     font-size: revert;
@@ -1337,8 +1369,10 @@ table tr:nth-child(even){
 .addStock{
    display: block;
    width: 100%;
+   color: white;
    margin: 0;
 }
+
 
 .stockAction{
     text-align: center;

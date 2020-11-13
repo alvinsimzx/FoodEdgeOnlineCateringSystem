@@ -18,7 +18,7 @@
     <body>
         <main>
         {%block content%}
-        <div class="pageBanner">
+        <div class="pageBanner pageBannerStaff">
                 <h1>Add Stocks</h1>
             </div>
         {% include 'accounts/confirmBox.html'%}
@@ -29,7 +29,7 @@
                     <legend>Add New Stock Item</legend>
                     {{ form.as_p }} 
                     <p>
-                        <input type="submit" onclick="return confirm('Do you really want to submit the form?');" data-form-id='StockAdd' data-username = "add" value="Insert Record"/>
+                        <input type="button" onclick=editBox(this) data-form-id='StockAdd' data-username = "add" value="Insert Record"/>
                     </p>
                 </fieldset>
             </form>
