@@ -171,7 +171,8 @@ def changePassword(request):
             messages.success(request, f'Password update successful!')
             return redirect('accounts-home')
         else:
-            return redirect('changePassword')
+            messages.warning(request, f'Current password is invalid')
+            return redirect('ChangePassword')
     else:
         form = PasswordChangeForm(user=request.user)
 
