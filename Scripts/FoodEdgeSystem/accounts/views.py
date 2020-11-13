@@ -634,4 +634,4 @@ def ProfitLoss(request):
     profit = sum(profitList)
     loss = sum(lossList)
     nett = profit - loss
-    return render(request, 'accounts/profitloss.html', {'order':order, 'stock':stock, 'menu':menu, 'profit':profit, 'loss':loss, 'nett':nett})
+    return render(request, 'accounts/BalanceReport.html', {'order':order, 'stock':stock, 'menu':menu, 'profit':profit, 'loss':loss, 'nett':nett})
