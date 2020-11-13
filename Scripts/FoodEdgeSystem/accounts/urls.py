@@ -3,7 +3,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 
-
 from . import views
 
 urlpatterns = [
@@ -35,6 +34,7 @@ urlpatterns = [
     path('delete/<str:username>', views.deleteCustomerAccount),
     path('deleteCustomer/<str:username>', views.deleteCustomerAccountCustomer),
     path('editImage/<int:id>', views.EditStockImage), 
+    path('report/', views.ProfitLoss, name='GeneralReport'), 
 
     path('reset_password/',auth_views.PasswordResetView.as_view(template_name="accounts/password_reset.html"), name="reset_password"),
     path('reset_password_sent/',auth_views.PasswordResetDoneView.as_view(template_name="accounts/password_reset_sent.html"),  name="password_reset_done"),
@@ -42,7 +42,8 @@ urlpatterns = [
     path('reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(template_name="accounts/password_reset_done.html"),  name="password_reset_complete"),
     path('change_password/', views.changePassword, name='ChangePassword'),
 
-    path('balance/', views.dashboard_with_pivot, name='dashboard_with_pivot'),
+    path('profitBalance/', views.dashboard_with_pivot, name='dashboard_with_pivot'),
+    path('lossBalance/', views.dashboard_with_pivot2, name='dashboard_with_pivot2'),
     path('data', views.pivot_data, name='pivot_data'),
     path('calendar/', views.CalendarView.as_view(), name='calendar'),
     path('event/new/', views.create_event, name='event_new'),
