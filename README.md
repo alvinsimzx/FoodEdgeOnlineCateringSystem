@@ -3,16 +3,21 @@ Development Project 2 Assigment
 
 Group Members:
 Alvin Sim Zhong Xian
+
 Wong Jun Jie
+
 Chan Kwang Yung
+
 Desmond Sim Wei Jiunn
+
 Karyn Chong
+
 
 Requirements:
 - Python 3.7 or higher
 - pip
 
-Python libraries Installation
+######Python libraries Installation
 1. Download this file and copy the directory to this file
 2. Open your CMD window and navigate to the first directory (the one with manage.py)
 3. Perform 'pip install -r requirements.txt'
