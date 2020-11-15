@@ -207,13 +207,16 @@ nav ul a:hover{
   
   /* Style the buttons inside the tab */
   .tab button {
-    background-color: inherit;
-    border: none;
+    background: inherit;
+    border:none;
+    border-top: 1px #a92507 solid;
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
     font-size: 17px;
+    color: #314e4e;
+    font-weight:600;
   }
   
   /* Change background color of buttons on hover */
