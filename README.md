@@ -15,7 +15,7 @@ Group Members:<br />
 
 ## Python libraries Installation
 1. Download this file and copy the directory to this file
-2. Open your CMD window and navigate to the first directory (the one with manage.py)
+2. Open your CMD window and navigate to the Scripts > FoodEdgeSystem (the one with manage.py)
 3. Perform 'pip install -r requirements.txt'
 
 ## Database installation
@@ -30,7 +30,7 @@ Group Members:<br />
 
 1. Open a CMD window and make sure you already have Python installed on your machine
 2. Navigate to the folder that contains the downloaded project file
-3. Navigate into the first directory (the one with manage.py)
+3. Navigate into Scripts > FoodEdgeSystem (the one with manage.py)
 4. Type "python manage.py runserver"
 5. The console should show the link to open the Web App in your browser
 6. Open your browser and navigate to localhost:8000/ (note: try 127.0.0.1:8000/ if it doesn't work)
