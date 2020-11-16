@@ -31,7 +31,74 @@
         </section>
         <section class="introHome">
                 <div class="shadow"></div>
-                
+                <form>
+                  <h2>Order Earnings</h2>
+                  <table>
+                      <tr>
+                          <th>Order ID</th>
+                          <th>Order</th>
+                          <th>Customer</th>
+                          <th>Earnings</th>
+                      </tr>
+                      {%for orders in order%}
+                      <tr>
+                          <td>{{orders.orderID}}</td>
+                          <td>{{orders.custOrder}}</td>
+                          <td>{{orders.CustFirstName}} {{orders.custLastName}}</td>
+                          <td>{{orders.amountDue}}</td>
+                      </tr>
+                      {%endfor%}
+                      <tr style="background-color:#ffffff2d">
+                          <td></td>
+                          <td></td>
+                          <td style="font-weight:bold">Gross Profit: </td>
+                          <td style="font-weight:bold">{{profit}}</td>
+                      </tr>
+                      {%if nett > 0%}
+                      <tr style="background-color:#ffffff2d">
+                          <td></td>
+                          <td></td>
+                          <td style="font-weight:bold">Nett Profit: </td>
+                          <td style="font-weight:bold">{{nett}}</td>
+                      </tr>
+                      {%endif%}
+                  </table>
+                  <h2>Stock Loss</h2>
+                      <table>
+                          <tr>
+                              <th>Stock ID</th>
+                              <th>Stock Name</th>
+                              <th>Menu Item Attached</th>
+                              <th>Loss</th>
+                          </tr>
+                          {%for stocks in stock%}
+                          <tr>
+                              <td>{{stocks.id}}</td>
+                              <td>{{stocks.stockName}}</td>
+                              {%for menus in menu%}
+                                  {%if stocks.menuItemID == menus.menuItemID%}
+                                      <td>{{menus.itemName}}</td>
+                                  {%endif%}
+                              {%endfor%}
+                              <td>{{stocks.deficit}}</td>
+                          </tr>
+                          {%endfor%}
+                          <tr style="background-color:#ffffff2d">
+                              <td></td>
+                              <td></td>
+                              <td style="font-weight:bold">Total Loss: </td>
+                              <td style="font-weight:bold">{{loss}}</td>
+                          </tr>
+                          {%if nett < 0%}
+                          <tr style="background-color:#ffffff2d">
+                              <td></td>
+                              <td></td>
+                              <td style="font-weight:bold">Nett Loss: </td>
+                              <td style="font-weight:bold">{{nett}}</td>
+                          </tr>
+                      {%endif%}
+                      </table>
+              </form>
                   
         </section>
            
