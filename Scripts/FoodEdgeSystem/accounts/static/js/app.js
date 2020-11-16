@@ -140,7 +140,7 @@ function editBox(details){
     var deleteMessage = document.getElementById('deleteMessage');
     deleteMessage.innerHTML = "Confirm "+ name +" ?";
     var deleteConfirm = document.getElementById('deleteYes');
-    deleteConfirm.innerHTML = "Edit";
+    deleteConfirm.innerHTML = "OK";
     deleteConfirm.removeAttribute("href");
     var id = details.getAttribute("data-form-id")
     deleteConfirm.setAttribute("onclick", "submitForm(\""+ id+"\")");

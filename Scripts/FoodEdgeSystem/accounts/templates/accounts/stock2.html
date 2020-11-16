@@ -19,9 +19,15 @@
         <main>
             {%block content%}
             <style>
-        img{
+        .stockImg{
             width:200px;
             height:200px;
+        }
+
+        .button a{
+            display:block;
+            width:100px;
+            text-align: center;
         }
         </style>
             <div class="pageBanner pageBannerStaff">
@@ -42,7 +48,7 @@
                     {%for item in lowStock%}
                     <tr>
                         <td>{{item.id}}</td>
-                        <td><img src="{{item.stockImage.url}}" alt="Stock Image"/></td>
+                        <td><img class="stockImg" src="{{item.stockImage.url}}" alt="Stock Image"/></td>
                         <td>{{item.stockName}}</td>
                         <td>{{item.amountLeft}}</td>
                     </tr>
@@ -69,9 +75,9 @@
                         <td>{{res.amountLeft}}</td>
                         <td>{{res.deficit}}</td>
                         <td>
-                            <p><a onclick=deleteBox(this) data-username = "/delete/{{res.id}}" class="deleteBtn">Delete</a></p>
-                            <p><a href="/edit/{{res.id}}" class="cancelbtn">Edit</a></p>
-                            <p><a href="/editImage/{{res.id}}" class="cancelbtn">Image</a></p>
+                            <p class="button"><a onclick=deleteBox(this) data-username = "/delete/{{res.id}}" class="deleteBtn">Delete</a></p>
+                            <p class="button"><a href="/edit/{{res.id}}" class="cancelbtn">Edit</a></p>
+                            <p class="button"><a href="/editImage/{{res.id}}" class="cancelbtn">Image</a></p>
                         </td>
                     </tr>
                     {% endfor %}
