@@ -1,6 +1,8 @@
 # FoodEdgeOnlineCateringSystem
 Development Project 2 Assigment
 
+Live Site: http://foodedgecatering.pythonanywhere.com/
+
 Group Members:<br />
 1. Alvin Sim Zhong Xian <br />
 2. Wong Jun Jie <br />
