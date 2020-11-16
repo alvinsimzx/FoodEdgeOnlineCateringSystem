@@ -181,7 +181,7 @@ def changePassword(request):
 
 @allowed_users(allowed_roles=['Operations'])
 def customerAccounts(request):
-    users = User.objects.all()
+    users = User.objects.filter(groups=1)
     return render(request, 'accounts/customerAccounts.html', {'users' : users})
 
 def deleteCustomerAccount(request, username):
