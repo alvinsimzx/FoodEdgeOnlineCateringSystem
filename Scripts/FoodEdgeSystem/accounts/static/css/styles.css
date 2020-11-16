@@ -63,7 +63,7 @@ nav ul a {
     font-weight: bold;
     color:white;
     font-size: 15px;
-    
+    margin-right: 10px;
 }
 nav ul a::after{
     content: "";
@@ -967,13 +967,13 @@ label {
     background:#fff;
     padding:5%;
     transition: .5s;
-    height:100%;
+    height:30%;
     width:100%;
     opacity: 0.9;
     overflow: auto;
   }
   
-  .description h2{
+  .description h4{
     margin:0;
     padding:0;
     width:100%;

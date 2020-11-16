@@ -469,7 +469,19 @@ def pivot_data(request):
 
 @allowed_users(allowed_roles=['Management'])
 def ManagementHome(request):
-    return render(request, 'accounts/indexManagement.html')
+    order = InsertOrder.objects.all()
+    stock = InsertStock.objects.all()
+    menu = MenuItem.objects.all()
+    profitList = []
+    lossList = []
+    for i in order:
+        profitList.append(i.amountDue)
+    for j in stock:
+        lossList.append(j.deficit)
+    profit = sum(profitList)
+    loss = sum(lossList)
+    nett = profit - loss
+    return render(request, 'accounts/indexManagement.html', {'order':order, 'stock':stock, 'menu':menu, 'profit':profit, 'loss':loss, 'nett':nett})
 
 
 
