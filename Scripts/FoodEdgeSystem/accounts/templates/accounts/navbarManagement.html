@@ -1,11 +1,14 @@
 {% load static %}
 
 <header>
-        <a href = "{% url 'staff-home' %}"><img class="logo" src="{% static '/images/logo.png'%}" alt="Logo" width="150" height="75"></a>
+        <a href = "{% url 'Management-home' %}"><img class="logo" src="{% static '/images/logo.png'%}" alt="Logo" width="150" height="75"></a>
         <nav>
             <ul>
                 <a href = "{% url 'Management-home' %}" class="home"><li>Home</li></a>
-                <a href = "{% url 'dashboard_with_pivot' %}" class="sets"><li>BalanceReport</li></a>
+
+                <a href = "{% url 'dashboard_with_pivot' %}" class="sets"><li>Profit</li></a>
+                <a href = "{% url 'dashboard_with_pivot2' %}" class="sets"><li>Loss</li></a>
+                <a href = "{% url 'GeneralReport' %}" class="sets"><li>General Report</li></a>
             </ul>
             
         </nav>

@@ -24,7 +24,7 @@
                 <h1 id = "feedbackTitle">Edit Stock</h1>
                 <fieldset>
                     <legend>Edit Existing Stock Item</legend>
-                    <input type="hidden" name="stockID" id="stockID" value="{{record.stockID}}">
+                    <input type="hidden" name="id" id="id" value="{{record.id}}">
                     <p>
                         <label for="changename">Change Name of Stock: </label>
                         <input type="text" id="stockName" name="stockName" maxlength="25" placeholder="Stock Name" value="{{record.stockName}}" required/>
@@ -53,6 +53,9 @@
 
                         <input type="button" onclick=validateStock(this) data-form-id="StockEdit" data-username = "edit" value="Edit Stock"/>
 
+                    </p>
+                    <p>
+                        <a href="/viewStocks" class="deleteBtn">Back</a>
                     </p>
                 </fieldset>
             </form>

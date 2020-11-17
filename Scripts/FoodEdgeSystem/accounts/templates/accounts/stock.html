@@ -18,39 +18,18 @@
     <body>
         <main>
         {%block content%}
-        <div class="pageBanner">
+        <div class="pageBanner pageBannerStaff">
                 <h1>Add Stocks</h1>
             </div>
         {% include 'accounts/confirmBox.html'%}
-            <form id="StockAdd" method="post">
+            <form id="StockAdd" method="post" enctype="multipart/form-data">
             {% csrf_token %}
                 <h1 id = "feedbackTitle">Stock Management</h1>
                 <fieldset>
                     <legend>Add New Stock Item</legend>
+                    {{ form.as_p }} 
                     <p>
-                        <label for="stockname">Enter Stock Name: </label>
-                        <input type="text" id="stockName" name="stockName" maxlength="25" placeholder="Stock Name" required/>
-                    </p>
-                    <p>
-                     <label for="menuItemID">Select Menu Item for Stock Item: </label>
-                        <select id="menuItemID" name="menuItemID">
-                            {%for mns in mn%}
-                            <option value="{{mns.menuItemID}}">{{mns.itemName}}</option>
-                            {% endfor %}
-                        </select> 
-                    </p>
-                    <p>
-                        <label for="currentAmount">Enter Current Amount of Stock: </label>
-                        <input type="number" id="amountLeft" name="amountLeft" min="0" max="9999" placeholder="Enter Quantity (from 0 to 9999)" />
-                    </p>
-                    <p>
-                        <label for="pricing">Enter Stock Pricing: </label>
-                        <input type="number" id="deficit" name="deficit" min="0" max="99999" placeholder="Enter Pricing (0 to 99999)" />
-                    </p>
-                    <p>
-
-                        <input type="button" onclick=validateStock(this) data-form-id='StockAdd' data-username = "add" value="Insert Record"/>
-
+                        <input type="button" onclick=editBox(this) data-form-id='StockAdd' data-username = "add" value="Insert Record"/>
                     </p>
                 </fieldset>
             </form>

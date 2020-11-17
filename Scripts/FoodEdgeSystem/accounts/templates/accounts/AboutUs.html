@@ -20,21 +20,71 @@
   <body>
   
     {%block content%}  
+    <style>
+
+      .introHome{
+        background: #182525;
+      }
+      .aboutUsWrapper{
+        width:100%;
+        display: flex;
+      }
+
+      #about_us{
+        width:50%;
+      }
+
+      .aboutUsImg{
+        width:50%;
+      }
+
+      .aboutUsImg img{
+        width: 100%;
+      }
+
+    </style>
     <div class="pageBanner">
         <h1>About Us</h1>
+        
     </div>
-  <form id="about_us" method="post" novalidate="novalidate">
+    <section class="introHome">
+
+        <div class="containerHome">
+            <div class="imgContainerHome">
+                <img src="{% static 'images/aboutUs.jpg' %}" class="imgIntro" alt="picture">
+            </div>
+            <div class="descriptionHome">
+                <h1 id = "AboutUs">- Our Mission -</h1> 
+        
+                <p id= "about">To provide the best catering services for your special day.</p>
+              
+                <h1 id = "AboutUsTitle2">- About Us -</h1> 
+                
+                <p id= "about_info2">FoodEdge was found in 2008 by John Wilson Jr, who grew up helping his family business of running their family restaurant. After finishing school, he decided to open his own company which is now known as FoodEdge.</p>
+                <p id= "about_info2"> The company was originally a simple restaurant that sold a mix of local, western and chinese delights. After the restaurant was opened sucessfully for the next 2 years, John Wilson Jr decided they should open a catering service to increase their profit. The website is used for clients to order catering services from the company, this is to not limit the ways of asking for catering services just to face to face or going to the restaurant to order.</p>
+            </div>
+
+            
+        </div>
+    </section>
+<!-- <div class="aboutUsWrapper profile">
+    <div id="about_us" novalidate="novalidate">
   
-    <h1 id = "AboutUs">- Our Mission -</h1> 
-    
-    <p id= "about">To provide the best catering services for your special day.</p>
+        <h1 id = "AboutUs">- Our Mission -</h1> 
+        
+        <p id= "about">To provide the best catering services for your special day.</p>
+      
+        <h1 id = "AboutUsTitle2">- About Us -</h1> 
+        
+        <p id= "about_info2">FoodEdge was found in 2008 by John Wilson Jr, who grew up helping his family business of running their family restaurant. After finishing school, he decided to open his own company which is now known as FoodEdge.</p>
+        <p id= "about_info2"> The company was originally a simple restaurant that sold a mix of local, western and chinese delights. After the restaurant was opened sucessfully for the next 2 years, John Wilson Jr decided they should open a catering service to increase their profit. The website is used for clients to order catering services from the company, this is to not limit the ways of asking for catering services just to face to face or going to the restaurant to order.</p>
+        
+      </div>
+      <div class="aboutUsImg">
+        <img src="{% static '/images/background.jpg' %}">
+      </div>
+</div> -->
   
-    <h1 id = "AboutUsTitle2">- About Us -</h1> 
-    
-    <p id= "about_info2">FoodEdge was found in 2008 by John Wilson Jr, who grew up helping his family business of running their family restaurant. After finishing school, he decided to open his own company which is now known as FoodEdge.</p>
-    <p id= "about_info2"> The company was originally a simple restaurant that sold a mix of local, western and chinese delights. After the restaurant was opened sucessfully for the next 2 years, John Wilson Jr decided they should open a catering service to increase their profit. The website is used for clients to order catering services from the company, this is to not limit the ways of asking for catering services just to face to face or going to the restaurant to order.</p>
-    
-  </form>
     
     {%endblock content%}
 

@@ -18,7 +18,19 @@
     <body>
         <main>
             {%block content%}
-            <div class="pageBanner">
+            <style>
+        .stockImg{
+            width:200px;
+            height:200px;
+        }
+
+        .button a{
+            display:block;
+            width:100px;
+            text-align: center;
+        }
+        </style>
+            <div class="pageBanner pageBannerStaff">
                     <h1>Edit Stocks</h1>
                 </div>
             {% include 'accounts/confirmBox.html'%}
@@ -29,12 +41,14 @@
                 <table>
                     <tr>
                         <th>Stock ID</th>
+                        <th>Stock Image</th>
                         <th>Name</th>
                         <th>Amount Left</th>
                     </tr>
                     {%for item in lowStock%}
                     <tr>
-                        <td>{{item.stockID}}</td>
+                        <td>{{item.id}}</td>
+                        <td><img class="stockImg" src="{{item.stockImage.url}}" alt="Stock Image"/></td>
                         <td>{{item.stockName}}</td>
                         <td>{{item.amountLeft}}</td>
                     </tr>
@@ -46,6 +60,7 @@
                     <tr>
                         <th>Stock ID</th>
                         <th>Menu ID</th>
+                        <th>Stock Image</th>
                         <th>Name</th>
                         <th>Amount Left</th>
                         <th>Price($)</th>
@@ -53,13 +68,17 @@
                     </tr>
                     {%for res in re%}
                     <tr>
-                        <td>{{res.stockID}}</td>
+                        <td>{{res.id}}</td>
                         <td>{{res.menuItemID}}</td>
+                        <td><img src="{{res.stockImage.url}}" alt="Stock Image"/></td>
                         <td>{{res.stockName}}</td>
                         <td>{{res.amountLeft}}</td>
                         <td>{{res.deficit}}</td>
-                        <td><button onclick=deleteBox(this) data-username = "/delete/{{res.stockID}}" class="deleteBtn">Delete</button>
-                            <a href="/edit/{{res.stockID}}">Edit</a></td>
+                        <td>
+                            <p class="button"><a onclick=deleteBox(this) data-username = "/delete/{{res.id}}" class="deleteBtn">Delete</a></p>
+                            <p class="button"><a href="/edit/{{res.id}}" class="cancelbtn">Edit</a></p>
+                            <p class="button"><a href="/editImage/{{res.id}}" class="cancelbtn">Image</a></p>
+                        </td>
                     </tr>
                     {% endfor %}
                 </table>

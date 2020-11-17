@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile,Event,EventMember
+from .models import Profile,Event,EventMember,MenuItem,InsertStock
+from django.core.validators import RegexValidator
 
 from django.forms import ModelForm, DateInput
 # #Date and time picker
@@ -64,3 +65,20 @@ class AddMemberForm(forms.ModelForm):
   class Meta:
     model = EventMember
     fields = ['user']
+
+class StockForm(forms.ModelForm):
+  CHOICES = []
+  menu = MenuItem.objects.all()
+  for items in menu:
+    CHOICES.append((items.menuItemID,items.itemName))
+  menuItemID = forms.ChoiceField(choices=CHOICES)
+  amountLeft = forms.IntegerField(max_value=9999)
+  deficit = forms.IntegerField(max_value=99999)
+  class Meta:
+    model = InsertStock
+    fields = ['stockName', 'amountLeft', 'deficit', 'stockImage', 'menuItemID']
+
+class StockImageEdit(forms.ModelForm):
+  class Meta: 
+      model = InsertStock
+      fields = ['stockImage']

@@ -1,0 +1,55 @@
+{% extends 'accounts/mainStaff.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!--Description: Development project 2-->
+<!--Author: Wong Jun Jie-->
+<!--Date: 5/10/20-->
+<!--Validate: -->
+    <head>
+        <title>Stock Management</title>
+        <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css'%}">
+        <link rel="shortcut icon" href="style/images/logo.png">
+        <meta charset="utf-8">
+        <meta name="author" content="Wong Jun Jie">
+        <meta name="description" content="Food Edge Feedback">
+        <meta name="keywords" content="Food, Edge, Stock, Management"> 
+    </head>
+    <body>
+        <main>
+        {%block content%}
+        <style>
+        img{
+            width:200px;
+            height:200px;
+        }
+        </style>
+        <div class="pageBanner pageBannerStaff">
+                <h1>Update Stock Image</h1>
+            </div>
+            {% include 'accounts/confirmBox.html'%}
+            <form id="StockImageEdit" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                <h1 id = "feedbackTitle">Stock Management</h1>
+                <input type="hidden" name="id" id="id" value="{{record.id}}">
+                <fieldset>
+                    <legend>Change Stock Image</legend>
+                    <p>
+                        <img src="{{record.stockImage.url}}" alt="Stock Image"/>
+                    </p>
+                    {{ form.as_p }} 
+                    <p>
+                        <input type="submit" onclick="return confirm('Are you sure you want to Change this Image?');" value="Edit Image"/>
+                    </p>
+                    <p>
+                        <a href="/viewStocks" class="deleteBtn">Back</a>
+                    </p>
+                </fieldset>
+            </form>
+            
+        </main>
+    {%endblock content%}
+    </body>
+
+
+</html>
