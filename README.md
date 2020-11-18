@@ -36,3 +36,14 @@ Group Members:<br />
 4. Type "python manage.py runserver"
 5. The console should show the link to open the Web App in your browser
 6. Open your browser and navigate to localhost:8000/ (note: try 127.0.0.1:8000/ if it doesn't work)
+
+## Login Informations
+### Operation Team<br />
+ID: TestOperation<br />
+PW: dp2sem22020<br />
+
+### Management Team
+ID: TestManagement<br />
+PW: dp2sem22020<br />
+
+### For customers, you can just register for an account on the site and log in through there.
