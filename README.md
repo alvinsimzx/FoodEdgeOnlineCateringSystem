@@ -1,5 +1,5 @@
 # FoodEdgeOnlineCateringSystem
-Development Project 2 Assigment
+Development Project 2 Assignment
 
 Live Site: http://foodedgecatering.pythonanywhere.com/
 
